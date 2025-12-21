@@ -69,3 +69,4 @@ Modify the `translations` object in `assets/main.js`. Each key (e.g., `hero.titl
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
+
