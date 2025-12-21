@@ -4,7 +4,7 @@ A modern, responsive, and bilingual developer portfolio to showcase my work as a
 
 🔗 **Live Demo**: [https://joaquin-om.github.io/](https://joaquin-om.github.io/)
 
-![Portfolio Preview](https://via.placeholder.com/800x400.png?text=Portfolio+Preview+Coming+Soon)
+![Portfolio Preview](developer-portfolio/assets/preview.png)
 
 ## ✨ Features
 
