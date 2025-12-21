@@ -4,8 +4,6 @@ A modern, responsive, and bilingual developer portfolio to showcase my work as a
 
 🔗 **Live Demo**: [https://joaquin-om.github.io/](https://joaquin-om.github.io/)
 
-![Portfolio Preview](developer-portfolio/assets/preview.png)
-
 ## ✨ Features
 
 - **🎨 Cyber Professional Aesthetic**: Dark mode by default, glassmorphism effects, and smooth gradients.
