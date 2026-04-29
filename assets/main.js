@@ -215,9 +215,17 @@ function initCursorGlow() {
     if (!glow) return;
 
     document.addEventListener('mousemove', (e) => {
-        // Center the glow circle on the cursor
+        // Position the glow circle at the cursor
         glow.style.left = e.clientX + 'px';
         glow.style.top = e.clientY + 'px';
+
+        // Check if hovering near text areas to dissipate glow
+        const target = e.target;
+        if (target.closest('h1, h2, h3, h4, p, span, a, li, strong')) {
+            glow.style.opacity = '0.05'; // Dissipate
+        } else {
+            glow.style.opacity = '1'; // Normal
+        }
     });
 }
 
