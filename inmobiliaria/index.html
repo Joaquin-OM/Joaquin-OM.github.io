@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Can Tramuntana Estates — Inmobiliaria de Lujo & Villas en Mallorca</title>
+  <meta name="description" content="Demostración de web inmobiliaria de alto standing en Mallorca con catálogo exclusivo en Son Vida, Deià y Port d'Andratx y solicitud de dossier confidencial.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    
+    :root {
+      --bg-dark: #08090C;
+      --bg-surface: #101217;
+      --bg-card: #14171E;
+      --bg-card-hover: #191D26;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.18);
+      --text-white: #FAF8F5;
+      --text-primary: #EDE9E3;
+      --text-secondary: #9E9B95;
+      --text-muted: #6B6862;
+      --accent: #D4AF37;
+      --accent-hover: #F3E5AB;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 14px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* HEADER */
+    .luxury-header {
+      background: rgba(8, 9, 12, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 0;
+    }
+    .header-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .brand-box { display: flex; flex-direction: column; text-decoration: none; }
+    .brand-loc {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text-white);
+      line-height: 1.1;
+    }
+    .brand-sub { font-size: 0.72rem; color: var(--text-secondary); }
+    
+    .header-actions { display: flex; gap: 10px; align-items: center; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      letter-spacing: 0.03em;
+    }
+    .btn-luxury-primary {
+      background: #FAF8F5;
+      color: #08090C;
+      border: 1px solid #FAF8F5;
+    }
+    .btn-luxury-primary:hover { background: #E5E0D8; border-color: #E5E0D8; }
+    .btn-luxury-outline {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+    }
+    .btn-luxury-outline:hover { background: rgba(255,255,255,0.06); color: #fff; }
+    .btn-block { width: 100%; }
+
+    /* HERO */
+    .editorial-hero {
+      position: relative;
+      padding: 5rem 0 3.5rem 0;
+      border-bottom: 1px solid var(--border);
+      background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
+      text-align: center;
+    }
+    .hero-content { max-width: 820px; margin: 0 auto; padding: 0 1.5rem; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #C2B69D;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+      background: rgba(255,255,255,0.02);
+    }
+    .hero-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--text-white);
+      margin-bottom: 1.25rem;
+    }
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .hero-pills { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .pill-item {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.03);
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* SECTION BASICS */
+    .section-wrap { padding: 4.5rem 0; }
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #C2B69D;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .serif-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 400;
+      color: var(--text-white);
+      line-height: 1.2;
+    }
+    .section-title-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .section-desc { max-width: 480px; font-size: 0.95rem; color: var(--text-secondary); }
+
+    /* WIDGET / FORMS */
+    .widget-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    }
+    .widget-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text-white);
+      margin-bottom: 0.25rem;
+    }
+    .widget-sub { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .f-label {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .f-input {
+      width: 100%;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border-strong);
+      color: var(--text-white);
+      padding: 0.7rem 0.9rem;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .f-input:focus { border-color: var(--text-white); }
+    .f-input.readonly { background: rgba(255,255,255,0.03); color: #C2B69D; }
+
+    /* PROMO BANNER FOR BIZ OWNERS */
+    .biz-banner {
+      background: linear-gradient(135deg, rgba(20, 23, 30, 0.9), rgba(15, 17, 22, 0.9));
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-top: 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .biz-banner-content h3 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: #FAF8F5;
+      margin-bottom: 0.5rem;
+    }
+    .biz-banner-content p { font-size: 0.95rem; color: var(--text-secondary); max-width: 600px; }
+
+    /* FOOTER */
+    .luxury-footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .luxury-footer a { color: var(--text-secondary); text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .form-row { grid-template-columns: 1fr; }
+      .section-title-wrap { flex-direction: column; align-items: flex-start; }
+    }
+  
+
+    .props-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 2rem;
+    }
+    .prop-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s;
+    }
+    .prop-card:hover {
+      background: var(--bg-card);
+      border-color: var(--border-strong);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+    .prop-img-wrap {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+    }
+    .prop-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .prop-card:hover .prop-img { transform: scale(1.04); }
+    .prop-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(8, 9, 12, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #FAF8F5;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .prop-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .prop-loc { font-size: 0.76rem; color: #C2B69D; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .prop-title { font-family: var(--font-serif); font-size: 1.5rem; color: var(--text-white); margin-bottom: 0.5rem; }
+    .prop-price { font-size: 1.35rem; font-weight: 700; color: #FAF8F5; margin-bottom: 0.8rem; font-family: var(--font-serif); }
+    .prop-specs { font-size: 0.8rem; color: var(--text-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 8px 0; margin-bottom: 1rem; }
+    .prop-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.5rem; flex-grow: 1; }
+
+    /* MODAL */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-backdrop.active { display: flex; }
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 520px;
+      padding: 2rem;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .modal-close:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header class="luxury-header">
+    <div class="header-container">
+      <a href="../" class="brand-box">
+        <span class="brand-loc">MALLORCA &bull; ESTATES & REAL ESTATE</span>
+        <span class="brand-title">Can Tramuntana Estates</span>
+        <span class="brand-sub">Villas en Son Vida &bull; Fincas &bull; Port d'Andratx</span>
+      </a>
+
+      <div class="header-actions">
+        <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20vi%20la%20demo%20de%20Inmobiliaria%20de%20Lujo%20y%20quiero%20consultar%20para%20mi%20agencia" target="_blank" class="btn btn-luxury-primary">
+          <i data-lucide="message-circle"></i>
+          <span>Pedir Web Inmobiliaria</span>
+        </a>
+        <a href="../#proyectos" class="btn btn-luxury-outline">Portfolio</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="editorial-hero">
+      <div class="hero-content">
+        <span class="hero-tag">Demo para Agencias Inmobiliarias de Alto Standing</span>
+        <h1 class="hero-heading">
+          Arquitectura, privacidad y vistas únicas en Mallorca.
+        </h1>
+        <p class="hero-lead">
+          Diseño web de calidad editorial pensado para compradores internacionales e inversores. Permite solicitar dossiers confidenciales y visitas privadas directamente a WhatsApp o correo de gerencia.
+        </p>
+        <div class="hero-pills">
+          <span class="pill-item"><i data-lucide="camera"></i> Presentación fotográfica arquitectónica</span>
+          <span class="pill-item"><i data-lucide="file-text"></i> Solicitud de dossier con planos</span>
+          <span class="pill-item"><i data-lucide="globe"></i> Enfoque para compradores extranjeros</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrap container">
+      <div class="section-title-wrap">
+        <div>
+          <span class="eyebrow">Cartera Seleccionada</span>
+          <h2 class="serif-title">Villas & Fincas Exclusivas</h2>
+        </div>
+        <p class="section-desc">
+          Propiedades únicas en Son Vida, Deià y Port d'Andratx. Haz clic para solicitar el dossier confidencial completo.
+        </p>
+      </div>
+
+      <div class="props-grid" id="propsGrid"></div>
+
+      <!-- BANNER BIZ -->
+      <div class="biz-banner">
+        <div class="biz-banner-content">
+          <h3>¿Gestionas una Inmobiliaria de Alto Nivel en Mallorca?</h3>
+          <p>
+            Tus compradores valoran la discreción, la velocidad en móvil y la estética arquitectónica. Creo portales a medida con fichas interactivas, solicitud confidencial y sincronización automática.
+          </p>
+        </div>
+        <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20tengo%20una%20inmobiliaria%20en%20Mallorca%20y%20quiero%20una%20web%20como%20Can%20Tramuntana%20Estates" target="_blank" class="btn btn-luxury-primary">
+          <span>Consultar Proyecto Inmobiliario</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL DOSSIER -->
+  <div class="modal-backdrop" id="dossierModal" onclick="closeModalBackdrop(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeDossier()">&times;</button>
+      <span class="eyebrow">Dossier Confidencial</span>
+      <h3 class="serif-title" id="mPropTitle" style="font-size: 1.5rem; margin-bottom: 0.3rem;">Villa Son Vida</h3>
+      <p style="font-size: 0.85rem; color: #C2B69D; margin-bottom: 1.5rem;" id="mPropPrice">4.850.000 €</p>
+
+      <form onsubmit="handleDossierSubmit(event)">
+        <div class="form-group">
+          <label class="f-label">Nombre del Interesado o Representante</label>
+          <input type="text" id="dName" class="f-input" placeholder="Nombre completo" required>
+        </div>
+        <div class="form-group">
+          <label class="f-label">Teléfono o Email de Contacto</label>
+          <input type="text" id="dContact" class="f-input" placeholder="+34 600 00 00 00 o correo" required>
+        </div>
+        <div class="form-group">
+          <label class="f-label">Interés Específico</label>
+          <select id="dInterest" class="f-input">
+            <option value="Dossier con planos y memoria de calidades">Dossier con planos y calidades</option>
+            <option value="Agendar visita privada discreta">Agendar visita privada discreta</option>
+            <option value="Consulta sobre rentabilidad">Consulta sobre rentabilidad</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-luxury-primary btn-block" style="padding: 0.85rem;">
+          <i data-lucide="message-circle"></i>
+          <span>Enviar Solicitud por WhatsApp</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="luxury-footer">
+    <div class="container">
+      <p>Can Tramuntana Estates &bull; Demo creada por <a href="https://joaquin-om.github.io/">Joaquín Oses Monti</a> — Desarrollador Web Freelance en Palma de Mallorca.</p>
+    </div>
+  </footer>
+
+  <script>
+    const PROPERTIES = [
+      {
+        id: "son_vida",
+        title: "Villa Son Vida Skyline",
+        loc: "Son Vida, Palma de Mallorca",
+        price: "4.850.000 €",
+        specs: "6 Dormitorios • 7 Baños • 820 m² constr. • Parcela 2.400 m²",
+        desc: "Arquitectura contemporánea con vistas panorámicas a la Bahía de Palma y a la Catedral. Piscina infinita de agua salada, ascensor interior, bodega climatizada y spa privado.",
+        img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop",
+        badge: "Exclusiva Son Vida"
+      },
+      {
+        id: "deia",
+        title: "Finca Rústica Deià & Tramuntana",
+        loc: "Deià / Valldemossa, Mallorca",
+        price: "3.200.000 €",
+        specs: "4 Dormitorios • 4 Baños • 460 m² constr. • Finca 14.000 m²",
+        desc: "Piedra seca centenaria restaurada con estándares de máxima sostenibilidad. Olivar privado en producción, vigas vistas de roble, porches al atardecer y licencia turística histórica.",
+        img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop",
+        badge: "Patrimonio UNESCO"
+      },
+      {
+        id: "andratx",
+        title: "Ático Waterfront Port d'Andratx",
+        loc: "Port d'Andratx, Mallorca",
+        price: "2.450.000 €",
+        specs: "3 Dormitorios • 3 Baños • 210 m² constr. • Solárium 95 m²",
+        desc: "Primera línea de mar en la marina más codiciada del Mediterráneo. Terraza solárium con jacuzzi exterior, cocina Boffi, domótica integral y amarre para yate disponible.",
+        img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+        badge: "Waterfront"
+      }
+    ];
+
+    let currentProp = PROPERTIES[0];
+
+    function openDossier(idx) {
+      currentProp = PROPERTIES[idx];
+      document.getElementById('mPropTitle').textContent = currentProp.title;
+      document.getElementById('mPropPrice').textContent = currentProp.price + ' • ' + currentProp.loc;
+      document.getElementById('dossierModal').classList.add('active');
+    }
+
+    function closeDossier() {
+      document.getElementById('dossierModal').classList.remove('active');
+    }
+
+    function closeModalBackdrop(e) {
+      if (e.target.id === 'dossierModal') closeDossier();
+    }
+
+    function handleDossierSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('dName').value;
+      const contact = document.getElementById('dContact').value;
+      const interest = document.getElementById('dInterest').value;
+
+      const text = `¡Hola! Solicito el dossier confidencial de la propiedad:
+
+🏡 Propiedad: ${currentProp.title} (${currentProp.price})
+📍 Ubicación: ${currentProp.loc}
+👤 Interesado: ${name}
+📞 Contacto: ${contact}
+🎯 Interés: ${interest}
+
+¿Podrían facilitarme los planos y memoria de calidades? ¡Muchas gracias!`;
+
+      window.open('https://wa.me/34695267445?text=' + encodeURIComponent(text), '_blank');
+      closeDossier();
+    }
+
+    function renderProps() {
+      const grid = document.getElementById('propsGrid');
+      grid.innerHTML = PROPERTIES.map((p, idx) => `
+        <div class="prop-card">
+          <div class="prop-img-wrap">
+            <img src="${p.img}" alt="${p.title}" class="prop-img" loading="lazy">
+            <span class="prop-badge">${p.badge}</span>
+          </div>
+          <div class="prop-content">
+            <span class="prop-loc">${p.loc}</span>
+            <h3 class="prop-title">${p.title}</h3>
+            <div class="prop-price">${p.price}</div>
+            <div class="prop-specs">${p.specs}</div>
+            <p class="prop-desc">${p.desc}</p>
+            <button class="btn btn-luxury-primary" onclick="openDossier(${idx})">
+              <i data-lucide="file-text"></i>
+              <span>Solicitar Dossier Confidencial</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProps();
+      if (window.lucide) window.lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

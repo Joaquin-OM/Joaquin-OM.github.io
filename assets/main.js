@@ -84,9 +84,9 @@ const translations = {
         "projects.purecookTitle": "PureCook: Gestor de Recetas Ultra-Minimalista",
         "projects.purecookSummary": "Aplicación Web Progresiva (PWA) real en producción con soporte offline. Diseñada con enfoque ultra-minimalista, tipografía suiza y rendimiento inmediato sin tiempos de carga.",
 
-        "projects.luxuryCat": "Turismo de Lujo & Inmobiliaria",
-        "projects.luxuryTitle": "Mallorca Luxury: Hoteles, Restaurantes & Villas",
-        "projects.luxurySummary": "Plataforma 3-en-1 de alta gama para empresas de Mallorca. Integra catálogo de propiedades exclusivas en Son Vida y Andratx, reservas para hoteles boutique y menú con reserva de mesa para restauración.",
+        "projects.luxuryCat": "Hostelería, Inmobiliaria & Gastronomía",
+        "projects.luxuryTitle": "Mallorca Hospitality: Restaurante, Hotel & Inmobiliaria",
+        "projects.luxurySummary": "Soluciones web de alta gama para el sector premium de Baleares. Demos independientes con motor de reservas directas sin comisiones de intermediarios:",
 
         "about.label": "Enfoque",
         "about.title": "Perfil técnico híbrido",
@@ -221,9 +221,9 @@ const translations = {
         "projects.purecookTitle": "PureCook: Ultra-Minimalist Recipe Manager",
         "projects.purecookSummary": "Live production PWA engineered with an offline-first architecture, zero-friction Swiss UI, and instantaneous client-side performance.",
 
-        "projects.luxuryCat": "Luxury Hospitality & Real Estate",
-        "projects.luxuryTitle": "Mallorca Luxury: Hotels, Dining & Estates",
-        "projects.luxurySummary": "Editorial 3-in-1 digital platform for Mallorca's premium sector: luxury villa showcase in Son Vida and Andratx, boutique hotel suite bookings, and restaurant table reservations.",
+        "projects.luxuryCat": "Hospitality, Real Estate & Gastronomy",
+        "projects.luxuryTitle": "Mallorca Hospitality: Restaurant, Hotel & Estates",
+        "projects.luxurySummary": "Tailored luxury web solutions for Balearic premium businesses. Standalone interactive demos with direct commission-free booking engines:",
 
         "about.label": "Approach",
         "about.title": "Hybrid technical profile",
