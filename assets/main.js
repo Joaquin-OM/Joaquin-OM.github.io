@@ -75,9 +75,9 @@ const translations = {
         "projects.p4Title": "Constructor de Plantillas de Email",
         "projects.p4Summary": "Herramienta para diseñar boletines y comunicaciones por correo electrónico con previsualización en tiempo real y exportación de código limpio y compatible.",
 
-        "projects.p5Cat": "Inteligencia Artificial & Gastronomía",
+        "projects.p5Cat": "I+D & Desarrollo Full-Stack",
         "projects.p5Title": "SmartCook: Asistente Culinario con IA",
-        "projects.p5Summary": "Planificador culinario inteligente que optimiza los ingredientes de la despensa para reducir el desperdicio. Integra personalidades de chef ('Abuela Teresa', 'Chef Gordon', 'Dr. Molecular') y modo cocina guiado.",
+        "projects.p5Summary": "Proyecto de ingeniería full-stack que combina backend en Python con IA generativa (Gemini API) y teoría de conjuntos para cruzar despensas y recetas. Persistencia estructurada CRUD y simulador experto.",
 
         "projects.purecookCat": "Aplicación Web PWA",
         "projects.purecookTitle": "PureCook: Gestor de Recetas Ultra-Minimalista",
@@ -183,9 +183,9 @@ const translations = {
         "projects.p4Title": "Email Template Builder",
         "projects.p4Summary": "Drag-and-drop tool to compose responsive email templates with live preview and clean HTML code export.",
 
-        "projects.p5Cat": "AI & Culinary Tech",
-        "projects.p5Title": "SmartCook: AI Kitchen & Recipe Assistant",
-        "projects.p5Summary": "Smart culinary assistant that maximizes existing pantry ingredients to prevent food waste. Features AI chef personas ('Chef Gordon', 'Grandma Teresa', 'Dr. Molecular') and interactive cooking mode.",
+        "projects.p5Cat": "R&D & Full-Stack Engineering",
+        "projects.p5Title": "SmartCook: AI Kitchen & Culinary System",
+        "projects.p5Summary": "Full-stack project pairing a Python backend with generative AI (Gemini API) and set theory algorithms to cross-reference pantries and recipes. Includes persistent CRUD storage and expert simulation.",
 
         "projects.purecookCat": "Progressive Web App (PWA)",
         "projects.purecookTitle": "PureCook: Ultra-Minimalist Recipe Manager",
