@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel de Prospección 1-Clic — Joaquín Oses Monti</title>
+<title>Panel de Prospección 1-Clic — Detección Multilingüe (ES / EN / DE)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -23,7 +23,10 @@
     --green: #10B981;
     --green-bg: rgba(16, 185, 129, 0.12);
     --blue: #3B82F6;
+    --blue-bg: rgba(59, 130, 246, 0.12);
     --amber: #F59E0B;
+    --amber-bg: rgba(245, 158, 11, 0.12);
+    --purple: #8B5CF6;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -33,9 +36,9 @@
     line-height: 1.5;
     padding-bottom: 80px;
   }
-  .container { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
   .crm-header {
-    background: rgba(17, 19, 24, 0.92);
+    background: rgba(17, 19, 24, 0.94);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
     position: sticky;
@@ -57,17 +60,18 @@
     color: var(--text-white);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
   .brand-badge {
     font-size: 0.7rem;
     font-weight: 600;
     background: rgba(255,255,255,0.08);
-    padding: 3px 8px;
+    padding: 4px 9px;
     border-radius: 4px;
     color: var(--text-secondary);
     border: 1px solid var(--border);
   }
+  .header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
   .kpi-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -90,15 +94,16 @@
   }
   .kpi-val { font-size: 2rem; font-weight: 800; color: var(--text-white); line-height: 1; }
   .kpi-sub { font-size: 0.78rem; color: var(--text-secondary); margin-top: 6px; }
+  
   .controls-card {
     background: var(--bg-surface);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 18px 20px;
+    padding: 20px;
     margin-bottom: 24px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
   }
   .search-input-wrap {
     display: flex;
@@ -106,7 +111,7 @@
     background: rgba(255,255,255,0.03);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 8px 14px;
+    padding: 10px 14px;
     gap: 10px;
   }
   .search-input-wrap input {
@@ -115,8 +120,19 @@
     color: #fff;
     width: 100%;
     outline: none;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     font-family: inherit;
+  }
+  .filter-group-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
   .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; }
   .filter-pill {
@@ -129,6 +145,9 @@
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
   .filter-pill:hover { background: rgba(255,255,255,0.05); color: #fff; }
   .filter-pill.active {
@@ -136,10 +155,16 @@
     color: #090A0D;
     border-color: var(--text-white);
   }
+  .filter-pill.active-lang {
+    background: #3B82F6;
+    color: #FFFFFF;
+    border-color: #3B82F6;
+  }
+
   .leads-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 18px;
   }
   .lead-card {
     background: var(--bg-card);
@@ -149,13 +174,20 @@
     display: flex;
     flex-direction: column;
     transition: all 0.18s;
+    position: relative;
   }
   .lead-card:hover {
     background: var(--bg-card-hover);
     border-color: var(--border-hover);
   }
-  .lead-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
-  .lead-name { font-size: 1.1rem; font-weight: 700; color: var(--text-white); line-height: 1.25; }
+  .lead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .lead-name { font-size: 1.12rem; font-weight: 700; color: var(--text-white); line-height: 1.25; }
   .sector-badge {
     font-size: 0.68rem;
     font-weight: 700;
@@ -168,7 +200,71 @@
     border: 1px solid var(--border);
     white-space: nowrap;
   }
-  .lead-meta { display: flex; gap: 10px; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; }
+  .lead-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  /* LANGUAGE DETECTION BOX */
+  .lang-detection-box {
+    background: rgba(59, 130, 246, 0.05);
+    border: 1px solid rgba(59, 130, 246, 0.18);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .lang-detection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .lang-detection-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #60A5FA;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .lang-switch-group {
+    display: flex;
+    gap: 4px;
+    background: rgba(0,0,0,0.3);
+    padding: 2px;
+    border-radius: 6px;
+  }
+  .lang-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .lang-btn:hover { color: #fff; }
+  .lang-btn.active {
+    background: #3B82F6;
+    color: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  .lang-reason {
+    font-size: 0.75rem;
+    color: #94A3B8;
+    line-height: 1.35;
+  }
+
   .lead-audit {
     background: rgba(255,255,255,0.02);
     border: 1px dashed var(--border);
@@ -176,7 +272,7 @@
     padding: 8px 12px;
     font-size: 0.8rem;
     color: #CBD5E1;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
   .lead-audit-label {
     font-size: 0.68rem;
@@ -186,6 +282,40 @@
     display: block;
     margin-bottom: 2px;
   }
+
+  .pitch-preview-box {
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+  }
+  .pitch-preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pitch-preview-title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pitch-preview-content {
+    font-size: 0.76rem;
+    color: #D1D5DB;
+    font-style: italic;
+    margin-top: 8px;
+    line-height: 1.45;
+    max-height: 110px;
+    overflow-y: auto;
+    display: block;
+    border-left: 2px solid #3B82F6;
+    padding-left: 8px;
+  }
+
   .lead-demo {
     font-size: 0.75rem;
     color: var(--text-muted);
@@ -195,6 +325,7 @@
     gap: 6px;
   }
   .lead-demo a { color: var(--text-white); text-decoration: underline; font-weight: 600; }
+
   .lead-actions {
     display: flex;
     flex-direction: column;
@@ -265,14 +396,20 @@
   <header class="crm-header">
     <div class="container crm-header-row">
       <div class="brand-title">
-        <i data-lucide="zap" style="width: 20px; height: 20px; color: #10B981;"></i>
-        <span>Panel de Prospección 1-Clic</span>
-        <span class="brand-badge">Palma de Mallorca &bull; 32 Negocios Verificados</span>
+        <i data-lucide="globe" style="width: 20px; height: 20px; color: #3B82F6;"></i>
+        <span>Panel de Prospección Multilingüe</span>
+        <span class="brand-badge">Mallorca &bull; 32 Negocios &bull; ES | EN | DE</span>
       </div>
 
-      <div style="display: flex; gap: 8px;">
+      <div class="header-actions">
+        <a href="../assets/Dossier_Servicios_Joaquin_Oses_2026.pdf" target="_blank" class="filter-pill" title="Descargar Dossier en Español">
+          <i data-lucide="file-text" style="width: 14px; height: 14px;"></i> Dossier (ES)
+        </a>
+        <a href="../assets/Dossier_Services_Joaquin_Oses_2026_EN.pdf" target="_blank" class="filter-pill" title="Descargar Dossier en Inglés">
+          <i data-lucide="file-text" style="width: 14px; height: 14px;"></i> Dossier (EN)
+        </a>
         <button class="filter-pill" onclick="exportData()">
-          <i data-lucide="download" style="width: 14px; height: 14px; vertical-align: -2px;"></i> Exportar Progreso a CSV
+          <i data-lucide="download" style="width: 14px; height: 14px;"></i> Exportar CSV
         </button>
       </div>
     </div>
@@ -283,7 +420,7 @@
       <div class="kpi-card">
         <div class="kpi-label">Total Leads Verificados</div>
         <div class="kpi-val" id="kpiTotal">32</div>
-        <div class="kpi-sub">5 sectores de alto ticket en Mallorca</div>
+        <div class="kpi-sub">Mallorca (Turismo, Náutica, Hoteles, Asesorías)</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Contactados</div>
@@ -293,28 +430,41 @@
       <div class="kpi-card">
         <div class="kpi-label">Respuestas Recibidas</div>
         <div class="kpi-val" id="kpiResponses" style="color: #3B82F6;">0</div>
-        <div class="kpi-sub">Clientes interesados</div>
+        <div class="kpi-sub">Interesados en propuesta</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Reuniones Agendadas</div>
         <div class="kpi-val" id="kpiMeetings" style="color: #F59E0B;">0</div>
-        <div class="kpi-sub">Presencial en Palma o llamada</div>
+        <div class="kpi-sub">Presencial en Palma o videollamada</div>
       </div>
     </div>
 
     <div class="controls-card">
       <div class="search-input-wrap">
         <i data-lucide="search" style="width: 18px; height: 18px; color: #6B7280;"></i>
-        <input type="text" id="searchInput" placeholder="Buscar por nombre de negocio o zona (ej: Alcúdia, Son Vida, Deià, Portals)..." oninput="renderLeads()">
+        <input type="text" id="searchInput" placeholder="Buscar por negocio, zona (Portals, Alcúdia, Son Vida), sector o idioma..." oninput="renderLeads()">
       </div>
 
-      <div class="filter-pills" id="sectorFilters">
-        <button class="filter-pill active" onclick="setSectorFilter('all')">Todos (32)</button>
-        <button class="filter-pill" onclick="setSectorFilter('Rent-a-Car')">Rent-a-Car (8)</button>
-        <button class="filter-pill" onclick="setSectorFilter('Náutica')">Náutica & Chárter (6)</button>
-        <button class="filter-pill" onclick="setSectorFilter('Asesoría')">Asesorías (6)</button>
-        <button class="filter-pill" onclick="setSectorFilter('Hotel')">Hoteles & Fincas (8)</button>
-        <button class="filter-pill" onclick="setSectorFilter('Clínica')">Salud & Dental (4)</button>
+      <div>
+        <div class="filter-group-label"><i data-lucide="layers" style="width: 13px; height: 13px;"></i> Filtrar por Sector</div>
+        <div class="filter-pills" id="sectorFilters">
+          <button class="filter-pill active" onclick="setSectorFilter('all')">Todos (32)</button>
+          <button class="filter-pill" onclick="setSectorFilter('Rent-a-Car')">Rent-a-Car (8)</button>
+          <button class="filter-pill" onclick="setSectorFilter('Náutica')">Náutica & Chárter (6)</button>
+          <button class="filter-pill" onclick="setSectorFilter('Asesoría')">Asesorías (6)</button>
+          <button class="filter-pill" onclick="setSectorFilter('Hotel')">Hoteles & Fincas (8)</button>
+          <button class="filter-pill" onclick="setSectorFilter('Clínica')">Salud & Dental (4)</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="filter-group-label"><i data-lucide="languages" style="width: 13px; height: 13px;"></i> Filtrar por Idioma Detectado Principal</div>
+        <div class="filter-pills" id="langFilters">
+          <button class="filter-pill active-lang" onclick="setLangFilter('all')">Todos los Idiomas (32)</button>
+          <button class="filter-pill" onclick="setLangFilter('ES')">🇪🇸 Español (13)</button>
+          <button class="filter-pill" onclick="setLangFilter('EN')">🇬🇧 English (11)</button>
+          <button class="filter-pill" onclick="setLangFilter('DE')">🇩🇪 Deutsch (8)</button>
+        </div>
       </div>
     </div>
 
@@ -336,7 +486,18 @@
     "audit": "Reserva compleja en móvil; sin cálculo dinámico directo a WhatsApp",
     "demoName": "Moto-Rent",
     "demoUrl": "https://joaquin-om.github.io/moto-rent/",
-    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Palma y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Palma y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+    "languages": [
+      "ES",
+      "EN"
+    ],
+    "primaryLang": "ES",
+    "langReason": "Web bilingüe ES/EN. Público mixto (nacional e internacional).",
+    "pitches": {
+      "ES": "¡Hola! He visto vuestro servicio de alquiler en Palma y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+      "EN": "Hello! I noticed your vehicle rental service in Palma and the high demand during the season. I am a web engineer based in Palma and I built an interactive mobile booking demo specifically for vehicle rentals in Mallorca: it lets tourists select models, dates, and extras, and sends the confirmed reservation directly to your WhatsApp with zero commission fees: https://joaquin-om.github.io/moto-rent/. If you would like to explore modernizing your booking flow for this season, feel free to reach out. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Palma gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/moto-rent/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 2,
@@ -349,7 +510,18 @@
     "audit": "Carga de fotos lenta; formulario clásico por email sin confirmación rápida",
     "demoName": "Moto-Rent",
     "demoUrl": "https://joaquin-om.github.io/moto-rent/",
-    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Palma & Can Pastilla y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Palma & Can Pastilla y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+    "languages": [
+      "ES",
+      "EN"
+    ],
+    "primaryLang": "ES",
+    "langReason": "Web bilingüe ES/EN. Alta afluencia de turistas en Can Pastilla.",
+    "pitches": {
+      "ES": "¡Hola! He visto vuestro servicio de alquiler en Palma & Can Pastilla y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+      "EN": "Hello! I noticed your vehicle rental service in Palma & Can Pastilla and the high demand during the season. I am a web engineer based in Palma and I built an interactive mobile booking demo specifically for vehicle rentals in Mallorca: it lets tourists select models, dates, and extras, and sends the confirmed reservation directly to your WhatsApp with zero commission fees: https://joaquin-om.github.io/moto-rent/. If you would like to explore modernizing your booking flow for this season, feel free to reach out. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Palma & Can Pastilla gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/moto-rent/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 3,
@@ -362,7 +534,19 @@
     "audit": "Web de catálogo sin confirmación instantánea de extras (cascos, seguro)",
     "demoName": "Moto-Rent",
     "demoUrl": "https://joaquin-om.github.io/moto-rent/",
-    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Palma & Alcúdia y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Palma & Alcúdia y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+    "languages": [
+      "ES",
+      "DE",
+      "EN"
+    ],
+    "primaryLang": "DE",
+    "langReason": "Público predominantemente alemán y británico en Alcúdia.",
+    "pitches": {
+      "ES": "¡Hola! He visto vuestro servicio de alquiler en Palma & Alcúdia y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+      "EN": "Hello! I noticed your vehicle rental service in Palma & Alcúdia and the high demand during the season. I am a web engineer based in Palma and I built an interactive mobile booking demo specifically for vehicle rentals in Mallorca: it lets tourists select models, dates, and extras, and sends the confirmed reservation directly to your WhatsApp with zero commission fees: https://joaquin-om.github.io/moto-rent/. If you would like to explore modernizing your booking flow for this season, feel free to reach out. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Palma & Alcúdia gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/moto-rent/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 4,
@@ -375,7 +559,19 @@
     "audit": "Poco optimizada para smartphone; sin botón de reserva inmediata",
     "demoName": "Moto-Rent",
     "demoUrl": "https://joaquin-om.github.io/moto-rent/",
-    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Can Pastilla / S'Arenal y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Can Pastilla / S'Arenal y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+    "languages": [
+      "ES",
+      "DE",
+      "EN"
+    ],
+    "primaryLang": "DE",
+    "langReason": "Zona S'Arenal / Playa de Palma con clientela mayoritariamente alemana.",
+    "pitches": {
+      "ES": "¡Hola! He visto vuestro servicio de alquiler en Can Pastilla / S'Arenal y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+      "EN": "Hello! I noticed your vehicle rental service in Can Pastilla / S'Arenal and the high demand during the season. I am a web engineer based in Palma and I built an interactive mobile booking demo specifically for vehicle rentals in Mallorca: it lets tourists select models, dates, and extras, and sends the confirmed reservation directly to your WhatsApp with zero commission fees: https://joaquin-om.github.io/moto-rent/. If you would like to explore modernizing your booking flow for this season, feel free to reach out. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Can Pastilla / S'Arenal gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/moto-rent/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 5,
@@ -388,7 +584,18 @@
     "audit": "Diseño desactualizado; no transmite calidad ni puntos de entrega",
     "demoName": "Moto-Rent",
     "demoUrl": "https://joaquin-om.github.io/moto-rent/",
-    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Palma Centro y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Palma Centro y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+    "languages": [
+      "ES",
+      "EN"
+    ],
+    "primaryLang": "ES",
+    "langReason": "Web en español e inglés en Palma centro.",
+    "pitches": {
+      "ES": "¡Hola! He visto vuestro servicio de alquiler en Palma Centro y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+      "EN": "Hello! I noticed your vehicle rental service in Palma Centro and the high demand during the season. I am a web engineer based in Palma and I built an interactive mobile booking demo specifically for vehicle rentals in Mallorca: it lets tourists select models, dates, and extras, and sends the confirmed reservation directly to your WhatsApp with zero commission fees: https://joaquin-om.github.io/moto-rent/. If you would like to explore modernizing your booking flow for this season, feel free to reach out. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Palma Centro gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/moto-rent/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 6,
@@ -401,7 +608,19 @@
     "audit": "Interfaz recargada; tarifas confusas entre tours y alquiler",
     "demoName": "Moto-Rent",
     "demoUrl": "https://joaquin-om.github.io/moto-rent/",
-    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Alcúdia y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Alcúdia y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+    "languages": [
+      "DE",
+      "EN",
+      "ES"
+    ],
+    "primaryLang": "DE",
+    "langReason": "Público mayoritariamente germano en zona norte de Alcúdia.",
+    "pitches": {
+      "ES": "¡Hola! He visto vuestro servicio de alquiler en Alcúdia y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+      "EN": "Hello! I noticed your vehicle rental service in Alcúdia and the high demand during the season. I am a web engineer based in Palma and I built an interactive mobile booking demo specifically for vehicle rentals in Mallorca: it lets tourists select models, dates, and extras, and sends the confirmed reservation directly to your WhatsApp with zero commission fees: https://joaquin-om.github.io/moto-rent/. If you would like to explore modernizing your booking flow for this season, feel free to reach out. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Alcúdia gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/moto-rent/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 7,
@@ -414,7 +633,19 @@
     "audit": "Ausencia de cálculo automático en tiempo real por días de reserva",
     "demoName": "Moto-Rent",
     "demoUrl": "https://joaquin-om.github.io/moto-rent/",
-    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Cala d'Or y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Cala d'Or y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+    "languages": [
+      "ES",
+      "EN",
+      "DE"
+    ],
+    "primaryLang": "EN",
+    "langReason": "Cala d'Or: clientela extranjera británica y centroeuropea.",
+    "pitches": {
+      "ES": "¡Hola! He visto vuestro servicio de alquiler en Cala d'Or y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+      "EN": "Hello! I noticed your vehicle rental service in Cala d'Or and the high demand during the season. I am a web engineer based in Palma and I built an interactive mobile booking demo specifically for vehicle rentals in Mallorca: it lets tourists select models, dates, and extras, and sends the confirmed reservation directly to your WhatsApp with zero commission fees: https://joaquin-om.github.io/moto-rent/. If you would like to explore modernizing your booking flow for this season, feel free to reach out. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Cala d'Or gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/moto-rent/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 8,
@@ -427,7 +658,18 @@
     "audit": "Web institucional sin motor interactivo para smartphone",
     "demoName": "Moto-Rent",
     "demoUrl": "https://joaquin-om.github.io/moto-rent/",
-    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Cala d'Or & Cala Ferrera y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Cala d'Or & Cala Ferrera y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+    "languages": [
+      "ES",
+      "EN"
+    ],
+    "primaryLang": "EN",
+    "langReason": "Zona turística costera en Cala d'Or.",
+    "pitches": {
+      "ES": "¡Hola! He visto vuestro servicio de alquiler en Cala d'Or & Cala Ferrera y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)",
+      "EN": "Hello! I noticed your vehicle rental service in Cala d'Or & Cala Ferrera and the high demand during the season. I am a web engineer based in Palma and I built an interactive mobile booking demo specifically for vehicle rentals in Mallorca: it lets tourists select models, dates, and extras, and sends the confirmed reservation directly to your WhatsApp with zero commission fees: https://joaquin-om.github.io/moto-rent/. If you would like to explore modernizing your booking flow for this season, feel free to reach out. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Cala d'Or & Cala Ferrera gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/moto-rent/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 9,
@@ -440,7 +682,18 @@
     "audit": "Reserva manual por correo; sin selector de eslora ni cálculo medio día/día completo",
     "demoName": "Moto-Rent / Luxury",
     "demoUrl": "https://joaquin-om.github.io/moto-rent/",
-    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Puerto Portals. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Puerto Portals. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "EN",
+      "ES"
+    ],
+    "primaryLang": "EN",
+    "langReason": "Puerto Portals: público VIP mayoritariamente angloparlante e internacional.",
+    "pitches": {
+      "ES": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Puerto Portals. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Hello! I'm reaching out after seeing your charter fleet in Puerto Portals. I am a web engineer based here in Mallorca specializing in high-converting booking platforms for the nautical and luxury sector: I've built a live interactive demo where VIP clients can select vessels, dates, skippers, and extras, sending confirmed bookings directly to your WhatsApp without OTA commissions: https://joaquin-om.github.io/moto-rent/. If you'd like to discuss upgrading your direct booking experience for this season, I'd be happy to prepare a proposal. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Puerto Portals gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/moto-rent/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 10,
@@ -453,7 +706,19 @@
     "audit": "Carga lenta de fichas de barcos; falta botón flotante WhatsApp clientes VIP",
     "demoName": "Moto-Rent / Luxury",
     "demoUrl": "https://joaquin-om.github.io/moto-rent/",
-    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Port d'Andratx. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Port d'Andratx. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "EN",
+      "DE",
+      "ES"
+    ],
+    "primaryLang": "DE",
+    "langReason": "Port d'Andratx: fortísima presencia de propietarios y turistas alemanes.",
+    "pitches": {
+      "ES": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Port d'Andratx. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Hello! I'm reaching out after seeing your charter fleet in Port d'Andratx. I am a web engineer based here in Mallorca specializing in high-converting booking platforms for the nautical and luxury sector: I've built a live interactive demo where VIP clients can select vessels, dates, skippers, and extras, sending confirmed bookings directly to your WhatsApp without OTA commissions: https://joaquin-om.github.io/moto-rent/. If you'd like to discuss upgrading your direct booking experience for this season, I'd be happy to prepare a proposal. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Port d'Andratx gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/moto-rent/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 11,
@@ -466,7 +731,19 @@
     "audit": "Web anticuada que desaprovecha la venta de la experiencia tradicional en calas",
     "demoName": "Mallorca Luxury",
     "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
-    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Port d'Andratx. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/mallorca-luxury/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Port d'Andratx. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/mallorca-luxury/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "ES",
+      "EN",
+      "DE"
+    ],
+    "primaryLang": "ES",
+    "langReason": "Tradición balear con versión multilingüe para visitantes.",
+    "pitches": {
+      "ES": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Port d'Andratx. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/mallorca-luxury/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Hello! I'm reaching out after seeing your charter fleet in Port d'Andratx. I am a web engineer based here in Mallorca specializing in high-converting booking platforms for the nautical and luxury sector: I've built a live interactive demo where VIP clients can select vessels, dates, skippers, and extras, sending confirmed bookings directly to your WhatsApp without OTA commissions: https://joaquin-om.github.io/mallorca-luxury/. If you'd like to discuss upgrading your direct booking experience for this season, I'd be happy to prepare a proposal. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Port d'Andratx gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/mallorca-luxury/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 12,
@@ -479,7 +756,18 @@
     "audit": "Web corporativa orientada a desktop; navegación densa en smartphones",
     "demoName": "Mallorca Luxury",
     "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
-    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Puerto Portals. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/mallorca-luxury/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Puerto Portals. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/mallorca-luxury/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "EN",
+      "ES"
+    ],
+    "primaryLang": "EN",
+    "langReason": "Puerto Portals: clientela de superyates y chárter en inglés.",
+    "pitches": {
+      "ES": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Puerto Portals. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/mallorca-luxury/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Hello! I'm reaching out after seeing your charter fleet in Puerto Portals. I am a web engineer based here in Mallorca specializing in high-converting booking platforms for the nautical and luxury sector: I've built a live interactive demo where VIP clients can select vessels, dates, skippers, and extras, sending confirmed bookings directly to your WhatsApp without OTA commissions: https://joaquin-om.github.io/mallorca-luxury/. If you'd like to discuss upgrading your direct booking experience for this season, I'd be happy to prepare a proposal. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Puerto Portals gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/mallorca-luxury/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 13,
@@ -492,7 +780,18 @@
     "audit": "Interfaz poco táctil; tarifas y fianzas poco claras a primera vista",
     "demoName": "Moto-Rent",
     "demoUrl": "https://joaquin-om.github.io/moto-rent/",
-    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Paseo Marítimo Palma. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Paseo Marítimo Palma. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "ES",
+      "EN"
+    ],
+    "primaryLang": "ES",
+    "langReason": "Paseo Marítimo Palma: clientela nacional e internacional mixta.",
+    "pitches": {
+      "ES": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Paseo Marítimo Palma. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Hello! I'm reaching out after seeing your charter fleet in Paseo Marítimo Palma. I am a web engineer based here in Mallorca specializing in high-converting booking platforms for the nautical and luxury sector: I've built a live interactive demo where VIP clients can select vessels, dates, skippers, and extras, sending confirmed bookings directly to your WhatsApp without OTA commissions: https://joaquin-om.github.io/moto-rent/. If you'd like to discuss upgrading your direct booking experience for this season, I'd be happy to prepare a proposal. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Paseo Marítimo Palma gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/moto-rent/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 14,
@@ -505,7 +804,18 @@
     "audit": "Web básica sin catálogo estructurado ni solicitud de disponibilidad en tiempo real",
     "demoName": "Moto-Rent",
     "demoUrl": "https://joaquin-om.github.io/moto-rent/",
-    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Port d'Andratx. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Port d'Andratx. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "EN",
+      "DE"
+    ],
+    "primaryLang": "EN",
+    "langReason": "Port d'Andratx: turismo internacional y expatriados.",
+    "pitches": {
+      "ES": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Port d'Andratx. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Hello! I'm reaching out after seeing your charter fleet in Port d'Andratx. I am a web engineer based here in Mallorca specializing in high-converting booking platforms for the nautical and luxury sector: I've built a live interactive demo where VIP clients can select vessels, dates, skippers, and extras, sending confirmed bookings directly to your WhatsApp without OTA commissions: https://joaquin-om.github.io/moto-rent/. If you'd like to discuss upgrading your direct booking experience for this season, I'd be happy to prepare a proposal. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Ich habe Ihr Angebot in Port d'Andratx gesehen. Als Webentwickler auf Mallorca erstelle ich schnelle, mobiloptimierte Buchungsplattformen für den Tourismus- und Verleihsektor: Kunden können Fahrzeuge oder Boote auswählen und direkt per WhatsApp reservieren – ohne hohe Vermittlungsgebühren: https://joaquin-om.github.io/moto-rent/. Gerne erstelle ich Ihnen ein unverbindliches Angebot für diese Saison. Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 15,
@@ -518,7 +828,17 @@
     "audit": "Web clásica estática; sin utilidades interactivas ni portal cliente",
     "demoName": "GestorPro",
     "demoUrl": "https://joaquin-om.github.io/gestor-pro/",
-    "pitch": "Estimados señores de Penta Asesores: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45)."
+    "pitch": "Estimados señores de Penta Asesores: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45).",
+    "languages": [
+      "ES"
+    ],
+    "primaryLang": "ES",
+    "langReason": "Despacho enfocado al tejido empresarial y pymes locales de Mallorca.",
+    "pitches": {
+      "ES": "Estimados señores de Penta Asesores: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45).",
+      "EN": "Dear team at Penta Asesores: I am contacting you as a web developer based in Palma. I specialize in digital portals and automated document reconciliation for advisory and legal firms handling international expats: https://joaquin-om.github.io/gestor-pro/. If you wish to modernize your client portal or automate routine paperwork, I would be pleased to schedule a brief meeting in Palma. Sincerely, Joaquín Oses Monti (+34 695 26 74 45).",
+      "DE": "Guten Tag! Als Webentwickler hier auf Mallorca erstelle ich moderne und schnelle Webseiten mit direkter WhatsApp-Terminvereinbarung für Firmen und Praxen: https://joaquin-om.github.io/gestor-pro/. Wenn Sie Ihre Online-Präsenz für deutschsprachige und internationale Kunden optimieren möchten, stehe ich Ihnen gerne zur Verfügung. Herzliche Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 16,
@@ -531,7 +851,17 @@
     "audit": "Servidor lento; falta de simuladores o formularios ágiles",
     "demoName": "GestorPro",
     "demoUrl": "https://joaquin-om.github.io/gestor-pro/",
-    "pitch": "Estimados señores de Consulting Confislab: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45)."
+    "pitch": "Estimados señores de Consulting Confislab: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45).",
+    "languages": [
+      "ES"
+    ],
+    "primaryLang": "ES",
+    "langReason": "Gestoría laboral y fiscal para autónomos y sociedades locales.",
+    "pitches": {
+      "ES": "Estimados señores de Consulting Confislab: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45).",
+      "EN": "Dear team at Consulting Confislab: I am contacting you as a web developer based in Palma. I specialize in digital portals and automated document reconciliation for advisory and legal firms handling international expats: https://joaquin-om.github.io/gestor-pro/. If you wish to modernize your client portal or automate routine paperwork, I would be pleased to schedule a brief meeting in Palma. Sincerely, Joaquín Oses Monti (+34 695 26 74 45).",
+      "DE": "Guten Tag! Als Webentwickler hier auf Mallorca erstelle ich moderne und schnelle Webseiten mit direkter WhatsApp-Terminvereinbarung für Firmen und Praxen: https://joaquin-om.github.io/gestor-pro/. Wenn Sie Ihre Online-Präsenz für deutschsprachige und internationale Kunden optimieren möchten, stehe ich Ihnen gerne zur Verfügung. Herzliche Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 17,
@@ -544,7 +874,19 @@
     "audit": "Contenido denso en móvil; útil panel ágil de expedientes",
     "demoName": "GestorPro",
     "demoUrl": "https://joaquin-om.github.io/gestor-pro/",
-    "pitch": "Estimados señores de Moya & Emery: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45)."
+    "pitch": "Estimados señores de Moya & Emery: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45).",
+    "languages": [
+      "ES",
+      "EN",
+      "DE"
+    ],
+    "primaryLang": "EN",
+    "langReason": "Especializados en inversores extranjeros y patrimonios en Calvià/Palma.",
+    "pitches": {
+      "ES": "Estimados señores de Moya & Emery: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45).",
+      "EN": "Dear team at Moya & Emery: I am contacting you as a web developer based in Palma. I specialize in digital portals and automated document reconciliation for advisory and legal firms handling international expats: https://joaquin-om.github.io/gestor-pro/. If you wish to modernize your client portal or automate routine paperwork, I would be pleased to schedule a brief meeting in Palma. Sincerely, Joaquín Oses Monti (+34 695 26 74 45).",
+      "DE": "Guten Tag! Als Webentwickler hier auf Mallorca erstelle ich moderne und schnelle Webseiten mit direkter WhatsApp-Terminvereinbarung für Firmen und Praxen: https://joaquin-om.github.io/gestor-pro/. Wenn Sie Ihre Online-Präsenz für deutschsprachige und internationale Kunden optimieren möchten, stehe ich Ihnen gerne zur Verfügung. Herzliche Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 18,
@@ -557,7 +899,17 @@
     "audit": "Diseño anticuado que no refleja modernización técnica del equipo",
     "demoName": "GestorPro",
     "demoUrl": "https://joaquin-om.github.io/gestor-pro/",
-    "pitch": "Estimados señores de COPIME Asesoría: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45)."
+    "pitch": "Estimados señores de COPIME Asesoría: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45).",
+    "languages": [
+      "ES"
+    ],
+    "primaryLang": "ES",
+    "langReason": "Asesoría jurídica y contable tradicional en Palma.",
+    "pitches": {
+      "ES": "Estimados señores de COPIME Asesoría: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45).",
+      "EN": "Dear team at COPIME Asesoría: I am contacting you as a web developer based in Palma. I specialize in digital portals and automated document reconciliation for advisory and legal firms handling international expats: https://joaquin-om.github.io/gestor-pro/. If you wish to modernize your client portal or automate routine paperwork, I would be pleased to schedule a brief meeting in Palma. Sincerely, Joaquín Oses Monti (+34 695 26 74 45).",
+      "DE": "Guten Tag! Als Webentwickler hier auf Mallorca erstelle ich moderne und schnelle Webseiten mit direkter WhatsApp-Terminvereinbarung für Firmen und Praxen: https://joaquin-om.github.io/gestor-pro/. Wenn Sie Ihre Online-Präsenz für deutschsprachige und internationale Kunden optimieren möchten, stehe ich Ihnen gerne zur Verfügung. Herzliche Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 19,
@@ -570,7 +922,17 @@
     "audit": "Imagen tradicional; necesita landing moderna para autónomos jóvenes",
     "demoName": "GestorPro",
     "demoUrl": "https://joaquin-om.github.io/gestor-pro/",
-    "pitch": "Hola, les contacto tras conocer su clínica en Palma (Jaume III). Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/gestor-pro/. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "Hola, les contacto tras conocer su clínica en Palma (Jaume III). Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/gestor-pro/. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "ES"
+    ],
+    "primaryLang": "ES",
+    "langReason": "Gestoría administrativa clásica en Jaume III.",
+    "pitches": {
+      "ES": "Hola, les contacto tras conocer su clínica en Palma (Jaume III). Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/gestor-pro/. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Hello! I am contacting you after discovering your clinic in Palma (Jaume III). As a web developer in Palma, I build high-speed, smartphone-optimized medical landing pages with direct WhatsApp consultation booking: https://joaquin-om.github.io/gestor-pro/. If you'd like to modernize your web presence and attract more international private patients, I'd be glad to prepare a proposal. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Als Webentwickler hier auf Mallorca erstelle ich moderne und schnelle Webseiten mit direkter WhatsApp-Terminvereinbarung für Firmen und Praxen: https://joaquin-om.github.io/gestor-pro/. Wenn Sie Ihre Online-Präsenz für deutschsprachige und internationale Kunden optimieren möchten, stehe ich Ihnen gerne zur Verfügung. Herzliche Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 20,
@@ -583,7 +945,17 @@
     "audit": "Sin herramientas de cotejo documental para empresas de la zona",
     "demoName": "GestorPro",
     "demoUrl": "https://joaquin-om.github.io/gestor-pro/",
-    "pitch": "Estimados señores de LGS Asesores: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45)."
+    "pitch": "Estimados señores de LGS Asesores: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45).",
+    "languages": [
+      "ES"
+    ],
+    "primaryLang": "ES",
+    "langReason": "Despacho fiscal en el Polígon Son Castelló.",
+    "pitches": {
+      "ES": "Estimados señores de LGS Asesores: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45).",
+      "EN": "Dear team at LGS Asesores: I am contacting you as a web developer based in Palma. I specialize in digital portals and automated document reconciliation for advisory and legal firms handling international expats: https://joaquin-om.github.io/gestor-pro/. If you wish to modernize your client portal or automate routine paperwork, I would be pleased to schedule a brief meeting in Palma. Sincerely, Joaquín Oses Monti (+34 695 26 74 45).",
+      "DE": "Guten Tag! Als Webentwickler hier auf Mallorca erstelle ich moderne und schnelle Webseiten mit direkter WhatsApp-Terminvereinbarung für Firmen und Praxen: https://joaquin-om.github.io/gestor-pro/. Wenn Sie Ihre Online-Präsenz für deutschsprachige und internationale Kunden optimieren möchten, stehe ich Ihnen gerne zur Verfügung. Herzliche Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 21,
@@ -596,7 +968,18 @@
     "audit": "Motor de reservas externo saca al usuario del entorno visual editorial",
     "demoName": "Mallorca Luxury",
     "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
-    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Sa Pedrissa Adults Only en Deià. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Sa Pedrissa Adults Only en Deià. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "EN",
+      "ES"
+    ],
+    "primaryLang": "EN",
+    "langReason": "Sa Pedrissa Deià: clientela de alto standing británica y estadounidense.",
+    "pitches": {
+      "ES": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Sa Pedrissa Adults Only en Deià. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Good afternoon. I am reaching out after admiring Sa Pedrissa Adults Only in Deià. I am a freelance web engineer based in Palma specializing in high-standing digital platforms for boutique hotels: my solution combines direct suite bookings (saving 18-22% OTA commissions), private dining reservations, and an editorial UI: https://joaquin-om.github.io/mallorca-luxury/. If you're looking to strengthen direct bookings from international guests this season, I'd be glad to arrange a brief call. Warm regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag. Ich kontaktiere Sie mit Bewunderung für Sa Pedrissa Adults Only in Deià. Als Webentwickler auf Mallorca erstelle ich exklusive Plattformen für Boutique-Hotels und Fincas: direkte Suite-Buchungen ohne Buchungsportal-Gebühren, Tischreservierungen und ein modernes Design: https://joaquin-om.github.io/mallorca-luxury/. Gerne können wir uns unverbindlich dazu austauschen. Beste Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 22,
@@ -609,7 +992,19 @@
     "audit": "Carga lenta en móvil; tipografía poco diferenciadora",
     "demoName": "Mallorca Luxury",
     "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
-    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Hotel Es Molí en Deià. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Hotel Es Molí en Deià. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "EN",
+      "DE",
+      "ES"
+    ],
+    "primaryLang": "EN",
+    "langReason": "Hotel Es Molí Deià: huéspedes internacionales de lujo en la Tramuntana.",
+    "pitches": {
+      "ES": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Hotel Es Molí en Deià. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Good afternoon. I am reaching out after admiring Hotel Es Molí in Deià. I am a freelance web engineer based in Palma specializing in high-standing digital platforms for boutique hotels: my solution combines direct suite bookings (saving 18-22% OTA commissions), private dining reservations, and an editorial UI: https://joaquin-om.github.io/mallorca-luxury/. If you're looking to strengthen direct bookings from international guests this season, I'd be glad to arrange a brief call. Warm regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag. Ich kontaktiere Sie mit Bewunderung für Hotel Es Molí in Deià. Als Webentwickler auf Mallorca erstelle ich exklusive Plattformen für Boutique-Hotels und Fincas: direkte Suite-Buchungen ohne Buchungsportal-Gebühren, Tischreservierungen und ein modernes Design: https://joaquin-om.github.io/mallorca-luxury/. Gerne können wir uns unverbindlich dazu austauschen. Beste Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 23,
@@ -622,7 +1017,19 @@
     "audit": "Web desaprovecha venta directa de experiencias gastronómicas",
     "demoName": "Mallorca Luxury",
     "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
-    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Mirabó de Valldemossa en Valldemossa. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Mirabó de Valldemossa en Valldemossa. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "ES",
+      "EN",
+      "DE"
+    ],
+    "primaryLang": "EN",
+    "langReason": "Valldemossa: clientela cosmopolita europea.",
+    "pitches": {
+      "ES": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Mirabó de Valldemossa en Valldemossa. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Good afternoon. I am reaching out after admiring Mirabó de Valldemossa in Valldemossa. I am a freelance web engineer based in Palma specializing in high-standing digital platforms for boutique hotels: my solution combines direct suite bookings (saving 18-22% OTA commissions), private dining reservations, and an editorial UI: https://joaquin-om.github.io/mallorca-luxury/. If you're looking to strengthen direct bookings from international guests this season, I'd be glad to arrange a brief call. Warm regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag. Ich kontaktiere Sie mit Bewunderung für Mirabó de Valldemossa in Valldemossa. Als Webentwickler auf Mallorca erstelle ich exklusive Plattformen für Boutique-Hotels und Fincas: direkte Suite-Buchungen ohne Buchungsportal-Gebühren, Tischreservierungen und ein modernes Design: https://joaquin-om.github.io/mallorca-luxury/. Gerne können wir uns unverbindlich dazu austauschen. Beste Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 24,
@@ -635,7 +1042,19 @@
     "audit": "No integra en una pantalla eventos privados y reservas restaurante",
     "demoName": "Mallorca Luxury",
     "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
-    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Ca's Xorc Luxury Retreat en Sóller. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Ca's Xorc Luxury Retreat en Sóller. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "DE",
+      "EN",
+      "ES"
+    ],
+    "primaryLang": "DE",
+    "langReason": "Ca's Xorc Sóller: gran tradición de clientela alemana y centroeuropea.",
+    "pitches": {
+      "ES": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Ca's Xorc Luxury Retreat en Sóller. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Good afternoon. I am reaching out after admiring Ca's Xorc Luxury Retreat in Sóller. I am a freelance web engineer based in Palma specializing in high-standing digital platforms for boutique hotels: my solution combines direct suite bookings (saving 18-22% OTA commissions), private dining reservations, and an editorial UI: https://joaquin-om.github.io/mallorca-luxury/. If you're looking to strengthen direct bookings from international guests this season, I'd be glad to arrange a brief call. Warm regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag. Ich kontaktiere Sie mit Bewunderung für Ca's Xorc Luxury Retreat in Sóller. Als Webentwickler auf Mallorca erstelle ich exklusive Plattformen für Boutique-Hotels und Fincas: direkte Suite-Buchungen ohne Buchungsportal-Gebühren, Tischreservierungen und ein modernes Design: https://joaquin-om.github.io/mallorca-luxury/. Gerne können wir uns unverbindlich dazu austauschen. Beste Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 25,
@@ -648,7 +1067,19 @@
     "audit": "Poca interactividad para clientes de alto poder adquisitivo",
     "demoName": "Mallorca Luxury",
     "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
-    "pitch": "Hola, les contacto tras conocer su clínica en Deià / Sóller. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/mallorca-luxury/. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "Hola, les contacto tras conocer su clínica en Deià / Sóller. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/mallorca-luxury/. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "DE",
+      "EN",
+      "ES"
+    ],
+    "primaryLang": "DE",
+    "langReason": "Agroturismo Son Bleda: propietarios y huéspedes mayoritariamente alemanes.",
+    "pitches": {
+      "ES": "Hola, les contacto tras conocer su clínica en Deià / Sóller. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/mallorca-luxury/. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Hello! I am contacting you after discovering your clinic in Deià / Sóller. As a web developer in Palma, I build high-speed, smartphone-optimized medical landing pages with direct WhatsApp consultation booking: https://joaquin-om.github.io/mallorca-luxury/. If you'd like to modernize your web presence and attract more international private patients, I'd be glad to prepare a proposal. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Als Webentwickler hier auf Mallorca erstelle ich moderne und schnelle Webseiten mit direkter WhatsApp-Terminvereinbarung für Firmen und Praxen: https://joaquin-om.github.io/mallorca-luxury/. Wenn Sie Ihre Online-Präsenz für deutschsprachige und internationale Kunden optimieren möchten, stehe ich Ihnen gerne zur Verfügung. Herzliche Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 26,
@@ -661,7 +1092,19 @@
     "audit": "Web corporativa rígida que diluye la identidad única del enclave",
     "demoName": "Mallorca Luxury",
     "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
-    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Castillo Hotel Son Vida en Son Vida (Palma). Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Castillo Hotel Son Vida en Son Vida (Palma). Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "EN",
+      "ES",
+      "DE"
+    ],
+    "primaryLang": "EN",
+    "langReason": "Castillo Son Vida (Marriott Luxury Collection): turismo de lujo global.",
+    "pitches": {
+      "ES": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Castillo Hotel Son Vida en Son Vida (Palma). Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Good afternoon. I am reaching out after admiring Castillo Hotel Son Vida in Son Vida (Palma). I am a freelance web engineer based in Palma specializing in high-standing digital platforms for boutique hotels: my solution combines direct suite bookings (saving 18-22% OTA commissions), private dining reservations, and an editorial UI: https://joaquin-om.github.io/mallorca-luxury/. If you're looking to strengthen direct bookings from international guests this season, I'd be glad to arrange a brief call. Warm regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag. Ich kontaktiere Sie mit Bewunderung für Castillo Hotel Son Vida in Son Vida (Palma). Als Webentwickler auf Mallorca erstelle ich exklusive Plattformen für Boutique-Hotels und Fincas: direkte Suite-Buchungen ohne Buchungsportal-Gebühren, Tischreservierungen und ein modernes Design: https://joaquin-om.github.io/mallorca-luxury/. Gerne können wir uns unverbindlich dazu austauschen. Beste Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 27,
@@ -674,7 +1117,19 @@
     "audit": "Diseño poco adaptado a pantallas táctiles modernas",
     "demoName": "Mallorca Luxury",
     "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
-    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Finca Hotel Can Estades en Calvià. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Finca Hotel Can Estades en Calvià. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "DE",
+      "EN",
+      "ES"
+    ],
+    "primaryLang": "DE",
+    "langReason": "Finca Can Estades Calvià: propietarios y clientela habitual alemana.",
+    "pitches": {
+      "ES": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Finca Hotel Can Estades en Calvià. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Good afternoon. I am reaching out after admiring Finca Hotel Can Estades in Calvià. I am a freelance web engineer based in Palma specializing in high-standing digital platforms for boutique hotels: my solution combines direct suite bookings (saving 18-22% OTA commissions), private dining reservations, and an editorial UI: https://joaquin-om.github.io/mallorca-luxury/. If you're looking to strengthen direct bookings from international guests this season, I'd be glad to arrange a brief call. Warm regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag. Ich kontaktiere Sie mit Bewunderung für Finca Hotel Can Estades in Calvià. Als Webentwickler auf Mallorca erstelle ich exklusive Plattformen für Boutique-Hotels und Fincas: direkte Suite-Buchungen ohne Buchungsportal-Gebühren, Tischreservierungen und ein modernes Design: https://joaquin-om.github.io/mallorca-luxury/. Gerne können wir uns unverbindlich dazu austauschen. Beste Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 28,
@@ -687,7 +1142,18 @@
     "audit": "Oportunidad de landing exclusiva para eventos en azotea y gastro",
     "demoName": "Mallorca Luxury",
     "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
-    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Boutique Hotel Calatrava en Palma Centro. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Boutique Hotel Calatrava en Palma Centro. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "EN",
+      "ES"
+    ],
+    "primaryLang": "EN",
+    "langReason": "Hotel Calatrava: boutique de lujo con turismo internacional.",
+    "pitches": {
+      "ES": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Boutique Hotel Calatrava en Palma Centro. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Good afternoon. I am reaching out after admiring Boutique Hotel Calatrava in Palma Centro. I am a freelance web engineer based in Palma specializing in high-standing digital platforms for boutique hotels: my solution combines direct suite bookings (saving 18-22% OTA commissions), private dining reservations, and an editorial UI: https://joaquin-om.github.io/mallorca-luxury/. If you're looking to strengthen direct bookings from international guests this season, I'd be glad to arrange a brief call. Warm regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag. Ich kontaktiere Sie mit Bewunderung für Boutique Hotel Calatrava in Palma Centro. Als Webentwickler auf Mallorca erstelle ich exklusive Plattformen für Boutique-Hotels und Fincas: direkte Suite-Buchungen ohne Buchungsportal-Gebühren, Tischreservierungen und ein modernes Design: https://joaquin-om.github.io/mallorca-luxury/. Gerne können wir uns unverbindlich dazu austauschen. Beste Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 29,
@@ -700,7 +1166,18 @@
     "audit": "Formulario de cita rígido; sin consulta rápida por WhatsApp",
     "demoName": "Web Rápida",
     "demoUrl": "https://joaquin-om.github.io/#servicios",
-    "pitch": "Hola, les contacto tras conocer su clínica en Palma Centro. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "Hola, les contacto tras conocer su clínica en Palma Centro. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "ES",
+      "EN"
+    ],
+    "primaryLang": "ES",
+    "langReason": "Palma centro: pacientes locales y residentes extranjeros.",
+    "pitches": {
+      "ES": "Hola, les contacto tras conocer su clínica en Palma Centro. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Hello! I am contacting you after discovering your clinic in Palma Centro. As a web developer in Palma, I build high-speed, smartphone-optimized medical landing pages with direct WhatsApp consultation booking: https://joaquin-om.github.io/#servicios. If you'd like to modernize your web presence and attract more international private patients, I'd be glad to prepare a proposal. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Als Webentwickler hier auf Mallorca erstelle ich moderne und schnelle Webseiten mit direkter WhatsApp-Terminvereinbarung für Firmen und Praxen: https://joaquin-om.github.io/#servicios. Wenn Sie Ihre Online-Präsenz für deutschsprachige und internationale Kunden optimieren möchten, stehe ich Ihnen gerne zur Verfügung. Herzliche Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 30,
@@ -713,7 +1190,17 @@
     "audit": "Web fragmentada y lenta; sin landing moderna de captación",
     "demoName": "Web Corporativa",
     "demoUrl": "https://joaquin-om.github.io/#servicios",
-    "pitch": "Hola, les contacto tras conocer su clínica en Palma (Miramar). Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "Hola, les contacto tras conocer su clínica en Palma (Miramar). Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "ES"
+    ],
+    "primaryLang": "ES",
+    "langReason": "Red clínica asistencial para residentes de Mallorca.",
+    "pitches": {
+      "ES": "Hola, les contacto tras conocer su clínica en Palma (Miramar). Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Hello! I am contacting you after discovering your clinic in Palma (Miramar). As a web developer in Palma, I build high-speed, smartphone-optimized medical landing pages with direct WhatsApp consultation booking: https://joaquin-om.github.io/#servicios. If you'd like to modernize your web presence and attract more international private patients, I'd be glad to prepare a proposal. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Als Webentwickler hier auf Mallorca erstelle ich moderne und schnelle Webseiten mit direkter WhatsApp-Terminvereinbarung für Firmen und Praxen: https://joaquin-om.github.io/#servicios. Wenn Sie Ihre Online-Präsenz für deutschsprachige und internationale Kunden optimieren möchten, stehe ich Ihnen gerne zur Verfügung. Herzliche Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 31,
@@ -726,7 +1213,17 @@
     "audit": "Falta catálogo visual interactivo de tratamientos con valoración",
     "demoName": "Web Corporativa",
     "demoUrl": "https://joaquin-om.github.io/#servicios",
-    "pitch": "Hola, les contacto tras conocer su clínica en Palma Centro. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "Hola, les contacto tras conocer su clínica en Palma Centro. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "ES"
+    ],
+    "primaryLang": "ES",
+    "langReason": "Clínica de estética dental en Palma.",
+    "pitches": {
+      "ES": "Hola, les contacto tras conocer su clínica en Palma Centro. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Hello! I am contacting you after discovering your clinic in Palma Centro. As a web developer in Palma, I build high-speed, smartphone-optimized medical landing pages with direct WhatsApp consultation booking: https://joaquin-om.github.io/#servicios. If you'd like to modernize your web presence and attract more international private patients, I'd be glad to prepare a proposal. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Als Webentwickler hier auf Mallorca erstelle ich moderne und schnelle Webseiten mit direkter WhatsApp-Terminvereinbarung für Firmen und Praxen: https://joaquin-om.github.io/#servicios. Wenn Sie Ihre Online-Präsenz für deutschsprachige und internationale Kunden optimieren möchten, stehe ich Ihnen gerne zur Verfügung. Herzliche Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   },
   {
     "id": 32,
@@ -739,10 +1236,23 @@
     "audit": "Web clásica sin diseño fluido ni botón de urgencias dentales",
     "demoName": "Web Rápida",
     "demoUrl": "https://joaquin-om.github.io/#servicios",
-    "pitch": "Hola, les contacto tras conocer su clínica en Palma Centro. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45)."
+    "pitch": "Hola, les contacto tras conocer su clínica en Palma Centro. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45).",
+    "languages": [
+      "ES",
+      "EN",
+      "DE"
+    ],
+    "primaryLang": "DE",
+    "langReason": "Pacientes de estética dental locales y residentes alemanes.",
+    "pitches": {
+      "ES": "Hola, les contacto tras conocer su clínica en Palma Centro. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45).",
+      "EN": "Hello! I am contacting you after discovering your clinic in Palma Centro. As a web developer in Palma, I build high-speed, smartphone-optimized medical landing pages with direct WhatsApp consultation booking: https://joaquin-om.github.io/#servicios. If you'd like to modernize your web presence and attract more international private patients, I'd be glad to prepare a proposal. Best regards, Joaquín Oses (+34 695 26 74 45).",
+      "DE": "Guten Tag! Als Webentwickler hier auf Mallorca erstelle ich moderne und schnelle Webseiten mit direkter WhatsApp-Terminvereinbarung für Firmen und Praxen: https://joaquin-om.github.io/#servicios. Wenn Sie Ihre Online-Präsenz für deutschsprachige und internationale Kunden optimieren möchten, stehe ich Ihnen gerne zur Verfügung. Herzliche Grüße, Joaquín Oses (+34 695 26 74 45)."
+    }
   }
 ];
     let currentSector = 'all';
+    let currentLangFilter = 'all';
 
     function getCleanPhone(phone) {
       return phone ? phone.replace(/[^0-9]/g, '') : '';
@@ -765,12 +1275,13 @@
       localStorage.setItem('crm_notes_' + id, notes);
     }
 
-    function copyPitch(id) {
-      const lead = LEADS.find(l => l.id === id);
-      if (!lead) return;
-      navigator.clipboard.writeText(lead.pitch).then(() => {
-        showToast("✓ Mensaje copiado al portapapeles");
-      });
+    function getCardLang(id, defaultLang) {
+      return localStorage.getItem('crm_lang_' + id) || defaultLang || 'ES';
+    }
+
+    function setCardLang(id, lang) {
+      localStorage.setItem('crm_lang_' + id, lang);
+      updateCardLanguageUI(id, lang);
     }
 
     function showToast(msg) {
@@ -778,6 +1289,74 @@
       t.textContent = msg;
       t.classList.add('show');
       setTimeout(() => t.classList.remove('show'), 2400);
+    }
+
+    function updateCardLanguageUI(id, lang) {
+      const lead = LEADS.find(l => l.id === id);
+      if (!lead) return;
+
+      const pitchText = (lead.pitches && lead.pitches[lang]) ? lead.pitches[lang] : (lead.pitches && lead.pitches[lead.primaryLang] ? lead.pitches[lead.primaryLang] : lead.pitch);
+      const cleanPhone = getCleanPhone(lead.phone);
+      const waUrl = cleanPhone ? 'https://wa.me/' + cleanPhone + '?text=' + encodeURIComponent(pitchText) : '#';
+
+      let mailSubject = '';
+      let dossierUrl = 'https://joaquin-om.github.io/assets/Dossier_Servicios_Joaquin_Oses_2026.pdf';
+      if (lang === 'EN') {
+        mailSubject = 'Web performance & direct booking inquiry for ' + lead.name + ' — Joaquín Oses';
+        dossierUrl = 'https://joaquin-om.github.io/assets/Dossier_Services_Joaquin_Oses_2026_EN.pdf';
+      } else if (lang === 'DE') {
+        mailSubject = 'Web-Optimierung & direkte Reservierungsanfrage für ' + lead.name + ' — Joaquín Oses';
+        dossierUrl = 'https://joaquin-om.github.io/assets/Dossier_Services_Joaquin_Oses_2026_EN.pdf';
+      } else {
+        mailSubject = 'Propuesta de modernización web y reservas directas para ' + lead.name + ' — Joaquín Oses';
+      }
+
+      const dossierNote = lang === 'EN' 
+        ? '\n\nYou can check my portfolio and services dossier here: ' + dossierUrl
+        : (lang === 'DE' ? '\n\nUnser Leistungsdossier finden Sie hier: ' + dossierUrl : '\n\nPuede consultar el dossier de servicios en línea: ' + dossierUrl);
+
+      const mailBody = encodeURIComponent(pitchText + dossierNote);
+      const mailUrl = lead.email ? 'mailto:' + lead.email + '?subject=' + encodeURIComponent(mailSubject) + '&body=' + mailBody : '#';
+
+      // Update Card Elements
+      const card = document.getElementById('lead-card-' + id);
+      if (!card) return;
+
+      // Update button active state
+      card.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Update pitch preview indicator and content
+      const langIndicator = card.querySelector('.pitch-lang-indicator');
+      if (langIndicator) langIndicator.textContent = '[' + lang + ']';
+
+      const previewEl = card.querySelector('.pitch-preview-content');
+      if (previewEl) previewEl.textContent = pitchText;
+
+      // Update WhatsApp link
+      const waBtn = card.querySelector('.btn-whatsapp');
+      if (waBtn) waBtn.href = waUrl;
+
+      // Update Email link
+      const mailBtn = card.querySelector('.btn-email');
+      if (mailBtn) mailBtn.href = mailUrl;
+
+      showToast('✓ Idioma cambiado a ' + (lang === 'ES' ? 'Español' : (lang === 'EN' ? 'English' : 'Deutsch')));
+    }
+
+    function copyPitch(id) {
+      const lead = LEADS.find(l => l.id === id);
+      if (!lead) return;
+      const lang = getCardLang(id, lead.primaryLang);
+      const pitchText = (lead.pitches && lead.pitches[lang]) ? lead.pitches[lang] : (lead.pitches && lead.pitches[lead.primaryLang] ? lead.pitches[lead.primaryLang] : lead.pitch);
+      navigator.clipboard.writeText(pitchText).then(() => {
+        showToast("✓ Mensaje (" + lang + ") copiado al portapapeles");
+      });
     }
 
     function handleWhatsAppClick(id) {
@@ -811,38 +1390,87 @@
       renderLeads();
     }
 
+    function setLangFilter(lang) {
+      currentLangFilter = lang;
+      document.querySelectorAll('#langFilters .filter-pill').forEach(p => {
+        p.classList.remove('active-lang');
+        if ((lang === 'all' && p.textContent.includes('Todos')) || p.textContent.includes(lang)) {
+          p.classList.add('active-lang');
+        }
+      });
+      renderLeads();
+    }
+
     function renderLeads() {
       const query = document.getElementById('searchInput').value.toLowerCase().trim();
       const grid = document.getElementById('leadsGrid');
       
       const filtered = LEADS.filter(lead => {
         const matchesSector = (currentSector === 'all') || (lead.sector.toLowerCase().includes(currentSector.toLowerCase()));
+        const matchesLang = (currentLangFilter === 'all') || (lead.primaryLang === currentLangFilter);
         const matchesQuery = !query || 
           lead.name.toLowerCase().includes(query) || 
           lead.zone.toLowerCase().includes(query) || 
-          lead.sector.toLowerCase().includes(query);
-        return matchesSector && matchesQuery;
+          lead.sector.toLowerCase().includes(query) ||
+          (lead.langReason && lead.langReason.toLowerCase().includes(query)) ||
+          lead.primaryLang.toLowerCase().includes(query);
+        return matchesSector && matchesLang && matchesQuery;
       });
 
       grid.innerHTML = filtered.map(lead => {
         const status = getLeadStatus(lead.id);
         const notes = getLeadNotes(lead.id);
+        const activeLang = getCardLang(lead.id, lead.primaryLang);
+        const pitchText = (lead.pitches && lead.pitches[activeLang]) ? lead.pitches[activeLang] : (lead.pitches && lead.pitches[lead.primaryLang] ? lead.pitches[lead.primaryLang] : lead.pitch);
         const cleanPhone = getCleanPhone(lead.phone);
-        const waUrl = cleanPhone ? 'https://wa.me/' + cleanPhone + '?text=' + encodeURIComponent(lead.pitch) : '#';
-        const mailSubject = encodeURIComponent('Propuesta de modernización web y reservas directas para ' + lead.name + ' — Joaquín Oses');
-        const mailBody = encodeURIComponent(lead.pitch + "\n\nPuede consultar el dossier de servicios en línea: https://joaquin-om.github.io/assets/Dossier_Servicios_Joaquin_Oses_2026.pdf");
-        const mailUrl = lead.email ? 'mailto:' + lead.email + '?subject=' + mailSubject + '&body=' + mailBody : '#';
+        const waUrl = cleanPhone ? 'https://wa.me/' + cleanPhone + '?text=' + encodeURIComponent(pitchText) : '#';
+        
+        let mailSubject = '';
+        let dossierUrl = 'https://joaquin-om.github.io/assets/Dossier_Servicios_Joaquin_Oses_2026.pdf';
+        if (activeLang === 'EN') {
+          mailSubject = 'Web performance & direct booking inquiry for ' + lead.name + ' — Joaquín Oses';
+          dossierUrl = 'https://joaquin-om.github.io/assets/Dossier_Services_Joaquin_Oses_2026_EN.pdf';
+        } else if (activeLang === 'DE') {
+          mailSubject = 'Web-Optimierung & direkte Reservierungsanfrage für ' + lead.name + ' — Joaquín Oses';
+          dossierUrl = 'https://joaquin-om.github.io/assets/Dossier_Services_Joaquin_Oses_2026_EN.pdf';
+        } else {
+          mailSubject = 'Propuesta de modernización web y reservas directas para ' + lead.name + ' — Joaquín Oses';
+        }
+
+        const dossierNote = activeLang === 'EN' 
+          ? '\n\nYou can check my portfolio and services dossier here: ' + dossierUrl
+          : (activeLang === 'DE' ? '\n\nUnser Leistungsdossier finden Sie hier: ' + dossierUrl : '\n\nPuede consultar el dossier de servicios en línea: ' + dossierUrl);
+
+        const mailUrl = lead.email ? 'mailto:' + lead.email + '?subject=' + encodeURIComponent(mailSubject) + '&body=' + encodeURIComponent(pitchText + dossierNote) : '#';
+
+        const flagIcons = { ES: '🇪🇸 ES', EN: '🇬🇧 EN', DE: '🇩🇪 DE' };
 
         return `
           <div class="lead-card" id="lead-card-${lead.id}">
             <div class="lead-top">
-              <h3 class="lead-name">${lead.name}</h3>
+              <div>
+                <h3 class="lead-name">${lead.name}</h3>
+                <div class="lead-meta" style="margin-top: 4px; margin-bottom: 0;">
+                  <span>📍 ${lead.zone}</span>
+                  ${lead.web ? '<span>🌐 <a href="https://' + lead.web + '" target="_blank" style="color: #9CA3AF; text-decoration: none;">' + lead.web + '</a></span>' : ''}
+                </div>
+              </div>
               <span class="sector-badge">${lead.sector}</span>
             </div>
 
-            <div class="lead-meta">
-              <span>📍 ${lead.zone}</span>
-              ${lead.web ? '<span>🌐 <a href="https://' + lead.web + '" target="_blank" style="color: #9CA3AF; text-decoration: none;">' + lead.web + '</a></span>' : ''}
+            <div class="lang-detection-box">
+              <div class="lang-detection-header">
+                <div class="lang-detection-title">
+                  <i data-lucide="sparkles" style="width: 12px; height: 12px;"></i>
+                  <span>Idioma sugerido: <strong>${flagIcons[lead.primaryLang]}</strong></span>
+                </div>
+                <div class="lang-switch-group">
+                  <button class="lang-btn ${activeLang === 'ES' ? 'active' : ''}" data-lang="ES" onclick="setCardLang(${lead.id}, 'ES')">🇪🇸 ES</button>
+                  <button class="lang-btn ${activeLang === 'EN' ? 'active' : ''}" data-lang="EN" onclick="setCardLang(${lead.id}, 'EN')">🇬🇧 EN</button>
+                  <button class="lang-btn ${activeLang === 'DE' ? 'active' : ''}" data-lang="DE" onclick="setCardLang(${lead.id}, 'DE')">🇩🇪 DE</button>
+                </div>
+              </div>
+              <div class="lang-reason">${lead.langReason}</div>
             </div>
 
             <div class="lead-audit">
@@ -850,9 +1478,20 @@
               ${lead.audit}
             </div>
 
+            <div class="pitch-preview-box">
+              <div class="pitch-preview-header">
+                <div class="pitch-preview-title">
+                  <i data-lucide="message-square" style="width: 12px; height: 12px; color: #3B82F6;"></i>
+                  <span>Mensaje preparado para enviar:</span>
+                </div>
+                <span class="pitch-lang-indicator" style="font-size: 0.7rem; color: #60A5FA; font-weight: 700; font-family: monospace;">[${activeLang}]</span>
+              </div>
+              <div class="pitch-preview-content">${pitchText}</div>
+            </div>
+
             <div class="lead-demo">
               <i data-lucide="play" style="width: 13px; height: 13px; color: #10B981;"></i>
-              <span>Demo sugerida: <a href="${lead.demoUrl}" target="_blank">${lead.demoName}</a></span>
+              <span>Demo vinculada: <a href="${lead.demoUrl}" target="_blank">${lead.demoName}</a></span>
             </div>
 
             <div class="lead-actions">
@@ -925,18 +1564,19 @@
     }
 
     function exportData() {
-      let csv = "ID,Nombre,Sector,Zona,Telefono,Email,Web,Estado,Notas\n";
+      let csv = "ID,Nombre,Sector,Zona,Telefono,Email,Web,IdiomaSugerido,IdiomaSeleccionado,Estado,Notas\n";
       LEADS.forEach(l => {
         const s = getLeadStatus(l.id);
+        const selLang = getCardLang(l.id, l.primaryLang);
         const n = getLeadNotes(l.id).replace(/"/g, '""');
-        csv += `"${l.id}","${l.name}","${l.sector}","${l.zone}","${l.phone}","${l.email}","${l.web}","${s}","${n}"\n`;
+        csv += `"${l.id}","${l.name}","${l.sector}","${l.zone}","${l.phone}","${l.email}","${l.web}","${l.primaryLang}","${selLang}","${s}","${n}"\n`;
       });
 
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'prospeccion_mallorca_' + new Date().toISOString().slice(0,10) + '.csv';
+      a.download = 'prospeccion_mallorca_multilang_' + new Date().toISOString().slice(0,10) + '.csv';
       a.click();
     }
 
