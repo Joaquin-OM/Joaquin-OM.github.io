@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel de Prospección 1-Clic — Detección Multilingüe (ES / EN / DE)</title>
+<title>Panel de Prospección 1-Clic — Detección Multilingüe y Respuestas a Medida</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -27,6 +27,7 @@
     --amber: #F59E0B;
     --amber-bg: rgba(245, 158, 11, 0.12);
     --purple: #8B5CF6;
+    --purple-bg: rgba(139, 92, 246, 0.15);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -36,7 +37,7 @@
     line-height: 1.5;
     padding-bottom: 80px;
   }
-  .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+  .container { max-width: 1260px; margin: 0 auto; padding: 0 20px; }
   .crm-header {
     background: rgba(17, 19, 24, 0.94);
     backdrop-filter: blur(14px);
@@ -72,6 +73,7 @@
     border: 1px solid var(--border);
   }
   .header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  
   .kpi-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -83,6 +85,12 @@
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 18px 20px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .kpi-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
   }
   .kpi-label {
     font-size: 0.75rem;
@@ -91,9 +99,53 @@
     letter-spacing: 0.06em;
     color: var(--text-muted);
     margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .kpi-val { font-size: 2rem; font-weight: 800; color: var(--text-white); line-height: 1; }
   .kpi-sub { font-size: 0.78rem; color: var(--text-secondary); margin-top: 6px; }
+
+  /* VIEW MODE TABS */
+  .view-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+  }
+  .view-tab {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .view-tab:hover { background: rgba(255,255,255,0.05); color: #fff; }
+  .view-tab.active {
+    background: #3B82F6;
+    color: #FFFFFF;
+    border-color: #3B82F6;
+  }
+  .view-tab.active-contacted {
+    background: #10B981;
+    color: #FFFFFF;
+    border-color: #10B981;
+  }
+  .view-tab .badge {
+    background: rgba(0,0,0,0.25);
+    padding: 2px 7px;
+    border-radius: 12px;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
   
   .controls-card {
     background: var(--bg-surface);
@@ -160,6 +212,11 @@
     color: #FFFFFF;
     border-color: #3B82F6;
   }
+  .filter-pill.active-status {
+    background: #10B981;
+    color: #FFFFFF;
+    border-color: #10B981;
+  }
 
   .leads-grid {
     display: grid;
@@ -180,6 +237,16 @@
     background: var(--bg-card-hover);
     border-color: var(--border-hover);
   }
+  .lead-card.is-contacted {
+    border-left: 4px solid #10B981;
+  }
+  .lead-card.is-responded {
+    border-left: 4px solid #3B82F6;
+  }
+  .lead-card.is-meeting {
+    border-left: 4px solid #F59E0B;
+  }
+
   .lead-top {
     display: flex;
     justify-content: space-between;
@@ -354,6 +421,28 @@
   .btn-email:hover { background: rgba(255,255,255,0.12); }
   .btn-copy { background: transparent; color: var(--text-secondary); font-size: 0.75rem; padding: 4px; }
   .btn-copy:hover { color: var(--text-white); }
+  
+  .btn-respond {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2));
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    color: #C4B5FD;
+    padding: 9px 14px;
+    border-radius: 6px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .btn-respond:hover {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(59, 130, 246, 0.35));
+    color: #FFFFFF;
+    border-color: #8B5CF6;
+  }
+
   .status-select-wrap {
     display: flex;
     align-items: center;
@@ -371,6 +460,95 @@
     font-size: 0.78rem;
     outline: none;
   }
+
+  /* MODAL STYLES */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-backdrop.active { display: flex; }
+  .modal-card {
+    background: #12141D;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    width: 100%;
+    max-width: 680px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+    padding: 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+  }
+  .modal-title-wrap h2 { font-size: 1.2rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .modal-title-wrap p { font-size: 0.78rem; color: var(--text-secondary); margin-top: 2px; }
+  .modal-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.4rem;
+    line-height: 1;
+    padding: 4px;
+  }
+  .modal-close-btn:hover { color: #fff; }
+
+  .scenario-btn-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 8px;
+  }
+  .scenario-btn {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+  }
+  .scenario-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
+  .scenario-btn.active {
+    background: #8B5CF6;
+    color: #fff;
+    border-color: #8B5CF6;
+  }
+
+  .response-textarea {
+    width: 100%;
+    min-height: 140px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    outline: none;
+    resize: vertical;
+  }
+  .response-textarea:focus { border-color: #8B5CF6; }
+
   .toast {
     position: fixed;
     bottom: 24px;
@@ -386,7 +564,7 @@
     transform: translateY(10px);
     transition: all 0.2s;
     pointer-events: none;
-    z-index: 1000;
+    z-index: 2000;
   }
   .toast.show { opacity: 1; transform: translateY(0); }
 </style>
@@ -396,8 +574,8 @@
   <header class="crm-header">
     <div class="container crm-header-row">
       <div class="brand-title">
-        <i data-lucide="globe" style="width: 20px; height: 20px; color: #3B82F6;"></i>
-        <span>Panel de Prospección Multilingüe</span>
+        <i data-lucide="zap" style="width: 20px; height: 20px; color: #10B981;"></i>
+        <span>Panel de Prospección & Respuestas a Medida</span>
         <span class="brand-badge">Mallorca &bull; 32 Negocios &bull; ES | EN | DE</span>
       </div>
 
@@ -416,27 +594,55 @@
   </header>
 
   <main class="container">
+    <!-- KPIS -->
     <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-label">Total Leads Verificados</div>
+      <div class="kpi-card" onclick="setStatusFilter('all')" title="Ver todos los leads">
+        <div class="kpi-label">
+          <span>Total Leads Verificados</span>
+          <i data-lucide="users" style="width: 14px; height: 14px;"></i>
+        </div>
         <div class="kpi-val" id="kpiTotal">32</div>
         <div class="kpi-sub">Mallorca (Turismo, Náutica, Hoteles, Asesorías)</div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Contactados</div>
+      <div class="kpi-card" onclick="setStatusFilter('contactado')" title="Filtrar solo contactados">
+        <div class="kpi-label">
+          <span>Contactados</span>
+          <i data-lucide="send" style="width: 14px; height: 14px; color: #10B981;"></i>
+        </div>
         <div class="kpi-val" id="kpiContacted" style="color: #10B981;">0</div>
         <div class="kpi-sub" id="kpiContactedPct">0% enviado</div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Respuestas Recibidas</div>
+      <div class="kpi-card" onclick="setStatusFilter('respondido')" title="Filtrar quienes han respondido">
+        <div class="kpi-label">
+          <span>Respuestas Recibidas</span>
+          <i data-lucide="message-circle" style="width: 14px; height: 14px; color: #3B82F6;"></i>
+        </div>
         <div class="kpi-val" id="kpiResponses" style="color: #3B82F6;">0</div>
         <div class="kpi-sub">Interesados en propuesta</div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Reuniones Agendadas</div>
+      <div class="kpi-card" onclick="setStatusFilter('reunion')" title="Filtrar reuniones agendadas">
+        <div class="kpi-label">
+          <span>Reuniones Agendadas</span>
+          <i data-lucide="calendar" style="width: 14px; height: 14px; color: #F59E0B;"></i>
+        </div>
         <div class="kpi-val" id="kpiMeetings" style="color: #F59E0B;">0</div>
         <div class="kpi-sub">Presencial en Palma o videollamada</div>
       </div>
+    </div>
+
+    <!-- MAIN VIEW MODE TABS -->
+    <div class="view-tabs">
+      <button class="view-tab active" id="tabAllLeads" onclick="setViewMode('all')">
+        <i data-lucide="layout-grid" style="width: 16px; height: 16px;"></i>
+        <span>Todos los Negocios</span>
+        <span class="badge" id="badgeAllCount">32</span>
+      </button>
+
+      <button class="view-tab" id="tabContactedLeads" onclick="setViewMode('pipeline')">
+        <i data-lucide="target" style="width: 16px; height: 16px; color: #10B981;"></i>
+        <span>🎯 Mi Bandeja de Contactados & Seguimiento</span>
+        <span class="badge" id="badgeContactedCount" style="background: rgba(16, 185, 129, 0.3); color: #A7F3D0;">0</span>
+      </button>
     </div>
 
     <div class="controls-card">
@@ -445,6 +651,19 @@
         <input type="text" id="searchInput" placeholder="Buscar por negocio, zona (Portals, Alcúdia, Son Vida), sector o idioma..." oninput="renderLeads()">
       </div>
 
+      <!-- FILTRO POR ESTADO -->
+      <div>
+        <div class="filter-group-label"><i data-lucide="activity" style="width: 13px; height: 13px;"></i> Filtrar por Estado del Lead</div>
+        <div class="filter-pills" id="statusFilters">
+          <button class="filter-pill active-status" onclick="setStatusFilter('all')">Todos los Estados (<span id="countStatusAll">32</span>)</button>
+          <button class="filter-pill" onclick="setStatusFilter('contactado')">📤 Contactados (<span id="countStatusContacted">0</span>)</button>
+          <button class="filter-pill" onclick="setStatusFilter('respondido')">💬 Han Respondido (<span id="countStatusResponded">0</span>)</button>
+          <button class="filter-pill" onclick="setStatusFilter('reunion')">📅 Reunión (<span id="countStatusMeetings">0</span>)</button>
+          <button class="filter-pill" onclick="setStatusFilter('pendiente')">⏳ Pendientes (<span id="countStatusPending">32</span>)</button>
+        </div>
+      </div>
+
+      <!-- FILTRO POR SECTOR -->
       <div>
         <div class="filter-group-label"><i data-lucide="layers" style="width: 13px; height: 13px;"></i> Filtrar por Sector</div>
         <div class="filter-pills" id="sectorFilters">
@@ -457,6 +676,7 @@
         </div>
       </div>
 
+      <!-- FILTRO POR IDIOMA -->
       <div>
         <div class="filter-group-label"><i data-lucide="languages" style="width: 13px; height: 13px;"></i> Filtrar por Idioma Detectado Principal</div>
         <div class="filter-pills" id="langFilters">
@@ -468,8 +688,81 @@
       </div>
     </div>
 
+    <!-- LEADS GRID -->
     <div class="leads-grid" id="leadsGrid"></div>
   </main>
+
+  <!-- MODAL DE RESPUESTAS A MEDIDA & DOSSIER -->
+  <div class="modal-backdrop" id="responseModal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h2 id="modalLeadName"><i data-lucide="message-square" style="color: #8B5CF6;"></i> Respuesta Personalizada</h2>
+          <p id="modalLeadSub">Empresa • Sector • Teléfono</p>
+        </div>
+        <button class="modal-close-btn" onclick="closeResponseModal()">&times;</button>
+      </div>
+
+      <!-- IDIOMA DE RESPUESTA -->
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="filter-group-label" style="margin: 0;"><i data-lucide="globe" style="width: 13px; height: 13px;"></i> Idioma de la respuesta:</div>
+        <div class="lang-switch-group" id="modalLangGroup">
+          <button class="lang-btn" data-lang="ES" onclick="setModalLang('ES')">🇪🇸 Español</button>
+          <button class="lang-btn" data-lang="EN" onclick="setModalLang('EN')">🇬🇧 English</button>
+          <button class="lang-btn" data-lang="DE" onclick="setModalLang('DE')">🇩🇪 Deutsch</button>
+        </div>
+      </div>
+
+      <!-- TIPO DE RESPUESTA / ESCENARIO -->
+      <div>
+        <div class="filter-group-label"><i data-lucide="sparkles" style="width: 13px; height: 13px;"></i> Elige el objetivo de la respuesta:</div>
+        <div class="scenario-btn-group">
+          <button class="scenario-btn active" onclick="selectScenario('info')">📄 Más Información + Dossier</button>
+          <button class="scenario-btn" onclick="selectScenario('price')">💶 Precios & Tarifas + Dossier</button>
+          <button class="scenario-btn" onclick="selectScenario('meeting')">☕ Agendar Llamada o Café</button>
+          <button class="scenario-btn" onclick="selectScenario('followup')">⏳ Seguimiento 48h</button>
+        </div>
+      </div>
+
+      <!-- TEXTO EDITABLE -->
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <label class="filter-group-label" style="margin: 0;">Mensaje adaptado listo para enviar (puedes editarlo):</label>
+          <span id="modalDossierBadge" style="font-size: 0.72rem; color: #A7F3D0; background: rgba(16,185,129,0.15); padding: 2px 6px; border-radius: 4px;">✓ Incluye Dossier Oficial</span>
+        </div>
+        <textarea id="modalResponseText" class="response-textarea"></textarea>
+      </div>
+
+      <!-- ACCIONES DE ENVÍO -->
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <a id="modalWaBtn" href="#" target="_blank" class="btn btn-whatsapp" style="flex: 1;" onclick="handleModalWhatsAppSend()">
+            <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+            <span>Enviar por WhatsApp</span>
+          </a>
+
+          <a id="modalMailBtn" href="#" class="btn btn-email" style="flex: 1;" onclick="handleModalEmailSend()">
+            <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+            <span>Enviar por Email</span>
+          </a>
+
+          <button class="btn" style="background: rgba(255,255,255,0.08); color: #fff;" onclick="copyModalResponse()">
+            <i data-lucide="copy" style="width: 15px; height: 15px;"></i>
+            <span>Copiar</span>
+          </button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border);">
+          <span style="font-size: 0.76rem; color: var(--text-muted);">Actualizar estado del lead:</span>
+          <div style="display: flex; gap: 6px;">
+            <button class="filter-pill" style="font-size: 0.72rem; padding: 4px 8px;" onclick="setModalLeadStatus('respondido')">💬 Marcar Respondido</button>
+            <button class="filter-pill" style="font-size: 0.72rem; padding: 4px 8px; background: rgba(245,158,11,0.2); color: #FCD34D; border-color: rgba(245,158,11,0.4);" onclick="setModalLeadStatus('reunion')">📅 Marcar Reunión</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <div id="toast" class="toast">Mensaje copiado al portapapeles</div>
 
@@ -1253,6 +1546,13 @@
 ];
     let currentSector = 'all';
     let currentLangFilter = 'all';
+    let currentStatusFilter = 'all';
+    let currentViewMode = 'all'; // 'all' or 'pipeline'
+
+    // Modal state
+    let activeModalLead = null;
+    let activeModalLang = 'ES';
+    let activeModalScenario = 'info';
 
     function getCleanPhone(phone) {
       return phone ? phone.replace(/[^0-9]/g, '') : '';
@@ -1265,6 +1565,7 @@
     function setLeadStatus(id, status) {
       localStorage.setItem('crm_status_' + id, status);
       updateKPIs();
+      renderLeads();
     }
 
     function getLeadNotes(id) {
@@ -1289,6 +1590,63 @@
       t.textContent = msg;
       t.classList.add('show');
       setTimeout(() => t.classList.remove('show'), 2400);
+    }
+
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      document.getElementById('tabAllLeads').classList.toggle('active', mode === 'all');
+      document.getElementById('tabContactedLeads').classList.toggle('active-contacted', mode === 'pipeline');
+      
+      if (mode === 'pipeline') {
+        currentStatusFilter = 'contacted_all'; // Show contacted, responded, meeting
+      } else {
+        currentStatusFilter = 'all';
+      }
+      renderLeads();
+    }
+
+    function setStatusFilter(status) {
+      currentStatusFilter = status;
+      if (status !== 'all' && status !== 'contacted_all') {
+        currentViewMode = 'all';
+        document.getElementById('tabAllLeads').classList.add('active');
+        document.getElementById('tabContactedLeads').classList.remove('active-contacted');
+      }
+      document.querySelectorAll('#statusFilters .filter-pill').forEach(p => {
+        p.classList.remove('active-status');
+        if (
+          (status === 'all' && p.textContent.includes('Todos los Estados')) ||
+          (status === 'contactado' && p.textContent.includes('Contactados')) ||
+          (status === 'respondido' && p.textContent.includes('Han Respondido')) ||
+          (status === 'reunion' && p.textContent.includes('Reunión')) ||
+          (status === 'pendiente' && p.textContent.includes('Pendientes'))
+        ) {
+          p.classList.add('active-status');
+        }
+      });
+      renderLeads();
+    }
+
+    function setSectorFilter(sec) {
+      currentSector = sec;
+      document.querySelectorAll('#sectorFilters .filter-pill').forEach(p => {
+        p.classList.remove('active');
+        if ((sec === 'all' && p.textContent.includes('Todos')) || p.textContent.includes(sec)) {
+          p.classList.add('active');
+        }
+      });
+      renderLeads();
+    }
+
+    function setLangFilter(lang) {
+      currentLangFilter = lang;
+      document.querySelectorAll('#langFilters .filter-pill').forEach(p => {
+        p.classList.remove('active-lang');
+        if ((lang === 'all' && p.textContent.includes('Todos')) || p.textContent.includes(lang)) {
+          p.classList.add('active-lang');
+        }
+      });
+      renderLeads();
     }
 
     function updateCardLanguageUI(id, lang) {
@@ -1318,11 +1676,9 @@
       const mailBody = encodeURIComponent(pitchText + dossierNote);
       const mailUrl = lead.email ? 'mailto:' + lead.email + '?subject=' + encodeURIComponent(mailSubject) + '&body=' + mailBody : '#';
 
-      // Update Card Elements
       const card = document.getElementById('lead-card-' + id);
       if (!card) return;
 
-      // Update button active state
       card.querySelectorAll('.lang-btn').forEach(btn => {
         if (btn.getAttribute('data-lang') === lang) {
           btn.classList.add('active');
@@ -1331,18 +1687,15 @@
         }
       });
 
-      // Update pitch preview indicator and content
       const langIndicator = card.querySelector('.pitch-lang-indicator');
       if (langIndicator) langIndicator.textContent = '[' + lang + ']';
 
       const previewEl = card.querySelector('.pitch-preview-content');
       if (previewEl) previewEl.textContent = pitchText;
 
-      // Update WhatsApp link
       const waBtn = card.querySelector('.btn-whatsapp');
       if (waBtn) waBtn.href = waUrl;
 
-      // Update Email link
       const mailBtn = card.querySelector('.btn-email');
       if (mailBtn) mailBtn.href = mailUrl;
 
@@ -1363,8 +1716,6 @@
       const current = getLeadStatus(id);
       if (current === 'pendiente') {
         setLeadStatus(id, 'contactado');
-        const sel = document.getElementById('status-select-' + id);
-        if (sel) sel.value = 'contactado';
       }
       showToast("✓ Abriendo WhatsApp Web con mensaje listo");
     }
@@ -1373,39 +1724,201 @@
       const current = getLeadStatus(id);
       if (current === 'pendiente') {
         setLeadStatus(id, 'contactado');
-        const sel = document.getElementById('status-select-' + id);
-        if (sel) sel.value = 'contactado';
       }
       showToast("✓ Abriendo borrador de email");
     }
 
-    function setSectorFilter(sec) {
-      currentSector = sec;
-      document.querySelectorAll('#sectorFilters .filter-pill').forEach(p => {
-        p.classList.remove('active');
-        if ((sec === 'all' && p.textContent.includes('Todos')) || p.textContent.includes(sec)) {
-          p.classList.add('active');
-        }
+    /* ==========================================================
+       MODAL DE RESPUESTAS A MEDIDA & ENVÍO DE DOSSIER
+    ========================================================== */
+    function openResponseModal(id) {
+      const lead = LEADS.find(l => l.id === id);
+      if (!lead) return;
+
+      activeModalLead = lead;
+      activeModalLang = getCardLang(lead.id, lead.primaryLang);
+      activeModalScenario = 'info';
+
+      document.getElementById('modalLeadName').innerHTML = '<i data-lucide="message-square" style="color: #8B5CF6;"></i> Responder a ' + lead.name;
+      document.getElementById('modalLeadSub').textContent = lead.sector + ' • ' + lead.zone + (lead.phone ? ' • ' + lead.phone : '') + (lead.email ? ' • ' + lead.email : '');
+
+      // Update lang buttons in modal
+      document.querySelectorAll('#modalLangGroup .lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === activeModalLang);
       });
-      renderLeads();
+
+      // Update scenario buttons
+      document.querySelectorAll('.scenario-btn').forEach((b, idx) => {
+        b.classList.toggle('active', idx === 0);
+      });
+
+      generateModalResponseText();
+      document.getElementById('responseModal').classList.add('active');
+
+      if (window.lucide) window.lucide.createIcons();
     }
 
-    function setLangFilter(lang) {
-      currentLangFilter = lang;
-      document.querySelectorAll('#langFilters .filter-pill').forEach(p => {
-        p.classList.remove('active-lang');
-        if ((lang === 'all' && p.textContent.includes('Todos')) || p.textContent.includes(lang)) {
-          p.classList.add('active-lang');
-        }
-      });
-      renderLeads();
+    function closeResponseModal() {
+      document.getElementById('responseModal').classList.remove('active');
     }
 
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'responseModal') {
+        closeResponseModal();
+      }
+    }
+
+    function setModalLang(lang) {
+      activeModalLang = lang;
+      document.querySelectorAll('#modalLangGroup .lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+      generateModalResponseText();
+    }
+
+    function selectScenario(scen) {
+      activeModalScenario = scen;
+      document.querySelectorAll('.scenario-btn').forEach(b => {
+        b.classList.remove('active');
+        if (
+          (scen === 'info' && b.textContent.includes('Información')) ||
+          (scen === 'price' && b.textContent.includes('Precios')) ||
+          (scen === 'meeting' && b.textContent.includes('Agendar')) ||
+          (scen === 'followup' && b.textContent.includes('Seguimiento'))
+        ) {
+          b.classList.add('active');
+        }
+      });
+      generateModalResponseText();
+    }
+
+    function generateModalResponseText() {
+      if (!activeModalLead) return;
+      const lead = activeModalLead;
+      const lang = activeModalLang;
+      const scen = activeModalScenario;
+
+      const dossierUrl = (lang === 'ES')
+        ? 'https://joaquin-om.github.io/assets/Dossier_Servicios_Joaquin_Oses_2026.pdf'
+        : 'https://joaquin-om.github.io/assets/Dossier_Services_Joaquin_Oses_2026_EN.pdf';
+
+      let text = '';
+
+      if (scen === 'info') {
+        if (lang === 'ES') {
+          text = '¡Hola! Muchas gracias por responder. Te facilito aquí nuestro dossier de servicios completo en PDF con todos los detalles de metodología, plazos y soluciones web:\n' + dossierUrl + '\n\nPodemos adaptar el sistema directamente a ' + lead.name + ' integrando reservas directas a WhatsApp y optimización móvil sin comisiones. ¿Te vendría bien que hablemos 10 minutos por teléfono o nos tomemos un café en Palma esta semana? ¡Un saludo, Joaquín Oses (+34 695 26 74 45)!';
+        } else if (lang === 'EN') {
+          text = 'Hello! Thank you for getting back to me. Here is my complete Services Dossier in PDF outlining my work process, turnaround times, and solutions:\n' + dossierUrl + '\n\nWe can tailor this directly for ' + lead.name + ' with direct mobile bookings and zero commission fees. Would you be available for a quick 10-minute phone call or video chat this week to explore this? Best regards, Joaquín Oses (+34 695 26 74 45)!';
+        } else {
+          text = 'Guten Tag! Vielen Dank für Ihre Rückmeldung. Anbei sende ich Ihnen mein detailliertes Leistungs-Dossier als PDF mit allen Informationen zu Ablauf, Projekten und Konditionen:\n' + dossierUrl + '\n\nWir können eine maßgeschneiderte Lösung für ' + lead.name + ' umsetzen – mit direkter Buchung ohne Plattform-Gebühren und voller Mobiloptimierung. Hätten Sie diese Woche Zeit für ein kurzes 10-minütiges Telefonat? Herzliche Grüße aus Palma, Joaquín Oses (+34 695 26 74 45)!';
+        }
+      } else if (scen === 'price') {
+        if (lang === 'ES') {
+          text = '¡Hola! Los proyectos que desarrollo tienen tarifas transparentes y sin costes ocultos:\n• Solución rápida / Landing de reservas: 390 € (lista en 3-5 días)\n• Web completa con catálogo y reservas directas: 790 €\n• Aplicación / Dashboard a medida: desde 1.350 €\n\nEn este dossier puedes ver el desglose completo:\n' + dossierUrl + '\n\nSi te parece bien, hacemos una breve llamada de 10 minutos y vemos cuál os resulta más rentable para ' + lead.name + ' esta temporada. ¿Cuándo te vendría bien? Un saludo, Joaquín Oses.';
+        } else if (lang === 'EN') {
+          text = 'Hello! My development pricing is transparent with no hidden recurring costs:\n• Fast Booking Landing / Direct flow: €390 (delivery in 3-5 days)\n• Complete custom website with booking engine & SEO: €790\n• Custom App & Management Dashboard: from €1,350\n\nYou can review the full breakdown in my services dossier:\n' + dossierUrl + '\n\nI would be glad to hop on a quick 10-minute call to discuss what setup would yield the best return for ' + lead.name + ' this season. When suits you best? Best regards, Joaquín Oses.';
+        } else {
+          text = 'Guten Tag! Meine Preise sind transparent und ohne versteckte monatliche Gebühren:\n• Schnelle Buchungs-Landingpage: 390 € (fertig in 3-5 Tagen)\n• Komplette Website mit Buchungsfunktion & SEO: 790 €\n• Individuelle Web-App / Dashboard: ab 1.350 €\n\nDie vollständige Übersicht finden Sie im beigefügten Dossier:\n' + dossierUrl + '\n\nGerne können wir kurz für 10 Minuten telefonieren, um zu schauen, welche Variante für ' + lead.name + ' am sinnvollsten ist. Wann würde es Ihnen passen? Herzliche Grüße, Joaquín Oses.';
+        }
+      } else if (scen === 'meeting') {
+        if (lang === 'ES') {
+          text = '¡Hola! Me parece perfecto. Como estoy ubicado aquí en Palma, si prefieres nos tomamos un café rápido y te muestro en directo en el portátil cómo funcionaría el motor de reservas para ' + lead.name + ', o si lo prefieres hacemos una breve videollamada/llamada de 10 minutos.\n\n¿Qué día y hora te vendría mejor: mañana por la mañana o por la tarde? ¡Un saludo, Joaquín Oses (+34 695 26 74 45)!';
+        } else if (lang === 'EN') {
+          text = 'Hello! Sounds great. Since I am based locally here in Palma, we could meet for a quick coffee and I can show you live on my laptop how the booking engine would work for ' + lead.name + ', or we can do a quick 10-minute video/phone call.\n\nWould tomorrow morning or afternoon work better for you? Best regards, Joaquín Oses (+34 695 26 74 45)!';
+        } else {
+          text = 'Guten Tag! Sehr gerne. Da ich direkt hier in Palma lebe und arbeite, können wir uns gerne auf einen kurzen Kaffee treffen, damit ich Ihnen die Plattform für ' + lead.name + ' live auf dem Laptop zeige – oder wir machen einen kurzen 10-minütigen Anruf.\n\nWann würde es Ihnen am besten passen: morgen Vormittag oder Nachmittag? Herzliche Grüße, Joaquín Oses (+34 695 26 74 45)!';
+        }
+      } else if (scen === 'followup') {
+        if (lang === 'ES') {
+          text = '¡Hola! Te escribo brevemente por si tuviste oportunidad de ver el mensaje anterior sobre la modernización de reservas para ' + lead.name + ': https://joaquin-om.github.io/moto-rent/. Sé que estáis a tope preparando la temporada, solo quería dejarte también nuestro dossier de servicios: ' + dossierUrl + '. Si os encaja comentarlo en algún momento, quedo a vuestra entera disposición. ¡Que tengáis una gran semana! — Joaquín Oses (+34 695 26 74 45)';
+        } else if (lang === 'EN') {
+          text = 'Hello! Just following up briefly to check if you had a chance to see my previous message regarding the mobile booking setup for ' + lead.name + ': https://joaquin-om.github.io/moto-rent/. I know you are busy preparing for the season, so I also wanted to leave our full services dossier here: ' + dossierUrl + '. Whenever you would like to chat, feel free to reach out. Have a wonderful week! — Joaquín Oses (+34 695 26 74 45)';
+        } else {
+          text = 'Guten Tag! Ich wollte mich nur kurz erkundigen, ob Sie Gelegenheit hatten, meine Nachricht bezüglich der mobilen Buchungsoptimierung für ' + lead.name + ' zu sehen: https://joaquin-om.github.io/moto-rent/. Ich weiß, dass die Saisonvorbereitung viel Zeit kostet, daher hinterlasse ich Ihnen gerne auch unser Leistungsdossier: ' + dossierUrl + '. Wenn Sie Interesse haben, stehe ich gerne zur Verfügung. Eine erfolgreiche Woche! — Joaquín Oses (+34 695 26 74 45)';
+        }
+      }
+
+      document.getElementById('modalResponseText').value = text;
+      updateModalActionUrls();
+    }
+
+    function updateModalActionUrls() {
+      if (!activeModalLead) return;
+      const text = document.getElementById('modalResponseText').value;
+      const cleanPhone = getCleanPhone(activeModalLead.phone);
+      const waBtn = document.getElementById('modalWaBtn');
+      const mailBtn = document.getElementById('modalMailBtn');
+
+      if (cleanPhone) {
+        waBtn.style.display = 'inline-flex';
+        waBtn.href = 'https://wa.me/' + cleanPhone + '?text=' + encodeURIComponent(text);
+      } else {
+        waBtn.style.display = 'none';
+      }
+
+      if (activeModalLead.email) {
+        mailBtn.style.display = 'inline-flex';
+        let subj = 'Dossier y propuesta para ' + activeModalLead.name + ' — Joaquín Oses';
+        if (activeModalLang === 'EN') subj = 'Services Dossier & Web Proposal for ' + activeModalLead.name + ' — Joaquín Oses';
+        if (activeModalLang === 'DE') subj = 'Leistungsdossier & Web-Angebot für ' + activeModalLead.name + ' — Joaquín Oses';
+        mailBtn.href = 'mailto:' + activeModalLead.email + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(text);
+      } else {
+        mailBtn.style.display = 'none';
+      }
+    }
+
+    // Bind real-time typing to update wa/email urls
+    document.addEventListener('DOMContentLoaded', () => {
+      const textarea = document.getElementById('modalResponseText');
+      if (textarea) {
+        textarea.addEventListener('input', updateModalActionUrls);
+      }
+    });
+
+    function handleModalWhatsAppSend() {
+      if (!activeModalLead) return;
+      setLeadStatus(activeModalLead.id, 'respondido');
+      showToast('✓ Abriendo WhatsApp Web con tu respuesta personalizada');
+      closeResponseModal();
+    }
+
+    function handleModalEmailSend() {
+      if (!activeModalLead) return;
+      setLeadStatus(activeModalLead.id, 'respondido');
+      showToast('✓ Abriendo borrador de email con el dossier');
+      closeResponseModal();
+    }
+
+    function copyModalResponse() {
+      const text = document.getElementById('modalResponseText').value;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('✓ Respuesta copiada al portapapeles');
+      });
+    }
+
+    function setModalLeadStatus(status) {
+      if (!activeModalLead) return;
+      setLeadStatus(activeModalLead.id, status);
+      showToast('✓ Estado actualizado a: ' + status);
+    }
+
+    /* ==========================================================
+       RENDER LEADS & KPI LOGIC
+    ========================================================== */
     function renderLeads() {
       const query = document.getElementById('searchInput').value.toLowerCase().trim();
       const grid = document.getElementById('leadsGrid');
       
       const filtered = LEADS.filter(lead => {
+        const status = getLeadStatus(lead.id);
+
+        let matchesStatus = true;
+        if (currentStatusFilter === 'contacted_all') {
+          matchesStatus = (status === 'contactado' || status === 'respondido' || status === 'reunion');
+        } else if (currentStatusFilter !== 'all') {
+          matchesStatus = (status === currentStatusFilter);
+        }
+
         const matchesSector = (currentSector === 'all') || (lead.sector.toLowerCase().includes(currentSector.toLowerCase()));
         const matchesLang = (currentLangFilter === 'all') || (lead.primaryLang === currentLangFilter);
         const matchesQuery = !query || 
@@ -1414,8 +1927,22 @@
           lead.sector.toLowerCase().includes(query) ||
           (lead.langReason && lead.langReason.toLowerCase().includes(query)) ||
           lead.primaryLang.toLowerCase().includes(query);
-        return matchesSector && matchesLang && matchesQuery;
+
+        return matchesStatus && matchesSector && matchesLang && matchesQuery;
       });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; background: var(--bg-surface); border: 1px dashed var(--border); border-radius: 12px; color: var(--text-muted);">
+            <i data-lucide="inbox" style="width: 36px; height: 36px; margin-bottom: 10px; color: #4B5563;"></i>
+            <h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 6px;">No hay empresas en esta vista</h3>
+            <p style="font-size: 0.84rem;">Prueba a cambiar los filtros de estado o sector, o escribe otro término en la búsqueda.</p>
+          </div>
+        `;
+        if (window.lucide) window.lucide.createIcons();
+        updateKPIs();
+        return;
+      }
 
       grid.innerHTML = filtered.map(lead => {
         const status = getLeadStatus(lead.id);
@@ -1445,8 +1972,13 @@
 
         const flagIcons = { ES: '🇪🇸 ES', EN: '🇬🇧 EN', DE: '🇩🇪 DE' };
 
+        let statusClass = '';
+        if (status === 'contactado') statusClass = 'is-contacted';
+        else if (status === 'respondido') statusClass = 'is-responded';
+        else if (status === 'reunion') statusClass = 'is-meeting';
+
         return `
-          <div class="lead-card" id="lead-card-${lead.id}">
+          <div class="lead-card ${statusClass}" id="lead-card-${lead.id}">
             <div class="lead-top">
               <div>
                 <h3 class="lead-name">${lead.name}</h3>
@@ -1458,6 +1990,7 @@
               <span class="sector-badge">${lead.sector}</span>
             </div>
 
+            <!-- DETECCIÓN DE IDIOMA & SELECTOR -->
             <div class="lang-detection-box">
               <div class="lang-detection-header">
                 <div class="lang-detection-title">
@@ -1478,11 +2011,12 @@
               ${lead.audit}
             </div>
 
+            <!-- PREVIEW DEL MENSAJE INICIAL -->
             <div class="pitch-preview-box">
               <div class="pitch-preview-header">
                 <div class="pitch-preview-title">
                   <i data-lucide="message-square" style="width: 12px; height: 12px; color: #3B82F6;"></i>
-                  <span>Mensaje preparado para enviar:</span>
+                  <span>Primer mensaje de contacto:</span>
                 </div>
                 <span class="pitch-lang-indicator" style="font-size: 0.7rem; color: #60A5FA; font-weight: 700; font-family: monospace;">[${activeLang}]</span>
               </div>
@@ -1494,28 +2028,34 @@
               <span>Demo vinculada: <a href="${lead.demoUrl}" target="_blank">${lead.demoName}</a></span>
             </div>
 
+            <!-- BOTÓN DESTACADO DE RESPUESTA A MEDIDA -->
+            <button class="btn-respond" onclick="openResponseModal(${lead.id})">
+              <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+              <span>💬 Responder / Enviar Dossier a Medida</span>
+            </button>
+
             <div class="lead-actions">
               ${cleanPhone ? `
                 <a href="${waUrl}" target="_blank" class="btn btn-whatsapp" onclick="handleWhatsAppClick(${lead.id})">
-                  <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
-                  <span>Abrir WhatsApp con mensaje listo</span>
+                  <i data-lucide="send" style="width: 15px; height: 15px;"></i>
+                  <span>Abrir WhatsApp (Primer Contacto)</span>
                 </a>
               ` : ''}
 
               ${lead.email ? `
                 <a href="${mailUrl}" class="btn btn-email" onclick="handleEmailClick(${lead.id})">
                   <i data-lucide="mail" style="width: 15px; height: 15px;"></i>
-                  <span>Abrir Email con mensaje listo</span>
+                  <span>Abrir Email (Primer Contacto)</span>
                 </a>
               ` : ''}
 
               <button class="btn btn-copy" onclick="copyPitch(${lead.id})">
                 <i data-lucide="copy" style="width: 12px; height: 12px;"></i>
-                <span>Copiar texto del mensaje</span>
+                <span>Copiar texto del primer mensaje</span>
               </button>
 
               <div class="status-select-wrap">
-                <span>Estado:</span>
+                <span>Estado actual:</span>
                 <select id="status-select-${lead.id}" class="status-select" onchange="setLeadStatus(${lead.id}, this.value)">
                   <option value="pendiente" ${status === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
                   <option value="contactado" ${status === 'contactado' ? 'selected' : ''}>📤 Contactado</option>
@@ -1527,10 +2067,10 @@
 
               <input 
                 type="text" 
-                placeholder="Notas de seguimiento..." 
+                placeholder="Notas de seguimiento o respuestas..." 
                 value="${notes}" 
                 onchange="setLeadNotes(${lead.id}, this.value)"
-                style="margin-top: 6px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: #fff; padding: 5px 8px; border-radius: 4px; font-size: 0.76rem; outline: none;"
+                style="margin-top: 6px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: #fff; padding: 6px 8px; border-radius: 4px; font-size: 0.76rem; outline: none;"
               />
             </div>
           </div>
@@ -1545,22 +2085,43 @@
     }
 
     function updateKPIs() {
+      let pending = 0;
       let contacted = 0;
       let responded = 0;
       let meetings = 0;
 
       LEADS.forEach(l => {
         const s = getLeadStatus(l.id);
-        if (s === 'contactado') contacted++;
+        if (s === 'pendiente') pending++;
+        else if (s === 'contactado') contacted++;
         else if (s === 'respondido') { contacted++; responded++; }
         else if (s === 'reunion') { contacted++; responded++; meetings++; }
       });
+
+      const totalContactedPipeline = contacted; // all who have moved past pending
 
       document.getElementById('kpiTotal').textContent = LEADS.length;
       document.getElementById('kpiContacted').textContent = contacted;
       document.getElementById('kpiContactedPct').textContent = Math.round((contacted / LEADS.length) * 100) + '% enviado';
       document.getElementById('kpiResponses').textContent = responded;
       document.getElementById('kpiMeetings').textContent = meetings;
+
+      // Badges in tabs
+      document.getElementById('badgeAllCount').textContent = LEADS.length;
+      document.getElementById('badgeContactedCount').textContent = totalContactedPipeline;
+
+      // Badges in status pills
+      const elAll = document.getElementById('countStatusAll');
+      const elCont = document.getElementById('countStatusContacted');
+      const elResp = document.getElementById('countStatusResponded');
+      const elMeet = document.getElementById('countStatusMeetings');
+      const elPend = document.getElementById('countStatusPending');
+
+      if (elAll) elAll.textContent = LEADS.length;
+      if (elCont) elCont.textContent = contacted;
+      if (elResp) elResp.textContent = responded;
+      if (elMeet) elMeet.textContent = meetings;
+      if (elPend) elPend.textContent = pending;
     }
 
     function exportData() {
@@ -1576,7 +2137,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'prospeccion_mallorca_multilang_' + new Date().toISOString().slice(0,10) + '.csv';
+      a.download = 'prospeccion_mallorca_pipeline_' + new Date().toISOString().slice(0,10) + '.csv';
       a.click();
     }
 
