@@ -6,11 +6,18 @@
     <title>Joaquín Oses Monti — Desarrollador Web Freelance</title>
     <meta name="description" content="Desarrollador web freelance en Palma de Mallorca. Sitios web rápidos, landing pages y aplicaciones a medida para empresas y autónomos.">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="Joaquín Oses Monti — Desarrollador Web">
-    <meta property="og:description" content="Desarrollo web y soluciones digitales a medida. Palma de Mallorca.">
+    <!-- Open Graph & Social Sharing -->
+    <meta property="og:title" content="Joaquín Oses Monti — Desarrollador Web Freelance">
+    <meta property="og:description" content="Desarrollo web y soluciones digitales a medida para empresas y autónomos. Palma de Mallorca.">
     <meta property="og:url" content="https://joaquin-om.github.io/">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://joaquin-om.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Joaquín Oses Monti — Desarrollador Web Freelance">
+    <meta name="twitter:description" content="Desarrollo web y soluciones digitales a medida en Mallorca.">
+    <meta name="twitter:image" content="https://joaquin-om.github.io/assets/og-preview.png">
 
     <!-- Fonts: Inter (Minimalist Standard) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -161,6 +168,154 @@
                     <p data-i18n="services.maint">
                         También ofrezco planes de modernización web y mantenimiento técnico mensual desde <strong>49 €/mes</strong>.
                     </p>
+                </div>
+
+                <!-- Calculadora Interactiva de Presupuestos -->
+                <div class="calculator-container" id="calculadora">
+                    <div class="calculator-card">
+                        <div class="calc-header">
+                            <span class="calc-badge" data-i18n="calc.badge">HERRAMIENTA INTERACTIVA</span>
+                            <h3 class="calc-title" data-i18n="calc.title">Calcula tu presupuesto estimado al instante</h3>
+                            <p class="calc-desc" data-i18n="calc.desc">Transparencia total. Selecciona lo que necesita tu negocio y envíame la solicitud directa a WhatsApp con un solo clic.</p>
+                        </div>
+
+                        <div class="calc-grid">
+                            <!-- Columna Izquierda: Opciones -->
+                            <div class="calc-options">
+                                <!-- Paso 1: Tipo de Proyecto Base -->
+                                <div class="calc-group">
+                                    <label class="calc-group-label" data-i18n="calc.step1">1. Selecciona el tipo de solución</label>
+                                    <div class="calc-plan-selector">
+                                        <label class="plan-option active" data-plan="landing" data-price="390" data-time="3 a 5 días laborables" data-time-en="3 to 5 business days">
+                                            <input type="radio" name="planType" value="landing" checked>
+                                            <div class="plan-option-content">
+                                                <div class="plan-name" data-i18n="services.s1Title">Landing Page</div>
+                                                <div class="plan-sub" data-i18n="calc.plan1Sub">1 página enfocada a conversión</div>
+                                            </div>
+                                            <div class="plan-price">390 €</div>
+                                        </label>
+
+                                        <label class="plan-option" data-plan="corporate" data-price="790" data-time="7 a 10 días laborables" data-time-en="7 to 10 business days">
+                                            <input type="radio" name="planType" value="corporate">
+                                            <div class="plan-option-content">
+                                                <div class="plan-name" data-i18n="services.s2Title">Web Corporativa</div>
+                                                <div class="plan-sub" data-i18n="calc.plan2Sub">Hasta 5 páginas y catálogo de servicios</div>
+                                            </div>
+                                            <div class="plan-price">790 €</div>
+                                        </label>
+
+                                        <label class="plan-option" data-plan="custom" data-price="1350" data-time="12 a 18 días laborables" data-time-en="12 to 18 business days">
+                                            <input type="radio" name="planType" value="custom">
+                                            <div class="plan-option-content">
+                                                <div class="plan-name" data-i18n="services.s3Title">App & Dashboard</div>
+                                                <div class="plan-sub" data-i18n="calc.plan3Sub">Portal de reservas, catálogo o gestión</div>
+                                            </div>
+                                            <div class="plan-price">1.350 €</div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Paso 2: Funcionalidades Opcionales -->
+                                <div class="calc-group">
+                                    <label class="calc-group-label" data-i18n="calc.step2">2. Añade funcionalidades opcionales</label>
+                                    <div class="calc-addons-list">
+                                        <label class="addon-item addon-item-checked">
+                                            <input type="checkbox" id="addonWhatsapp" checked disabled data-name-es="Botón flotante WhatsApp" data-name-en="WhatsApp button" data-price="0">
+                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
+                                            <div class="addon-info">
+                                                <span class="addon-name" data-i18n="calc.addonWa">Botón flotante directo a WhatsApp</span>
+                                                <span class="addon-sub" data-i18n="calc.addonWaSub">Para recibir consultas inmediatas de clientes</span>
+                                            </div>
+                                            <span class="addon-badge-free" data-i18n="calc.free">Incluido</span>
+                                        </label>
+
+                                        <label class="addon-item">
+                                            <input type="checkbox" id="addonSeo" value="90" data-name-es="SEO Local & Ficha Google Maps" data-name-en="Local SEO & Google Maps" data-price="90">
+                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
+                                            <div class="addon-info">
+                                                <span class="addon-name" data-i18n="calc.addonSeo">SEO Local & Ficha Google Maps</span>
+                                                <span class="addon-sub" data-i18n="calc.addonSeoSub">Para aparecer cuando busquen tu negocio en Mallorca</span>
+                                            </div>
+                                            <span class="addon-price">+90 €</span>
+                                        </label>
+
+                                        <label class="addon-item">
+                                            <input type="checkbox" id="addonCatalog" value="120" data-name-es="Catálogo digital o carta" data-name-en="Digital catalog or menu" data-price="120">
+                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
+                                            <div class="addon-info">
+                                                <span class="addon-name" data-i18n="calc.addonCatalog">Catálogo digital de productos / Carta de restaurante</span>
+                                                <span class="addon-sub" data-i18n="calc.addonCatalogSub">Filtrable por categorías y fotos en alta resolución</span>
+                                            </div>
+                                            <span class="addon-price">+120 €</span>
+                                        </label>
+
+                                        <label class="addon-item">
+                                            <input type="checkbox" id="addonLang" value="150" data-name-es="Versión Bilingüe (ES + EN/DE)" data-name-en="Bilingual Version (ES + EN/DE)" data-price="150">
+                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
+                                            <div class="addon-info">
+                                                <span class="addon-name" data-i18n="calc.addonLang">Versión Bilingüe (Español + Inglés o Alemán)</span>
+                                                <span class="addon-sub" data-i18n="calc.addonLangSub">Imprescindible para captar clientes extranjeros en Baleares</span>
+                                            </div>
+                                            <span class="addon-price">+150 €</span>
+                                        </label>
+
+                                        <label class="addon-item">
+                                            <input type="checkbox" id="addonBooking" value="180" data-name-es="Sistema de Reservas / Citas" data-name-en="Online Booking / Appointment System" data-price="180">
+                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
+                                            <div class="addon-info">
+                                                <span class="addon-name" data-i18n="calc.addonBooking">Sistema de Reservas / Citas con confirmación</span>
+                                                <span class="addon-sub" data-i18n="calc.addonBookingSub">Con calendario interactivo y aviso directo por WhatsApp</span>
+                                            </div>
+                                            <span class="addon-price">+180 €</span>
+                                        </label>
+
+                                        <label class="addon-item">
+                                            <input type="checkbox" id="addonMaint" value="49" data-name-es="Mantenimiento mensual y copias" data-name-en="Monthly maintenance & backups" data-price="49" data-recurrent="true">
+                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
+                                            <div class="addon-info">
+                                                <span class="addon-name" data-i18n="calc.addonMaint">Mantenimiento mensual, seguridad y copias</span>
+                                                <span class="addon-sub" data-i18n="calc.addonMaintSub">Actualizaciones técnicas y soporte prioritario</span>
+                                            </div>
+                                            <span class="addon-price">+49 €/mes</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Columna Derecha: Resumen de Inversión -->
+                            <div class="calc-summary">
+                                <div class="summary-box">
+                                    <h4 class="summary-title" data-i18n="calc.summaryTitle">Resumen de presupuesto</h4>
+                                    
+                                    <div class="summary-breakdown" id="calcBreakdown">
+                                        <!-- Se genera dinámicamente con JS -->
+                                    </div>
+
+                                    <div class="summary-time">
+                                        <i data-lucide="clock" class="summary-time-icon"></i>
+                                        <div>
+                                            <div class="summary-time-label" data-i18n="calc.delivery">Plazo de entrega estimado:</div>
+                                            <strong class="summary-time-val" id="calcDeliveryTime">3 a 5 días laborables</strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="summary-total-wrap">
+                                        <div class="summary-total-label" data-i18n="calc.totalLabel">Inversión estimada:</div>
+                                        <div class="summary-total-amount">
+                                            <span id="calcTotalNumber">390</span> €
+                                            <span id="calcRecurrentNumber" class="summary-recurrent-text" style="display:none;"> + 49 €/mes</span>
+                                        </div>
+                                        <div class="summary-total-note" data-i18n="calc.totalNote">Presupuesto sin compromiso &bull; Sin costes ocultos</div>
+                                    </div>
+
+                                    <a id="calcWhatsappBtn" href="#" target="_blank" class="btn btn-primary btn-block">
+                                        <i data-lucide="message-circle" class="btn-icon"></i>
+                                        <span data-i18n="calc.btnSend">Pedir este presupuesto por WhatsApp</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -445,6 +600,10 @@
     <footer class="footer">
         <div class="container footer-content">
             <span class="footer-copy">&copy; <span id="currentYear">2026</span> Joaquín Oses Monti</span>
+            <a href="./assets/Dossier_Servicios_Joaquin_Oses_2026.pdf" target="_blank" class="footer-link" style="color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px;">
+                <i data-lucide="file-text" style="width: 14px; height: 14px;"></i>
+                <span data-i18n="footer.dossier">Descargar Dossier de Servicios (PDF)</span>
+            </a>
             <span class="footer-loc">Palma de Mallorca &bull; Desarrollador Web Freelance</span>
         </div>
     </footer>

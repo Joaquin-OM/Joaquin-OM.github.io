@@ -112,7 +112,35 @@ const translations = {
         "form.opt1": "Landing Page (390 €)",
         "form.opt2": "Web Corporativa (790 €)",
         "form.opt3": "App / Dashboard a Medida",
-        "form.opt4": "Mantenimiento o Mejora Web"
+        "form.opt4": "Mantenimiento o Mejora Web",
+
+        "calc.badge": "HERRAMIENTA INTERACTIVA",
+        "calc.title": "Calcula tu presupuesto estimado al instante",
+        "calc.desc": "Transparencia total. Selecciona lo que necesita tu negocio y envíame la solicitud directa a WhatsApp con un solo clic.",
+        "calc.step1": "1. Selecciona el tipo de solución",
+        "calc.plan1Sub": "1 página enfocada a conversión",
+        "calc.plan2Sub": "Hasta 5 páginas y catálogo de servicios",
+        "calc.plan3Sub": "Portal de reservas, catálogo o gestión",
+        "calc.step2": "2. Añade funcionalidades opcionales",
+        "calc.addonWa": "Botón flotante directo a WhatsApp",
+        "calc.addonWaSub": "Para recibir consultas inmediatas de clientes",
+        "calc.free": "Incluido",
+        "calc.addonSeo": "SEO Local & Ficha Google Maps",
+        "calc.addonSeoSub": "Para aparecer cuando busquen tu negocio en Mallorca",
+        "calc.addonCatalog": "Catálogo digital de productos / Carta de restaurante",
+        "calc.addonCatalogSub": "Filtrable por categorías y fotos en alta resolución",
+        "calc.addonLang": "Versión Bilingüe (Español + Inglés o Alemán)",
+        "calc.addonLangSub": "Imprescindible para captar clientes extranjeros en Baleares",
+        "calc.addonBooking": "Sistema de Reservas / Citas con confirmación",
+        "calc.addonBookingSub": "Con calendario interactivo y aviso directo por WhatsApp",
+        "calc.addonMaint": "Mantenimiento mensual, seguridad y copias",
+        "calc.addonMaintSub": "Actualizaciones técnicas y soporte prioritario",
+        "calc.summaryTitle": "Resumen de presupuesto",
+        "calc.delivery": "Plazo de entrega estimado:",
+        "calc.totalLabel": "Inversión estimada:",
+        "calc.totalNote": "Presupuesto sin compromiso • Sin costes ocultos",
+        "calc.btnSend": "Pedir este presupuesto por WhatsApp",
+        "footer.dossier": "Descargar Dossier de Servicios (PDF)"
     },
     en: {
         "nav.services": "Services",
@@ -221,7 +249,35 @@ const translations = {
         "form.opt1": "Landing Page (€390)",
         "form.opt2": "Corporate Website (€790)",
         "form.opt3": "Custom App / Dashboard",
-        "form.opt4": "Website Maintenance or Upgrades"
+        "form.opt4": "Website Maintenance or Upgrades",
+
+        "calc.badge": "INTERACTIVE TOOL",
+        "calc.title": "Calculate your estimated budget instantly",
+        "calc.desc": "Complete transparency. Select what your business needs and send me a direct request on WhatsApp in one click.",
+        "calc.step1": "1. Select your base solution",
+        "calc.plan1Sub": "1 page focused on high conversion",
+        "calc.plan2Sub": "Up to 5 structured pages & services",
+        "calc.plan3Sub": "Booking portal, catalog or dashboard",
+        "calc.step2": "2. Add optional features",
+        "calc.addonWa": "Floating direct WhatsApp button",
+        "calc.addonWaSub": "Receive immediate inquiries from visitors",
+        "calc.free": "Included",
+        "calc.addonSeo": "Local SEO & Google Maps optimization",
+        "calc.addonSeoSub": "Show up when potential clients search for you in Mallorca",
+        "calc.addonCatalog": "Digital product catalog / Restaurant menu",
+        "calc.addonCatalogSub": "Category filtering & high-res image showcase",
+        "calc.addonLang": "Bilingual Version (Spanish + English or German)",
+        "calc.addonLangSub": "Essential for foreign visitors and expats in the Balearics",
+        "calc.addonBooking": "Online Booking / Appointment System",
+        "calc.addonBookingSub": "Interactive calendar & instant WhatsApp alert",
+        "calc.addonMaint": "Monthly maintenance, security & backups",
+        "calc.addonMaintSub": "Technical upkeep, updates & priority support",
+        "calc.summaryTitle": "Budget Summary",
+        "calc.delivery": "Estimated delivery time:",
+        "calc.totalLabel": "Estimated Investment:",
+        "calc.totalNote": "No-obligation quotation • Zero hidden fees",
+        "calc.btnSend": "Request this quote via WhatsApp",
+        "footer.dossier": "Download Services Dossier (PDF)"
     }
 };
 
@@ -247,6 +303,8 @@ function setLanguage(lang) {
     if (window.lucide) {
         window.lucide.createIcons();
     }
+
+    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -342,14 +400,159 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Renderizar iconos de Lucide
+    // 5. Calculadora Interactiva de Presupuestos
+    initBudgetCalculator();
+
+    // 6. Renderizar iconos de Lucide
     if (window.lucide) {
         window.lucide.createIcons();
     }
 
-    // 6. Iniciar Fondo Interactivo Monocromático
+    // 7. Iniciar Fondo Interactivo Monocromático
     initMinimalistBackground();
 });
+
+/**
+ * Calculadora Interactiva de Presupuestos
+ * Calcula precio, plazos y genera mensaje directo para WhatsApp
+ */
+function initBudgetCalculator() {
+    const calc = document.getElementById('calculadora');
+    if (!calc) return;
+
+    const planOptions = calc.querySelectorAll('.plan-option');
+    const addonItems = calc.querySelectorAll('.addon-item');
+    const breakdownEl = document.getElementById('calcBreakdown');
+    const totalNumberEl = document.getElementById('calcTotalNumber');
+    const recurrentNumberEl = document.getElementById('calcRecurrentNumber');
+    const deliveryTimeEl = document.getElementById('calcDeliveryTime');
+    const whatsappBtn = document.getElementById('calcWhatsappBtn');
+
+    function updateCalculation() {
+        const activeRadio = calc.querySelector('input[name="planType"]:checked');
+        const planParent = activeRadio ? activeRadio.closest('.plan-option') : null;
+        const planKey = activeRadio ? activeRadio.value : 'landing';
+        const planPrice = planParent ? parseInt(planParent.getAttribute('data-price') || '390', 10) : 390;
+        const planTime = planParent 
+            ? (currentLanguage === 'es' ? planParent.getAttribute('data-time') : planParent.getAttribute('data-time-en')) 
+            : '3 a 5 días laborables';
+
+        let planName = 'Landing Page';
+        if (planKey === 'corporate') planName = currentLanguage === 'es' ? 'Web Corporativa' : 'Corporate Website';
+        else if (planKey === 'custom') planName = currentLanguage === 'es' ? 'App & Dashboard a Medida' : 'Custom App & Dashboard';
+        else planName = currentLanguage === 'es' ? 'Landing Page' : 'Landing Page';
+
+        // Actualizar clase activa en selector de planes
+        planOptions.forEach(p => {
+            const radio = p.querySelector('input[type="radio"]');
+            if (radio && radio.checked) {
+                p.classList.add('active');
+            } else {
+                p.classList.remove('active');
+            }
+        });
+
+        // Sumar complementos
+        let total = planPrice;
+        let recurrent = 0;
+        const breakdownItems = [
+            { name: planName, price: `${planPrice} €`, isBase: true }
+        ];
+
+        addonItems.forEach(item => {
+            const checkbox = item.querySelector('input[type="checkbox"]');
+            if (!checkbox) return;
+
+            if (checkbox.checked) {
+                item.classList.add('addon-item-checked');
+                const price = parseInt(checkbox.getAttribute('data-price') || '0', 10);
+                const isRecurrent = checkbox.getAttribute('data-recurrent') === 'true';
+                const name = currentLanguage === 'es' 
+                    ? checkbox.getAttribute('data-name-es') 
+                    : checkbox.getAttribute('data-name-en');
+
+                if (isRecurrent) {
+                    recurrent += price;
+                    breakdownItems.push({ name, price: `+${price} €/mes` });
+                } else if (price > 0) {
+                    total += price;
+                    breakdownItems.push({ name, price: `+${price} €` });
+                } else {
+                    breakdownItems.push({ name, price: currentLanguage === 'es' ? 'Incluido' : 'Included' });
+                }
+            } else {
+                item.classList.remove('addon-item-checked');
+            }
+        });
+
+        // Actualizar desglose en HTML
+        if (breakdownEl) {
+            breakdownEl.innerHTML = breakdownItems.map(b => `
+                <div class="breakdown-row ${b.isBase ? 'base-row' : ''}">
+                    <span>&bull; ${b.name}</span>
+                    <span><strong>${b.price}</strong></span>
+                </div>
+            `).join('');
+        }
+
+        // Actualizar tiempos y totales
+        if (deliveryTimeEl) deliveryTimeEl.textContent = planTime;
+        if (totalNumberEl) totalNumberEl.textContent = total;
+
+        if (recurrentNumberEl) {
+            if (recurrent > 0) {
+                recurrentNumberEl.style.display = 'inline';
+                recurrentNumberEl.textContent = ` + ${recurrent} €/mes`;
+            } else {
+                recurrentNumberEl.style.display = 'none';
+            }
+        }
+
+        // Construir enlace directo de WhatsApp
+        if (whatsappBtn) {
+            const greeting = currentLanguage === 'es'
+                ? 'Hola Joaquín, he configurado este presupuesto en tu web:'
+                : 'Hello Joaquín, I configured this quote on your website:';
+
+            const summaryList = breakdownItems.map(b => `  • ${b.name}: ${b.price}`).join('\n');
+            const totalText = currentLanguage === 'es'
+                ? `Inversión total: ${total} €${recurrent > 0 ? ` (+ ${recurrent} €/mes)` : ''}\nPlazo aproximado: ${planTime}`
+                : `Total estimated: €${total}${recurrent > 0 ? ` (+ €${recurrent}/mo)` : ''}\nEstimated time: ${planTime}`;
+
+            const closing = currentLanguage === 'es'
+                ? '¿Podemos comentar los detalles para empezar?'
+                : 'Can we discuss the details to get started?';
+
+            const msg = `${greeting}\n\n${summaryList}\n\n${totalText}\n\n${closing}`;
+            whatsappBtn.href = `https://wa.me/34695267445?text=${encodeURIComponent(msg)}`;
+        }
+    }
+
+    // Listeners de clics
+    planOptions.forEach(p => {
+        p.addEventListener('click', () => {
+            const radio = p.querySelector('input[type="radio"]');
+            if (radio) {
+                radio.checked = true;
+                updateCalculation();
+            }
+        });
+    });
+
+    addonItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            const checkbox = item.querySelector('input[type="checkbox"]');
+            if (!checkbox || checkbox.disabled) return;
+            if (e.target !== checkbox) {
+                checkbox.checked = !checkbox.checked;
+            }
+            updateCalculation();
+        });
+    });
+
+    window.addEventListener('languageChanged', updateCalculation);
+    updateCalculation();
+}
 
 /**
  * Fondo Interactivo Monocromático (Escala de Grises y Blancos)
