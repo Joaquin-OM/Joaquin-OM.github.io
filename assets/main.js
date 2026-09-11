@@ -67,6 +67,9 @@ const translations = {
         "projects.crmTitle": "CRM Ligero para Clientes y Oportunidades",
         "projects.crmSummary": "Sistema integral de gestión de clientes y embudo de ventas para profesionales y autónomos. Desarrollado con arquitectura modular de estado desacoplada, persistencia local de contactos, embudo kanban interactivo de oportunidades, simulador y motor de filtrado reactivo en tiempo real sin dependencias pesadas ni costes de suscripción.",
         "projects.crmLive": "Abrir CRM en vivo",
+        "projects.demosHeading": "Demostraciones Interactivas en Vivo (Hostelería, Turismo & Gestión)",
+        "projects.codeHeading": "Aplicaciones Web, PWA & Código Abierto",
+        "projects.openDemo": "Abrir demo en vivo",
 
         "hero.ctaDemos": "Ver demos en vivo",
         "demos.label": "Demostraciones",
@@ -287,6 +290,9 @@ const translations = {
         "projects.crmTitle": "Lightweight CRM for Clients & Opportunities",
         "projects.crmSummary": "Comprehensive client and sales pipeline management system for professionals and freelancers. Engineered with decoupled state architecture, local contact persistence, interactive kanban sales funnel, conversion simulator, and reactive real-time filtering without framework dependencies or subscription fees.",
         "projects.crmLive": "Open live CRM demo",
+        "projects.demosHeading": "Live Interactive Demonstrations (Hospitality, Tourism & Management)",
+        "projects.codeHeading": "Web Applications, PWA & Open Source",
+        "projects.openDemo": "Open live demo",
 
         "hero.ctaDemos": "View live demos",
         "demos.label": "Demonstrations",
@@ -478,6 +484,55 @@ function setLanguage(lang) {
     window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
 }
 
+
+/**
+ * Router de Vistas SPA (Conóceme, Proyectos, Servicios)
+ * Permite cambiar entre secciones mutuamente excluyentes sin recargar la página
+ */
+function switchView(viewName) {
+    const validViews = ['conoceme', 'proyectos', 'servicios'];
+    if (!validViews.includes(viewName)) {
+        viewName = 'conoceme';
+    }
+
+    // 1. Mostrar/Ocultar secciones de vista
+    validViews.forEach(v => {
+        const viewEl = document.getElementById('view-' + v);
+        if (viewEl) {
+            if (v === viewName) {
+                viewEl.style.display = 'block';
+                viewEl.classList.add('active');
+            } else {
+                viewEl.style.display = 'none';
+                viewEl.classList.remove('active');
+            }
+        }
+    });
+
+    // 2. Actualizar estado activo en enlaces de navegación
+    const navLinks = document.querySelectorAll('.nav-menu .nav-link');
+    navLinks.forEach(link => {
+        if (link.getAttribute('data-view') === viewName) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
+    // 3. Actualizar hash en la URL sin saltos bruscos
+    if (window.location.hash !== '#' + viewName) {
+        history.replaceState(null, '', '#' + viewName);
+    }
+
+    // 4. Subir scroll arriba suavemente
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // 5. Re-renderizar iconos de Lucide
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Selector de Idioma
     const langBtn = document.getElementById('langToggle');
@@ -573,6 +628,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Calculadora Interactiva de Presupuestos
     initBudgetCalculator();
+
+    // Router de Vistas (Conóceme, Proyectos, Servicios)
+    const initialHash = (window.location.hash || '').replace('#', '').toLowerCase();
+    if (['conoceme', 'proyectos', 'servicios'].includes(initialHash)) {
+        switchView(initialHash);
+    } else {
+        switchView('conoceme');
+    }
+
+    // Event listeners para botones y enlaces con [data-view]
+    document.querySelectorAll('[data-view]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetView = btn.getAttribute('data-view');
+            switchView(targetView);
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu && window.innerWidth <= 600) {
+                navMenu.style.display = '';
+            }
+        });
+    });
+
+    window.addEventListener('hashchange', () => {
+        const hash = (window.location.hash || '').replace('#', '').toLowerCase();
+        if (['conoceme', 'proyectos', 'servicios'].includes(hash)) {
+            switchView(hash);
+        }
+    });
+
 
     // 6. Renderizar iconos de Lucide
     if (window.lucide) {

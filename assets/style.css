@@ -105,13 +105,23 @@ body {
 .nav-link {
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 400;
-    transition: color var(--transition);
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid transparent;
+    transition: all var(--transition);
 }
 
 .nav-link:hover {
     color: var(--text-white);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.nav-link.active {
+    color: var(--text-white);
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .nav-actions {
@@ -1235,3 +1245,33 @@ body {
     border-color: var(--text-white);
 }
 
+
+/* ==========================================================
+   VISTAS MUTUAMENTE EXCLUYENTES (SPA)
+   ========================================================== */
+.portfolio-view {
+    display: none;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.portfolio-view.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-subhead {
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin: 36px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+}
