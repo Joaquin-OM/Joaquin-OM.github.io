@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel de Prospección 1-Clic — Detección Multilingüe y Canales Inteligentes</title>
+<title>Panel de Prospección 1-Clic — Detección Multilingüe y Gmail Web</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -28,6 +28,7 @@
     --amber-bg: rgba(245, 158, 11, 0.12);
     --purple: #8B5CF6;
     --purple-bg: rgba(139, 92, 246, 0.15);
+    --red-gmail: #EA4335;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -72,7 +73,7 @@
     color: var(--text-secondary);
     border: 1px solid var(--border);
   }
-  .header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .header-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
   
   .kpi-grid {
     display: grid;
@@ -220,6 +221,11 @@
     background: #10B981;
     color: #FFFFFF;
     border-color: #10B981;
+  }
+  .filter-pill.active-gmail {
+    background: #EA4335;
+    color: #FFFFFF;
+    border-color: #EA4335;
   }
 
   .leads-grid {
@@ -450,12 +456,22 @@
   }
   .btn-whatsapp { background: #10B981; color: #FFFFFF; }
   .btn-whatsapp:hover { background: #059669; }
+  
+  .btn-gmail-primary {
+    background: #EA4335;
+    color: #FFFFFF;
+    font-weight: 700;
+    box-shadow: 0 2px 10px rgba(234, 67, 53, 0.25);
+  }
+  .btn-gmail-primary:hover { background: #D93025; }
+
   .btn-email-primary {
     background: #2563EB;
     color: #FFFFFF;
     box-shadow: 0 2px 10px rgba(37, 99, 235, 0.25);
   }
   .btn-email-primary:hover { background: #1D4ED8; }
+
   .btn-email { background: rgba(255,255,255,0.06); color: var(--text-white); border: 1px solid var(--border); }
   .btn-email:hover { background: rgba(255,255,255,0.12); }
   .btn-copy { background: transparent; color: var(--text-secondary); font-size: 0.75rem; padding: 4px; }
@@ -619,6 +635,13 @@
       </div>
 
       <div class="header-actions">
+        <!-- EMAIL CLIENT SELECTOR -->
+        <div style="display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; padding: 3px 8px;">
+          <span style="font-size: 0.72rem; color: var(--text-muted);">Email:</span>
+          <button id="btnClientGmail" class="filter-pill active-gmail" style="padding: 3px 8px; font-size: 0.72rem;" onclick="setEmailClient('gmail')" title="Abrir en Gmail Web en nueva pestaña">🔴 Gmail Web</button>
+          <button id="btnClientDefault" class="filter-pill" style="padding: 3px 8px; font-size: 0.72rem;" onclick="setEmailClient('default')" title="Abrir con la aplicación por defecto de Windows (Outlook/Mail)">💻 Outlook/Mail</button>
+        </div>
+
         <a href="../assets/Dossier_Servicios_Joaquin_Oses_2026.pdf" target="_blank" class="filter-pill" title="Descargar Dossier en Español">
           <i data-lucide="file-text" style="width: 14px; height: 14px;"></i> Dossier (ES)
         </a>
@@ -788,9 +811,9 @@
             <span>Enviar por WhatsApp</span>
           </a>
 
-          <a id="modalMailBtn" href="#" class="btn btn-email-primary" style="flex: 1;" onclick="handleModalEmailSend()">
+          <a id="modalMailBtn" href="#" class="btn btn-gmail-primary" style="flex: 1;" onclick="handleModalEmailSend()">
             <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
-            <span>Enviar por Email</span>
+            <span>Abrir en Gmail Web</span>
           </a>
 
           <button class="btn" style="background: rgba(255,255,255,0.08); color: #fff;" onclick="copyModalResponse()">
@@ -1595,6 +1618,7 @@
     let currentLangFilter = 'all';
     let currentStatusFilter = 'all';
     let currentViewMode = 'all'; // 'all' or 'pipeline'
+    let emailClient = localStorage.getItem('crm_email_client') || 'gmail'; // Default to Gmail!
 
     // Modal state
     let activeModalLead = null;
@@ -1610,6 +1634,36 @@
 
     function getCleanPhone(phone) {
       return phone ? phone.replace(/[^0-9]/g, '') : '';
+    }
+
+    function getEmailUrl(email, subject, body) {
+      if (!email) return '#';
+      if (emailClient === 'gmail') {
+        return 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(email) + '&su=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      } else {
+        return 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      }
+    }
+
+    function setEmailClient(client) {
+      emailClient = client;
+      localStorage.setItem('crm_email_client', client);
+      updateEmailClientUI();
+      renderLeads();
+      if (activeModalLead) {
+        updateModalActionUrls();
+      }
+      showToast(client === 'gmail' ? '✓ Correos configurados con Gmail Web' : '✓ Correos configurados con Outlook / Sistema');
+    }
+
+    function updateEmailClientUI() {
+      const bGmail = document.getElementById('btnClientGmail');
+      const bDef = document.getElementById('btnClientDefault');
+      if (bGmail && bDef) {
+        bGmail.classList.toggle('active-gmail', emailClient === 'gmail');
+        bGmail.classList.toggle('active', false);
+        bDef.classList.toggle('active', emailClient === 'default');
+      }
     }
 
     function getLeadStatus(id) {
@@ -1652,7 +1706,7 @@
       document.getElementById('tabContactedLeads').classList.toggle('active-contacted', mode === 'pipeline');
       
       if (mode === 'pipeline') {
-        currentStatusFilter = 'contacted_all'; // Show contacted, responded, meeting
+        currentStatusFilter = 'contacted_all';
       } else {
         currentStatusFilter = 'all';
       }
@@ -1741,8 +1795,7 @@
         ? '\n\nYou can check my portfolio and services dossier here: ' + dossierUrl
         : (lang === 'DE' ? '\n\nUnser Leistungsdossier finden Sie hier: ' + dossierUrl : '\n\nPuede consultar el dossier de servicios en línea: ' + dossierUrl);
 
-      const mailBody = encodeURIComponent(pitchText + dossierNote);
-      const mailUrl = lead.email ? 'mailto:' + lead.email + '?subject=' + encodeURIComponent(mailSubject) + '&body=' + mailBody : '#';
+      const mailUrl = getEmailUrl(lead.email, mailSubject, pitchText + dossierNote);
 
       const card = document.getElementById('lead-card-' + id);
       if (!card) return;
@@ -1764,8 +1817,17 @@
       const waBtn = card.querySelector('.btn-whatsapp');
       if (waBtn) waBtn.href = waUrl;
 
-      const mailBtn = card.querySelector('.btn-email, .btn-email-primary');
-      if (mailBtn) mailBtn.href = mailUrl;
+      const mailBtn = card.querySelector('.btn-email, .btn-email-primary, .btn-gmail-primary');
+      if (mailBtn) {
+        mailBtn.href = mailUrl;
+        if (emailClient === 'gmail') {
+          mailBtn.target = '_blank';
+          mailBtn.rel = 'noopener noreferrer';
+        } else {
+          mailBtn.removeAttribute('target');
+          mailBtn.removeAttribute('rel');
+        }
+      }
 
       showToast('✓ Idioma cambiado a ' + (lang === 'ES' ? 'Español' : (lang === 'EN' ? 'English' : 'Deutsch')));
     }
@@ -1793,7 +1855,7 @@
       if (current === 'pendiente' || current === 'descartado') {
         setLeadStatus(id, 'contactado');
       }
-      showToast("✓ Abriendo borrador de email con la propuesta");
+      showToast(emailClient === 'gmail' ? '✓ Abriendo Gmail Web con la propuesta' : '✓ Abriendo borrador de email');
     }
 
     /* ==========================================================
@@ -1927,7 +1989,19 @@
         let subj = 'Dossier y propuesta para ' + activeModalLead.name + ' — Joaquín Oses';
         if (activeModalLang === 'EN') subj = 'Services Dossier & Web Proposal for ' + activeModalLead.name + ' — Joaquín Oses';
         if (activeModalLang === 'DE') subj = 'Leistungsdossier & Web-Angebot für ' + activeModalLead.name + ' — Joaquín Oses';
-        mailBtn.href = 'mailto:' + activeModalLead.email + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(text);
+        
+        mailBtn.href = getEmailUrl(activeModalLead.email, subj, text);
+        if (emailClient === 'gmail') {
+          mailBtn.target = '_blank';
+          mailBtn.rel = 'noopener noreferrer';
+          mailBtn.className = 'btn btn-gmail-primary';
+          mailBtn.querySelector('span').textContent = 'Abrir en Gmail Web';
+        } else {
+          mailBtn.removeAttribute('target');
+          mailBtn.removeAttribute('rel');
+          mailBtn.className = 'btn btn-email-primary';
+          mailBtn.querySelector('span').textContent = 'Enviar por Email';
+        }
       } else {
         mailBtn.style.display = 'none';
       }
@@ -1938,19 +2012,20 @@
       if (textarea) {
         textarea.addEventListener('input', updateModalActionUrls);
       }
+      updateEmailClientUI();
     });
 
     function handleModalWhatsAppSend() {
       if (!activeModalLead) return;
       setLeadStatus(activeModalLead.id, 'respondido');
-      showToast('✓ Abriendo WhatsApp Web con tu respuesta personalizada');
+      showToast('✓ Abriendo WhatsApp con tu respuesta personalizada');
       closeResponseModal();
     }
 
     function handleModalEmailSend() {
       if (!activeModalLead) return;
       setLeadStatus(activeModalLead.id, 'respondido');
-      showToast('✓ Abriendo borrador de email con el dossier');
+      showToast(emailClient === 'gmail' ? '✓ Abriendo Gmail Web con la propuesta' : '✓ Abriendo borrador de email');
       closeResponseModal();
     }
 
@@ -2034,7 +2109,7 @@
           ? '\n\nYou can check my portfolio and services dossier here: ' + dossierUrl
           : (activeLang === 'DE' ? '\n\nUnser Leistungsdossier finden Sie hier: ' + dossierUrl : '\n\nPuede consultar el dossier de servicios en línea: ' + dossierUrl);
 
-        const mailUrl = lead.email ? 'mailto:' + lead.email + '?subject=' + encodeURIComponent(mailSubject) + '&body=' + encodeURIComponent(pitchText + dossierNote) : '#';
+        const mailUrl = getEmailUrl(lead.email, mailSubject, pitchText + dossierNote);
 
         const flagIcons = { ES: '🇪🇸 ES', EN: '🇬🇧 EN', DE: '🇩🇪 DE' };
 
@@ -2043,6 +2118,10 @@
         else if (status === 'respondido') statusClass = 'is-responded';
         else if (status === 'reunion') statusClass = 'is-meeting';
         else if (status === 'descartado') statusClass = 'is-discarded';
+
+        const isGmail = (emailClient === 'gmail');
+        const mailBtnClass = isGmail ? 'btn-gmail-primary' : 'btn-email-primary';
+        const mailBtnText = isGmail ? '🔴 Abrir en Gmail Web con propuesta' : '✉️ Enviar por Email (Canal recomendado)';
 
         return `
           <div class="lead-card ${statusClass}" id="lead-card-${lead.id}">
@@ -2055,7 +2134,7 @@
                   ${lead.phone ? `
                     ${isMob 
                       ? '<span class="channel-pill-mobile"><i data-lucide="message-circle" style="width: 11px; height: 11px;"></i> WhatsApp</span>' 
-                      : '<span class="channel-pill-landline"><i data-lucide="mail" style="width: 11px; height: 11px;"></i> Fijo (Email)</span>'
+                      : '<span class="channel-pill-landline"><i data-lucide="mail" style="width: 11px; height: 11px;"></i> Fijo (' + (isGmail ? 'Gmail' : 'Email') + ')</span>'
                     }
                   ` : ''}
                 </div>
@@ -2118,16 +2197,16 @@
                 ` : ''}
 
                 ${lead.email ? `
-                  <a href="${mailUrl}" class="btn btn-email" onclick="handleEmailClick(${lead.id})">
+                  <a href="${mailUrl}" ${isGmail ? 'target="_blank" rel="noopener noreferrer"' : ''} class="btn btn-email" onclick="handleEmailClick(${lead.id})">
                     <i data-lucide="mail" style="width: 15px; height: 15px;"></i>
-                    <span>Abrir Email</span>
+                    <span>${isGmail ? 'Abrir en Gmail Web' : 'Abrir Email'}</span>
                   </a>
                 ` : ''}
               ` : `
                 ${lead.email ? `
-                  <a href="${mailUrl}" class="btn btn-email-primary" onclick="handleEmailClick(${lead.id})">
+                  <a href="${mailUrl}" ${isGmail ? 'target="_blank" rel="noopener noreferrer"' : ''} class="btn ${mailBtnClass}" onclick="handleEmailClick(${lead.id})">
                     <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
-                    <span>✉️ Enviar por Email (Canal recomendado)</span>
+                    <span>${mailBtnText}</span>
                   </a>
                 ` : ''}
 
