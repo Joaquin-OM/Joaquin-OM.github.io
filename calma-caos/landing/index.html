@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calma y Caos — Reserva de Mesa & Experiencia Express</title>
+  <meta name="description" content="Landing page de reserva instantánea para Calma y Caos en Palma. Menú degustación y confirmación en 60 segundos por WhatsApp.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    :root {
+      --bg-dark: #07080A;
+      --bg-card: #0F1116;
+      --border: rgba(255, 255, 255, 0.09);
+      --border-gold: rgba(197, 168, 128, 0.4);
+      --text-white: #FAF8F5;
+      --text-secondary: #9E9B95;
+      --accent: #C5A880;
+      --accent-hover: #D8BD97;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-dark);
+      color: var(--text-white);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+    .container { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+    /* SWITCHER TOP */
+    .demo-bar {
+      background: #111318;
+      border-bottom: 1px solid rgba(197, 168, 128, 0.3);
+      padding: 8px 16px;
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .demo-badge { background: #10B981; color: #000; padding: 2px 7px; border-radius: 3px; font-weight: 700; font-size: 0.68rem; }
+    .demo-switch-btn {
+      color: var(--text-white);
+      text-decoration: none;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.74rem;
+    }
+    .demo-switch-btn:hover { background: var(--accent); color: #000; }
+
+    /* HERO */
+    .landing-hero {
+      text-align: center;
+      padding: 40px 0 24px;
+    }
+    .logo-serif {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+      line-height: 1;
+    }
+    .logo-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: block;
+    }
+    .hero-img {
+      width: 100%;
+      height: 220px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+      display: block;
+    }
+    .hero-pitch {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* CARD RESERVAS EXPRESS */
+    .express-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 28px 24px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+      margin-bottom: 32px;
+    }
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      color: var(--text-white);
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .card-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .form-row { margin-bottom: 16px; }
+    .form-row label {
+      display: block;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .f-input, .f-select {
+      width: 100%;
+      background: #07080A;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: #fff;
+      padding: 12px;
+      font-size: 0.92rem;
+    }
+    .f-input:focus, .f-select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .btn-submit {
+      width: 100%;
+      background: var(--accent);
+      color: #07080A;
+      padding: 14px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: var(--accent-hover); }
+
+    /* MENU HIGHLIGHTS */
+    .menu-mini {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 30px;
+    }
+    .menu-mini h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: var(--accent);
+      text-align: center;
+    }
+    .mini-dish {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 10px 0;
+      font-size: 0.9rem;
+    }
+    .mini-dish:last-child { border-bottom: none; }
+    .mini-dish span strong { color: var(--accent); }
+
+    /* DIRECCIÓN RÁPIDA */
+    .quick-loc {
+      text-align: center;
+      padding: 20px;
+      background: #0D0F14;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .btn-maps {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.84rem;
+      margin-top: 12px;
+    }
+    .btn-maps:hover { background: var(--accent); color: #000; }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SWITCHER -->
+  <div class="demo-bar">
+    <div>
+      <span class="demo-badge">Landing Express</span>
+      <span>Restaurante Calma y Caos</span>
+    </div>
+    <a href="../" class="demo-switch-btn">
+      <span>Ver Opción 1: Web Completa →</span>
+    </a>
+  </div>
+
+  <div class="container">
+    <div class="landing-hero">
+      <h1 class="logo-serif">CALMA Y CAOS</h1>
+      <span class="logo-sub">Cocina de Autor &bull; Palma Centro</span>
+      
+      <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop" class="hero-img" alt="Calma y Caos Palma">
+      
+      <p class="hero-pitch">
+        Producto balear fresco de lonja, técnica sosegada y el arrebato creativo de Iván y Carlos. Reserva tu mesa en 60 segundos sin intermediarios.
+      </p>
+    </div>
+
+    <!-- TARJETA RESERVA EXPRESS -->
+    <div class="express-card">
+      <h2 class="card-title">Reserva de Mesa Express</h2>
+      <p class="card-subtitle">Confirmación directa en WhatsApp con el equipo del restaurante</p>
+
+      <form onsubmit="handleExpress(event)">
+        <div class="form-row">
+          <label for="eName">Nombre Completo *</label>
+          <input type="text" id="eName" class="f-input" required placeholder="Tu nombre">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="form-row">
+          <div>
+            <label for="eDate">Fecha *</label>
+            <input type="date" id="eDate" class="f-input" required>
+          </div>
+          <div>
+            <label for="eShift">Turno *</label>
+            <select id="eShift" class="f-select" required>
+              <option value="Comida 13:30 h">Comida 13:30 h</option>
+              <option value="Comida 14:00 h">Comida 14:00 h</option>
+              <option value="Comida 14:30 h">Comida 14:30 h</option>
+              <option value="Cena 20:30 h">Cena 20:30 h</option>
+              <option value="Cena 21:00 h" selected>Cena 21:00 h</option>
+              <option value="Cena 21:30 h">Cena 21:30 h</option>
+              <option value="Cena 22:00 h">Cena 22:00 h</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="form-row">
+          <div>
+            <label for="eGuests">Comensales *</label>
+            <select id="eGuests" class="f-select" required>
+              <option value="2 personas" selected>2 comensales</option>
+              <option value="3 personas">3 comensales</option>
+              <option value="4 personas">4 comensales</option>
+              <option value="5 personas">5 comensales</option>
+              <option value="6+ personas">6+ (Grupo)</option>
+            </select>
+          </div>
+          <div>
+            <label for="ePhone">Teléfono *</label>
+            <input type="tel" id="ePhone" class="f-input" required placeholder="+34 600...">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="eNotes">Alergias u Observaciones</label>
+          <input type="text" id="eNotes" class="f-input" placeholder="Ej: Sin gluten / Aniversario">
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <i data-lucide="message-circle"></i>
+          <span>Confirmar Mesa por WhatsApp (+34 601 25 25 74)</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- CARTA DESTACADA -->
+    <div class="menu-mini">
+      <h3>Platos Esenciales de la Carta</h3>
+      <div class="mini-dish">
+        <span>Tartar de Atún Rojo Balear con Trufa</span>
+        <span><strong>24 €</strong></span>
+      </div>
+      <div class="mini-dish">
+        <span>Croquetas de Gamba Roja de Sóller</span>
+        <span><strong>15 €</strong></span>
+      </div>
+      <div class="mini-dish">
+        <span>Arroz Meloso de Bogavante & Plancton</span>
+        <span><strong>32 €</strong></span>
+      </div>
+      <div class="mini-dish">
+        <span>Lubina Salvaje al Sarmiento</span>
+        <span><strong>28 €</strong></span>
+      </div>
+      <div class="mini-dish">
+        <span>Texturas de Algarroba y Cacao 70%</span>
+        <span><strong>10 €</strong></span>
+      </div>
+    </div>
+
+    <!-- LOCALIZACIÓN -->
+    <div class="quick-loc">
+      <p style="font-size: 0.95rem; font-weight: 600; margin-bottom: 4px;">Carrer d'Antoni Marquès, 27 &bull; Palma</p>
+      <p style="font-size: 0.8rem; color: var(--text-secondary);">Martes a Sábado (13:30 - 15:30 / 20:30 - 23:00)</p>
+      <a href="https://maps.google.com/?q=Carrer+d'Antoni+Marqu%C3%A8s+27+Palma" target="_blank" class="btn-maps">
+        <i data-lucide="map-pin" style="width: 14px; height: 14px;"></i>
+        <span>Abrir en Google Maps</span>
+      </a>
+    </div>
+
+    <p style="text-align: center; margin-top: 30px; font-size: 0.75rem; color: #555;">
+      Demo creada por <a href="https://joaquin-om.github.io/" style="color: var(--accent); text-decoration: none;">Joaquín Oses Monti</a> &bull; Palma de Mallorca
+    </p>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    const dateInput = document.getElementById('eDate');
+    if (dateInput) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.min = today;
+      dateInput.value = today;
+    }
+
+    function handleExpress(e) {
+      e.preventDefault();
+      const name = document.getElementById('eName').value.trim();
+      const date = document.getElementById('eDate').value;
+      const shift = document.getElementById('eShift').value;
+      const guests = document.getElementById('eGuests').value;
+      const phone = document.getElementById('ePhone').value.trim();
+      const notes = document.getElementById('eNotes').value.trim();
+
+      const msg = 
+`🍽️ *RESERVA EXPRESS — CALMA Y CAOS*\n` +
+`─────────────────────────────\n` +
+`• *Nombre:* ${name}\n` +
+`• *Fecha:* ${date}\n` +
+`• *Turno:* ${shift}\n` +
+`• *Comensales:* ${guests}\n` +
+(notes ? `• *Alergias / Notas:* ${notes}\n` : '') +
+`• *Teléfono:* ${phone}\n` +
+`─────────────────────────────\n` +
+`¿Tenéis disponibilidad para confirmarla? ¡Muchas gracias!`;
+
+      const targetPhone = "34601252574";
+      const waUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`;
+      window.open(waUrl, '_blank');
+    }
+  </script>
+</body>
+</html>
