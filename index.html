@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joaquín Oses Monti | Desarrollador Web Full-Stack & Técnico en Sistemas</title>
-    <meta name="description" content="Portfolio profesional de Joaquín Oses Monti. Desarrollador Web Full-Stack (React, Node.js, Laravel, PostgreSQL, n8n) y Técnico en Sistemas Microinformáticos y Redes en Palma de Mallorca.">
+    <title>Joaquín Oses Monti | Desarrollador Web en W34 Marketing & Técnico en Sistemas</title>
+    <meta name="description" content="Portfolio profesional de Joaquín Oses Monti. Desarrollador Web en W34 Marketing (FP Dual) y Técnico en Sistemas (SMR / DAW). WordPress, Shopify, Odoo, Framer, React, Node.js, Laravel y automatizaciones con n8n en Palma de Mallorca.">
     
     <!-- OpenGraph / Previsualización Social -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://joaquin-om.github.io/">
-    <meta property="og:title" content="Joaquín Oses Monti | Desarrollador Web Full-Stack & Técnico en Sistemas">
-    <meta property="og:description" content="Conóceme, mi experiencia laboral en García Garriga y AntFor, mis estudios de SMR y DAW, stack técnico y proyectos de software en GitHub.">
-    <meta property="og:image" content="https://joaquin-om.github.io/assets/og-preview.png">
+    <meta property="og:title" content="Joaquín Oses Monti | Desarrollador Web en W34 Marketing & Técnico en Sistemas">
+    <meta property="og:description" content="Conóceme, mi experiencia laboral en W34 Marketing, García Garriga y AntFor, mis estudios de DAW y SMR en Sant Josep Obrer, proyectos de software y demos en vivo.">
+    <meta property="og:image" content="https://joaquin-om.github.io/assets/joaquin-oses.jpg">
     
     <!-- Tipografía Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,12 +62,25 @@
     </header>
 
     <main>
-        <!-- Hero Personal -->
+        <!-- Hero Personal con Foto Avatar -->
         <section class="hero-section">
             <div class="container hero-container">
-                <div class="status-badge">
-                    <span class="status-dot"></span>
-                    <span data-i18n="hero.status">Disponible para proyectos &bull; Palma de Mallorca & Remoto</span>
+                <!-- Avatar & Estado -->
+                <div class="hero-profile-header" style="display: flex; align-items: center; gap: 24px; margin-bottom: 26px; flex-wrap: wrap;">
+                    <div style="position: relative; width: 116px; height: 116px; flex-shrink: 0;">
+                        <img src="assets/joaquin-oses.jpg" alt="Joaquín Oses Monti" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center 20%; border: 2px solid rgba(255,255,255,0.22); box-shadow: 0 8px 30px rgba(0,0,0,0.6); display: block;">
+                        <span style="position: absolute; bottom: 5px; right: 5px; width: 14px; height: 14px; background: #10B981; border: 2.5px solid #090A0C; border-radius: 50%;" title="Disponible para proyectos freelance"></span>
+                    </div>
+                    <div>
+                        <div class="status-pill" style="margin-bottom: 8px;">
+                            <span class="status-dot"></span>
+                            <span data-i18n="hero.status">Web Developer en W34 Marketing &bull; Freelance Remoto</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px;">
+                            <i data-lucide="map-pin" style="width: 14px; height: 14px; color: var(--text-muted);"></i>
+                            <span data-i18n="personal.heroLocation">Palma de Mallorca &bull; Modalidad FP Dual (Sant Josep Obrer)</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <h1 class="hero-title" data-i18n="personal.heroTitle">
@@ -75,11 +88,11 @@
                 </h1>
 
                 <h2 style="font-size: 1.15rem; font-weight: 500; color: #EDE9E3; margin-top: -10px; margin-bottom: 20px; line-height: 1.4;" data-i18n="personal.heroRole">
-                    Desarrollador Web Full-Stack & Técnico en Sistemas Microinformáticos y Redes
+                    Desarrollador Web en W34 Marketing (FP Dual) &bull; Técnico en Sistemas (SMR / DAW)
                 </h2>
                 
                 <p class="hero-description" data-i18n="personal.heroDesc">
-                    Combino una sólida base técnica en soporte de sistemas, hardware y redes con el desarrollo web moderno: interfaces reactivas con React, aplicaciones backend en Node.js y Laravel, bases de datos relacionales y NoSQL, y automatizaciones de flujos con n8n.
+                    Desarrollo y maquetación web profesional (WordPress, Shopify, Odoo, Framer y código React), monitorización de flujos y automatizaciones con n8n, y soporte de sistemas. Modalidad FP Dual en Palma de Mallorca y disponibilidad para proyectos freelance remotos.
                 </p>
 
                 <div class="hero-actions">
@@ -93,30 +106,30 @@
                 </div>
 
                 <!-- Chips de Tecnologías Principales -->
-                <div class="hero-tech-strip" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 28px;">
-                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
-                        <i data-lucide="code-2" style="width: 13px; height: 13px; color: #FBBF24;"></i> React & JS
+                <div class="hero-tech-strip" style="display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 8px; margin-top: 32px;">
+                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
+                        <i data-lucide="code-2" style="width: 13px; height: 13px; color: #FBBF24;"></i> React & JavaScript
                     </span>
-                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
-                        <i data-lucide="server" style="width: 13px; height: 13px; color: #EC4899;"></i> Node.js & Laravel
+                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
+                        <i data-lucide="zap" style="width: 13px; height: 13px; color: #F97316;"></i> n8n Automatizaciones
                     </span>
-                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
-                        <i data-lucide="hard-drive" style="width: 13px; height: 13px; color: #10B981;"></i> PostgreSQL & SQL
+                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
+                        <i data-lucide="globe" style="width: 13px; height: 13px; color: #38BDF8;"></i> WordPress & WooCommerce
                     </span>
-                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
-                        <i data-lucide="database" style="width: 13px; height: 13px; color: #38BDF8;"></i> restdb.io
+                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
+                        <i data-lucide="shopping-bag" style="width: 13px; height: 13px; color: #34D399;"></i> Shopify E-Commerce
                     </span>
-                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
-                        <i data-lucide="zap" style="width: 13px; height: 13px; color: #F97316;"></i> n8n
+                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
+                        <i data-lucide="database" style="width: 13px; height: 13px; color: #A78BFA;"></i> Odoo ERP & Web
                     </span>
-                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
+                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
                         <i data-lucide="layout" style="width: 13px; height: 13px; color: #60A5FA;"></i> Framer
                     </span>
-                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
-                        <i data-lucide="globe" style="width: 13px; height: 13px; color: #34D399;"></i> WordPress & Shopify
+                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
+                        <i data-lucide="server" style="width: 13px; height: 13px; color: #EC4899;"></i> Node.js, Laravel & Python
                     </span>
-                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
-                        <i data-lucide="network" style="width: 13px; height: 13px; color: #A78BFA;"></i> Sistemas & Redes
+                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
+                        <i data-lucide="hard-drive" style="width: 13px; height: 13px; color: #10B981;"></i> SQL, PostgreSQL & restdb.io
                     </span>
                 </div>
             </div>
@@ -128,35 +141,73 @@
                 <div class="about-grid">
                     <div>
                         <span class="section-label" data-i18n="about.label">Enfoque</span>
-                        <h2 class="section-title" data-i18n="about.title">Perfil técnico híbrido</h2>
+                        <h2 class="section-title" data-i18n="about.title">Perfil técnico híbrido & resolución directa</h2>
+
+                        <!-- Idiomas Card -->
+                        <div style="margin-top: 32px; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: var(--radius-md);">
+                            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 14px; display: flex; align-items: center; gap: 7px;">
+                                <i data-lucide="languages" style="width: 14px; height: 14px; color: var(--text-white);"></i>
+                                <span data-i18n="about.langTitle">Idiomas</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 500; color: var(--text-white); margin-bottom: 3px;">
+                                        <span data-i18n="about.langEs">Español</span>
+                                        <span style="color: var(--text-muted); font-size: 0.75rem;" data-i18n="about.langEsLevel">Nativo</span>
+                                    </div>
+                                    <div style="width: 100%; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden;">
+                                        <div style="width: 100%; height: 100%; background: #FFFFFF;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 500; color: var(--text-white); margin-bottom: 3px;">
+                                        <span data-i18n="about.langEn">Inglés (EOI A2/B1)</span>
+                                        <span style="color: var(--text-muted); font-size: 0.75rem;" data-i18n="about.langEnLevel">Técnico / Certificado</span>
+                                    </div>
+                                    <div style="width: 100%; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden;">
+                                        <div style="width: 65%; height: 100%; background: #A1A1AA;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 500; color: var(--text-white); margin-bottom: 3px;">
+                                        <span data-i18n="about.langCa">Catalán</span>
+                                        <span style="color: var(--text-muted); font-size: 0.75rem;" data-i18n="about.langCaLevel">Comprensión oral</span>
+                                    </div>
+                                    <div style="width: 100%; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden;">
+                                        <div style="width: 70%; height: 100%; background: #71717A;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="about-text">
                         <p data-i18n="about.p1">
-                            Soy <strong>Desarrollador Web</strong> y <strong>Técnico en Sistemas Microinformáticos y Redes</strong> afincado en Palma de Mallorca.
+                            Soy <strong>Desarrollador Web</strong> en <strong>W34 Marketing</strong> y <strong>Técnico en Sistemas Microinformáticos y Redes</strong> afincado en Palma de Mallorca, cursando el 2º año de DAW en modalidad FP Dual con el Colegio Sant Josep Obrer.
                         </p>
                         <p data-i18n="about.p2">
-                            A diferencia de quienes se limitan a montar plantillas prediseñadas, entiendo la estructura completa de un negocio: cómo se conectan los sistemas de oficina, la seguridad de los datos y cómo construir interfaces modernas con React y JavaScript que carguen al instante.
+                            Combino el trabajo diario en agencia maquetando en WordPress, Odoo, Shopify y Framer, supervisando automatizaciones en n8n y atendiendo directamente a clientes, con una sólida base técnica en hardware, redes de oficina, soporte Windows y desarrollo de herramientas a medida (React, Python, Java, SQL).
                         </p>
                         <div class="about-points">
                             <div class="point-item">
                                 <span class="point-num">01</span>
                                 <div>
-                                    <h4 data-i18n="about.pt1Title">Trato directo</h4>
-                                    <p data-i18n="about.pt1Desc">Hablas directamente conmigo de principio a fin, sin comerciales ni demoras.</p>
+                                    <h4 data-i18n="about.pt1Title">Trato directo y agencia</h4>
+                                    <p data-i18n="about.pt1Desc">Experiencia en comunicación directa con clientes para maquetar cambios, resolver incidencias y coordinar proyectos sin intermediarios.</p>
                                 </div>
                             </div>
                             <div class="point-item">
                                 <span class="point-num">02</span>
                                 <div>
-                                    <h4 data-i18n="about.pt2Title">Código limpio</h4>
-                                    <p data-i18n="about.pt2Desc">Sin librerías pesadas. Máxima velocidad de carga y adaptación a móviles.</p>
+                                    <h4 data-i18n="about.pt2Title">Código limpio & CMS</h4>
+                                    <p data-i18n="about.pt2Desc">Dominio de plataformas líderes (WP, Shopify, Odoo, Framer) y desarrollo a medida (React, Node, Laravel) con máxima velocidad y optimización móvil.</p>
                                 </div>
                             </div>
                             <div class="point-item">
                                 <span class="point-num">03</span>
                                 <div>
-                                    <h4 data-i18n="about.pt3Title">Cercanía local</h4>
-                                    <p data-i18n="about.pt3Desc">Reuniones presenciales en Mallorca o videollamada para el resto de España.</p>
+                                    <h4 data-i18n="about.pt3Title">Sistemas y automatización</h4>
+                                    <p data-i18n="about.pt3Desc">Visión integral de infraestructura: redes, seguridad de datos, soporte de oficina y flujos automatizados con n8n para eliminar tareas repetitivas.</p>
                                 </div>
                             </div>
                         </div>
@@ -171,41 +222,52 @@
                 <div class="section-header">
                     <span class="section-label" data-i18n="exp.label">Trayectoria</span>
                     <h2 class="section-title" data-i18n="exp.title">Experiencia Laboral</h2>
-                    <p class="section-desc" data-i18n="exp.desc">Soporte informático de sistemas de oficina, administración de redes y desarrollo de herramientas internas y webs.</p>
+                    <p class="section-desc" data-i18n="exp.desc">Desarrollo web en agencia, herramientas internas de gestión documental, soporte de sistemas empresariales y proyectos freelance.</p>
                 </div>
 
-                <div class="timeline-column" style="max-width: 820px; margin: 0 auto;">
+                <div class="timeline-column" style="max-width: 840px; margin: 0 auto;">
                     <div class="timeline-list">
-                        <!-- Experiencia 1: Freelance -->
+                        <!-- Experiencia 1: W34 Marketing -->
                         <div class="timeline-item">
-                            <span class="timeline-dot"></span>
-                            <span class="timeline-date">2025 &bull; Actualidad</span>
-                            <h3 class="timeline-role">Desarrollador Web Full-Stack & Automatizaciones</h3>
-                            <span class="timeline-company">Freelance / Proyectos Propios &bull; Palma de Mallorca</span>
-                            <p class="timeline-desc">
-                                Desarrollo de aplicaciones web interactivas (React, Node.js, Laravel), maquetación en Framer y WordPress, integración de bases de datos relacionales (PostgreSQL, MariaDB con phpMyAdmin) y NoSQL cloud (restdb.io). Implementación de flujos de trabajo automatizados con n8n para optimizar captación y reservas.
+                            <span class="timeline-dot" style="background: #10B981; box-shadow: 0 0 8px rgba(16,185,129,0.5);"></span>
+                            <span class="timeline-date" data-i18n="exp.w34Date">Marzo 2025 &bull; Actualidad</span>
+                            <h3 class="timeline-role" data-i18n="exp.w34Role">Desarrollador Web (FP Dual)</h3>
+                            <span class="timeline-company" data-i18n="exp.w34Company">W34 Marketing &bull; Palma de Mallorca (Presencial)</span>
+                            <p class="timeline-desc" data-i18n="exp.w34Desc">
+                                Maquetación y mantenimiento continuo de páginas web corporativas y tiendas online en múltiples plataformas: WordPress/WooCommerce, Odoo ERP & Web, Shopify, Framer y desarrollo con código limpio. Supervisión y monitorización de flujos de automatización con n8n y trato directo con clientes para resolver incidencias y evolucionar sus plataformas digitales.
                             </p>
                         </div>
 
-                        <!-- Experiencia 2: AntFor -->
+                        <!-- Experiencia 2: Freelance -->
                         <div class="timeline-item">
                             <span class="timeline-dot"></span>
-                            <span class="timeline-date">Sept 2025 &bull; Oct 2025</span>
-                            <h3 class="timeline-role">Técnico Informático</h3>
-                            <span class="timeline-company">AntFor &bull; Palma de Mallorca</span>
-                            <p class="timeline-desc">
-                                Soporte TI técnico presencial y remoto a empresas y clientes particulares. Diagnóstico y reparación de hardware, sustitución de componentes, configuración de redes locales y resolución de incidencias en puestos de trabajo.
+                            <span class="timeline-date" data-i18n="exp.freelanceDate">2025 &bull; Actualidad</span>
+                            <h3 class="timeline-role" data-i18n="exp.freelanceRole">Desarrollador Web & Automatizaciones Freelance</h3>
+                            <span class="timeline-company" data-i18n="exp.freelanceCompany">Remoto &bull; Proyectos Independientes</span>
+                            <p class="timeline-desc" data-i18n="exp.freelanceDesc">
+                                Maquetación de landings y webs para profesionales y pymes (React, Node.js, Laravel, restdb.io, PostgreSQL, MariaDB con phpMyAdmin). Integración de flujos de trabajo automatizados con n8n (captación, sincronización de formularios, WhatsApp, email) orientados a acelerar la digitalización.
                             </p>
                         </div>
 
-                        <!-- Experiencia 3: García Garriga Asesores -->
+                        <!-- Experiencia 3: AntFor -->
                         <div class="timeline-item">
                             <span class="timeline-dot"></span>
-                            <span class="timeline-date">Mar 2024 &bull; Jun 2025</span>
-                            <h3 class="timeline-role">Técnico Microinformático & Desarrollo Interno</h3>
-                            <span class="timeline-company">García Garriga Asesores &bull; Palma de Mallorca</span>
-                            <p class="timeline-desc">
-                                Soporte técnico directo a la plantilla de la asesoría, administración y mantenimiento de redes de oficina, servidores de ficheros y configuración de puestos de trabajo. <strong>Desarrollo del dashboard interno</strong> para el renombrado masivo de lotes documentales de clientes y cotejo automatizado contra hojas de Excel, reduciendo horas de trabajo manual en las declaraciones tributarias trimestrales.
+                            <span class="timeline-date" data-i18n="exp.antforDate">Septiembre 2025 &bull; Octubre 2025</span>
+                            <h3 class="timeline-role" data-i18n="exp.antforRole">Desarrollador de Software</h3>
+                            <span class="timeline-company" data-i18n="exp.antforCompany">AntFor &bull; Palma de Mallorca</span>
+                            <p class="timeline-desc" data-i18n="exp.antforDesc">
+                                Desarrollo y mantenimiento de soluciones de software empresarial trabajando con Java, consultas y manipulación de bases de datos SQL, y adaptación a programas internos propietarios de la compañía.
+                            </p>
+                        </div>
+
+                        <!-- Experiencia 4: García Garriga Asesores -->
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <span class="timeline-date" data-i18n="exp.garciaDate">Marzo 2024 &bull; Junio 2025</span>
+                            <h3 class="timeline-role" data-i18n="exp.garciaRole">Técnico en Sistemas & Desarrollo de Herramientas Internas</h3>
+                            <span class="timeline-company" data-i18n="exp.garciaCompany">García Garriga Asesores &bull; Palma de Mallorca</span>
+                            <p class="timeline-desc" data-i18n="exp.garciaDesc">
+                                Soporte técnico en entornos Windows y aplicativo de gestión A3. <strong>Diseño y desarrollo de un dashboard central con React y aplicaciones encapsuladas en Python</strong>: automatización de renombrado masivo de lotes documentales de clientes y cotejo automatizado contra hojas de Excel, reduciendo drásticamente horas de papeleo manual y facilitando las declaraciones tributarias trimestrales.
                             </p>
                         </div>
                     </div>
@@ -219,30 +281,41 @@
                 <div class="section-header">
                     <span class="section-label" data-i18n="edu.label">Formación</span>
                     <h2 class="section-title" data-i18n="edu.title">Estudios & Titulaciones</h2>
-                    <p class="section-desc" data-i18n="edu.desc">Formación reglada oficial en Sistemas Microinformáticos y Redes (SMR) y Desarrollo de Aplicaciones Web (DAW).</p>
+                    <p class="section-desc" data-i18n="edu.desc">Formación técnica oficial y reglada en Desarrollo de Aplicaciones Web (DAW) y Sistemas Microinformáticos y Redes (SMR).</p>
                 </div>
 
-                <div class="timeline-column" style="max-width: 820px; margin: 0 auto;">
+                <div class="timeline-column" style="max-width: 840px; margin: 0 auto;">
                     <div class="timeline-list">
                         <!-- Estudio 1: DAW -->
                         <div class="timeline-item">
-                            <span class="timeline-dot"></span>
-                            <span class="timeline-date">2025 &bull; 2027</span>
-                            <h3 class="timeline-role">Grado Superior en Desarrollo de Aplicaciones Web (DAW)</h3>
-                            <span class="timeline-company">Colegio Sant Josep Obrer &bull; Palma de Mallorca</span>
-                            <p class="timeline-desc">
-                                Formación avanzada en desarrollo frontend (React, JavaScript, CSS3), desarrollo backend (PHP, Java, Node.js), modelado y gestión de bases de datos relacionales (SQL), despliegue de aplicaciones web y seguridad en entornos de producción.
+                            <span class="timeline-dot" style="background: #38BDF8; box-shadow: 0 0 8px rgba(56,189,248,0.5);"></span>
+                            <span class="timeline-date" data-i18n="edu.dawDate">2025 &bull; 2027</span>
+                            <h3 class="timeline-role" data-i18n="edu.dawRole">Grado Superior en Desarrollo de Aplicaciones Web (DAW)</h3>
+                            <span class="timeline-company" data-i18n="edu.dawSchool">Colegio Sant Josep Obrer &bull; En curso (2º año, Modalidad FP Dual)</span>
+                            <p class="timeline-desc" data-i18n="edu.dawDesc">
+                                Formación avanzada en desarrollo frontend (React, JavaScript moderno), backend (PHP/Laravel, Java, Node.js), modelado y gestión de bases de datos relacionales (SQL/PostgreSQL), despliegue de aplicaciones web y seguridad en producción.
                             </p>
                         </div>
 
                         <!-- Estudio 2: SMR -->
                         <div class="timeline-item">
                             <span class="timeline-dot"></span>
-                            <span class="timeline-date">2023 &bull; 2025</span>
-                            <h3 class="timeline-role">Grado Medio en Sistemas Microinformáticos y Redes (SMR)</h3>
-                            <span class="timeline-company">Colegio Sant Josep Obrer &bull; Palma de Mallorca</span>
-                            <p class="timeline-desc">
-                                Montaje y mantenimiento de equipos, redes locales (switches, routers, cableado estructurado, subredes IP), sistemas operativos monopuesto y en red (Windows Server, Linux), seguridad informática y configuración de servicios de red (DNS, DHCP, correo).
+                            <span class="timeline-date" data-i18n="edu.smrDate">2023 &bull; 2025</span>
+                            <h3 class="timeline-role" data-i18n="edu.smrRole">Grado Medio en Sistemas Microinformáticos y Redes (SMR)</h3>
+                            <span class="timeline-company" data-i18n="edu.smrSchool">Colegio Sant Josep Obrer &bull; Titulado (Modalidad FP Dual)</span>
+                            <p class="timeline-desc" data-i18n="edu.smrDesc">
+                                Montaje y mantenimiento de hardware, redes locales (cableado estructurado, switches, routers, subredes), sistemas operativos monopuesto y en red (Windows Server, Linux), seguridad informática y servicios de red (DNS, DHCP, correo).
+                            </p>
+                        </div>
+
+                        <!-- Estudio 3: ESO -->
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <span class="timeline-date" data-i18n="edu.esoDate">Completado</span>
+                            <h3 class="timeline-role" data-i18n="edu.esoRole">Educación Secundaria Obligatoria (ESO)</h3>
+                            <span class="timeline-company" data-i18n="edu.esoSchool">Colegio Sant Josep Obrer &bull; Palma de Mallorca</span>
+                            <p class="timeline-desc" data-i18n="edu.esoDesc">
+                                Graduado escolar con base formativa general superada con éxito y orientación científico-tecnológica.
                             </p>
                         </div>
                     </div>
@@ -260,14 +333,14 @@
                 </div>
 
                 <div class="stack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
-                    <!-- 1. Framer -->
+                    <!-- 1. n8n -->
                     <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
                         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                            <i data-lucide="layout" style="width: 16px; height: 16px; color: #60A5FA;"></i>
-                            <strong style="color: #fff; font-size: 0.9rem;">Framer</strong>
+                            <i data-lucide="zap" style="width: 16px; height: 16px; color: #F97316;"></i>
+                            <strong style="color: #fff; font-size: 0.9rem;">Automatizaciones con n8n</strong>
                         </div>
-                        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.framer">
-                            Maquetación visual interactiva, diseño editorial de alta gama y publicaciones ultra-rápidas para landings y webs modernas.
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.n8n">
+                            Conexión de flujos de trabajo, webhooks y APIs. Sincronización automática de formularios web con WhatsApp, Gmail, hojas de cálculo, Notion, CRM, Odoo y Shopify sin costes por tarea.
                         </p>
                     </div>
 
@@ -286,7 +359,7 @@
                     <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
                         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
                             <i data-lucide="shopping-bag" style="width: 16px; height: 16px; color: #34D399;"></i>
-                            <strong style="color: #fff; font-size: 0.9rem;">Shopify</strong>
+                            <strong style="color: #fff; font-size: 0.9rem;">Shopify E-Commerce</strong>
                         </div>
                         <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.shopify">
                             Creación y maquetación de tiendas online e-commerce orientadas a conversión, checkout fluido y gestión de catálogo.
@@ -304,14 +377,14 @@
                         </p>
                     </div>
 
-                    <!-- 5. n8n -->
+                    <!-- 5. Framer -->
                     <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
                         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                            <i data-lucide="zap" style="width: 16px; height: 16px; color: #F97316;"></i>
-                            <strong style="color: #fff; font-size: 0.9rem;">Automatizaciones con n8n</strong>
+                            <i data-lucide="layout" style="width: 16px; height: 16px; color: #60A5FA;"></i>
+                            <strong style="color: #fff; font-size: 0.9rem;">Framer</strong>
                         </div>
-                        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.n8n">
-                            Conexión de flujos de trabajo, webhooks y APIs. Sincronización automática de formularios web con WhatsApp, Gmail, hojas de cálculo, Notion, CRM, Odoo y Shopify sin costes por tarea.
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.framer">
+                            Maquetación visual interactiva, diseño editorial de alta gama y publicaciones ultra-rápidas para landings y webs modernas.
                         </p>
                     </div>
 
@@ -322,7 +395,7 @@
                             <strong style="color: #fff; font-size: 0.9rem;">React & JavaScript / HTML5</strong>
                         </div>
                         <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.react">
-                            Desarrollo a medida con máxima velocidad de carga (< 1.5s), sin dependencias pesadas y maquetación 100% adaptable.
+                            Desarrollo a medida con máxima velocidad de carga (&lt; 1.5s), sin dependencias pesadas y maquetación 100% adaptable.
                         </p>
                     </div>
 
@@ -352,7 +425,7 @@
                 <!-- Herramientas y Ecosistema Complementario -->
                 <div style="margin-top: 20px; padding: 18px; background: rgba(255,255,255,0.015); border: 1px solid var(--border); border-radius: 8px;">
                     <div style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
-                        <i data-lucide="check-circle-2" style="width: 14px; height: 14px; color: var(--green);"></i>
+                        <i data-lucide="check-circle-2" style="width: 14px; height: 14px; color: var(--green, #10B981);"></i>
                         <span data-i18n="about.ecosystemTitle">Ecosistema, Integraciones & Herramientas Complementarias</span>
                     </div>
                     <div style="display: flex; flex-wrap: wrap; gap: 8px;">
@@ -389,11 +462,36 @@
                 </div>
 
                 <div class="projects-grid">
-                    <!-- Proyecto 1: PureCook PWA -->
+                    <!-- Proyecto 1: CRM Clientes Ligero (DESTACADO #1) -->
+                    <article class="project-item" style="border-color: rgba(255,255,255,0.22); background: linear-gradient(180deg, rgba(255,255,255,0.035) 0%, var(--bg-card) 100%);">
+                        <div class="project-header">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 7px; background: #FFFFFF; color: #000; border-radius: 3px;" data-i18n="projects.crmBadge">★ DESTACADO</span>
+                                <span class="project-category" data-i18n="projects.crmCat">Ventas & Pipeline</span>
+                            </div>
+                            <span class="project-tech" data-i18n="projects.crmTech">JavaScript ES6+ &bull; Modular State &bull; LocalStorage &bull; Pipeline Kanban</span>
+                        </div>
+                        <h3 class="project-heading" data-i18n="projects.crmTitle">CRM Ligero para Clientes y Oportunidades</h3>
+                        <p class="project-summary" data-i18n="projects.crmSummary">
+                            Sistema integral de gestión de clientes y embudo de ventas para profesionales y autónomos. Desarrollado con arquitectura modular de estado desacoplada, persistencia local de contactos, embudo kanban interactivo de oportunidades, simulador y motor de filtrado reactivo en tiempo real sin dependencias pesadas ni costes de suscripción.
+                        </p>
+                        <div class="project-actions">
+                            <a href="./crm/" target="_blank" class="action-link link-primary">
+                                <i data-lucide="external-link" class="action-icon"></i>
+                                <span data-i18n="projects.crmLive">Abrir CRM en vivo</span>
+                            </a>
+                            <a href="https://github.com/Joaquin-OM/CRM-Clients" target="_blank" class="action-link">
+                                <i data-lucide="github" class="action-icon"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Proyecto 2: PureCook PWA -->
                     <article class="project-item">
                         <div class="project-header">
                             <span class="project-category" data-i18n="projects.purecookCat">Aplicación Web PWA</span>
-                            <span class="project-tech">React &bull; PWA &bull; IndexedDB &bull; Audio API</span>
+                            <span class="project-tech">React &bull; PWA Offline &bull; IndexedDB</span>
                         </div>
                         <h3 class="project-heading" data-i18n="projects.purecookTitle">PureCook: Gestor de Recetas Ultra-Minimalista</h3>
                         <p class="project-summary" data-i18n="projects.purecookSummary">
@@ -411,7 +509,7 @@
                         </div>
                     </article>
 
-                    <!-- Proyecto 2: SmartCook AI -->
+                    <!-- Proyecto 3: SmartCook AI -->
                     <article class="project-item">
                         <div class="project-header">
                             <span class="project-category" data-i18n="projects.p5Cat">I+D & Desarrollo Full-Stack</span>
@@ -429,28 +527,10 @@
                         </div>
                     </article>
 
-                    <!-- Proyecto 3: CRM Clientes -->
-                    <article class="project-item">
-                        <div class="project-header">
-                            <span class="project-category" data-i18n="projects.p3Cat">Ventas & Clientes</span>
-                            <span class="project-tech">JavaScript &bull; Modular State</span>
-                        </div>
-                        <h3 class="project-heading" data-i18n="projects.p3Title">CRM Ligero para Clientes y Oportunidades</h3>
-                        <p class="project-summary" data-i18n="projects.p3Summary">
-                            Sistema ágil para autónomos y pequeñas empresas que necesitan llevar el control de presupuestos y estados de contacto sin herramientas complejas ni costes recurrentes.
-                        </p>
-                        <div class="project-actions">
-                            <a href="https://github.com/Joaquin-OM/CRM-Clients" target="_blank" class="action-link">
-                                <i data-lucide="github" class="action-icon"></i>
-                                <span>GitHub</span>
-                            </a>
-                        </div>
-                    </article>
-
                     <!-- Proyecto 4: Email Builder -->
                     <article class="project-item">
                         <div class="project-header">
-                            <span class="project-category" data-i18n="projects.p4Cat">Marketing</span>
+                            <span class="project-category" data-i18n="projects.p4Cat">Marketing & Herramientas</span>
                             <span class="project-tech">HTML5 Canvas &bull; DOM &bull; Templates</span>
                         </div>
                         <h3 class="project-heading" data-i18n="projects.p4Title">Constructor de Plantillas de Email</h3>
@@ -497,7 +577,7 @@
                         <span class="section-label" data-i18n="contact.label">Contacto</span>
                         <h2 class="contact-headline">Hablemos</h2>
                         <p class="contact-sub">
-                            ¿Tienes una propuesta técnica, una colaboración o un proyecto en mente? Escríbeme y te responderé en el mismo día.
+                            ¿Tienes una propuesta de proyecto freelance, una colaboración técnica o una consulta? Escríbeme y te responderé en el mismo día.
                         </p>
                         
                         <div class="direct-contacts">
@@ -541,9 +621,10 @@
                         <div class="input-group">
                             <label for="formService" data-i18n="form.service">Asunto / Motivo de contacto</label>
                             <select id="formService" name="service">
-                                <option value="Propuesta de Proyecto / Desarrollo Web">Propuesta de Proyecto / Desarrollo Web</option>
+                                <option value="Propuesta de Proyecto Freelance / Desarrollo Web">Propuesta de Proyecto Freelance / Desarrollo Web</option>
+                                <option value="Maquetación Web (WordPress, Shopify, Framer, Odoo)">Maquetación Web (WordPress, Shopify, Framer, Odoo)</option>
+                                <option value="Automatización de Procesos con n8n">Automatización de Procesos con n8n</option>
                                 <option value="Oportunidad Laboral / Colaboración">Oportunidad Laboral / Colaboración</option>
-                                <option value="Consulta sobre Automatización / n8n">Consulta sobre Automatización / n8n</option>
                                 <option value="Otro asunto">Otro asunto</option>
                             </select>
                         </div>
