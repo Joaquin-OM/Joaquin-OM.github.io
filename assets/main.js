@@ -57,6 +57,7 @@ const translations = {
         "projects.title": "Trabajos y demostraciones",
         "projects.desc": "Herramientas orientadas a solucionar necesidades reales de oficina y negocios.",
         "projects.liveDemo": "Ver demo en vivo",
+        "projects.liveApp": "Abrir app en vivo",
         "projects.consultDashboard": "Consultar similar",
 
         "projects.p1Cat": "Turismo & Movilidad",
@@ -165,6 +166,7 @@ const translations = {
         "projects.title": "Work and demonstrations",
         "projects.desc": "Tools designed to solve real business and administrative office needs.",
         "projects.liveDemo": "View live demo",
+        "projects.liveApp": "Open live app",
         "projects.consultDashboard": "Inquire similar",
 
         "projects.p1Cat": "Tourism & Mobility",
