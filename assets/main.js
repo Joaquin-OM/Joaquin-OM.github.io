@@ -1,245 +1,385 @@
-// Translations
+/**
+ * PORTFOLIO FREELANCE - JOAQUÍN OSES MONTI
+ * Interactividad, i18n (ES/EN) y Generador de Solicitudes WhatsApp
+ */
+
+// Diccionario de Traducciones
 const translations = {
-    en: {
-        "nav.work": "Work",
-        "nav.about": "About",
-        "nav.contact": "Contact",
-        "hero.title": "I'm Joaquín Oses Monti <br><span class='gradient-text'>Full Stack Developer</span>",
-        "hero.subtitle": "Specialized in Modern Responsive Interfaces & Technical Problem Solving.",
-        "hero.viewWork": "View Portfolio",
-        "hero.contact": "Contact Me",
-
-        "projects.title": "Featured Projects",
-        "projects.subtitle": "Real-world solutions and technical explorations.",
-
-        "resume.experienceTitle": "Experience",
-        "resume.educationTitle": "Education",
-        "resume.date1": "Mar 2024 - Jun 2025",
-        "resume.role1": "Microcomputer Technician",
-        "resume.job1": "Technical support, network administration, and hardware maintenance.",
-        "resume.date2": "Sept 2025 - Oct 2025",
-        "resume.role2": "Computer Technician",
-        "resume.job2": "IT Support and Systems Maintenance.",
-        "resume.eduDate1": "2025 - 2027",
-        "resume.edu1": "Higher Degree Web Development",
-        "resume.school1": "Sant Josep Obrer College",
-        "resume.eduDate2": "2023 - 2025",
-        "resume.edu2": "Microinformatics & Networks",
-        "resume.school2": "Sant Josep Obrer College",
-
-        "about.title": "About Me",
-        "about.desc": "I am a <strong>Junior Web Developer</strong> with a solid technical background in microinformatics and networks. My hybrid profile allows me to develop robust modular interfaces (React) while understanding the underlying system infrastructure. I am currently transitioning towards Full-Stack development.",
-        "about.stat1": "Years Experience",
-        "about.stat2": "Dedication",
-
-        "footer.title": "Available for new opportunities",
-        "footer.copyright": "© 2025 Joaquín Oses Monti. All rights reserved.",
-        "btn.viewProject": "View Project"
-    },
     es: {
-        "nav.work": "Proyectos",
-        "nav.about": "Sobre Mí",
+        "topbar.status": "Disponible para nuevos proyectos en Palma de Mallorca & Remoto",
+        "topbar.action": "Presupuesto en 24h por WhatsApp →",
+        "nav.services": "Servicios",
+        "nav.projects": "Proyectos",
+        "nav.whyMe": "Por qué elegirme",
         "nav.contact": "Contacto",
-        "hero.title": "Soy Joaquín Oses Monti <br><span class='gradient-text'>Desarrollador Full Stack</span>",
-        "hero.subtitle": "Especializado en Interfaces Modernas, React y resolución técnica de problemas.",
-        "hero.viewWork": "Ver Portafolio",
-        "hero.contact": "Contáctame",
+        "hero.badge": "Desarrollo Web & Digitalización de Negocios",
+        "hero.title": "Creo webs modernas y soluciones digitales que hacen <span class='gradient-text'>crecer tu negocio</span>.",
+        "hero.description": "Ayudo a empresas locales, autónomos y pymes a destacar online con páginas web ultra rápidas, adaptadas a móviles y herramientas a medida que automatizan tus tareas diarias.",
+        "hero.ctaPrimary": "Pedir Presupuesto Sin Compromiso",
+        "hero.ctaSecondary": "Ver Proyectos Reales",
+        "hero.trust1": "Entrega rápida (3 a 10 días)",
+        "hero.trust2": "Sin intermediarios ni costes ocultos",
+        "hero.trust3": "Soporte directo en Mallorca",
+        "hero.cardTag": "Especialista en Soluciones Prácticas",
+        "hero.cardTitle": "¿Qué problema quieres resolver hoy?",
+        "hero.feat1Title": "Landing Page de Alta Conversión",
+        "hero.feat1Desc": "Perfecta para captar reservas y clientes desde Google o redes.",
+        "hero.feat2Title": "Web Corporativa Completa",
+        "hero.feat2Desc": "Tu negocio 100% visible, creíble y posicionado en tu zona.",
+        "hero.feat3Title": "Aplicaciones y Automatización",
+        "hero.feat3Desc": "Dashboards, gestión de reservas o conexión con Excel.",
+        "hero.callDirect": "¿Hablamos directamente?",
+        
+        "services.tag": "Servicios & Paquetes",
+        "services.title": "Precios Claros, Entregas Rápidas, Cero Sorpresas",
+        "services.subtitle": "Soluciones diseñadas específicamente para pymes, comercios locales y profesionales independientes que necesitan resultados tangibles.",
+        "services.oneTime": "pago único",
+        "services.fromPrice": "Desde",
+        "services.btnChoose": "Elegir Este Pack",
+        "services.btnQuote": "Solicitar Valoración",
+        "services.bestValue": "Opción Recomendada",
+        
+        "services.p1Type": "Más Popular para Empezar",
+        "services.p1Title": "Pack Landing Page",
+        "services.p1Desc": "Ideal para promocionar un producto, servicio específico o campaña de anuncios en Mallorca.",
+        "services.p1F1": "Diseño moderno 100% adaptado a móviles",
+        "services.p1F2": "Botón de contacto directo a WhatsApp",
+        "services.p1F3": "Carga ultra rápida (< 1.5s)",
+        "services.p1F4": "Estructura persuasiva enfocada en ventas",
+        "services.p1F5": "Entrega garantizada en 3-5 días hábiles",
 
-        "projects.title": "Proyectos Destacados",
-        "projects.subtitle": "Soluciones reales y exploraciones técnicas.",
+        "services.p2Type": "Negocio Completo",
+        "services.p2Title": "Pack Web Corporativa",
+        "services.p2Desc": "La web definitiva para que tu negocio transmita máxima confianza y domine tu sector local.",
+        "services.p2F1": "Hasta 5 secciones/páginas a medida",
+        "services.p2F2": "Catálogo de servicios, tarifas o menús",
+        "services.p2F3": "SEO local básico para salir en Google Maps",
+        "services.p2F4": "Formularios de presupuesto y reserva",
+        "services.p2F5": "Dominio, hosting y SSL configurados",
+        "services.p2F6": "1 mes de soporte técnico incluido",
 
-        "resume.experienceTitle": "Experiencia Laboral",
-        "resume.educationTitle": "Formación",
-        "resume.date1": "Mar 2024 - Jun 2025",
-        "resume.role1": "Técnico Informático",
-        "resume.job1": "Soporte técnico, administración de redes y mantenimiento de hardware.",
-        "resume.date2": "Sept 2025 - Oct 2025",
-        "resume.role2": "Técnico Informático",
-        "resume.job2": "Soporte informático y mantenimiento de sistemas.",
-        "resume.eduDate1": "2025 - 2027",
-        "resume.edu1": "FP Grado Superior en Desarrollo Web",
-        "resume.school1": "Colegio Sant Josep Obrer",
-        "resume.eduDate2": "2023 - 2025",
-        "resume.edu2": "Sistemas Microinformáticos y Redes",
-        "resume.school2": "Colegio Sant Josep Obrer",
+        "services.p3Type": "Digitalización a Medida",
+        "services.p3Title": "Pack App & Dashboard",
+        "services.p3Desc": "Para empresas que necesitan sistemas de reservas, áreas de clientes o automatizar procesos internos.",
+        "services.p3F1": "Desarrollo modular en React y JavaScript",
+        "services.p3F2": "Sistema de reservas o gestión de pedidos",
+        "services.p3F3": "Automatización de tareas con Excel / bases de datos",
+        "services.p3F4": "Panel de administración privado para empleados",
+        "services.p3F5": "Formación de uso y garantía técnica de 3 meses",
 
-        "about.title": "Sobre Mí",
-        "about.desc": "Soy <strong>Desarrollador Web Junior</strong> con una sólida base técnica en sistemas microinformáticos. Mi perfil híbrido me permite desarrollar interfaces modulares robustas (React) entendiendo la infraestructura que las soporta. Actualmente enfocado en mi transición al desarrollo Full-Stack.",
-        "about.stat1": "Años Experiencia",
-        "about.stat2": "Dedicación",
+        "services.maintTitle": "¿Ya tienes web pero está desactualizada o no te da resultados?",
+        "services.maintDesc": "Ofrezco planes de modernización, optimización de velocidad y mantenimiento mensual desde <strong>49 €/mes</strong> para que nunca te preocupes por caídas ni seguridad.",
+        "services.maintBtn": "Consultar Mantenimiento",
 
-        "footer.title": "Disponible para nuevas oportunidades",
-        "footer.copyright": "© 2025 Joaquín Oses Monti. Todos los derechos reservados.",
-        "btn.viewProject": "Ver Proyecto"
+        "projects.tag": "Casos Reales & Demos",
+        "projects.title": "Soluciones que Resuelven Problemas Reales",
+        "projects.subtitle": "No solo creo código bonito; diseño herramientas que ahorran tiempo y generan dinero a las empresas.",
+        "projects.wantSimilar": "Quiero algo similar",
+        "projects.requestAutomation": "Automatizar mi oficina",
+        "projects.p1Title": "Moto-Rent: Plataforma de Alquiler de Vehículos",
+        "projects.p1Desc": "Diseñado pensando en el sector turístico de Baleares: interfaz para selección de flotas de motos/scooters, cálculo dinámico de tarifas según días de alquiler y confirmación instantánea por WhatsApp.",
+        "projects.p2Title": "Dashboard Centralizado para Asesorías y Empresas",
+        "projects.p2Desc": "Desarrollado con base en la experiencia real en Garcia Garriga Asesores. Centraliza 4 herramientas críticas: renombrado masivo de archivos de clientes, comparación automatizada con Excel y registro de entrada/salida documental.",
+        "projects.p3Title": "CRM Ligero para Clientes y Oportunidades",
+        "projects.p3Desc": "Sistema ágil para que autónomos y pequeños equipos lleven el control de sus clientes, cotizaciones y estados de contacto sin la complejidad ni el coste mensual de herramientas pesadas como HubSpot o Salesforce.",
+        "projects.p4Title": "Constructor Visual de Plantillas de Email",
+        "projects.p4Desc": "Herramienta intuitiva para estructurar emails comerciales responsive con vista previa en tiempo real y generación de código compatible con todos los clientes de correo habituales.",
+
+        "advantages.tag": "La Diferencia",
+        "advantages.title": "El Valor de un Perfil Técnico Híbrido",
+        "advantages.subtitle": "Muchos solo saben maquetar páginas con plantillas de WordPress. Mi formación técnica como <strong>Técnico Microinformático</strong> y desarrollador te aporta soluciones completas de verdad.",
+        "advantages.a1Title": "Entendimiento de Sistemas Reales",
+        "advantages.a1Desc": "No solo creo la web: sé cómo se conectan tus ordenadores, servidores, correos corporativos y redes de oficina. Resuelvo problemas técnicos de raíz.",
+        "advantages.a2Title": "Código Limpio y Ultra Rápido",
+        "advantages.a2Desc": "Utilizo HTML5, CSS moderno y React modular. Tu web cargará en un parpadeo, mejorando tu posición en Google y la tasa de conversión.",
+        "advantages.a3Title": "Trato Directo Sin Intermediarios",
+        "advantages.a3Desc": "Hablas siempre conmigo. Sin comerciales que te vendan humo ni gestores de cuenta que retrasen los cambios. Máxima agilidad y comunicación transparente.",
+        "advantages.a4Title": "Presencia Local en Mallorca",
+        "advantages.a4Desc": "Si tu negocio está en Mallorca, podemos reunirnos en persona, entender tu operativa in situ y adaptar la solución a tu mercado local.",
+
+        "process.tag": "Paso a Paso",
+        "process.title": "¿Cómo trabajaremos juntos?",
+        "process.subtitle": "Un método claro para que sepas en todo momento qué estamos haciendo.",
+        "process.s1Title": "Llamada de 15 minutos",
+        "process.s1Desc": "Analizamos tus objetivos, tu competencia y qué tipo de web o sistema necesitas exactamente.",
+        "process.s2Title": "Propuesta & Maqueta",
+        "process.s2Desc": "En 24-48h recibes un presupuesto cerrado y una vista previa interactiva sin sorpresas.",
+        "process.s3Title": "Desarrollo Rápido",
+        "process.s3Desc": "Programo la solución con revisiones contigo para asegurar que cada detalle queda perfecto.",
+        "process.s4Title": "Lanzamiento & Soporte",
+        "process.s4Desc": "Publicamos tu web en tu dominio, te enseño cómo usarla y te acompaño con soporte continuo.",
+
+        "contact.tag": "Hablemos Hoy Mismo",
+        "contact.title": "¿Listo para impulsar la presencia digital de tu negocio?",
+        "contact.text": "Escríbeme por WhatsApp o rellena el formulario para contarte cómo podemos enfocar tu proyecto y darte un presupuesto exacto en menos de 24 horas.",
+        "form.title": "Cuéntame sobre tu proyecto",
+        "form.subtitle": "Sin compromiso. Te responderé el mismo día.",
+        "form.nameLabel": "Tu nombre o empresa *",
+        "form.contactLabel": "Teléfono o WhatsApp *",
+        "form.emailLabel": "Email *",
+        "form.serviceLabel": "¿Qué servicio necesitas?",
+        "form.opt1": "Pack Landing Page / Web Rápida (390€)",
+        "form.opt2": "Pack Web Corporativa Completa (790€)",
+        "form.opt3": "Pack App & Dashboard / Reserva a Medida",
+        "form.opt4": "Modernización o Mantenimiento de Web Actual",
+        "form.msgLabel": "Detalles del proyecto",
+        "form.submit": "Enviar Solicitud por WhatsApp",
+        "form.notice": "También se enviará una copia por correo. Tus datos solo se usarán para responder a tu consulta.",
+        "footer.desc": "Desarrollador Web Freelance & Especialista en Soluciones Digitales. Palma de Mallorca, Islas Baleares.",
+        "footer.rights": "Todos los derechos reservados."
+    },
+    en: {
+        "topbar.status": "Available for new projects in Palma de Mallorca & Remote worldwide",
+        "topbar.action": "Quote within 24h via WhatsApp →",
+        "nav.services": "Services",
+        "nav.projects": "Projects",
+        "nav.whyMe": "Why Me",
+        "nav.contact": "Contact",
+        "hero.badge": "Web Development & Business Digitalization",
+        "hero.title": "I build modern websites and digital solutions that <span class='gradient-text'>grow your business</span>.",
+        "hero.description": "Helping local companies, freelancers, and SMEs stand out online with ultra-fast, mobile-friendly websites and tailor-made tools that automate daily tasks.",
+        "hero.ctaPrimary": "Request a Free Quote",
+        "hero.ctaSecondary": "View Real Projects",
+        "hero.trust1": "Fast delivery (3 to 10 days)",
+        "hero.trust2": "No intermediaries or hidden fees",
+        "hero.trust3": "Direct local support in Mallorca",
+        "hero.cardTag": "Practical Solutions Specialist",
+        "hero.cardTitle": "What problem do you want to solve today?",
+        "hero.feat1Title": "High-Converting Landing Page",
+        "hero.feat1Desc": "Perfect to capture bookings and leads from Google or social ads.",
+        "hero.feat2Title": "Full Business Website",
+        "hero.feat2Desc": "Make your company 100% visible, credible, and top-ranked in your area.",
+        "hero.feat3Title": "Web Apps & Automation",
+        "hero.feat3Desc": "Internal dashboards, booking flows, or Excel sheet automation.",
+        "hero.callDirect": "Want to talk directly?",
+        
+        "services.tag": "Services & Packages",
+        "services.title": "Clear Pricing, Fast Turnarounds, Zero Surprises",
+        "services.subtitle": "Solutions engineered specifically for SMEs, local stores, and independent professionals looking for tangible business results.",
+        "services.oneTime": "one-time payment",
+        "services.fromPrice": "From",
+        "services.btnChoose": "Select This Package",
+        "services.btnQuote": "Request Valuation",
+        "services.bestValue": "Recommended Option",
+        
+        "services.p1Type": "Most Popular to Start",
+        "services.p1Title": "Landing Page Package",
+        "services.p1Desc": "Ideal for showcasing a specific product, service, or ad campaign in Mallorca.",
+        "services.p1F1": "Modern design, 100% mobile-responsive",
+        "services.p1F2": "Direct WhatsApp click-to-chat button",
+        "services.p1F3": "Ultra-fast loading speed (< 1.5s)",
+        "services.p1F4": "Persuasive sales-driven structure",
+        "services.p1F5": "Guaranteed delivery in 3-5 business days",
+
+        "services.p2Type": "Complete Business Solution",
+        "services.p2Title": "Corporate Website Package",
+        "services.p2Desc": "The definitive website to build trust and dominate your local industry.",
+        "services.p2F1": "Up to 5 custom pages/sections",
+        "services.p2F2": "Services catalog, rate card, or menus",
+        "services.p2F3": "Basic Local SEO to appear on Google Maps",
+        "services.p2F4": "Inquiry and booking forms",
+        "services.p2F5": "Domain, hosting, and SSL setup included",
+        "services.p2F6": "1 month of technical support included",
+
+        "services.p3Type": "Tailored Digitalization",
+        "services.p3Title": "App & Dashboard Package",
+        "services.p3Desc": "For companies needing booking engines, client portals, or internal process automation.",
+        "services.p3F1": "Modular React and JavaScript architecture",
+        "services.p3F2": "Online booking or order tracking system",
+        "services.p3F3": "Task automation with Excel / databases",
+        "services.p3F4": "Private administration dashboard for staff",
+        "services.p3F5": "User onboarding and 3-month technical warranty",
+
+        "services.maintTitle": "Already have a website but it's outdated or not converting?",
+        "services.maintDesc": "I offer website modernization, speed upgrades, and monthly maintenance starting at <strong>€49/month</strong> so you never worry about downtime or security.",
+        "services.maintBtn": "Inquire Maintenance",
+
+        "projects.tag": "Real Cases & Demos",
+        "projects.title": "Solutions Solving Real Business Needs",
+        "projects.subtitle": "I don't just write pretty code; I build tools that save hours and generate revenue.",
+        "projects.wantSimilar": "I want something similar",
+        "projects.requestAutomation": "Automate my office",
+        "projects.p1Title": "Moto-Rent: Vehicle Rental Web Platform",
+        "projects.p1Desc": "Engineered for the Balearic tourism sector: interactive scooter/bike fleet catalog, dynamic price calculation per rental days, and instant WhatsApp booking confirmation.",
+        "projects.p2Title": "Centralized Dashboard for Advisory & Business Firms",
+        "projects.p2Desc": "Developed based on real-world enterprise experience at Garcia Garriga Asesores. Integrates 4 critical tools: bulk document renamer, automated Excel cross-check, and document registry.",
+        "projects.p3Title": "Lightweight CRM for Clients & Sales Leads",
+        "projects.p3Desc": "Fast pipeline system for freelancers and small teams to manage inquiries and quotes without the overhead or subscription fees of HubSpot or Salesforce.",
+        "projects.p4Title": "Visual Email Template Builder",
+        "projects.p4Desc": "Intuitive drag-and-drop tool to compose responsive marketing newsletters with live preview and clean HTML export for email software.",
+
+        "advantages.tag": "The Advantage",
+        "advantages.title": "The Power of a Hybrid Technical Background",
+        "advantages.subtitle": "Many can build basic WordPress templates. My solid background as a <strong>Microcomputer & Systems Technician</strong> plus web developer delivers real end-to-end technical solutions.",
+        "advantages.a1Title": "Real Systems Understanding",
+        "advantages.a1Desc": "I don't just write frontend code: I know how office networks, corporate email servers, and hardware interact. I solve issues at the root.",
+        "advantages.a2Title": "Clean & Ultra-Fast Code",
+        "advantages.a2Desc": "Built using modern HTML5, clean CSS, and React. Your website will load instantly, boosting SEO rankings and user conversions.",
+        "advantages.a3Title": "Direct Contact Without Middlemen",
+        "advantages.a3Desc": "You speak directly with me. No pushy salesmen or account managers slowing down updates. Pure agility and clear communication.",
+        "advantages.a4Title": "Local Presence in Mallorca",
+        "advantages.a4Desc": "If your business is in Mallorca, we can meet face-to-face, observe your operations on-site, and tailor the exact solution you need.",
+
+        "process.tag": "Step by Step",
+        "process.title": "How do we work together?",
+        "process.subtitle": "A transparent process so you always know what we are building.",
+        "process.s1Title": "15-minute Discovery Call",
+        "process.s1Desc": "We review your goals, competitors, and the exact website or software you require.",
+        "process.s2Title": "Proposal & Interactive Mockup",
+        "process.s2Desc": "Within 24-48h you receive a fixed quote and interactive preview with zero surprises.",
+        "process.s3Title": "Agile Development",
+        "process.s3Desc": "I code the solution with regular checkpoints to ensure every single detail meets expectations.",
+        "process.s4Title": "Launch & Ongoing Support",
+        "process.s4Desc": "We deploy the website to your domain, I show you how it works, and provide ongoing technical backing.",
+
+        "contact.tag": "Let's Talk Today",
+        "contact.title": "Ready to elevate your business's digital presence?",
+        "contact.text": "Send me a message via WhatsApp or submit the form to receive expert advice and a firm quote within 24 hours.",
+        "form.title": "Tell me about your project",
+        "form.subtitle": "No obligations. I will get back to you today.",
+        "form.nameLabel": "Your Name or Company *",
+        "form.contactLabel": "Phone or WhatsApp *",
+        "form.emailLabel": "Email *",
+        "form.serviceLabel": "Which service do you need?",
+        "form.opt1": "Landing Page / Rapid Web Package (€390)",
+        "form.opt2": "Full Corporate Website Package (€790)",
+        "form.opt3": "Custom App & Dashboard / Booking System",
+        "form.opt4": "Website Modernization or Monthly Maintenance",
+        "form.msgLabel": "Project details",
+        "form.submit": "Submit Request via WhatsApp",
+        "form.notice": "A copy will also be sent via email. Your information is only used to respond to your inquiry.",
+        "footer.desc": "Freelance Web Developer & Digital Solutions Specialist. Palma de Mallorca, Balearic Islands (Spain).",
+        "footer.rights": "All rights reserved."
     }
 };
 
-const projects = [
-    {
-        title: { en: "Python Apps Collection", es: "Colección de Apps Python" },
-        description: {
-            en: "A comprehensive collection of desktop applications built with Python and Flet. Includes Moto Rent, CRM, Email Builder, and Habit Tracker.",
-            es: "Una colección completa de aplicaciones de escritorio construidas con Python y Flet. Incluye Moto Rent, CRM, Editor de Emails y Tracker de Hábitos."
-        },
-        tags: ["Python", "Flet", "Open Source", "Collection"],
-        icon: "code",
-        link: "https://github.com/Joaquin-OM/python-apps.git"
-    },
-    {
-        title: { en: "Moto Rent Platform", es: "Plataforma Moto Rent" },
-        description: {
-            en: "Premium motorcycle booking system recreated in Python (Flet). Features dark mode, responsive grid, and booking modals.",
-            es: "Sistema de reservas recreado en Python (Flet). Interfaz moderna oscura, grid responsivo y modales de reserva."
-        },
-        tags: ["Python", "Flet", "UI/UX", "Desktop"],
-        icon: "bike",
-        link: "https://github.com/Joaquin-OM/Moto-Rent.git"
-    },
-    {
-        title: { en: "Nexus CRM Dashboard", es: "Nexus CRM" },
-        description: {
-            en: "Enterprise dashboard with sidebar navigation, complex data tables, and interactive analytics charts.",
-            es: "Dashboard empresarial con navegación lateral, tablas de datos complejas y gráficos analíticos interactivos."
-        },
-        tags: ["Flet", "Data Viz", "Dashboard"],
-        icon: "bar-chart-2",
-        link: "https://github.com/Joaquin-OM/CRM-Clients.git"
-    },
-    {
-        title: { en: "Email Builder Studio", es: "Editor de Emails" },
-        description: {
-            en: "Drag-and-drop tool to design HTML emails visually. Demonstrates advanced DOM manipulation.",
-            es: "Herramienta 'Drag-and-drop' para diseñar emails visualmente. Demuestra manipulación avanzada del DOM."
-        },
-        tags: ["Drag & Drop", "Tooling", "Canvas"],
-        icon: "mail",
-        link: "https://github.com/Joaquin-OM/Email-Builder.git"
-    },
-    {
-        title: { en: "Daily Habit Tracker", es: "Tracker de Hábitos" },
-        description: {
-            en: "Minimalist productivity tool with local data persistence. Focuses on user retention through gamification elements.",
-            es: "Herramienta de productividad minimalista con persistencia de datos local. Enfocada en la retención mediante gamificación."
-        },
-        tags: ["Productivity", "Local Storage", "Minimalism"],
-        icon: "check-circle",
-        link: "https://github.com/Joaquin-OM/Habit-Tracker.git"
-    }
-];
+let currentLanguage = 'es';
 
-let currentLang = 'es'; // Default to Spanish as requested by profile context
-
-let observer; // Global observer
-
-function setupObserver() {
-    observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1 });
-}
-
-function renderProjects() {
-    const projectsGrid = document.getElementById('projects-grid');
-    projectsGrid.innerHTML = ''; // Clear existing
-
-    projects.forEach((project, index) => {
-        const card = document.createElement('div');
-        card.classList.add('project-card');
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        // Re-apply animation delay
-        card.style.transition = `all 0.6s ease ${index * 0.1}s`;
-
-        // Create tags HTML
-        const tagsHtml = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-
-        const btnText = translations[currentLang]["btn.viewProject"];
-
-        card.innerHTML = `
-            <div class="project-icon">
-                <i data-lucide="${project.icon}"></i>
-            </div>
-            <h3 class="project-title">${project.title[currentLang]}</h3>
-            <p class="project-desc">${project.description[currentLang]}</p>
-            <div class="project-tags">
-                ${tagsHtml}
-            </div>
-            <a href="${project.link}" class="project-link">
-                ${btnText} <i data-lucide="arrow-right" style="width: 16px;"></i>
-            </a>
-        `;
-
-        projectsGrid.appendChild(card);
-        observer.observe(card);
+function setLanguage(lang) {
+    currentLanguage = lang;
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
     });
 
+    const langToggleText = document.getElementById('currentLang');
+    if (langToggleText) {
+        langToggleText.textContent = lang === 'es' ? 'EN' : 'ES';
+    }
+
+    document.documentElement.lang = lang;
+
+    // Refresh icons
     if (window.lucide) {
         window.lucide.createIcons();
     }
 }
 
-function updateTexts() {
-    document.querySelectorAll('[data-key]').forEach(el => {
-        const key = el.getAttribute('data-key');
-        if (translations[currentLang][key]) {
-            el.innerHTML = translations[currentLang][key];
-        }
-    });
-}
-
-function toggleLanguage() {
-    currentLang = currentLang === 'en' ? 'es' : 'en';
-    const langBtn = document.getElementById('lang-toggle');
-    langBtn.textContent = currentLang === 'en' ? 'ES' : 'EN';
-
-    updateTexts();
-    renderProjects();
-}
-
-// Update Footer Email
-function updateContactInfo() {
-    const emailLink = document.querySelector('.email-link');
-    if (emailLink) {
-        emailLink.href = "mailto:osesjoa@gmail.com";
-        emailLink.textContent = "osesjoa@gmail.com";
-    }
-}
-
-// Cursor Glow Animation
-function initCursorGlow() {
-    const glow = document.getElementById('glow-cursor');
-    if (!glow) return;
-
-    document.addEventListener('mousemove', (e) => {
-        // Position the glow circle at the cursor
-        glow.style.left = e.clientX + 'px';
-        glow.style.top = e.clientY + 'px';
-
-        // Check if hovering near text areas to dissipate glow
-        const target = e.target;
-        if (target.closest('h1, h2, h3, h4, p, span, a, li, strong')) {
-            glow.style.opacity = '0.05'; // Dissipate
-        } else {
-            glow.style.opacity = '1'; // Normal
-        }
-    });
-}
-
-// Initial Render
+// Inicialización cuando carga el DOM
 document.addEventListener('DOMContentLoaded', () => {
-    // Setup event listener
-    document.getElementById('lang-toggle').addEventListener('click', toggleLanguage);
+    // 1. Selector de idioma
+    const langBtn = document.getElementById('langToggle');
+    if (langBtn) {
+        langBtn.addEventListener('click', () => {
+            const newLang = currentLanguage === 'es' ? 'en' : 'es';
+            setLanguage(newLang);
+        });
+    }
 
-    // Set initial text for button based on default lang (ES)
-    document.getElementById('lang-toggle').textContent = "EN";
+    // 2. Año actual en el footer
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
 
-    setupObserver();
-    updateTexts(); // Initial text update for Spanish default
-    renderProjects();
-    updateContactInfo();
-    initCursorGlow();
+    // 3. Menú móvil
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+    if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', () => {
+            if (navMenu.style.display === 'flex') {
+                navMenu.style.display = '';
+            } else {
+                navMenu.style.display = 'flex';
+                navMenu.style.flexDirection = 'column';
+                navMenu.style.position = 'absolute';
+                navMenu.style.top = '100%';
+                navMenu.style.left = '0';
+                navMenu.style.width = '100%';
+                navMenu.style.background = '#0B0F17';
+                navMenu.style.padding = '20px';
+                navMenu.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+            }
+        });
+
+        // Cerrar menú al hacer click en un enlace
+        navMenu.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 640) {
+                    navMenu.style.display = '';
+                }
+            });
+        });
+    }
+
+    // 4. Manejo del Formulario de Contacto (Redirección a WhatsApp & Mailto)
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('formName').value.trim();
+            const contact = document.getElementById('formContact').value.trim();
+            const email = document.getElementById('formEmail').value.trim();
+            const service = document.getElementById('formService').value;
+            const message = document.getElementById('formMessage').value.trim();
+
+            if (!name || !contact || !email) {
+                alert(currentLanguage === 'es' 
+                    ? 'Por favor, rellena todos los campos obligatorios (*)' 
+                    : 'Please fill in all required fields (*)');
+                return;
+            }
+
+            // Construir mensaje de WhatsApp
+            const waGreeting = currentLanguage === 'es'
+                ? `Hola Joaquín, mi nombre es *${name}* y me gustaría solicitar presupuesto:`
+                : `Hello Joaquín, my name is *${name}* and I would like to request a quote:`;
+            
+            const waService = currentLanguage === 'es' ? `Servicio:` : `Service:`;
+            const waContact = currentLanguage === 'es' ? `Contacto:` : `Contact:`;
+            const waDetails = currentLanguage === 'es' ? `Detalles:` : `Details:`;
+
+            const fullText = `${waGreeting}\n\n` +
+                `📌 *${waService}* ${service}\n` +
+                `📞 *${waContact}* ${contact} | ${email}\n` +
+                (message ? `📝 *${waDetails}* ${message}` : '');
+
+            const encodedWa = encodeURIComponent(fullText);
+            const waUrl = `https://wa.me/34695267445?text=${encodedWa}`;
+
+            // Abrir WhatsApp en una pestaña nueva
+            window.open(waUrl, '_blank');
+
+            // Feedback al usuario
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = currentLanguage === 'es' ? '✓ ¡Abriendo WhatsApp...!' : '✓ Opening WhatsApp...!';
+            submitBtn.style.background = '#10B981';
+
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.background = '';
+                contactForm.reset();
+            }, 4000);
+        });
+    }
+
+    // Renderizar iconos de Lucide
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
 });

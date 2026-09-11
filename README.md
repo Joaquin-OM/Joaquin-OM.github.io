@@ -1,72 +1,40 @@
-# 👨‍💻 Joaquín Oses Monti - Developer Portfolio
+# 🚀 Joaquín Oses Monti — Desarrollador Web Freelance & Soluciones Digitales
 
-A modern, responsive, and bilingual developer portfolio to showcase my work as a Junior Full Stack Developer. Built with performance and aesthetics in mind, using **Vanilla JavaScript** and **CSS** for a lightweight yet dynamic experience.
+> **Sitio Web Oficial / Live Portfolio:** [https://joaquin-om.github.io/](https://joaquin-om.github.io/)
 
-🔗 **Live Demo**: [https://joaquin-om.github.io/](https://joaquin-om.github.io/)
+Landing page y plataforma comercial de **Joaquín Oses Monti**, Desarrollador Web Freelance y Técnico en Soluciones Digitales con base en **Palma de Mallorca (Islas Baleares, España)**.
 
-## ✨ Features
+Especializado en la creación de páginas web modernas de alta conversión, plataformas de reservas/catálogos (`Moto-Rent`) y dashboards a medida para la digitalización y automatización de procesos en pymes y despachos profesionales.
 
-- **🎨 Cyber Professional Aesthetic**: Dark mode by default, glassmorphism effects, and smooth gradients.
-- **🌍 Internationalization (i18n)**: One-click toggle between **English** and **Spanish** for all content (Hero, Projects, Resume, etc.).
-- **⚡ Performance First**: Pure Javascript and CSS. No heavy frameworks for the landing page.
-- **📱 Fully Responsive**: Adapts perfectly to Mobile, Tablet, and Desktop.
-- **💼 Dynamic Resume**: Experience and Education sections presented in a clean timeline format.
-- **🚀 Project Gallery**: Data-driven project rendering from a JSON-like structure, making it easy to add new work.
+---
 
-## 🛠️ Tech Stack
+## 🌟 Características de la Plataforma
 
-- **HTML5**: Semantic structure.
-- **CSS3**: Variables, Flexbox, Grid, and Animations.
-- **JavaScript (ES6+)**: Logic for DOM manipulation, i18n, and animations (`IntersectionObserver`).
-- **Lucide Icons**: For lightweight, crisp SVG icons.
+- **⚡ Carga Ultrarrápida:** Desarrollado en código nativo (HTML5 semántico, CSS3 moderno con variables y Vanilla JavaScript / React) sin sobrecarga de dependencias. Carga en < 1.5s.
+- **📱 100% Adaptativo (Mobile-First):** Experiencia optimizada para smartphones, tablets y pantallas de escritorio.
+- **🌍 Soporte Bilingüe (i18n):** Alternador instantáneo entre **Español** e **Inglés** en un clic.
+- **📲 Integración Directa con WhatsApp:** Enrutamiento inteligente con mensajes precargados y formulario de cotización directa vía WhatsApp API y correo.
+- **💼 Catálogo de Servicios y Tarifas Claras:** Paquetes definidos para Landing Pages (390 €), Webs Corporativas (790 €), Dashboards a Medida y Mantenimiento Mensual.
+- **🛠️ Casos de Éxito Reales:** Demos y código fuente de proyectos orientados a negocio (`Moto-Rent`, `Dashboard Centralizado`, `CRM Clientes`, `Email Builder`).
 
-## 📂 Project Structure
+---
 
-```bash
-developer-portfolio/
-├── index.html          # Main entry point (Structure & Data Keys)
-├── README.md           # This file
-└── assets/
-    ├── style.css       # All styles (Variables, Layout, Responsive)
-    └── main.js         # Logic (Translations, Project Data, Event Listeners)
-```
+## 💻 Stack Tecnológico
 
-## 🚀 How to Run Locally
+- **Frontend:** HTML5, CSS3 (Variables, Flexbox, Grid, Glassmorphism, Micro-animaciones), JavaScript (ES6+ modular).
+- **Librerías & Herramientas:** [Lucide Icons](https://lucide.dev/), Google Fonts (*Plus Jakarta Sans*, *Space Grotesk*).
+- **Control de Versiones & Despliegue:** Git, GitHub Pages, Google Cloud Platform (GCP).
 
-You don't need `npm` or complex build tools to run this. It works natively in the browser!
+---
 
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/Joaquin-OM/developer-portfolio.git
-    cd developer-portfolio
-    ```
+## 📞 Contacto & Contratación
 
-2.  **Open `index.html`**:
-    *   Simply double-click `index.html` to open it in your browser.
-    *   OR use VS Code's **Live Server** extension for the best experience.
+- **WhatsApp / Tel:** [+34 695 26 74 45](https://wa.me/34695267445)
+- **Email:** [osesjoa@gmail.com](mailto:osesjoa@gmail.com)
+- **LinkedIn:** [linkedin.com/in/joaquin-oses-monti](https://www.linkedin.com/in/joaquin-oses-monti)
+- **GitHub:** [github.com/Joaquin-OM](https://github.com/Joaquin-OM)
+- **Ubicación:** Palma de Mallorca, Islas Baleares (España) — Disponible para proyectos locales y en remoto.
 
-## ⚙️ Customization
+---
 
-### Adding a New Project
-Open `assets/main.js` and add a new object to the `projects` array:
-
-```javascript
-{
-    title: { en: "New Project", es: "Nuevo Proyecto" },
-    description: {
-        en: "Description in English.",
-        es: "Descripción en Español."
-    },
-    tags: ["React", "CSS"],
-    icon: "code", // Lucide icon name
-    link: "https://github.com/your-username/project"
-}
-```
-
-### Editing Translations
-Modify the `translations` object in `assets/main.js`. Each key (e.g., `hero.title`) maps to text in `index.html` via the `data-key` attribute.
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
+© 2026 Joaquín Oses Monti. Todos los derechos reservados.

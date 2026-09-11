@@ -1,158 +1,622 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Creative Developer</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <title>Joaquín Oses Monti | Desarrollador Web Freelance en Mallorca & Remoto</title>
+    <meta name="description" content="Desarrollador Web Freelance y Técnico en Soluciones Digitales en Palma de Mallorca. Creación de webs modernas, tiendas, landing pages de alta conversión y dashboards a medida para pymes.">
+    <meta name="keywords" content="desarrollador web freelance mallorca, diseno web palma, react developer freelance, programador web freelance espana, crear pagina web mallorca">
+    
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:title" content="Joaquín Oses Monti | Desarrollador Web Freelance">
+    <meta property="og:description" content="Ayudo a pymes y negocios a captar clientes con webs rápidas, modernas y aplicaciones a medida.">
+    <meta property="og:url" content="https://joaquin-om.github.io/">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="stylesheet" href="assets/style.css">
 </head>
-
 <body>
 
-    <div class="background-grid"></div>
-    <div id="glow-cursor" class="glow-cursor"></div>
-    <div class="ambient-glows">
-        <div class="glow glow-1"></div>
-        <div class="glow glow-2"></div>
-        <div class="glow glow-3"></div>
+    <!-- Barra de estado superior / Notificación -->
+    <div class="top-bar">
+        <div class="container top-bar-container">
+            <span class="status-indicator">
+                <span class="status-dot"></span>
+                <span data-i18n="topbar.status">Disponible para nuevos proyectos en Palma de Mallorca & Remoto</span>
+            </span>
+            <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20quiero%20consultar%20un%20proyecto%20web" target="_blank" class="top-bar-cta" data-i18n="topbar.action">Presupuesto en 24h por WhatsApp &rarr;</a>
+        </div>
     </div>
 
-    <nav class="navbar">
-        <div class="logo">JOAQUIN<span class="dot">.</span></div>
-        <div class="nav-links">
-            <a href="#projects" data-key="nav.work">Work</a>
-            <a href="#about" data-key="nav.about">About</a>
-            <a href="#contact" class="btn-primary" data-key="nav.contact">Contact</a>
-            <button id="lang-toggle" class="lang-btn">ES</button>
-        </div>
-    </nav>
+    <!-- Navegación -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="logo-name">Joaquín Oses</span>
+                <span class="logo-tag">Web Dev</span>
+            </a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <a href="#servicios" class="nav-link" data-i18n="nav.services">Servicios</a>
+                <a href="#proyectos" class="nav-link" data-i18n="nav.projects">Proyectos</a>
+                <a href="#ventajas" class="nav-link" data-i18n="nav.whyMe">Por qué elegirme</a>
+                <a href="#contacto" class="nav-link" data-i18n="nav.contact">Contacto</a>
+            </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1 class="fade-in-up" data-key="hero.title">Crafting Digital <br><span
-                    class="gradient-text">Experiences</span></h1>
-            <p class="subtitle fade-in-up delay-1" data-key="hero.subtitle">Full Stack Developer & Python GUI Specialist
-            </p>
-            <div class="hero-actions fade-in-up delay-2">
-                <a href="#projects" class="btn-primary" data-key="hero.viewWork">View Projects</a>
-                <a href="#contact" class="btn-secondary" data-key="hero.contact">Get in Touch</a>
+            <div class="nav-actions">
+                <!-- Selector de Idioma -->
+                <button id="langToggle" class="lang-btn" aria-label="Cambiar idioma">
+                    <span id="currentLang">EN</span>
+                </button>
+                <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20he%20visto%20tu%20portfolio%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto" target="_blank" class="btn btn-sm btn-primary">
+                    <i data-lucide="message-circle" class="btn-icon"></i>
+                    <span>WhatsApp</span>
+                </a>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú">
+                    <i data-lucide="menu"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <section id="about" class="about-section">
-        <div class="about-container">
-            <div class="about-text">
-                <h2 data-key="about.title">About Me</h2>
-                <p data-key="about.desc">I transform complex problems into beautiful, intuitive interfaces. Whether it's
-                    a high-performance Python desktop app or a responsive web platform, I build software that feels
-                    premium.</p>
-                <div class="stats">
-                    <div class="stat-item">
-                        <span class="stat-number">+2</span>
-                        <span class="stat-label" data-key="about.stat1">Major Projects</span>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="badge hero-badge">
+                        <i data-lucide="sparkles" class="badge-icon"></i>
+                        <span data-i18n="hero.badge">Desarrollo Web & Digitalización de Negocios</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label" data-key="about.stat2">Commitment</span>
+                    <h1 class="hero-title" data-i18n="hero.title">
+                        Creo webs modernas y soluciones digitales que hacen <span class="gradient-text">crecer tu negocio</span>.
+                    </h1>
+                    <p class="hero-description" data-i18n="hero.description">
+                        Ayudo a empresas locales, autónomos y pymes a destacar online con páginas web ultra rápidas, adaptadas a móviles y herramientas a medida que automatizan tus tareas diarias.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20quiero%20solicitar%20un%20presupuesto%20gratuito%20para%20mi%20negocio" target="_blank" class="btn btn-lg btn-primary">
+                            <i data-lucide="send" class="btn-icon"></i>
+                            <span data-i18n="hero.ctaPrimary">Pedir Presupuesto Sin Compromiso</span>
+                        </a>
+                        <a href="#proyectos" class="btn btn-lg btn-outline">
+                            <i data-lucide="layout" class="btn-icon"></i>
+                            <span data-i18n="hero.ctaSecondary">Ver Proyectos Reales</span>
+                        </a>
+                    </div>
+                    <div class="hero-trust">
+                        <div class="trust-item">
+                            <i data-lucide="check-circle-2" class="trust-icon"></i>
+                            <span data-i18n="hero.trust1">Entrega rápida (3 a 10 días)</span>
+                        </div>
+                        <div class="trust-item">
+                            <i data-lucide="check-circle-2" class="trust-icon"></i>
+                            <span data-i18n="hero.trust2">Sin intermediarios ni costes ocultos</span>
+                        </div>
+                        <div class="trust-item">
+                            <i data-lucide="check-circle-2" class="trust-icon"></i>
+                            <span data-i18n="hero.trust3">Soporte directo en Mallorca</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-card-wrapper">
+                    <div class="card glass-card hero-feature-card">
+                        <div class="card-header-badge">
+                            <span class="badge-dot"></span>
+                            <span data-i18n="hero.cardTag">Especialista en Soluciones Prácticas</span>
+                        </div>
+                        <h3 class="hero-card-title" data-i18n="hero.cardTitle">¿Qué problema quieres resolver hoy?</h3>
+                        
+                        <div class="quick-services-list">
+                            <div class="quick-service-item">
+                                <div class="quick-icon-box"><i data-lucide="rocket"></i></div>
+                                <div>
+                                    <h4 data-i18n="hero.feat1Title">Landing Page de Alta Conversión</h4>
+                                    <p data-i18n="hero.feat1Desc">Perfecta para captar reservas y clientes desde Google o redes.</p>
+                                </div>
+                            </div>
+                            <div class="quick-service-item">
+                                <div class="quick-icon-box"><i data-lucide="globe"></i></div>
+                                <div>
+                                    <h4 data-i18n="hero.feat2Title">Web Corporativa Completa</h4>
+                                    <p data-i18n="hero.feat2Desc">Tu negocio 100% visible, creíble y posicionado en tu zona.</p>
+                                </div>
+                            </div>
+                            <div class="quick-service-item">
+                                <div class="quick-icon-box"><i data-lucide="cpu"></i></div>
+                                <div>
+                                    <h4 data-i18n="hero.feat3Title">Aplicaciones y Automatización</h4>
+                                    <p data-i18n="hero.feat3Desc">Dashboards, gestión de reservas o conexión con Excel.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hero-contact-strip">
+                            <div>
+                                <span class="strip-label" data-i18n="hero.callDirect">¿Hablamos directamente?</span>
+                                <span class="strip-number">+34 695 26 74 45</span>
+                            </div>
+                            <a href="tel:+34695267445" class="btn btn-icon-only btn-secondary" aria-label="Llamar">
+                                <i data-lucide="phone"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="about-skills">
-                <div class="skill-tag">Python</div>
-                <div class="skill-tag">Flet</div>
-                <div class="skill-tag">JavaScript</div>
-                <div class="skill-tag">CSS3</div>
-                <div class="skill-tag">HTML5</div>
-                <div class="skill-tag">Git</div>
-                <div class="skill-tag">UI/UX Design</div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="tech-marquee" class="marquee-container">
-        <div class="marquee-content">
-            <!-- Injected via JS -->
-            <span>PYTHON</span>
-            <span>FLET</span>
-            <span>JAVASCRIPT</span>
-            <span>REACT</span>
-            <span>CSS3</span>
-            <span>GIT</span>
-            <span>VITE</span>
-            <span>PYTHON</span>
-            <span>FLET</span>
-            <span>JAVASCRIPT</span>
-            <span>REACT</span>
-            <span>CSS3</span>
-            <span>GIT</span>
-            <span>VITE</span>
-        </div>
-    </section>
-
-    <section id="projects" class="projects-section">
-        <div class="section-header">
-            <h2 data-key="projects.title">Featured Work</h2>
-            <p data-key="projects.subtitle">A selection of web and desktop applications.</p>
-        </div>
-        <div class="projects-grid" id="projects-grid">
-            <!-- Projects injected via JS -->
-        </div>
-    </section>
-
-    <section id="resume" class="resume-section">
-        <div class="resume-container">
-            <div class="resume-column">
-                <h3 class="resume-title" data-key="resume.experienceTitle">Experience</h3>
-                <div class="timeline-item">
-                    <span class="timeline-date" data-key="resume.date2">Sept 2025 - Oct 2025</span>
-                    <h4 class="timeline-role" data-key="resume.role2">Computer Technician</h4>
-                    <span class="timeline-company">AntFor</span>
-                    <p class="timeline-desc" data-key="resume.job2">IT Support and Systems Maintenance.</p>
+        <!-- Sección de Servicios Paquetizados -->
+        <section class="section services-section" id="servicios">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag" data-i18n="services.tag">Servicios & Paquetes</span>
+                    <h2 class="section-title" data-i18n="services.title">Precios Claros, Entregas Rápidas, Cero Sorpresas</h2>
+                    <p class="section-subtitle" data-i18n="services.subtitle">
+                        Soluciones diseñadas específicamente para pymes, comercios locales y profesionales independientes que necesitan resultados tangibles.
+                    </p>
                 </div>
-                <div class="timeline-item">
-                    <span class="timeline-date" data-key="resume.date1">Mar 2024 - Jun 2025</span>
-                    <h4 class="timeline-role" data-key="resume.role1">Technician Microinformático</h4>
-                    <span class="timeline-company">García Garriga Asesores</span>
-                    <p class="timeline-desc" data-key="resume.job1">Technical support, network administration, and
-                        hardware maintenance.</p>
+
+                <div class="pricing-grid">
+                    <!-- Paquete 1: Landing Page -->
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <span class="plan-type" data-i18n="services.p1Type">Más Popular para Empezar</span>
+                            <h3 class="plan-title" data-i18n="services.p1Title">Pack Landing Page</h3>
+                            <p class="plan-desc" data-i18n="services.p1Desc">Ideal para promocionar un producto, servicio específico o campaña de anuncios en Mallorca.</p>
+                            <div class="plan-price">
+                                <span class="currency">€</span>
+                                <span class="amount">390</span>
+                                <span class="period" data-i18n="services.oneTime">pago único</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p1F1">Diseño moderno 100% adaptado a móviles</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p1F2">Botón de contacto directo a WhatsApp</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p1F3">Carga ultra rápida (< 1.5s)</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p1F4">Estructura persuasiva enfocada en ventas</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p1F5">Entrega garantizada en 3-5 días hábiles</span></li>
+                        </ul>
+                        <div class="pricing-footer">
+                            <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20me%20interesa%20el%20Pack%20Landing%20Page%20(390€)" target="_blank" class="btn btn-outline btn-block" data-i18n="services.btnChoose">Elegir Este Pack</a>
+                        </div>
+                    </div>
+
+                    <!-- Paquete 2: Web Completa (Destacado) -->
+                    <div class="pricing-card featured-card">
+                        <div class="featured-badge" data-i18n="services.bestValue">Opción Recomendada</div>
+                        <div class="pricing-header">
+                            <span class="plan-type" data-i18n="services.p2Type">Negocio Completo</span>
+                            <h3 class="plan-title" data-i18n="services.p2Title">Pack Web Corporativa</h3>
+                            <p class="plan-desc" data-i18n="services.p2Desc">La web definitiva para que tu negocio transmita máxima confianza y domine tu sector local.</p>
+                            <div class="plan-price">
+                                <span class="currency">€</span>
+                                <span class="amount">790</span>
+                                <span class="period" data-i18n="services.oneTime">pago único</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p2F1">Hasta 5 secciones/páginas a medida</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p2F2">Catálogo de servicios, tarifas o menús</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p2F3">SEO local básico para salir en Google Maps</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p2F4">Formularios de presupuesto y reserva</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p2F5">Dominio, hosting y SSL configurados</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p2F6">1 mes de soporte técnico incluido</span></li>
+                        </ul>
+                        <div class="pricing-footer">
+                            <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20me%20interesa%20el%20Pack%20Web%20Corporativa%20(790€)" target="_blank" class="btn btn-primary btn-block" data-i18n="services.btnChoose">Elegir Este Pack</a>
+                        </div>
+                    </div>
+
+                    <!-- Paquete 3: Web App / Dashboard a medida -->
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <span class="plan-type" data-i18n="services.p3Type">Digitalización a Medida</span>
+                            <h3 class="plan-title" data-i18n="services.p3Title">Pack App & Dashboard</h3>
+                            <p class="plan-desc" data-i18n="services.p3Desc">Para empresas que necesitan sistemas de reservas, áreas de clientes o automatizar procesos internos.</p>
+                            <div class="plan-price">
+                                <span class="from-tag" data-i18n="services.fromPrice">Desde</span>
+                                <span class="currency">€</span>
+                                <span class="amount">1.350</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p3F1">Desarrollo modular en React y JavaScript</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p3F2">Sistema de reservas o gestión de pedidos</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p3F3">Automatización de tareas con Excel / bases de datos</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p3F4">Panel de administración privado para empleados</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.p3F5">Formación de uso y garantía técnica de 3 meses</span></li>
+                        </ul>
+                        <div class="pricing-footer">
+                            <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20tengo%20un%20proyecto%20a%20medida%20(App%2FDashboard)%20y%20quiero%20valorarlo" target="_blank" class="btn btn-outline btn-block" data-i18n="services.btnQuote">Solicitar Valoración</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mantenimiento recurrente -->
+                <div class="maintenance-box">
+                    <div class="maintenance-content">
+                        <i data-lucide="shield-check" class="maint-icon"></i>
+                        <div>
+                            <h4 data-i18n="services.maintTitle">¿Ya tienes web pero está desactualizada o no te da resultados?</h4>
+                            <p data-i18n="services.maintDesc">Ofrezco planes de modernización, optimización de velocidad y mantenimiento mensual desde <strong>49 €/mes</strong> para que nunca te preocupes por caídas ni seguridad.</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20quiero%20consultar%20por%20mantenimiento%20o%20modernizaci%C3%B3n%20de%20mi%20web" target="_blank" class="btn btn-secondary" data-i18n="services.maintBtn">Consultar Mantenimiento</a>
                 </div>
             </div>
-            <div class="resume-column">
-                <h3 class="resume-title" data-key="resume.educationTitle">Education</h3>
-                <div class="timeline-item">
-                    <span class="timeline-date" data-key="resume.eduDate1">2025 - 2027</span>
-                    <h4 class="timeline-role" data-key="resume.edu1">Higher Degree Web Development</h4>
-                    <span class="timeline-company" data-key="resume.school1">Colegio Sant Josep Obrer</span>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-date" data-key="resume.eduDate2">2023 - 2025</span>
-                    <h4 class="timeline-role" data-key="resume.edu2">Microinformatics & Networks</h4>
-                    <span class="timeline-company" data-key="resume.school2">Colegio Sant Josep Obrer</span>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <footer id="contact">
-        <div class="footer-content">
-            <h2 data-key="footer.title">Let's Build Something Amazing</h2>
-            <a href="mailto:contact@example.com" class="email-link">contact@example.com</a>
-            <div class="social-links">
-                <a href="https://github.com/Joaquin-OM" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i
-                        data-lucide="github"></i></a>
-                <a href="https://www.linkedin.com/in/joaquin-oses-monti" target="_blank" rel="noopener noreferrer"
-                    aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        <!-- Sección de Proyectos Reales -->
+        <section class="section projects-section" id="proyectos">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag" data-i18n="projects.tag">Casos Reales & Demos</span>
+                    <h2 class="section-title" data-i18n="projects.title">Soluciones que Resuelven Problemas Reales</h2>
+                    <p class="section-subtitle" data-i18n="projects.subtitle">
+                        No solo creo código bonito; diseño herramientas que ahorran tiempo y generan dinero a las empresas.
+                    </p>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- Proyecto 1: Moto-Rent -->
+                    <article class="project-card">
+                        <div class="project-preview preview-rent">
+                            <div class="preview-badge">
+                                <i data-lucide="bike"></i>
+                                <span>Sector Turístico & Movilidad</span>
+                            </div>
+                            <div class="mockup-header">
+                                <span class="mock-dot red"></span>
+                                <span class="mock-dot yellow"></span>
+                                <span class="mock-dot green"></span>
+                                <span class="mock-url">moto-rent.mallorca.es</span>
+                            </div>
+                            <div class="mockup-content">
+                                <h4>MOTO-RENT MALLORCA</h4>
+                                <p>Catálogo interactivo &bull; Reserva en 3 clics &bull; WhatsApp API</p>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="tech-stack">
+                                <span>JavaScript</span>
+                                <span>React UI</span>
+                                <span>Responsive CSS</span>
+                                <span>Local Business</span>
+                            </div>
+                            <h3 class="project-title" data-i18n="projects.p1Title">Moto-Rent: Plataforma de Alquiler de Vehículos</h3>
+                            <p class="project-desc" data-i18n="projects.p1Desc">
+                                Diseñado pensando en el sector turístico de Baleares: interfaz para selección de flotas de motos/scooters, cálculo dinámico de tarifas según días de alquiler y confirmación instantánea por WhatsApp.
+                            </p>
+                            <div class="project-links">
+                                <a href="https://github.com/Joaquin-OM/Moto-Rent" target="_blank" class="project-link">
+                                    <i data-lucide="github"></i>
+                                    <span>Código en GitHub</span>
+                                </a>
+                                <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20vi%20tu%20proyecto%20Moto-Rent%20y%20me%20gustar%C3%ADa%20una%20web%20similar" target="_blank" class="project-link link-highlight">
+                                    <i data-lucide="external-link"></i>
+                                    <span data-i18n="projects.wantSimilar">Quiero algo similar</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Proyecto 2: Dashboard de Aplicaciones Centralizadas -->
+                    <article class="project-card">
+                        <div class="project-preview preview-dashboard">
+                            <div class="preview-badge">
+                                <i data-lucide="building"></i>
+                                <span>Gestorías & Pymes</span>
+                            </div>
+                            <div class="mockup-header">
+                                <span class="mock-dot red"></span>
+                                <span class="mock-dot yellow"></span>
+                                <span class="mock-dot green"></span>
+                                <span class="mock-url">dashboard.interno.asesores</span>
+                            </div>
+                            <div class="mockup-content">
+                                <h4>PORTAL CENTRALIZADO</h4>
+                                <p>Renombrado masivo &bull; Cotejo Excel &bull; Registro Documental</p>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="tech-stack">
+                                <span>React</span>
+                                <span>Bootstrap</span>
+                                <span>Excel Automation</span>
+                                <span>Empresa Real</span>
+                            </div>
+                            <h3 class="project-title" data-i18n="projects.p2Title">Dashboard Centralizado para Asesorías y Empresas</h3>
+                            <p class="project-desc" data-i18n="projects.p2Desc">
+                                Desarrollado con base en la experiencia real en Garcia Garriga Asesores. Centraliza 4 herramientas críticas: renombrado masivo de archivos de clientes, comparación automatizada con Excel y registro de entrada/salida documental.
+                            </p>
+                            <div class="project-links">
+                                <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20quiero%20automatizar%20tareas%20con%20un%20dashboard%20como%20el%20de%20asesor%C3%ADas" target="_blank" class="project-link link-highlight">
+                                    <i data-lucide="zap"></i>
+                                    <span data-i18n="projects.requestAutomation">Automatizar mi oficina</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Proyecto 3: CRM Clientes -->
+                    <article class="project-card">
+                        <div class="project-preview preview-crm">
+                            <div class="preview-badge">
+                                <i data-lucide="users"></i>
+                                <span>Gestión de Ventas</span>
+                            </div>
+                            <div class="mockup-header">
+                                <span class="mock-dot red"></span>
+                                <span class="mock-dot yellow"></span>
+                                <span class="mock-dot green"></span>
+                                <span class="mock-url">crm-clients.app</span>
+                            </div>
+                            <div class="mockup-content">
+                                <h4>CRM CLIENTES & LEADS</h4>
+                                <p>Seguimiento de presupuestos &bull; Estados &bull; Contactos</p>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="tech-stack">
+                                <span>JavaScript</span>
+                                <span>Modular Components</span>
+                                <span>Productividad</span>
+                            </div>
+                            <h3 class="project-title" data-i18n="projects.p3Title">CRM Ligero para Clientes y Oportunidades</h3>
+                            <p class="project-desc" data-i18n="projects.p3Desc">
+                                Sistema ágil para que autónomos y pequeños equipos lleven el control de sus clientes, cotizaciones y estados de contacto sin la complejidad ni el coste mensual de herramientas pesadas como HubSpot o Salesforce.
+                            </p>
+                            <div class="project-links">
+                                <a href="https://github.com/Joaquin-OM/CRM-Clients" target="_blank" class="project-link">
+                                    <i data-lucide="github"></i>
+                                    <span>Código en GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Proyecto 4: Email Template Builder -->
+                    <article class="project-card">
+                        <div class="project-preview preview-email">
+                            <div class="preview-badge">
+                                <i data-lucide="mail"></i>
+                                <span>Marketing & Campañas</span>
+                            </div>
+                            <div class="mockup-header">
+                                <span class="mock-dot red"></span>
+                                <span class="mock-dot yellow"></span>
+                                <span class="mock-dot green"></span>
+                                <span class="mock-url">email-builder.studio</span>
+                            </div>
+                            <div class="mockup-content">
+                                <h4>EMAIL BUILDER</h4>
+                                <p>Bloques visuales &bull; Exportación HTML limpia &bull; Responsive</p>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="tech-stack">
+                                <span>HTML5 Canvas / DOM</span>
+                                <span>JavaScript</span>
+                                <span>Email Marketing</span>
+                            </div>
+                            <h3 class="project-title" data-i18n="projects.p4Title">Constructor Visual de Plantillas de Email</h3>
+                            <p class="project-desc" data-i18n="projects.p4Desc">
+                                Herramienta intuitiva para estructurar emails comerciales responsive con vista previa en tiempo real y generación de código compatible con todos los clientes de correo habituales.
+                            </p>
+                            <div class="project-links">
+                                <a href="https://github.com/Joaquin-OM/Email-Builder" target="_blank" class="project-link">
+                                    <i data-lucide="github"></i>
+                                    <span>Código en GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
-            <p class="copyright" data-key="footer.copyright">© 2025 Developer Portfolio. All rights reserved.</p>
+        </section>
+
+        <!-- Sección de Ventajas / Por Qué Elegirme -->
+        <section class="section advantages-section" id="ventajas">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag" data-i18n="advantages.tag">La Diferencia</span>
+                    <h2 class="section-title" data-i18n="advantages.title">El Valor de un Perfil Técnico Híbrido</h2>
+                    <p class="section-subtitle" data-i18n="advantages.subtitle">
+                        Muchos solo saben maquetar páginas con plantillas de WordPress. Mi formación técnica como <strong>Técnico Microinformático</strong> y desarrollador te aporta soluciones completas de verdad.
+                    </p>
+                </div>
+
+                <div class="advantages-grid">
+                    <div class="advantage-card">
+                        <div class="advantage-icon"><i data-lucide="cpu"></i></div>
+                        <h3 data-i18n="advantages.a1Title">Entendimiento de Sistemas Reales</h3>
+                        <p data-i18n="advantages.a1Desc">No solo creo la web: sé cómo se conectan tus ordenadores, servidores, correos corporativos y redes de oficina. Resuelvo problemas técnicos de raíz.</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <div class="advantage-icon"><i data-lucide="zap"></i></div>
+                        <h3 data-i18n="advantages.a2Title">Código Limpio y Ultra Rápido</h3>
+                        <p data-i18n="advantages.a2Desc">Utilizo HTML5, CSS moderno y React modular. Tu web cargará en un parpadeo, mejorando tu posición en Google y la tasa de conversión.</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <div class="advantage-icon"><i data-lucide="user-check"></i></div>
+                        <h3 data-i18n="advantages.a3Title">Trato Directo Sin Intermediarios</h3>
+                        <p data-i18n="advantages.a3Desc">Hablas siempre conmigo. Sin comerciales que te vendan humo ni gestores de cuenta que retrasen los cambios. Máxima agilidad y comunicación transparente.</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <div class="advantage-icon"><i data-lucide="map-pin"></i></div>
+                        <h3 data-i18n="advantages.a4Title">Presencia Local en Mallorca</h3>
+                        <p data-i18n="advantages.a4Desc">Si tu negocio está en Mallorca, podemos reunirnos en persona, entender tu operativa in situ y adaptar la solución a tu mercado local.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Proceso de Trabajo -->
+        <section class="section process-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag" data-i18n="process.tag">Paso a Paso</span>
+                    <h2 class="section-title" data-i18n="process.title">¿Cómo trabajaremos juntos?</h2>
+                    <p class="section-subtitle" data-i18n="process.subtitle">Un método claro para que sepas en todo momento qué estamos haciendo.</p>
+                </div>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-num">01</div>
+                        <h4 data-i18n="process.s1Title">Llamada de 15 minutos</h4>
+                        <p data-i18n="process.s1Desc">Analizamos tus objetivos, tu competencia y qué tipo de web o sistema necesitas exactamente.</p>
+                    </div>
+                    <div class="process-arrow">&rarr;</div>
+                    <div class="process-step">
+                        <div class="step-num">02</div>
+                        <h4 data-i18n="process.s2Title">Propuesta & Maqueta</h4>
+                        <p data-i18n="process.s2Desc">En 24-48h recibes un presupuesto cerrado y una vista previa interactiva sin sorpresas.</p>
+                    </div>
+                    <div class="process-arrow">&rarr;</div>
+                    <div class="process-step">
+                        <div class="step-num">03</div>
+                        <h4 data-i18n="process.s3Title">Desarrollo Rápido</h4>
+                        <p data-i18n="process.s3Desc">Programo la solución con revisiones contigo para asegurar que cada detalle queda perfecto.</p>
+                    </div>
+                    <div class="process-arrow">&rarr;</div>
+                    <div class="process-step">
+                        <div class="step-num">04</div>
+                        <h4 data-i18n="process.s4Title">Lanzamiento & Soporte</h4>
+                        <p data-i18n="process.s4Desc">Publicamos tu web en tu dominio, te enseño cómo usarla y te acompaño con soporte continuo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Contacto Directo & Cotizador -->
+        <section class="section contact-section" id="contacto">
+            <div class="container">
+                <div class="contact-card">
+                    <div class="contact-info">
+                        <span class="section-tag" data-i18n="contact.tag">Hablemos Hoy Mismo</span>
+                        <h2 class="contact-title" data-i18n="contact.title">¿Listo para impulsar la presencia digital de tu negocio?</h2>
+                        <p class="contact-text" data-i18n="contact.text">
+                            Escríbeme por WhatsApp o rellena el formulario para contarte cómo podemos enfocar tu proyecto y darte un presupuesto exacto en menos de 24 horas.
+                        </p>
+
+                        <div class="contact-methods">
+                            <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20quiero%20pedirte%20informaci%C3%B3n%20para%20una%20web" target="_blank" class="method-card method-whatsapp">
+                                <div class="method-icon"><i data-lucide="message-circle"></i></div>
+                                <div>
+                                    <div class="method-label">WhatsApp Directo</div>
+                                    <div class="method-val">+34 695 26 74 45</div>
+                                </div>
+                            </a>
+
+                            <a href="mailto:osesjoa@gmail.com?subject=Consulta%20Proyecto%20Web%20Freelance" class="method-card">
+                                <div class="method-icon"><i data-lucide="mail"></i></div>
+                                <div>
+                                    <div class="method-label">Email Profesional</div>
+                                    <div class="method-val">osesjoa@gmail.com</div>
+                                </div>
+                            </a>
+
+                            <div class="method-card">
+                                <div class="method-icon"><i data-lucide="map-pin"></i></div>
+                                <div>
+                                    <div class="method-label">Ubicación</div>
+                                    <div class="method-val">Palma de Mallorca, Islas Baleares (España)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/joaquin-oses-monti" target="_blank" class="social-btn" aria-label="LinkedIn">
+                                <i data-lucide="linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/Joaquin-OM" target="_blank" class="social-btn" aria-label="GitHub">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-wrapper">
+                        <form id="contactForm" class="contact-form">
+                            <h3 class="form-title" data-i18n="form.title">Cuéntame sobre tu proyecto</h3>
+                            <p class="form-subtitle" data-i18n="form.subtitle">Sin compromiso. Te responderé el mismo día.</p>
+
+                            <div class="form-group">
+                                <label for="formName" data-i18n="form.nameLabel">Tu nombre o empresa *</label>
+                                <input type="text" id="formName" name="name" required placeholder="Ej: Pedro García / Alquileres Palma">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="formContact" data-i18n="form.contactLabel">Teléfono o WhatsApp *</label>
+                                    <input type="tel" id="formContact" name="contact" required placeholder="+34 600 000 000">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formEmail" data-i18n="form.emailLabel">Email *</label>
+                                    <input type="email" id="formEmail" name="email" required placeholder="tu@empresa.com">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formService" data-i18n="form.serviceLabel">¿Qué servicio necesitas?</label>
+                                <select id="formService" name="service">
+                                    <option value="Landing Page (390€)" data-i18n="form.opt1">Pack Landing Page / Web Rápida (390€)</option>
+                                    <option value="Web Corporativa Completa (790€)" selected data-i18n="form.opt2">Pack Web Corporativa Completa (790€)</option>
+                                    <option value="App / Dashboard a Medida" data-i18n="form.opt3">Pack App & Dashboard / Reserva a Medida</option>
+                                    <option value="Mantenimiento / Optimización" data-i18n="form.opt4">Modernización o Mantenimiento de Web Actual</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formMessage" data-i18n="form.msgLabel">Detalles del proyecto</label>
+                                <textarea id="formMessage" name="message" rows="4" placeholder="Explícame brevemente qué necesitas o incluye el enlace a tu web actual..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block btn-lg" id="submitBtn">
+                                <i data-lucide="send" class="btn-icon"></i>
+                                <span data-i18n="form.submit">Enviar Solicitud por WhatsApp</span>
+                            </button>
+                            <p class="form-notice" data-i18n="form.notice">También se enviará una copia por correo. Tus datos solo se usarán para responder a tu consulta.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-name">Joaquín Oses Monti</span>
+                </div>
+                <p class="footer-desc" data-i18n="footer.desc">
+                    Desarrollador Web Freelance & Especialista en Soluciones Digitales. Palma de Mallorca, Islas Baleares.
+                </p>
+            </div>
+            <div class="footer-links-group">
+                <a href="#servicios" data-i18n="nav.services">Servicios</a>
+                <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+                <a href="#ventajas" data-i18n="nav.whyMe">Por qué elegirme</a>
+                <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear">2026</span> Joaquín Oses Monti. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
+            </div>
         </div>
     </footer>
 
@@ -161,5 +625,4 @@
         lucide.createIcons();
     </script>
 </body>
-
 </html>
