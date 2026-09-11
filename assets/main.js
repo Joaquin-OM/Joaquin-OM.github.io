@@ -75,6 +75,10 @@ const translations = {
         "projects.p4Title": "Constructor de Plantillas de Email",
         "projects.p4Summary": "Herramienta para diseñar boletines y comunicaciones por correo electrónico con previsualización en tiempo real y exportación de código limpio y compatible.",
 
+        "projects.p5Cat": "Inteligencia Artificial & Gastronomía",
+        "projects.p5Title": "SmartCook: Asistente Culinario con IA",
+        "projects.p5Summary": "Planificador culinario inteligente que optimiza los ingredientes de la despensa para reducir el desperdicio. Integra personalidades de chef ('Abuela Teresa', 'Chef Gordon', 'Dr. Molecular') y modo cocina guiado.",
+
         "about.label": "Enfoque",
         "about.title": "Perfil técnico híbrido",
         "about.p1": "Soy <strong>Desarrollador Web</strong> y <strong>Técnico en Sistemas Microinformáticos y Redes</strong> afincado en Palma de Mallorca.",
@@ -170,6 +174,10 @@ const translations = {
         "projects.p4Cat": "Marketing",
         "projects.p4Title": "Email Template Builder",
         "projects.p4Summary": "Drag-and-drop tool to compose responsive email templates with live preview and clean HTML code export.",
+
+        "projects.p5Cat": "AI & Culinary Tech",
+        "projects.p5Title": "SmartCook: AI Kitchen & Recipe Assistant",
+        "projects.p5Summary": "Smart culinary assistant that maximizes existing pantry ingredients to prevent food waste. Features AI chef personas ('Chef Gordon', 'Grandma Teresa', 'Dr. Molecular') and interactive cooking mode.",
 
         "about.label": "Approach",
         "about.title": "Hybrid technical profile",

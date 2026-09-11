@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GestorPro — Dashboard y Automatización para Asesorías y Pymes</title>
+    <meta name="description" content="Demostración interactiva de software a medida para despachos, gestorías y pymes. Centralización de expedientes, cálculo fiscal y renombrado masivo.">
+
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <header class="topbar">
+        <div class="topbar-container">
+            <div class="topbar-left">
+                <div class="app-logo">
+                    <i data-lucide="layers" class="app-logo-icon"></i>
+                    <div>
+                        <span class="app-title">GestorPro</span>
+                        <span class="app-sub">Solución para Asesorías</span>
+                    </div>
+                </div>
+                <div class="period-badge">
+                    <span class="period-dot"></span>
+                    <span>1T 2026 • Campaña Fiscal Activa</span>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20vi%20la%20demo%20de%20GestorPro%20y%20quiero%20un%20dashboard%20similar%20para%20mi%20empresa" target="_blank" class="btn btn-primary btn-sm">
+                    <i data-lucide="message-circle" class="btn-icon"></i>
+                    <span>Consultar Software Similar</span>
+                </a>
+                <a href="../#proyectos" class="btn btn-outline btn-sm">
+                    Volver al Portfolio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <div class="dashboard-container">
+            <!-- Header de bienvenida y contexto -->
+            <div class="dash-hero">
+                <div>
+                    <h1 class="dash-title">Panel de Control & Automatización Operativa</h1>
+                    <p class="dash-subtitle">Herramienta inspirada en procesos reales de asesoría fiscal y contable. Diseñada para eliminar tareas manuales repetitivas.</p>
+                </div>
+                <div class="dash-hero-actions">
+                    <button id="btnReloadData" class="btn btn-outline btn-sm">
+                        <i data-lucide="rotate-cw" class="btn-icon"></i>
+                        <span>Reiniciar datos</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- KPIs -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-top">
+                        <span class="kpi-label">Facturación Gestionada (1T)</span>
+                        <i data-lucide="trending-up" class="kpi-icon"></i>
+                    </div>
+                    <div class="kpi-value" id="kpiFacturacion">48.350 €</div>
+                    <div class="kpi-footnote">+14.2% respecto al trimestre anterior</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-top">
+                        <span class="kpi-label">IVA Repercutido Neto (Mod. 303)</span>
+                        <i data-lucide="receipt" class="kpi-icon"></i>
+                    </div>
+                    <div class="kpi-value" id="kpiIva">6.240 €</div>
+                    <div class="kpi-footnote">84 facturas emitidas computadas</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-top">
+                        <span class="kpi-label">Retenciones IRPF (Mod. 111/115)</span>
+                        <i data-lucide="scale" class="kpi-icon"></i>
+                    </div>
+                    <div class="kpi-value" id="kpiIrpf">2.410 €</div>
+                    <div class="kpi-footnote">12 nóminas y 6 alquileres vinculados</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-top">
+                        <span class="kpi-label">Expedientes al Día</span>
+                        <i data-lucide="check-circle" class="kpi-icon"></i>
+                    </div>
+                    <div class="kpi-value" id="kpiExpedientes">95.4%</div>
+                    <div class="kpi-footnote">Solo 2 clientes con documentación pendiente</div>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="dash-tabs">
+                <button class="tab-btn active" data-tab="clientes">
+                    <i data-lucide="users" class="tab-icon"></i>
+                    <span>Expedientes y Clientes</span>
+                </button>
+                <button class="tab-btn" data-tab="renombrado">
+                    <i data-lucide="file-cog" class="tab-icon"></i>
+                    <span>Herramienta Renombrado Masivo</span>
+                    <span class="tab-badge">Exclusivo</span>
+                </button>
+                <button class="tab-btn" data-tab="calculadora">
+                    <i data-lucide="calculator" class="tab-icon"></i>
+                    <span>Simulador Fiscal Rápido</span>
+                </button>
+            </div>
+
+            <!-- Tab 1: Clientes y Facturas -->
+            <section id="tab-clientes" class="tab-content active">
+                <div class="table-card">
+                    <div class="table-header">
+                        <div class="table-search-wrap">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" id="clientSearch" class="table-search" placeholder="Buscar por cliente, NIF o actividad...">
+                        </div>
+                        <div class="table-filters">
+                            <select id="statusFilter" class="filter-select">
+                                <option value="all">Todos los estados</option>
+                                <option value="al-dia">Al día</option>
+                                <option value="revision">En revisión</option>
+                                <option value="pendiente">Falta documentación</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Cliente / Razón Social</th>
+                                    <th>NIF / CIF</th>
+                                    <th>Régimen</th>
+                                    <th>Trimestre</th>
+                                    <th>Total Base</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="clientsTableBody">
+                                <!-- Filas inyectadas dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 2: Renombrado Masivo Documental -->
+            <section id="tab-renombrado" class="tab-content">
+                <div class="tool-card">
+                    <div class="tool-intro">
+                        <div class="tool-icon-box">
+                            <i data-lucide="sparkles"></i>
+                        </div>
+                        <div>
+                            <h2 class="tool-title">Automatizador de Nomenclatura y Archivo</h2>
+                            <p class="tool-desc">
+                                Resuelve el mayor dolor de cabeza de un despacho: recibir archivos con nombres caóticos (<code>scan_012.pdf</code>, <code>factura gas.jpg</code>). Esta herramienta normaliza automáticamente los archivos para el archivo digital del asesor.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="sorter-grid">
+                        <div class="sorter-panel">
+                            <div class="panel-head">
+                                <span class="panel-title">1. Archivos Recibidos en Bruto</span>
+                                <button id="btnLoadMockBatch" class="btn btn-outline btn-xs">Cargar lote de prueba</button>
+                            </div>
+                            <div id="rawFileList" class="file-list-box">
+                                <!-- Archivos en bruto -->
+                            </div>
+                        </div>
+
+                        <div class="sorter-controls">
+                            <div class="pattern-config">
+                                <label class="control-label">Patrón de Estandarización</label>
+                                <div class="pattern-preview">
+                                    <code>[AÑO]_[TRIM]_[NIF]_[CATEGORIA]_[NUM].pdf</code>
+                                </div>
+                            </div>
+
+                            <button id="btnProcessBatch" class="btn btn-primary btn-block">
+                                <i data-lucide="play" class="btn-icon"></i>
+                                <span>Ejecutar Renombrado Inteligente</span>
+                            </button>
+                            <div id="processStatus" class="process-status hidden">
+                                <span class="spinner"></span>
+                                <span>Procesando metadatos y aplicando regla...</span>
+                            </div>
+                        </div>
+
+                        <div class="sorter-panel">
+                            <div class="panel-head">
+                                <span class="panel-title">2. Expediente Organizado y Estandarizado</span>
+                                <span class="panel-tag" id="processedCount">0 procesados</span>
+                            </div>
+                            <div id="renamedFileList" class="file-list-box empty-state">
+                                <p>Haz clic en "Ejecutar Renombrado Inteligente" para ver el resultado organizado.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 3: Calculadora Fiscal -->
+            <section id="tab-calculadora" class="tab-content">
+                <div class="calc-card">
+                    <div class="calc-grid">
+                        <div class="calc-inputs">
+                            <h2 class="tool-title">Simulador de Liquidación Trimestral</h2>
+                            <p class="tool-desc">Introduce las bases estimadas para proyectar el resultado fiscal previo a la presentación oficial.</p>
+
+                            <div class="calc-field">
+                                <label class="control-label">Base Imponible Ingresos (Ventas) €</label>
+                                <input type="number" id="calcIngresos" class="calc-input" value="18500" step="100">
+                            </div>
+
+                            <div class="calc-field">
+                                <label class="control-label">Base Imponible Gastos Deducibles €</label>
+                                <input type="number" id="calcGastos" class="calc-input" value="6200" step="100">
+                            </div>
+
+                            <div class="calc-field">
+                                <label class="control-label">Tipo de Retención IRPF a Clientes (%)</label>
+                                <select id="calcTipoIrpf" class="calc-input">
+                                    <option value="15">15% (Profesional Estándar)</option>
+                                    <option value="7">7% (Nuevos Autónomos)</option>
+                                    <option value="0">0% (Sociedad Limitada / Retail)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="calc-results">
+                            <h3 class="results-title">Proyección de Modelos AEAT</h3>
+
+                            <div class="res-item">
+                                <div class="res-left">
+                                    <span class="res-name">IVA Repercutido (21% de ventas)</span>
+                                    <span class="res-sub">Cobrado a clientes</span>
+                                </div>
+                                <span class="res-num" id="resIvaRep">+3.885,00 €</span>
+                            </div>
+
+                            <div class="res-item">
+                                <div class="res-left">
+                                    <span class="res-name">IVA Soportado Deducible (21% de gastos)</span>
+                                    <span class="res-sub">Pagado a proveedores</span>
+                                </div>
+                                <span class="res-num negative" id="resIvaSop">-1.302,00 €</span>
+                            </div>
+
+                            <div class="res-item highlight">
+                                <div class="res-left">
+                                    <span class="res-name">Resultado Modelo 303 (IVA a Pagar)</span>
+                                    <span class="res-sub">A liquidar trimestralmente</span>
+                                </div>
+                                <span class="res-num bold" id="resMod303">2.583,00 €</span>
+                            </div>
+
+                            <div class="res-item">
+                                <div class="res-left">
+                                    <span class="res-name">Retención IRPF Sufrida acumulada</span>
+                                    <span class="res-sub">Adelanto a Hacienda en facturas</span>
+                                </div>
+                                <span class="res-num" id="resIrpfSufrido">-2.775,00 €</span>
+                            </div>
+
+                            <div class="res-total">
+                                <div>
+                                    <div class="res-total-label">Rendimiento Neto Estimado</div>
+                                    <div class="res-total-sub">Ingresos netos tras costes y deducción</div>
+                                </div>
+                                <div class="res-total-val" id="resRendimiento">12.300,00 €</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="assets/main.js"></script>
+</body>
+</html>
