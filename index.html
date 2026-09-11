@@ -3,59 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joaquín Oses Monti — Desarrollador Web Freelance</title>
-    <meta name="description" content="Desarrollador web freelance en Palma de Mallorca. Sitios web rápidos, landing pages y aplicaciones a medida para empresas y autónomos.">
+    <title>Joaquín Oses Monti | Desarrollador Web Full-Stack & Técnico en Sistemas</title>
+    <meta name="description" content="Portfolio profesional de Joaquín Oses Monti. Desarrollador Web Full-Stack (React, Node.js, Laravel, PostgreSQL, n8n) y Técnico en Sistemas Microinformáticos y Redes en Palma de Mallorca.">
     
-    <!-- Open Graph & Social Sharing -->
-    <meta property="og:title" content="Joaquín Oses Monti — Desarrollador Web Freelance">
-    <meta property="og:description" content="Desarrollo web y soluciones digitales a medida para empresas y autónomos. Palma de Mallorca.">
-    <meta property="og:url" content="https://joaquin-om.github.io/">
+    <!-- OpenGraph / Previsualización Social -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://joaquin-om.github.io/">
+    <meta property="og:title" content="Joaquín Oses Monti | Desarrollador Web Full-Stack & Técnico en Sistemas">
+    <meta property="og:description" content="Conóceme, mi experiencia laboral en García Garriga y AntFor, mis estudios de SMR y DAW, stack técnico y proyectos de software en GitHub.">
     <meta property="og:image" content="https://joaquin-om.github.io/assets/og-preview.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Joaquín Oses Monti — Desarrollador Web Freelance">
-    <meta name="twitter:description" content="Desarrollo web y soluciones digitales a medida en Mallorca.">
-    <meta name="twitter:image" content="https://joaquin-om.github.io/assets/og-preview.png">
-
-    <!-- Fonts: Inter (Minimalist Standard) -->
+    
+    <!-- Tipografía Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons -->
+    <!-- Estilos Monocromáticos -->
+    <link rel="stylesheet" href="assets/style.css">
+    
+    <!-- Iconos Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <link rel="stylesheet" href="assets/style.css?v=minimal_v1">
 </head>
 <body>
-    <!-- Fondo interactivo en escala de grises -->
+
+    <!-- Canvas Interactivo Monocromático -->
     <canvas id="interactive-canvas"></canvas>
 
-    <!-- Navegación Minimalista -->
+    <!-- Header / Navegación -->
     <header class="header">
         <div class="container nav-container">
-            <a href="#" class="logo">
-                <span class="logo-name">Joaquín Oses</span>
+            <a href="./" class="logo" style="display: flex; align-items: center; gap: 8px;">
+                <span class="logo-name">JOAQUÍN OSES</span>
+                <span style="font-size: 0.72rem; font-weight: 600; padding: 2px 7px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 4px; color: var(--text-secondary);" data-i18n="nav.portfolioBadge">Portfolio</span>
             </a>
-            
+
             <nav class="nav-menu" id="navMenu">
-                <a href="#servicios" class="nav-link" data-i18n="nav.services">Servicios</a>
+                <a href="#sobre-mi" class="nav-link" data-i18n="nav.about">Conóceme</a>
+                <a href="#experiencia" class="nav-link" data-i18n="nav.exp">Experiencia</a>
+                <a href="#estudios" class="nav-link" data-i18n="nav.edu">Estudios</a>
+                <a href="#stack" class="nav-link" data-i18n="nav.stack">Stack Técnico</a>
                 <a href="#proyectos" class="nav-link" data-i18n="nav.projects">Proyectos</a>
-                <a href="#sobre-mi" class="nav-link" data-i18n="nav.about">Sobre mí</a>
                 <a href="#contacto" class="nav-link" data-i18n="nav.contact">Contacto</a>
+                <a href="./servicios/" class="nav-cta-btn">
+                    <i data-lucide="briefcase" style="width: 14px; height: 14px;"></i>
+                    <span data-i18n="nav.servicesBtn">Servicios & Precios</span>
+                </a>
             </nav>
 
             <div class="nav-actions">
                 <button id="langToggle" class="lang-btn" aria-label="Cambiar idioma">
                     <span id="currentLang">EN</span>
                 </button>
-                <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20quisiera%20consultar%20un%20proyecto" target="_blank" class="btn btn-sm btn-primary">
-                    <i data-lucide="message-circle" class="btn-icon"></i>
-                    <span>WhatsApp</span>
-                </a>
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú">
+                <button id="mobileToggle" class="mobile-toggle" aria-label="Abrir menú">
                     <i data-lucide="menu"></i>
                 </button>
             </div>
@@ -63,473 +62,67 @@
     </header>
 
     <main>
-        <!-- Hero Minimalista (Espacioso y Limpio) -->
+        <!-- Hero Personal -->
         <section class="hero-section">
             <div class="container hero-container">
-                <div class="status-pill">
+                <div class="status-badge">
                     <span class="status-dot"></span>
                     <span data-i18n="hero.status">Disponible para proyectos &bull; Palma de Mallorca & Remoto</span>
                 </div>
                 
-                <h1 class="hero-title" data-i18n="hero.title">
-                    Maquetación y desarrollo web profesional a medida.
+                <h1 class="hero-title" data-i18n="personal.heroTitle">
+                    Joaquín Oses Monti
                 </h1>
+
+                <h2 style="font-size: 1.15rem; font-weight: 500; color: #EDE9E3; margin-top: -10px; margin-bottom: 20px; line-height: 1.4;" data-i18n="personal.heroRole">
+                    Desarrollador Web Full-Stack & Técnico en Sistemas Microinformáticos y Redes
+                </h2>
                 
-                <p class="hero-description" data-i18n="hero.description">
-                    Maqueto y creo páginas web rápidas, funcionales y adaptadas a móviles: landing pages de alta conversión, webs corporativas y tiendas online. Trabajo tanto con código a medida (React) como con plataformas líderes: WordPress, Shopify, Framer, Odoo y automatizaciones con n8n.
+                <p class="hero-description" data-i18n="personal.heroDesc">
+                    Combino una sólida base técnica en soporte de sistemas, hardware y redes con el desarrollo web moderno: interfaces reactivas con React, aplicaciones backend en Node.js y Laravel, bases de datos relacionales y NoSQL, y automatizaciones de flujos con n8n.
                 </p>
 
                 <div class="hero-actions">
-                    <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20quiero%20solicitar%20un%20presupuesto%20de%20maquetaci%C3%B3n%20web" target="_blank" class="btn btn-lg btn-primary">
-                        <span data-i18n="hero.ctaPrimary">Pedir presupuesto</span>
+                    <a href="#contacto" class="btn btn-lg btn-primary">
+                        <span data-i18n="personal.ctaContact">Contactar conmigo</span>
                         <i data-lucide="arrow-right" class="btn-icon"></i>
                     </a>
-                    <a href="#proyectos" class="btn btn-lg btn-outline" data-i18n="hero.ctaSecondary">
-                        Ver proyectos
+                    <a href="./servicios/" class="btn btn-lg btn-outline" data-i18n="personal.ctaServices">
+                        Ver Servicios Comerciales & Demos →
                     </a>
                 </div>
 
-                <!-- Chips de Plataformas en el Hero -->
+                <!-- Chips de Tecnologías Principales -->
                 <div class="hero-tech-strip" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 28px;">
-                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 20px; font-size: 0.74rem; color: var(--text-muted);">
-                        <i data-lucide="layers" style="width: 12px; height: 12px; color: var(--text-secondary);"></i>
-                        <span data-i18n="hero.stackLabel">Plataformas:</span>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
+                        <i data-lucide="code-2" style="width: 13px; height: 13px; color: #FBBF24;"></i> React & JS
                     </span>
                     <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
-                        <i data-lucide="layout" style="width: 13px; height: 13px; color: #60A5FA;"></i> Framer
+                        <i data-lucide="server" style="width: 13px; height: 13px; color: #EC4899;"></i> Node.js & Laravel
                     </span>
                     <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
-                        <i data-lucide="globe" style="width: 13px; height: 13px; color: #38BDF8;"></i> WordPress
+                        <i data-lucide="hard-drive" style="width: 13px; height: 13px; color: #10B981;"></i> PostgreSQL & SQL
                     </span>
                     <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
-                        <i data-lucide="shopping-bag" style="width: 13px; height: 13px; color: #34D399;"></i> Shopify
-                    </span>
-                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
-                        <i data-lucide="database" style="width: 13px; height: 13px; color: #A78BFA;"></i> Odoo
+                        <i data-lucide="database" style="width: 13px; height: 13px; color: #38BDF8;"></i> restdb.io
                     </span>
                     <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
                         <i data-lucide="zap" style="width: 13px; height: 13px; color: #F97316;"></i> n8n
                     </span>
                     <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
-                        <i data-lucide="code-2" style="width: 13px; height: 13px; color: #FBBF24;"></i> React & JS
+                        <i data-lucide="layout" style="width: 13px; height: 13px; color: #60A5FA;"></i> Framer
+                    </span>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
+                        <i data-lucide="globe" style="width: 13px; height: 13px; color: #34D399;"></i> WordPress & Shopify
+                    </span>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
+                        <i data-lucide="network" style="width: 13px; height: 13px; color: #A78BFA;"></i> Sistemas & Redes
                     </span>
                 </div>
             </div>
         </section>
 
-        <!-- Servicios (3 Paquetes Claros y Sobrios) -->
-        <section class="section" id="servicios">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-label" data-i18n="services.label">Servicios</span>
-                    <h2 class="section-title" data-i18n="services.title">Propuestas claras, precios fijos</h2>
-                    <p class="section-desc" data-i18n="services.desc">Sin costes ocultos. Soluciones enfocadas en generar resultados comerciales.</p>
-                </div>
-
-                <div class="services-grid">
-                    <!-- Servicio 1: Landing Page -->
-                    <div class="service-card">
-                        <div class="card-top">
-                            <span class="card-tag" data-i18n="services.s1Tag">Web Rápida</span>
-                            <h3 class="card-title" data-i18n="services.s1Title">Landing Page</h3>
-                            <p class="card-desc" data-i18n="services.s1Desc">Ideal para promocionar un servicio específico, campaña publicitaria o captar contactos. Maquetada en Framer, WordPress o código limpio.</p>
-                            <div class="card-price">
-                                <span class="price-val">390 €</span>
-                                <span class="price-period" data-i18n="services.oneTime">pago único</span>
-                            </div>
-                        </div>
-                        <ul class="card-list">
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s1F1">Diseño y maquetación 100% móvil</span></li>
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s1F2">Botón directo a WhatsApp</span></li>
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s1F3">Carga ultra rápida (< 1.5s)</span></li>
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s1F4">Entrega en 3 a 5 días laborables</span></li>
-                        </ul>
-                        <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20me%20interesa%20el%20Pack%20Landing%20Page%20(390€)" target="_blank" class="btn btn-outline btn-block" data-i18n="services.btnSelect">Solicitar este pack</a>
-                    </div>
-
-                    <!-- Servicio 2: Web Corporativa -->
-                    <div class="service-card service-featured">
-                        <div class="featured-indicator" data-i18n="services.recommended">Recomendado</div>
-                        <div class="card-top">
-                            <span class="card-tag" data-i18n="services.s2Tag">Empresarial</span>
-                            <h3 class="card-title" data-i18n="services.s2Title">Web Corporativa</h3>
-                            <p class="card-desc" data-i18n="services.s2Desc">Presencia profesional completa para que tu negocio transmita máxima credibilidad en Google. En WordPress, Framer o a medida.</p>
-                            <div class="card-price">
-                                <span class="price-val">790 €</span>
-                                <span class="price-period" data-i18n="services.oneTime">pago único</span>
-                            </div>
-                        </div>
-                        <ul class="card-list">
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s2F1">Hasta 5 páginas estructuradas y maquetadas</span></li>
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s2F2">Catálogo de servicios o tarifas</span></li>
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s2F3">SEO local y ficha de Google Maps</span></li>
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s2F4">Formularios y botón WhatsApp</span></li>
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s2F5">Dominio, hosting y SSL configurados</span></li>
-                        </ul>
-                        <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20me%20interesa%20el%20Pack%20Web%20Corporativa%20(790€)" target="_blank" class="btn btn-primary btn-block" data-i18n="services.btnSelect">Solicitar este pack</a>
-                    </div>
-
-                    <!-- Servicio 3: Tienda Online, Odoo o n8n -->
-                    <div class="service-card">
-                        <div class="card-top">
-                            <span class="card-tag" data-i18n="services.s3Tag">E-Commerce & Automatización</span>
-                            <h3 class="card-title" data-i18n="services.s3Title">Tienda Online, Odoo o n8n</h3>
-                            <p class="card-desc" data-i18n="services.s3Desc">Para negocios que necesitan e-commerce en Shopify/WooCommerce, portales integrados con Odoo ERP o automatizaciones de procesos con n8n.</p>
-                            <div class="card-price">
-                                <span class="price-from" data-i18n="services.from">Desde</span>
-                                <span class="price-val">1.350 €</span>
-                            </div>
-                        </div>
-                        <ul class="card-list">
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s3F1">Tiendas Shopify o WooCommerce a medida</span></li>
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s3F2">Integración con Odoo ERP y flujos con n8n</span></li>
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s3F3">Desarrollo modular en React / JavaScript</span></li>
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s3F4">Panel privado y garantía técnica</span></li>
-                        </ul>
-                        <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20tengo%20un%20proyecto%20de%20tienda%2C%20plataforma%20o%20automatizaci%C3%B3n%20y%20quiero%20valorarlo" target="_blank" class="btn btn-outline btn-block" data-i18n="services.btnQuote">Pedir valoración</a>
-                    </div>
-                </div>
-
-                <div class="maintenance-note">
-                    <p data-i18n="services.maint">
-                        También ofrezco planes de modernización web y mantenimiento técnico mensual desde <strong>49 €/mes</strong>.
-                    </p>
-                </div>
-
-                <!-- Calculadora Interactiva de Presupuestos -->
-                <div class="calculator-container" id="calculadora">
-                    <div class="calculator-card">
-                        <div class="calc-header">
-                            <span class="calc-badge" data-i18n="calc.badge">HERRAMIENTA INTERACTIVA</span>
-                            <h3 class="calc-title" data-i18n="calc.title">Calcula tu presupuesto estimado al instante</h3>
-                            <p class="calc-desc" data-i18n="calc.desc">Transparencia total. Selecciona lo que necesita tu negocio y envíame la solicitud directa a WhatsApp con un solo clic.</p>
-                        </div>
-
-                        <div class="calc-grid">
-                            <!-- Columna Izquierda: Opciones -->
-                            <div class="calc-options">
-                                <!-- Paso 1: Tipo de Proyecto Base -->
-                                <div class="calc-group">
-                                    <label class="calc-group-label" data-i18n="calc.step1">1. Selecciona el tipo de solución</label>
-                                    <div class="calc-plan-selector">
-                                        <label class="plan-option active" data-plan="landing" data-price="390" data-time="3 a 5 días laborables" data-time-en="3 to 5 business days">
-                                            <input type="radio" name="planType" value="landing" checked>
-                                            <div class="plan-option-content">
-                                                <div class="plan-name" data-i18n="services.s1Title">Landing Page</div>
-                                                <div class="plan-sub" data-i18n="calc.plan1Sub">1 página enfocada a conversión (Framer, WP o código)</div>
-                                            </div>
-                                            <div class="plan-price">390 €</div>
-                                        </label>
-
-                                        <label class="plan-option" data-plan="corporate" data-price="790" data-time="7 a 10 días laborables" data-time-en="7 to 10 business days">
-                                            <input type="radio" name="planType" value="corporate">
-                                            <div class="plan-option-content">
-                                                <div class="plan-name" data-i18n="services.s2Title">Web Corporativa</div>
-                                                <div class="plan-sub" data-i18n="calc.plan2Sub">Hasta 5 páginas en WordPress, Framer o a medida</div>
-                                            </div>
-                                            <div class="plan-price">790 €</div>
-                                        </label>
-
-                                        <label class="plan-option" data-plan="custom" data-price="1350" data-time="12 a 18 días laborables" data-time-en="12 to 18 business days">
-                                            <input type="radio" name="planType" value="custom">
-                                            <div class="plan-option-content">
-                                                <div class="plan-name" data-i18n="services.s3Title">Tienda Online, App o Odoo</div>
-                                                <div class="plan-sub" data-i18n="calc.plan3Sub">Shopify e-commerce, portal Odoo ERP o web app</div>
-                                            </div>
-                                            <div class="plan-price">1.350 €</div>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- Paso 2: Funcionalidades Opcionales -->
-                                <div class="calc-group">
-                                    <label class="calc-group-label" data-i18n="calc.step2">2. Añade funcionalidades opcionales</label>
-                                    <div class="calc-addons-list">
-                                        <label class="addon-item addon-item-checked">
-                                            <input type="checkbox" id="addonWhatsapp" checked disabled data-name-es="Botón flotante WhatsApp" data-name-en="WhatsApp button" data-price="0">
-                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
-                                            <div class="addon-info">
-                                                <span class="addon-name" data-i18n="calc.addonWa">Botón flotante directo a WhatsApp</span>
-                                                <span class="addon-sub" data-i18n="calc.addonWaSub">Para recibir consultas inmediatas de clientes</span>
-                                            </div>
-                                            <span class="addon-badge-free" data-i18n="calc.free">Incluido</span>
-                                        </label>
-
-                                        <label class="addon-item">
-                                            <input type="checkbox" id="addonSeo" value="90" data-name-es="SEO Local & Ficha Google Maps" data-name-en="Local SEO & Google Maps" data-price="90">
-                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
-                                            <div class="addon-info">
-                                                <span class="addon-name" data-i18n="calc.addonSeo">SEO Local & Ficha Google Maps</span>
-                                                <span class="addon-sub" data-i18n="calc.addonSeoSub">Para aparecer cuando busquen tu negocio en Mallorca</span>
-                                            </div>
-                                            <span class="addon-price">+90 €</span>
-                                        </label>
-
-                                        <label class="addon-item">
-                                            <input type="checkbox" id="addonCatalog" value="120" data-name-es="Catálogo digital o carta" data-name-en="Digital catalog or menu" data-price="120">
-                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
-                                            <div class="addon-info">
-                                                <span class="addon-name" data-i18n="calc.addonCatalog">Catálogo digital de productos / Carta de restaurante</span>
-                                                <span class="addon-sub" data-i18n="calc.addonCatalogSub">Filtrable por categorías y fotos en alta resolución</span>
-                                            </div>
-                                            <span class="addon-price">+120 €</span>
-                                        </label>
-
-                                        <label class="addon-item">
-                                            <input type="checkbox" id="addonLang" value="150" data-name-es="Versión Bilingüe (ES + EN/DE)" data-name-en="Bilingual Version (ES + EN/DE)" data-price="150">
-                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
-                                            <div class="addon-info">
-                                                <span class="addon-name" data-i18n="calc.addonLang">Versión Bilingüe (Español + Inglés o Alemán)</span>
-                                                <span class="addon-sub" data-i18n="calc.addonLangSub">Imprescindible para captar clientes extranjeros en Baleares</span>
-                                            </div>
-                                            <span class="addon-price">+150 €</span>
-                                        </label>
-
-                                        <label class="addon-item">
-                                            <input type="checkbox" id="addonBooking" value="180" data-name-es="Sistema de Reservas / Citas" data-name-en="Online Booking / Appointment System" data-price="180">
-                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
-                                            <div class="addon-info">
-                                                <span class="addon-name" data-i18n="calc.addonBooking">Sistema de Reservas / Citas con confirmación</span>
-                                                <span class="addon-sub" data-i18n="calc.addonBookingSub">Con calendario interactivo y aviso directo por WhatsApp</span>
-                                            </div>
-                                            <span class="addon-price">+180 €</span>
-                                        </label>
-
-                                        <label class="addon-item">
-                                            <input type="checkbox" id="addonN8n" value="190" data-name-es="Automatizaciones con n8n" data-name-en="Workflow Automations with n8n" data-price="190">
-                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
-                                            <div class="addon-info">
-                                                <span class="addon-name" data-i18n="calc.addonN8n">Automatizaciones de procesos con n8n</span>
-                                                <span class="addon-sub" data-i18n="calc.addonN8nSub">Conexión de formularios a WhatsApp, CRM, email y bases de datos</span>
-                                            </div>
-                                            <span class="addon-price">+190 €</span>
-                                        </label>
-
-                                        <label class="addon-item">
-                                            <input type="checkbox" id="addonMaint" value="49" data-name-es="Mantenimiento mensual y copias" data-name-en="Monthly maintenance & backups" data-price="49" data-recurrent="true">
-                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
-                                            <div class="addon-info">
-                                                <span class="addon-name" data-i18n="calc.addonMaint">Mantenimiento mensual, seguridad y copias</span>
-                                                <span class="addon-sub" data-i18n="calc.addonMaintSub">Actualizaciones técnicas y soporte prioritario</span>
-                                            </div>
-                                            <span class="addon-price">+49 €/mes</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Columna Derecha: Resumen de Inversión -->
-                            <div class="calc-summary">
-                                <div class="summary-box">
-                                    <h4 class="summary-title" data-i18n="calc.summaryTitle">Resumen de presupuesto</h4>
-                                    
-                                    <div class="summary-breakdown" id="calcBreakdown">
-                                        <!-- Se genera dinámicamente con JS -->
-                                    </div>
-
-                                    <div class="summary-time">
-                                        <i data-lucide="clock" class="summary-time-icon"></i>
-                                        <div>
-                                            <div class="summary-time-label" data-i18n="calc.delivery">Plazo de entrega estimado:</div>
-                                            <strong class="summary-time-val" id="calcDeliveryTime">3 a 5 días laborables</strong>
-                                        </div>
-                                    </div>
-
-                                    <div class="summary-total-wrap">
-                                        <div class="summary-total-label" data-i18n="calc.totalLabel">Inversión estimada:</div>
-                                        <div class="summary-total-amount">
-                                            <span id="calcTotalNumber">390</span> €
-                                            <span id="calcRecurrentNumber" class="summary-recurrent-text" style="display:none;"> + 49 €/mes</span>
-                                        </div>
-                                        <div class="summary-total-note" data-i18n="calc.totalNote">Presupuesto sin compromiso &bull; Sin costes ocultos</div>
-                                    </div>
-
-                                    <a id="calcWhatsappBtn" href="#" target="_blank" class="btn btn-primary btn-block">
-                                        <i data-lucide="message-circle" class="btn-icon"></i>
-                                        <span data-i18n="calc.btnSend">Pedir este presupuesto por WhatsApp</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Proyectos Seleccionados (Elegante & Concreto) -->
-        <section class="section" id="proyectos">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-label" data-i18n="projects.label">Proyectos</span>
-                    <h2 class="section-title" data-i18n="projects.title">Trabajos y demostraciones</h2>
-                    <p class="section-desc" data-i18n="projects.desc">Herramientas orientadas a solucionar necesidades reales de oficina y negocios.</p>
-                </div>
-
-                <div class="projects-grid">
-                    <!-- Proyecto Destacado: Mallorca Luxury & Gastronomía -->
-                    <article class="project-item">
-                        <div class="project-header">
-                            <span class="project-category" data-i18n="projects.luxuryCat">Hostelería, Inmobiliaria & Gastronomía</span>
-                            <span class="project-tech">Demos Dedicadas &bull; Reservas Directas WhatsApp</span>
-                        </div>
-                        <h3 class="project-heading" data-i18n="projects.luxuryTitle">Mallorca Hospitality: Restaurante, Hotel & Inmobiliaria</h3>
-                        <p class="project-summary" data-i18n="projects.luxurySummary">
-                            Soluciones web de alta gama para el sector premium de Baleares. Demos independientes con motor de reservas directas sin comisiones de intermediarios:
-                        </p>
-                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px;">
-                            <a href="./restaurante/" target="_blank" style="text-decoration: none; font-size: 0.8rem; padding: 6px 12px; border-radius: 6px; background: rgba(229,192,123,0.12); color: #E5C07B; border: 1px solid rgba(229,192,123,0.3); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
-                                <i data-lucide="utensils" style="width: 14px; height: 14px;"></i>
-                                <span>1. Restaurante & Carta</span>
-                            </a>
-                            <a href="./hotel/" target="_blank" style="text-decoration: none; font-size: 0.8rem; padding: 6px 12px; border-radius: 6px; background: rgba(194,182,157,0.12); color: #C2B69D; border: 1px solid rgba(194,182,157,0.3); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
-                                <i data-lucide="bed-double" style="width: 14px; height: 14px;"></i>
-                                <span>2. Hotel Boutique & Finca</span>
-                            </a>
-                            <a href="./inmobiliaria/" target="_blank" style="text-decoration: none; font-size: 0.8rem; padding: 6px 12px; border-radius: 6px; background: rgba(212,175,55,0.12); color: #D4AF37; border: 1px solid rgba(212,175,55,0.3); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
-                                <i data-lucide="building-2" style="width: 14px; height: 14px;"></i>
-                                <span>3. Inmobiliaria & Villas</span>
-                            </a>
-                        </div>
-                        <div class="project-actions">
-                            <a href="./mallorca-luxury/" target="_blank" class="action-link link-primary">
-                                <i data-lucide="layers" class="action-icon"></i>
-                                <span data-i18n="projects.liveDemo">Ver portal integral</span>
-                            </a>
-                            <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20quisiera%20consultar%20una%20web%20para%20un%20hotel%2C%20restaurante%20o%20inmobiliaria" target="_blank" class="action-link">
-                                <i data-lucide="message-circle" class="action-icon"></i>
-                                <span>WhatsApp</span>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Proyecto Destacado: PureCook PWA -->
-                    <article class="project-item">
-                        <div class="project-header">
-                            <span class="project-category" data-i18n="projects.purecookCat">Aplicación Web PWA</span>
-                            <span class="project-tech">React &bull; PWA Offline-First &bull; Web Audio API</span>
-                        </div>
-                        <h3 class="project-heading" data-i18n="projects.purecookTitle">PureCook: Gestor de Recetas Ultra-Minimalista</h3>
-                        <p class="project-summary" data-i18n="projects.purecookSummary">
-                            Aplicación Web Progresiva (PWA) real en producción con soporte offline. Diseñada con enfoque ultra-minimalista, tipografía suiza, modo foco con temporizador acústico y rendimiento inmediato.
-                        </p>
-                        <div class="project-actions">
-                            <a href="./purecook/" target="_blank" class="action-link link-primary">
-                                <i data-lucide="play" class="action-icon"></i>
-                                <span data-i18n="projects.liveApp">Abrir app en vivo</span>
-                            </a>
-                            <a href="https://github.com/Joaquin-OM/PureCook" target="_blank" class="action-link">
-                                <i data-lucide="github" class="action-icon"></i>
-                                <span>GitHub</span>
-                            </a>
-                            <a href="https://purecook.ai.studio/" target="_blank" class="action-link" style="opacity: 0.75;" title="Versión experimental original en Google AI Studio">
-                                <i data-lucide="external-link" class="action-icon"></i>
-                                <span>AI Studio</span>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Proyecto 1: Moto-Rent -->
-                    <article class="project-item">
-                        <div class="project-header">
-                            <span class="project-category" data-i18n="projects.p1Cat">Turismo & Movilidad</span>
-                            <span class="project-tech">JavaScript &bull; React UI &bull; Vite</span>
-                        </div>
-                        <h3 class="project-heading" data-i18n="projects.p1Title">Moto-Rent: Plataforma de Alquiler de Vehículos</h3>
-                        <p class="project-summary" data-i18n="projects.p1Summary">
-                            Diseñado para el sector de alquiler turístico en Baleares. Cuenta con catálogo interactivo de flota, cálculo dinámico de precios por días de alquiler y confirmación instantánea por WhatsApp.
-                        </p>
-                        <div class="project-actions">
-                            <a href="./moto-rent/" target="_blank" class="action-link link-primary">
-                                <i data-lucide="play" class="action-icon"></i>
-                                <span data-i18n="projects.liveDemo">Ver demo en vivo</span>
-                            </a>
-                            <a href="https://github.com/Joaquin-OM/Moto-Rent" target="_blank" class="action-link">
-                                <i data-lucide="github" class="action-icon"></i>
-                                <span>GitHub</span>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Proyecto 2: Dashboard Centralizado -->
-                    <article class="project-item">
-                        <div class="project-header">
-                            <span class="project-category" data-i18n="projects.p2Cat">Gestión Empresarial</span>
-                            <span class="project-tech">React &bull; Automatización Excel &bull; Oficina</span>
-                        </div>
-                        <h3 class="project-heading" data-i18n="projects.p2Title">Dashboard para Asesorías y Despachos</h3>
-                        <p class="project-summary" data-i18n="projects.p2Summary">
-                            Desarrollado para resolver cuellos de botella en asesorías reales. Integra renombrado masivo de archivos de clientes, cotejo automatizado con hojas de Excel y registro documental.
-                        </p>
-                        <div class="project-actions">
-                            <a href="./gestor-pro/" target="_blank" class="action-link link-primary">
-                                <i data-lucide="play" class="action-icon"></i>
-                                <span data-i18n="projects.liveDemo">Ver demo en vivo</span>
-                            </a>
-                            <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20quiero%20consultar%20por%20una%20automatizaci%C3%B3n%20tipo%20dashboard" target="_blank" class="action-link">
-                                <i data-lucide="message-circle" class="action-icon"></i>
-                                <span data-i18n="projects.consultDashboard">Consultar similar</span>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Proyecto: SmartCook (Experiencia Técnica) -->
-                    <article class="project-item">
-                        <div class="project-header">
-                            <span class="project-category" data-i18n="projects.p5Cat">I+D & Desarrollo Full-Stack</span>
-                            <span class="project-tech">Python &bull; Gemini AI &bull; Algoritmos</span>
-                        </div>
-                        <h3 class="project-heading" data-i18n="projects.p5Title">SmartCook: Asistente Culinario con IA</h3>
-                        <p class="project-summary" data-i18n="projects.p5Summary">
-                            Proyecto de ingeniería full-stack que combina backend en Python con IA generativa (Gemini API) y teoría de conjuntos para cruzar despensas y recetas. Persistencia estructurada CRUD y simulador experto.
-                        </p>
-                        <div class="project-actions">
-                            <a href="https://github.com/Joaquin-OM/SmartCook" target="_blank" class="action-link link-primary">
-                                <i data-lucide="github" class="action-icon"></i>
-                                <span>Ver código en GitHub</span>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Proyecto 4: CRM Clientes -->
-                    <article class="project-item">
-                        <div class="project-header">
-                            <span class="project-category" data-i18n="projects.p3Cat">Ventas & Clientes</span>
-                            <span class="project-tech">JavaScript &bull; Modular State</span>
-                        </div>
-                        <h3 class="project-heading" data-i18n="projects.p3Title">CRM Ligero para Clientes y Oportunidades</h3>
-                        <p class="project-summary" data-i18n="projects.p3Summary">
-                            Sistema ágil para autónomos y pequeñas empresas que necesitan llevar el control de presupuestos y estados de contacto sin herramientas complejas ni costes recurrentes.
-                        </p>
-                        <div class="project-actions">
-                            <a href="https://github.com/Joaquin-OM/CRM-Clients" target="_blank" class="action-link">
-                                <i data-lucide="github" class="action-icon"></i>
-                                <span>GitHub</span>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Proyecto 5: Email Builder -->
-                    <article class="project-item">
-                        <div class="project-header">
-                            <span class="project-category" data-i18n="projects.p4Cat">Marketing</span>
-                            <span class="project-tech">HTML5 Canvas &bull; DOM &bull; Templates</span>
-                        </div>
-                        <h3 class="project-heading" data-i18n="projects.p4Title">Constructor de Plantillas de Email</h3>
-                        <p class="project-summary" data-i18n="projects.p4Summary">
-                            Herramienta para diseñar boletines y comunicaciones por correo electrónico con previsualización en tiempo real y exportación de código limpio y compatible.
-                        </p>
-                        <div class="project-actions">
-                            <a href="https://github.com/Joaquin-OM/Email-Builder" target="_blank" class="action-link">
-                                <i data-lucide="github" class="action-icon"></i>
-                                <span>GitHub</span>
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sobre Mí / Enfoque -->
+        <!-- Sección 1: Conóceme (Sobre Mí) -->
         <section class="section" id="sobre-mi">
             <div class="container">
                 <div class="about-grid">
@@ -567,141 +160,348 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <!-- Plataformas, CMS & Tecnologías -->
-                        <div class="tech-stack-section" style="margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--border);">
-                            <h3 style="font-size: 1rem; font-weight: 600; color: var(--text-white); margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
-                                <i data-lucide="layers" style="width: 17px; height: 17px; color: var(--text-secondary);"></i>
-                                <span data-i18n="about.stackTitle">Plataformas, CMS y Stack Técnico</span>
-                            </h3>
-                            <div class="stack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
-                                <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 14px;">
-                                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                                        <i data-lucide="layout" style="width: 16px; height: 16px; color: #60A5FA;"></i>
-                                        <strong style="color: #fff; font-size: 0.9rem;">Framer</strong>
-                                    </div>
-                                    <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.framer">
-                                        Maquetación visual interactiva, diseño editorial de alta gama y publicaciones ultra-rápidas para landings y webs modernas.
-                                    </p>
-                                </div>
+        <!-- Sección 2: Experiencia Laboral -->
+        <section class="section" id="experiencia">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-i18n="exp.label">Trayectoria</span>
+                    <h2 class="section-title" data-i18n="exp.title">Experiencia Laboral</h2>
+                    <p class="section-desc" data-i18n="exp.desc">Soporte informático de sistemas de oficina, administración de redes y desarrollo de herramientas internas y webs.</p>
+                </div>
 
-                                <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 14px;">
-                                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                                        <i data-lucide="globe" style="width: 16px; height: 16px; color: #38BDF8;"></i>
-                                        <strong style="color: #fff; font-size: 0.9rem;">WordPress & WooCommerce</strong>
-                                    </div>
-                                    <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.wp">
-                                        Maquetación y personalización de temas a medida, webs corporativas auto-gestionables, blogs y tiendas online seguras.
-                                    </p>
-                                </div>
+                <div class="timeline-column" style="max-width: 820px; margin: 0 auto;">
+                    <div class="timeline-list">
+                        <!-- Experiencia 1: Freelance -->
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <span class="timeline-date">2025 &bull; Actualidad</span>
+                            <h3 class="timeline-role">Desarrollador Web Full-Stack & Automatizaciones</h3>
+                            <span class="timeline-company">Freelance / Proyectos Propios &bull; Palma de Mallorca</span>
+                            <p class="timeline-desc">
+                                Desarrollo de aplicaciones web interactivas (React, Node.js, Laravel), maquetación en Framer y WordPress, integración de bases de datos relacionales (PostgreSQL, MariaDB con phpMyAdmin) y NoSQL cloud (restdb.io). Implementación de flujos de trabajo automatizados con n8n para optimizar captación y reservas.
+                            </p>
+                        </div>
 
-                                <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 14px;">
-                                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                                        <i data-lucide="shopping-bag" style="width: 16px; height: 16px; color: #34D399;"></i>
-                                        <strong style="color: #fff; font-size: 0.9rem;">Shopify</strong>
-                                    </div>
-                                    <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.shopify">
-                                        Creación y maquetación de tiendas online e-commerce orientadas a conversión, checkout fluido y gestión de catálogo.
-                                    </p>
-                                </div>
+                        <!-- Experiencia 2: AntFor -->
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <span class="timeline-date">Sept 2025 &bull; Oct 2025</span>
+                            <h3 class="timeline-role">Técnico Informático</h3>
+                            <span class="timeline-company">AntFor &bull; Palma de Mallorca</span>
+                            <p class="timeline-desc">
+                                Soporte TI técnico presencial y remoto a empresas y clientes particulares. Diagnóstico y reparación de hardware, sustitución de componentes, configuración de redes locales y resolución de incidencias en puestos de trabajo.
+                            </p>
+                        </div>
 
-                                <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 14px;">
-                                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                                        <i data-lucide="database" style="width: 16px; height: 16px; color: #A78BFA;"></i>
-                                        <strong style="color: #fff; font-size: 0.9rem;">Odoo ERP & Web</strong>
-                                    </div>
-                                    <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.odoo">
-                                        Configuración de portal web, comercio electrónico, facturación y CRM integrado en el ecosistema ERP para pymes.
-                                    </p>
-                                </div>
-
-                                <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 14px;">
-                                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                                        <i data-lucide="zap" style="width: 16px; height: 16px; color: #F97316;"></i>
-                                        <strong style="color: #fff; font-size: 0.9rem;">Automatizaciones con n8n</strong>
-                                    </div>
-                                    <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.n8n">
-                                        Conexión de flujos de trabajo, webhooks y APIs. Sincronización automática de formularios web con WhatsApp, Gmail, hojas de cálculo, Notion, CRM, Odoo y Shopify sin costes por tarea.
-                                    </p>
-                                </div>
-
-                                <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 14px;">
-                                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                                        <i data-lucide="code-2" style="width: 16px; height: 16px; color: #FBBF24;"></i>
-                                        <strong style="color: #fff; font-size: 0.9rem;">React & JavaScript / HTML5</strong>
-                                    </div>
-                                    <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.react">
-                                        Desarrollo a medida con máxima velocidad de carga (< 1.5s), sin dependencias pesadas y maquetación 100% adaptable.
-                                    </p>
-                                </div>
-
-                                <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 14px;">
-                                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                                        <i data-lucide="server" style="width: 16px; height: 16px; color: #EC4899;"></i>
-                                        <strong style="color: #fff; font-size: 0.9rem;">Node.js & Laravel (PHP)</strong>
-                                    </div>
-                                    <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.backend">
-                                        Desarrollo de lógica de servidor, endpoints y APIs REST seguras con Node.js y Laravel (PHP). Autenticación, sesiones y lógica de negocio.
-                                    </p>
-                                </div>
-
-                                <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 14px;">
-                                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                                        <i data-lucide="hard-drive" style="width: 16px; height: 16px; color: #10B981;"></i>
-                                        <strong style="color: #fff; font-size: 0.9rem;">Bases de Datos (SQL & Cloud)</strong>
-                                    </div>
-                                    <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.db">
-                                        Modelado relacional y NoSQL con PostgreSQL, MySQL/MariaDB (gestión en phpMyAdmin) y restdb.io para bases de datos ágiles en la nube.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- Herramientas y Ecosistema Complementario -->
-                            <div style="margin-top: 20px; padding: 16px; background: rgba(255,255,255,0.015); border: 1px solid var(--border); border-radius: 8px;">
-                                <div style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
-                                    <i data-lucide="check-circle-2" style="width: 14px; height: 14px; color: var(--green);"></i>
-                                    <span data-i18n="about.ecosystemTitle">Ecosistema, Integraciones & Herramientas Complementarias</span>
-                                </div>
-                                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                                    <span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; font-size: 0.75rem; color: var(--text-primary);">
-                                        💳 Stripe & Redsys / Bizum
-                                    </span>
-                                    <span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; font-size: 0.75rem; color: var(--text-primary);">
-                                        🌐 cPanel & DNS / SSL
-                                    </span>
-                                    <span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; font-size: 0.75rem; color: var(--text-primary);">
-                                        🎨 Figma to Web
-                                    </span>
-                                    <span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; font-size: 0.75rem; color: var(--text-primary);">
-                                        📊 Google Analytics 4 & Meta Pixel
-                                    </span>
-                                    <span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; font-size: 0.75rem; color: var(--text-primary);">
-                                        🗄️ restdb.io & phpMyAdmin
-                                    </span>
-                                    <span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; font-size: 0.75rem; color: var(--text-primary);">
-                                        ⚡ Git & GitHub Pages / Vercel
-                                    </span>
-                                </div>
-                            </div>
+                        <!-- Experiencia 3: García Garriga Asesores -->
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <span class="timeline-date">Mar 2024 &bull; Jun 2025</span>
+                            <h3 class="timeline-role">Técnico Microinformático & Desarrollo Interno</h3>
+                            <span class="timeline-company">García Garriga Asesores &bull; Palma de Mallorca</span>
+                            <p class="timeline-desc">
+                                Soporte técnico directo a la plantilla de la asesoría, administración y mantenimiento de redes de oficina, servidores de ficheros y configuración de puestos de trabajo. <strong>Desarrollo del dashboard interno</strong> para el renombrado masivo de lotes documentales de clientes y cotejo automatizado contra hojas de Excel, reduciendo horas de trabajo manual en las declaraciones tributarias trimestrales.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contacto Directo -->
+        <!-- Sección 3: Estudios & Formación -->
+        <section class="section" id="estudios">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-i18n="edu.label">Formación</span>
+                    <h2 class="section-title" data-i18n="edu.title">Estudios & Titulaciones</h2>
+                    <p class="section-desc" data-i18n="edu.desc">Formación reglada oficial en Sistemas Microinformáticos y Redes (SMR) y Desarrollo de Aplicaciones Web (DAW).</p>
+                </div>
+
+                <div class="timeline-column" style="max-width: 820px; margin: 0 auto;">
+                    <div class="timeline-list">
+                        <!-- Estudio 1: DAW -->
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <span class="timeline-date">2025 &bull; 2027</span>
+                            <h3 class="timeline-role">Grado Superior en Desarrollo de Aplicaciones Web (DAW)</h3>
+                            <span class="timeline-company">Colegio Sant Josep Obrer &bull; Palma de Mallorca</span>
+                            <p class="timeline-desc">
+                                Formación avanzada en desarrollo frontend (React, JavaScript, CSS3), desarrollo backend (PHP, Java, Node.js), modelado y gestión de bases de datos relacionales (SQL), despliegue de aplicaciones web y seguridad en entornos de producción.
+                            </p>
+                        </div>
+
+                        <!-- Estudio 2: SMR -->
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <span class="timeline-date">2023 &bull; 2025</span>
+                            <h3 class="timeline-role">Grado Medio en Sistemas Microinformáticos y Redes (SMR)</h3>
+                            <span class="timeline-company">Colegio Sant Josep Obrer &bull; Palma de Mallorca</span>
+                            <p class="timeline-desc">
+                                Montaje y mantenimiento de equipos, redes locales (switches, routers, cableado estructurado, subredes IP), sistemas operativos monopuesto y en red (Windows Server, Linux), seguridad informática y configuración de servicios de red (DNS, DHCP, correo).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: Stack Técnico & Herramientas -->
+        <section class="section" id="stack">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-i18n="about.stackTitle">Plataformas, CMS y Stack Técnico</span>
+                    <h2 class="section-title">Ecosistema Tecnológico</h2>
+                    <p class="section-desc">Dominio práctico de herramientas de diseño, desarrollo frontend/backend, bases de datos y automatización.</p>
+                </div>
+
+                <div class="stack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
+                    <!-- 1. Framer -->
+                    <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                            <i data-lucide="layout" style="width: 16px; height: 16px; color: #60A5FA;"></i>
+                            <strong style="color: #fff; font-size: 0.9rem;">Framer</strong>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.framer">
+                            Maquetación visual interactiva, diseño editorial de alta gama y publicaciones ultra-rápidas para landings y webs modernas.
+                        </p>
+                    </div>
+
+                    <!-- 2. WordPress -->
+                    <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                            <i data-lucide="globe" style="width: 16px; height: 16px; color: #38BDF8;"></i>
+                            <strong style="color: #fff; font-size: 0.9rem;">WordPress & WooCommerce</strong>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.wp">
+                            Maquetación y personalización de temas a medida, webs corporativas auto-gestionables, blogs y tiendas online seguras.
+                        </p>
+                    </div>
+
+                    <!-- 3. Shopify -->
+                    <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                            <i data-lucide="shopping-bag" style="width: 16px; height: 16px; color: #34D399;"></i>
+                            <strong style="color: #fff; font-size: 0.9rem;">Shopify</strong>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.shopify">
+                            Creación y maquetación de tiendas online e-commerce orientadas a conversión, checkout fluido y gestión de catálogo.
+                        </p>
+                    </div>
+
+                    <!-- 4. Odoo -->
+                    <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                            <i data-lucide="database" style="width: 16px; height: 16px; color: #A78BFA;"></i>
+                            <strong style="color: #fff; font-size: 0.9rem;">Odoo ERP & Web</strong>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.odoo">
+                            Configuración de portal web, comercio electrónico, facturación y CRM integrado en el ecosistema ERP para pymes.
+                        </p>
+                    </div>
+
+                    <!-- 5. n8n -->
+                    <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                            <i data-lucide="zap" style="width: 16px; height: 16px; color: #F97316;"></i>
+                            <strong style="color: #fff; font-size: 0.9rem;">Automatizaciones con n8n</strong>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.n8n">
+                            Conexión de flujos de trabajo, webhooks y APIs. Sincronización automática de formularios web con WhatsApp, Gmail, hojas de cálculo, Notion, CRM, Odoo y Shopify sin costes por tarea.
+                        </p>
+                    </div>
+
+                    <!-- 6. React & JS -->
+                    <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                            <i data-lucide="code-2" style="width: 16px; height: 16px; color: #FBBF24;"></i>
+                            <strong style="color: #fff; font-size: 0.9rem;">React & JavaScript / HTML5</strong>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.react">
+                            Desarrollo a medida con máxima velocidad de carga (< 1.5s), sin dependencias pesadas y maquetación 100% adaptable.
+                        </p>
+                    </div>
+
+                    <!-- 7. Node.js & Laravel -->
+                    <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                            <i data-lucide="server" style="width: 16px; height: 16px; color: #EC4899;"></i>
+                            <strong style="color: #fff; font-size: 0.9rem;">Node.js & Laravel (PHP)</strong>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.backend">
+                            Desarrollo de lógica de servidor, endpoints y APIs REST seguras con Node.js y Laravel (PHP). Autenticación, sesiones y lógica de negocio.
+                        </p>
+                    </div>
+
+                    <!-- 8. Bases de Datos -->
+                    <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                            <i data-lucide="hard-drive" style="width: 16px; height: 16px; color: #10B981;"></i>
+                            <strong style="color: #fff; font-size: 0.9rem;">Bases de Datos (SQL & Cloud)</strong>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.db">
+                            Modelado relacional y NoSQL con PostgreSQL, MySQL/MariaDB (gestión en phpMyAdmin) y restdb.io para bases de datos ágiles en la nube.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Herramientas y Ecosistema Complementario -->
+                <div style="margin-top: 20px; padding: 18px; background: rgba(255,255,255,0.015); border: 1px solid var(--border); border-radius: 8px;">
+                    <div style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                        <i data-lucide="check-circle-2" style="width: 14px; height: 14px; color: var(--green);"></i>
+                        <span data-i18n="about.ecosystemTitle">Ecosistema, Integraciones & Herramientas Complementarias</span>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; font-size: 0.76rem; color: var(--text-primary);">
+                            💳 Stripe & Redsys / Bizum
+                        </span>
+                        <span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; font-size: 0.76rem; color: var(--text-primary);">
+                            🌐 cPanel & DNS / SSL
+                        </span>
+                        <span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; font-size: 0.76rem; color: var(--text-primary);">
+                            🎨 Figma to Web
+                        </span>
+                        <span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; font-size: 0.76rem; color: var(--text-primary);">
+                            📊 Google Analytics 4 & Meta Pixel
+                        </span>
+                        <span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; font-size: 0.76rem; color: var(--text-primary);">
+                            🗄️ restdb.io & phpMyAdmin
+                        </span>
+                        <span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; font-size: 0.76rem; color: var(--text-primary);">
+                            ⚡ Git & GitHub Pages / Vercel
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 5: Proyectos de Código & Demostraciones -->
+        <section class="section" id="proyectos">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-i18n="projects.label">Proyectos</span>
+                    <h2 class="section-title">Código, Software & Herramientas</h2>
+                    <p class="section-desc">Aplicaciones desarrolladas con enfoque en rendimiento, arquitectura limpia y resolución de problemas prácticos.</p>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- Proyecto 1: PureCook PWA -->
+                    <article class="project-item">
+                        <div class="project-header">
+                            <span class="project-category" data-i18n="projects.purecookCat">Aplicación Web PWA</span>
+                            <span class="project-tech">React &bull; PWA &bull; IndexedDB &bull; Audio API</span>
+                        </div>
+                        <h3 class="project-heading" data-i18n="projects.purecookTitle">PureCook: Gestor de Recetas Ultra-Minimalista</h3>
+                        <p class="project-summary" data-i18n="projects.purecookSummary">
+                            Aplicación Web Progresiva (PWA) real en producción con soporte offline. Diseñada con enfoque ultra-minimalista, tipografía suiza, temporizadores con síntesis de audio armónico y almacenamiento local persistente con IndexedDB.
+                        </p>
+                        <div class="project-actions">
+                            <a href="./purecook/" target="_blank" class="action-link link-primary">
+                                <i data-lucide="external-link" class="action-icon"></i>
+                                <span>Abrir PWA en vivo</span>
+                            </a>
+                            <a href="https://github.com/Joaquin-OM/PureCook" target="_blank" class="action-link">
+                                <i data-lucide="github" class="action-icon"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Proyecto 2: SmartCook AI -->
+                    <article class="project-item">
+                        <div class="project-header">
+                            <span class="project-category" data-i18n="projects.p5Cat">I+D & Desarrollo Full-Stack</span>
+                            <span class="project-tech">Python &bull; Gemini API &bull; CRUD &bull; Flet</span>
+                        </div>
+                        <h3 class="project-heading" data-i18n="projects.p5Title">SmartCook: Asistente Culinario con IA</h3>
+                        <p class="project-summary" data-i18n="projects.p5Summary">
+                            Proyecto de ingeniería full-stack que combina backend en Python con IA generativa (Gemini API) y teoría de conjuntos para cruzar despensas y recetas. Persistencia estructurada CRUD y simulador experto.
+                        </p>
+                        <div class="project-actions">
+                            <a href="https://github.com/Joaquin-OM/SmartCook" target="_blank" class="action-link link-primary">
+                                <i data-lucide="github" class="action-icon"></i>
+                                <span>Ver código en GitHub</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Proyecto 3: CRM Clientes -->
+                    <article class="project-item">
+                        <div class="project-header">
+                            <span class="project-category" data-i18n="projects.p3Cat">Ventas & Clientes</span>
+                            <span class="project-tech">JavaScript &bull; Modular State</span>
+                        </div>
+                        <h3 class="project-heading" data-i18n="projects.p3Title">CRM Ligero para Clientes y Oportunidades</h3>
+                        <p class="project-summary" data-i18n="projects.p3Summary">
+                            Sistema ágil para autónomos y pequeñas empresas que necesitan llevar el control de presupuestos y estados de contacto sin herramientas complejas ni costes recurrentes.
+                        </p>
+                        <div class="project-actions">
+                            <a href="https://github.com/Joaquin-OM/CRM-Clients" target="_blank" class="action-link">
+                                <i data-lucide="github" class="action-icon"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Proyecto 4: Email Builder -->
+                    <article class="project-item">
+                        <div class="project-header">
+                            <span class="project-category" data-i18n="projects.p4Cat">Marketing</span>
+                            <span class="project-tech">HTML5 Canvas &bull; DOM &bull; Templates</span>
+                        </div>
+                        <h3 class="project-heading" data-i18n="projects.p4Title">Constructor de Plantillas de Email</h3>
+                        <p class="project-summary" data-i18n="projects.p4Summary">
+                            Herramienta para diseñar boletines y comunicaciones por correo electrónico con previsualización en tiempo real y exportación de código limpio y compatible.
+                        </p>
+                        <div class="project-actions">
+                            <a href="https://github.com/Joaquin-OM/Email-Builder" target="_blank" class="action-link">
+                                <i data-lucide="github" class="action-icon"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Banner de Transición hacia Servicios Comerciales -->
+        <section class="section" style="padding: 20px 0;">
+            <div class="container">
+                <div class="banner-commercial">
+                    <div>
+                        <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); display: block; margin-bottom: 6px;">PORTAL DE CLIENTES & EMPRESAS</span>
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 6px;">¿Buscas contratar servicios web o ver tarifas fijas?</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary); max-width: 620px;">
+                            Explora mi portal comercial con los packs de maquetación (390€, 790€, 1.350€), la calculadora interactiva de presupuestos con WhatsApp y demostraciones en vivo por sector (restaurantes, hoteles, inmobiliarias y rent-a-car).
+                        </p>
+                    </div>
+                    <div>
+                        <a href="./servicios/" class="btn btn-primary">
+                            <i data-lucide="briefcase" class="btn-icon"></i>
+                            <span>Ver Servicios & Tarifas →</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 6: Contacto Directo -->
         <section class="section" id="contacto">
             <div class="container">
                 <div class="contact-box">
                     <div class="contact-intro">
                         <span class="section-label" data-i18n="contact.label">Contacto</span>
-                        <h2 class="contact-headline" data-i18n="contact.headline">Hablemos de tu proyecto</h2>
-                        <p class="contact-sub" data-i18n="contact.sub">
-                            Cuéntame qué necesitas y te responderé en el mismo día con una valoración sin compromiso.
+                        <h2 class="contact-headline">Hablemos</h2>
+                        <p class="contact-sub">
+                            ¿Tienes una propuesta técnica, una colaboración o un proyecto en mente? Escríbeme y te responderé en el mismo día.
                         </p>
                         
                         <div class="direct-contacts">
-                            <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20quiero%20pedir%20presupuesto" target="_blank" class="direct-link">
+                            <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20vi%20tu%20portfolio%20y%20quiero%20contactar%20contigo" target="_blank" class="direct-link">
                                 <i data-lucide="message-circle"></i>
                                 <span>WhatsApp: +34 695 26 74 45</span>
                             </a>
@@ -739,19 +539,18 @@
                         </div>
 
                         <div class="input-group">
-                            <label for="formService" data-i18n="form.service">Servicio requerido</label>
+                            <label for="formService" data-i18n="form.service">Asunto / Motivo de contacto</label>
                             <select id="formService" name="service">
-                                <option value="Landing Page (390€)" data-i18n="form.opt1">Landing Page (390 €)</option>
-                                <option value="Web Corporativa (790€)" selected data-i18n="form.opt2">Web Corporativa (790 €)</option>
-                                <option value="Tienda Online / Odoo / App" data-i18n="form.opt3">Tienda Online (Shopify) / Odoo / App</option>
-                                <option value="Automatizaciones n8n / Integraciones" data-i18n="form.opt5">Automatizaciones con n8n / Integraciones</option>
-                                <option value="Mantenimiento / Maquetación" data-i18n="form.opt4">Mantenimiento o Maquetación Web</option>
+                                <option value="Propuesta de Proyecto / Desarrollo Web">Propuesta de Proyecto / Desarrollo Web</option>
+                                <option value="Oportunidad Laboral / Colaboración">Oportunidad Laboral / Colaboración</option>
+                                <option value="Consulta sobre Automatización / n8n">Consulta sobre Automatización / n8n</option>
+                                <option value="Otro asunto">Otro asunto</option>
                             </select>
                         </div>
 
                         <div class="input-group">
-                            <label for="formMessage" data-i18n="form.details">Breve descripción del proyecto</label>
-                            <textarea id="formMessage" name="message" rows="3" placeholder="Explica brevemente tu idea..."></textarea>
+                            <label for="formMessage" data-i18n="form.details">Mensaje</label>
+                            <textarea id="formMessage" name="message" rows="3" placeholder="Cuéntame brevemente en qué puedo ayudarte..."></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-block btn-lg" id="submitBtn">
@@ -768,15 +567,15 @@
     <footer class="footer">
         <div class="container footer-content">
             <span class="footer-copy">&copy; <span id="currentYear">2026</span> Joaquín Oses Monti</span>
-            <a id="dossierLink" href="./assets/Dossier_Servicios_Joaquin_Oses_2026.pdf" target="_blank" class="footer-link" style="color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px;">
-                <i data-lucide="file-text" style="width: 14px; height: 14px;"></i>
-                <span data-i18n="footer.dossier">Descargar Dossier de Servicios (PDF)</span>
+            <a href="./servicios/" class="footer-link" style="color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px;">
+                <i data-lucide="briefcase" style="width: 14px; height: 14px;"></i>
+                <span data-i18n="nav.servicesBtn">Servicios Web & Precios</span>
             </a>
-            <span class="footer-loc">Palma de Mallorca &bull; Desarrollador Web Freelance</span>
+            <span class="footer-loc">Palma de Mallorca &bull; Desarrollador Web Full-Stack</span>
         </div>
     </footer>
 
-    <script src="assets/main.js?v=minimal_v1"></script>
+    <script src="assets/main.js"></script>
     <script>
         lucide.createIcons();
     </script>

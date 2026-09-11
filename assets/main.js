@@ -8,8 +8,34 @@ const translations = {
     es: {
         "nav.services": "Servicios",
         "nav.projects": "Proyectos",
-        "nav.about": "Sobre mí",
+        "nav.about": "Conóceme",
         "nav.contact": "Contacto",
+        "nav.exp": "Experiencia",
+        "nav.edu": "Estudios",
+        "nav.stack": "Stack Técnico",
+        "nav.portfolioBadge": "Portfolio",
+        "nav.servicesBadge": "Servicios Web",
+        "nav.servicesBtn": "Servicios & Precios",
+        "nav.backPersonal": "Sobre Mí / CV",
+
+        "personal.heroTitle": "Joaquín Oses Monti",
+        "personal.heroRole": "Desarrollador Web Full-Stack & Técnico en Sistemas Microinformáticos y Redes",
+        "personal.heroDesc": "Combino una sólida base técnica en soporte de sistemas, hardware y redes con el desarrollo web moderno: interfaces reactivas con React, aplicaciones backend en Node.js y Laravel, bases de datos relacionales y NoSQL, y automatizaciones de flujos con n8n.",
+        "personal.ctaContact": "Contactar conmigo",
+        "personal.ctaServices": "Ver Servicios Comerciales & Demos →",
+
+        "exp.label": "Trayectoria",
+        "exp.title": "Experiencia Laboral",
+        "exp.desc": "Soporte informático de sistemas de oficina, administración de redes y desarrollo de herramientas internas y webs.",
+
+        "edu.label": "Formación",
+        "edu.title": "Estudios & Titulaciones",
+        "edu.desc": "Formación reglada oficial en Sistemas Microinformáticos y Redes (SMR) y Desarrollo de Aplicaciones Web (DAW).",
+
+        "hero.ctaDemos": "Ver demos en vivo",
+        "demos.label": "Demostraciones",
+        "demos.title": "Webs interactivas por sector",
+        "demos.desc": "Prueba en vivo soluciones reales maquetadas y optimizadas para negocios de Baleares.",
 
         "hero.status": "Disponible para proyectos • Palma de Mallorca & Remoto",
         "hero.title": "Maquetación y desarrollo web profesional a medida.",
@@ -159,8 +185,34 @@ const translations = {
     en: {
         "nav.services": "Services",
         "nav.projects": "Projects",
-        "nav.about": "About",
+        "nav.about": "About Me",
         "nav.contact": "Contact",
+        "nav.exp": "Experience",
+        "nav.edu": "Education",
+        "nav.stack": "Tech Stack",
+        "nav.portfolioBadge": "Portfolio",
+        "nav.servicesBadge": "Web Services",
+        "nav.servicesBtn": "Services & Pricing",
+        "nav.backPersonal": "About Me / CV",
+
+        "personal.heroTitle": "Joaquín Oses Monti",
+        "personal.heroRole": "Full-Stack Web Developer & IT Systems & Network Technician",
+        "personal.heroDesc": "Pairing a solid background in systems administration, hardware, and office networks with modern web engineering: responsive React interfaces, Node.js and Laravel backends, relational & NoSQL databases, and efficient n8n workflow automations.",
+        "personal.ctaContact": "Get in touch",
+        "personal.ctaServices": "View Commercial Services & Demos →",
+
+        "exp.label": "Career",
+        "exp.title": "Work Experience",
+        "exp.desc": "Hands-on experience in office IT support, local network administration, internal tools, and web development.",
+
+        "edu.label": "Education",
+        "edu.title": "Academic Qualifications",
+        "edu.desc": "Accredited education in Microcomputer Systems & Networks (SMR) and Web Application Development (DAW).",
+
+        "hero.ctaDemos": "View live demos",
+        "demos.label": "Demonstrations",
+        "demos.title": "Interactive websites by sector",
+        "demos.desc": "Test live solutions designed and optimized for Balearic businesses.",
 
         "hero.status": "Available for projects • Palma de Mallorca & Remote",
         "hero.title": "Professional web layout & custom website development.",
@@ -330,9 +382,11 @@ function setLanguage(lang) {
 
     const dossierLink = document.getElementById('dossierLink');
     if (dossierLink) {
+        const isSubdir = window.location.pathname.includes('/servicios/') || window.location.pathname.includes('/crm/');
+        const base = isSubdir ? '../assets/' : './assets/';
         dossierLink.href = lang === 'en'
-            ? './assets/Dossier_Services_Joaquin_Oses_2026_EN.pdf'
-            : './assets/Dossier_Servicios_Joaquin_Oses_2026.pdf';
+            ? base + 'Dossier_Services_Joaquin_Oses_2026_EN.pdf'
+            : base + 'Dossier_Servicios_Joaquin_Oses_2026.pdf';
     }
 
     window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
