@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * Fondo Interactivo Corporativo
- * Partículas y constelación sutil con reacción elástica y suave luz ambiental al cursor
+ * Constelación visible y reactiva con líneas dinámicas, halo y repulsión elástica al cursor
  */
 function initInteractiveBackground() {
     const canvas = document.getElementById('interactive-canvas');
@@ -404,36 +404,39 @@ function initInteractiveBackground() {
 
     let particles = [];
     const isMobile = window.innerWidth <= 768;
-    const particleCount = isMobile ? 32 : 72;
-    const maxDistance = isMobile ? 85 : 125;
-    const mouseRadius = isMobile ? 95 : 155;
+    const particleCount = isMobile ? 45 : 95;
+    const maxDistance = isMobile ? 105 : 145;
+    const mouseRadius = isMobile ? 120 : 185;
 
     let mouse = {
-        x: null,
-        y: null,
-        targetX: null,
-        targetY: null,
-        active: false
+        x: width / 2,
+        y: height / 3,
+        targetX: width / 2,
+        targetY: height / 3,
+        active: true
     };
 
     class Particle {
         constructor() {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
-            this.vx = (Math.random() - 0.5) * 0.4;
-            this.vy = (Math.random() - 0.5) * 0.4;
-            this.radius = Math.random() * 1.4 + 1.1;
-            this.alpha = Math.random() * 0.22 + 0.14;
+            this.vx = (Math.random() - 0.5) * 0.65;
+            this.vy = (Math.random() - 0.5) * 0.65;
+            this.radius = Math.random() * 1.5 + 1.8;
+            this.baseAlpha = Math.random() * 0.25 + 0.35;
+            this.alpha = this.baseAlpha;
         }
 
         update() {
             this.x += this.vx;
             this.y += this.vy;
 
-            if (this.x < 0 || this.x > width) this.vx = -this.vx;
-            if (this.y < 0 || this.y > height) this.vy = -this.vy;
+            if (this.x < 0) this.x = width;
+            else if (this.x > width) this.x = 0;
+            if (this.y < 0) this.y = height;
+            else if (this.y > height) this.y = 0;
 
-            // Reacción suave al cursor
+            // Interacción suave con el cursor
             if (mouse.active && mouse.x !== null) {
                 const dx = mouse.x - this.x;
                 const dy = mouse.y - this.y;
@@ -442,31 +445,19 @@ function initInteractiveBackground() {
                 if (dist < mouseRadius) {
                     const force = (mouseRadius - dist) / mouseRadius;
                     const angle = Math.atan2(dy, dx);
-                    this.x -= Math.cos(angle) * force * 1.5;
-                    this.y -= Math.sin(angle) * force * 1.5;
+                    this.x -= Math.cos(angle) * force * 2.5;
+                    this.y -= Math.sin(angle) * force * 2.5;
+                    this.alpha = Math.min(0.95, this.baseAlpha + force * 0.55);
+                } else {
+                    this.alpha = this.baseAlpha;
                 }
             }
         }
 
         draw() {
-            let glow = false;
-            let currentAlpha = this.alpha;
-
-            if (mouse.active && mouse.x !== null) {
-                const dx = mouse.x - this.x;
-                const dy = mouse.y - this.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < mouseRadius) {
-                    glow = true;
-                    currentAlpha = Math.min(0.8, this.alpha + (1 - dist / mouseRadius) * 0.45);
-                }
-            }
-
             ctx.beginPath();
-            ctx.arc(this.x, this.y, glow ? this.radius * 1.3 : this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = glow 
-                ? `rgba(96, 165, 250, ${currentAlpha})` 
-                : `rgba(148, 163, 184, ${currentAlpha})`;
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(148, 163, 184, ${this.alpha})`;
             ctx.fill();
         }
     }
@@ -486,11 +477,13 @@ function initInteractiveBackground() {
         mouse.active = true;
     });
 
-    window.addEventListener('mouseleave', () => {
-        mouse.active = false;
-        mouse.x = null;
-        mouse.y = null;
-    });
+    window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+            mouse.targetX = e.touches[0].clientX;
+            mouse.targetY = e.touches[0].clientY;
+            mouse.active = true;
+        }
+    }, { passive: true });
 
     window.addEventListener('resize', () => {
         width = canvas.width = window.innerWidth;
@@ -502,25 +495,21 @@ function initInteractiveBackground() {
         ctx.clearRect(0, 0, width, height);
 
         // Suave seguimiento del cursor
-        if (mouse.active && mouse.targetX !== null) {
-            if (mouse.x === null) {
-                mouse.x = mouse.targetX;
-                mouse.y = mouse.targetY;
-            } else {
-                mouse.x += (mouse.targetX - mouse.x) * 0.1;
-                mouse.y += (mouse.targetY - mouse.y) * 0.1;
-            }
+        if (mouse.active) {
+            mouse.x += (mouse.targetX - mouse.x) * 0.12;
+            mouse.y += (mouse.targetY - mouse.y) * 0.12;
 
-            // Luz ambiental tenue corporativa (spotlight sutil)
-            const gradient = ctx.createRadialGradient(
+            // Halo de luz sutil en el cursor
+            const halo = ctx.createRadialGradient(
                 mouse.x, mouse.y, 0,
-                mouse.x, mouse.y, 200
+                mouse.x, mouse.y, mouseRadius
             );
-            gradient.addColorStop(0, 'rgba(37, 99, 235, 0.045)');
-            gradient.addColorStop(1, 'rgba(37, 99, 235, 0)');
-            ctx.fillStyle = gradient;
+            halo.addColorStop(0, 'rgba(37, 99, 235, 0.15)');
+            halo.addColorStop(0.45, 'rgba(37, 99, 235, 0.05)');
+            halo.addColorStop(1, 'rgba(37, 99, 235, 0)');
+            ctx.fillStyle = halo;
             ctx.beginPath();
-            ctx.arc(mouse.x, mouse.y, 200, 0, Math.PI * 2);
+            ctx.arc(mouse.x, mouse.y, mouseRadius, 0, Math.PI * 2);
             ctx.fill();
         }
 
@@ -532,18 +521,18 @@ function initInteractiveBackground() {
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
                 if (dist < maxDistance) {
-                    const lineAlpha = (1 - dist / maxDistance) * 0.07;
+                    const lineAlpha = (1 - dist / maxDistance) * 0.22;
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
                     ctx.strokeStyle = `rgba(148, 163, 184, ${lineAlpha})`;
-                    ctx.lineWidth = 0.7;
+                    ctx.lineWidth = 0.85;
                     ctx.stroke();
                 }
             }
         }
 
-        // Conexión sutil del cursor con partículas cercanas
+        // Conexiones dinámicas del cursor con partículas cercanas
         if (mouse.active && mouse.x !== null) {
             for (let i = 0; i < particles.length; i++) {
                 const dx = mouse.x - particles[i].x;
@@ -551,13 +540,19 @@ function initInteractiveBackground() {
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
                 if (dist < mouseRadius) {
-                    const mouseLineAlpha = (1 - dist / mouseRadius) * 0.14;
+                    const mouseLineAlpha = (1 - dist / mouseRadius) * 0.45;
                     ctx.beginPath();
                     ctx.moveTo(mouse.x, mouse.y);
                     ctx.lineTo(particles[i].x, particles[i].y);
                     ctx.strokeStyle = `rgba(96, 165, 250, ${mouseLineAlpha})`;
-                    ctx.lineWidth = 0.8;
+                    ctx.lineWidth = 1.2;
                     ctx.stroke();
+
+                    // Partícula destacada cerca del cursor
+                    ctx.beginPath();
+                    ctx.arc(particles[i].x, particles[i].y, particles[i].radius * 1.5, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(96, 165, 250, 0.9)`;
+                    ctx.fill();
                 }
             }
         }
