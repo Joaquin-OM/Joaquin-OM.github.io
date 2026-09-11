@@ -76,7 +76,7 @@
                 </h1>
                 
                 <p class="hero-description" data-i18n="hero.description">
-                    Maqueto y creo páginas web rápidas, funcionales y adaptadas a móviles: landing pages de alta conversión, webs corporativas y tiendas online. Trabajo tanto con código a medida (React) como con plataformas líderes: WordPress, Shopify, Framer y Odoo.
+                    Maqueto y creo páginas web rápidas, funcionales y adaptadas a móviles: landing pages de alta conversión, webs corporativas y tiendas online. Trabajo tanto con código a medida (React) como con plataformas líderes: WordPress, Shopify, Framer, Odoo y automatizaciones con n8n.
                 </p>
 
                 <div class="hero-actions">
@@ -106,6 +106,9 @@
                     </span>
                     <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
                         <i data-lucide="database" style="width: 13px; height: 13px; color: #A78BFA;"></i> Odoo
+                    </span>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
+                        <i data-lucide="zap" style="width: 13px; height: 13px; color: #F97316;"></i> n8n
                     </span>
                     <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; font-size: 0.76rem; color: #EDE9E3; font-weight: 500;">
                         <i data-lucide="code-2" style="width: 13px; height: 13px; color: #FBBF24;"></i> React & JS
@@ -166,12 +169,12 @@
                         <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20me%20interesa%20el%20Pack%20Web%20Corporativa%20(790€)" target="_blank" class="btn btn-primary btn-block" data-i18n="services.btnSelect">Solicitar este pack</a>
                     </div>
 
-                    <!-- Servicio 3: Tienda Online, App o Odoo -->
+                    <!-- Servicio 3: Tienda Online, Odoo o n8n -->
                     <div class="service-card">
                         <div class="card-top">
-                            <span class="card-tag" data-i18n="services.s3Tag">E-Commerce & Gestión</span>
-                            <h3 class="card-title" data-i18n="services.s3Title">Tienda Online, App o Odoo</h3>
-                            <p class="card-desc" data-i18n="services.s3Desc">Para negocios que necesitan e-commerce en Shopify/WooCommerce, portales integrados con Odoo ERP o web apps a medida.</p>
+                            <span class="card-tag" data-i18n="services.s3Tag">E-Commerce & Automatización</span>
+                            <h3 class="card-title" data-i18n="services.s3Title">Tienda Online, Odoo o n8n</h3>
+                            <p class="card-desc" data-i18n="services.s3Desc">Para negocios que necesitan e-commerce en Shopify/WooCommerce, portales integrados con Odoo ERP o automatizaciones de procesos con n8n.</p>
                             <div class="card-price">
                                 <span class="price-from" data-i18n="services.from">Desde</span>
                                 <span class="price-val">1.350 €</span>
@@ -179,11 +182,11 @@
                         </div>
                         <ul class="card-list">
                             <li><i data-lucide="check"></i> <span data-i18n="services.s3F1">Tiendas Shopify o WooCommerce a medida</span></li>
-                            <li><i data-lucide="check"></i> <span data-i18n="services.s3F2">Integración web y procesos con Odoo</span></li>
+                            <li><i data-lucide="check"></i> <span data-i18n="services.s3F2">Integración con Odoo ERP y flujos con n8n</span></li>
                             <li><i data-lucide="check"></i> <span data-i18n="services.s3F3">Desarrollo modular en React / JavaScript</span></li>
                             <li><i data-lucide="check"></i> <span data-i18n="services.s3F4">Panel privado y garantía técnica</span></li>
                         </ul>
-                        <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20tengo%20un%20proyecto%20de%20tienda%20o%20plataforma%20y%20quiero%20valorarlo" target="_blank" class="btn btn-outline btn-block" data-i18n="services.btnQuote">Pedir valoración</a>
+                        <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20tengo%20un%20proyecto%20de%20tienda%2C%20plataforma%20o%20automatizaci%C3%B3n%20y%20quiero%20valorarlo" target="_blank" class="btn btn-outline btn-block" data-i18n="services.btnQuote">Pedir valoración</a>
                     </div>
                 </div>
 
@@ -290,6 +293,16 @@
                                                 <span class="addon-sub" data-i18n="calc.addonBookingSub">Con calendario interactivo y aviso directo por WhatsApp</span>
                                             </div>
                                             <span class="addon-price">+180 €</span>
+                                        </label>
+
+                                        <label class="addon-item">
+                                            <input type="checkbox" id="addonN8n" value="190" data-name-es="Automatizaciones con n8n" data-name-en="Workflow Automations with n8n" data-price="190">
+                                            <span class="addon-checkbox-custom"><i data-lucide="check"></i></span>
+                                            <div class="addon-info">
+                                                <span class="addon-name" data-i18n="calc.addonN8n">Automatizaciones de procesos con n8n</span>
+                                                <span class="addon-sub" data-i18n="calc.addonN8nSub">Conexión de formularios a WhatsApp, CRM, email y bases de datos</span>
+                                            </div>
+                                            <span class="addon-price">+190 €</span>
                                         </label>
 
                                         <label class="addon-item">
@@ -604,6 +617,16 @@
 
                                 <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 14px;">
                                     <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                        <i data-lucide="zap" style="width: 16px; height: 16px; color: #F97316;"></i>
+                                        <strong style="color: #fff; font-size: 0.9rem;">Automatizaciones con n8n</strong>
+                                    </div>
+                                    <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;" data-i18n="about.n8n">
+                                        Conexión de flujos de trabajo, webhooks y APIs. Sincronización automática de formularios web con WhatsApp, Gmail, hojas de cálculo, Notion, CRM, Odoo y Shopify sin costes por tarea.
+                                    </p>
+                                </div>
+
+                                <div class="stack-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 14px;">
+                                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
                                         <i data-lucide="code-2" style="width: 16px; height: 16px; color: #FBBF24;"></i>
                                         <strong style="color: #fff; font-size: 0.9rem;">React & JavaScript / HTML5</strong>
                                     </div>
@@ -673,6 +696,7 @@
                                 <option value="Landing Page (390€)" data-i18n="form.opt1">Landing Page (390 €)</option>
                                 <option value="Web Corporativa (790€)" selected data-i18n="form.opt2">Web Corporativa (790 €)</option>
                                 <option value="Tienda Online / Odoo / App" data-i18n="form.opt3">Tienda Online (Shopify) / Odoo / App</option>
+                                <option value="Automatizaciones n8n / Integraciones" data-i18n="form.opt5">Automatizaciones con n8n / Integraciones</option>
                                 <option value="Mantenimiento / Maquetación" data-i18n="form.opt4">Mantenimiento o Maquetación Web</option>
                             </select>
                         </div>

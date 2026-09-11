@@ -13,7 +13,7 @@ const translations = {
 
         "hero.status": "Disponible para proyectos • Palma de Mallorca & Remoto",
         "hero.title": "Maquetación y desarrollo web profesional a medida.",
-        "hero.description": "Maqueto y creo páginas web rápidas, funcionales y adaptadas a móviles: landing pages de alta conversión, webs corporativas y tiendas online. Trabajo con código a medida (React), así como con plataformas líderes: WordPress, Shopify, Framer y Odoo.",
+        "hero.description": "Maqueto y creo páginas web rápidas, funcionales y adaptadas a móviles: landing pages de alta conversión, webs corporativas y tiendas online. Trabajo con código a medida (React), así como con plataformas líderes: WordPress, Shopify, Framer, Odoo y automatizaciones con n8n.",
         "hero.ctaPrimary": "Pedir presupuesto",
         "hero.ctaSecondary": "Ver proyectos",
         "hero.stackLabel": "Plataformas:",
@@ -44,11 +44,11 @@ const translations = {
         "services.s2F4": "Formularios y botón WhatsApp",
         "services.s2F5": "Dominio, hosting y SSL configurados",
 
-        "services.s3Tag": "E-Commerce & Gestión",
-        "services.s3Title": "Tienda Online, App o Odoo",
-        "services.s3Desc": "Para negocios que necesitan e-commerce en Shopify/WooCommerce, portales integrados con Odoo ERP o web apps a medida.",
+        "services.s3Tag": "E-Commerce & Automatización",
+        "services.s3Title": "Tienda Online, Odoo o n8n",
+        "services.s3Desc": "Para negocios que necesitan e-commerce en Shopify/WooCommerce, portales integrados con Odoo ERP o automatizaciones de procesos con n8n.",
         "services.s3F1": "Tiendas Shopify o WooCommerce a medida",
-        "services.s3F2": "Integración web y procesos con Odoo",
+        "services.s3F2": "Integración con Odoo ERP y flujos con n8n",
         "services.s3F3": "Desarrollo modular en React / JavaScript",
         "services.s3F4": "Panel privado y garantía técnica",
 
@@ -104,6 +104,7 @@ const translations = {
         "about.wp": "Maquetación y personalización de temas a medida, webs corporativas auto-gestionables, blogs y tiendas online seguras.",
         "about.shopify": "Creación y maquetación de tiendas online e-commerce orientadas a conversión, checkout fluido y gestión de catálogo.",
         "about.odoo": "Configuración de portal web, comercio electrónico, facturación y CRM integrado en el ecosistema ERP para pymes.",
+        "about.n8n": "Conexión de flujos de trabajo, webhooks y APIs. Sincronización automática de formularios web con WhatsApp, Gmail, hojas de cálculo, Notion, CRM, Odoo y Shopify sin costes por tarea.",
         "about.react": "Desarrollo a medida con máxima velocidad de carga (< 1.5s), sin dependencias pesadas y maquetación 100% adaptable.",
 
         "contact.label": "Contacto",
@@ -120,6 +121,7 @@ const translations = {
         "form.opt2": "Web Corporativa (790 €)",
         "form.opt3": "Tienda Online (Shopify) / Odoo / App",
         "form.opt4": "Mantenimiento o Maquetación Web",
+        "form.opt5": "Automatizaciones con n8n / Integraciones",
 
         "calc.badge": "HERRAMIENTA INTERACTIVA",
         "calc.title": "Calcula tu presupuesto estimado al instante",
@@ -140,6 +142,8 @@ const translations = {
         "calc.addonLangSub": "Imprescindible para captar clientes extranjeros en Baleares",
         "calc.addonBooking": "Sistema de Reservas / Citas con confirmación",
         "calc.addonBookingSub": "Con calendario interactivo y aviso directo por WhatsApp",
+        "calc.addonN8n": "Automatizaciones de procesos con n8n",
+        "calc.addonN8nSub": "Conexión de formularios a WhatsApp, CRM, email y bases de datos",
         "calc.addonMaint": "Mantenimiento mensual, seguridad y copias",
         "calc.addonMaintSub": "Actualizaciones técnicas y soporte prioritario",
         "calc.summaryTitle": "Resumen de presupuesto",
@@ -157,7 +161,7 @@ const translations = {
 
         "hero.status": "Available for projects • Palma de Mallorca & Remote",
         "hero.title": "Professional web layout & custom website development.",
-        "hero.description": "I design and build fast, responsive websites: high-converting landing pages, corporate websites, and e-commerce stores. Working with custom code (React) as well as leading platforms: WordPress, Shopify, Framer, and Odoo.",
+        "hero.description": "I design and build fast, responsive websites: high-converting landing pages, corporate websites, and e-commerce stores. Working with custom code (React), leading platforms (WordPress, Shopify, Framer, Odoo), and workflow automations with n8n.",
         "hero.ctaPrimary": "Request a quote",
         "hero.ctaSecondary": "View projects",
         "hero.stackLabel": "Platforms:",
@@ -188,11 +192,11 @@ const translations = {
         "services.s2F4": "Contact forms & WhatsApp CTA",
         "services.s2F5": "Domain, hosting, and SSL included",
 
-        "services.s3Tag": "E-Commerce & Management",
-        "services.s3Title": "Online Store, App & Odoo",
-        "services.s3Desc": "For businesses requiring Shopify/WooCommerce e-commerce, Odoo ERP/CRM integration, or custom web apps.",
+        "services.s3Tag": "E-Commerce & Automation",
+        "services.s3Title": "Online Store, Odoo or n8n",
+        "services.s3Desc": "For businesses requiring Shopify/WooCommerce e-commerce, Odoo ERP integration, or workflow automations with n8n.",
         "services.s3F1": "Tailor-made Shopify & WooCommerce stores",
-        "services.s3F2": "Web portal & business workflows with Odoo",
+        "services.s3F2": "Odoo ERP web integration & n8n workflows",
         "services.s3F3": "Modular React / JavaScript architecture",
         "services.s3F4": "Private administration & technical warranty",
 
@@ -248,6 +252,7 @@ const translations = {
         "about.wp": "Theme customization, auto-manageable corporate websites, blogs, and secure WooCommerce online shops.",
         "about.shopify": "High-converting e-commerce stores, smooth checkout experience, and product catalog management.",
         "about.odoo": "Web portal setup, e-commerce, invoicing, and CRM integration within the Odoo ERP ecosystem for businesses.",
+        "about.n8n": "Workflow automations, webhooks, and API integrations. Automated synchronization of web forms with WhatsApp, Gmail, spreadsheets, Notion, CRM, Odoo, and Shopify without per-task subscription fees.",
         "about.react": "High-performance custom web development (< 1.5s), zero bloated libraries, and 100% responsive layout.",
 
         "contact.label": "Contact",
@@ -264,6 +269,7 @@ const translations = {
         "form.opt2": "Corporate Website (€790)",
         "form.opt3": "Online Store (Shopify) / Odoo / App",
         "form.opt4": "Website Maintenance & Layout",
+        "form.opt5": "n8n Automations / Integrations",
 
         "calc.badge": "INTERACTIVE TOOL",
         "calc.title": "Calculate your estimated budget instantly",
@@ -284,6 +290,8 @@ const translations = {
         "calc.addonLangSub": "Essential for foreign visitors and expats in the Balearics",
         "calc.addonBooking": "Online Booking / Appointment System",
         "calc.addonBookingSub": "Interactive calendar & instant WhatsApp alert",
+        "calc.addonN8n": "Workflow automations with n8n",
+        "calc.addonN8nSub": "Connect web forms to WhatsApp, CRM, email & spreadsheets",
         "calc.addonMaint": "Monthly maintenance, security & backups",
         "calc.addonMaintSub": "Technical upkeep, updates & priority support",
         "calc.summaryTitle": "Budget Summary",
