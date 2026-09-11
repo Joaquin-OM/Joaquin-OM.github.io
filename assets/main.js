@@ -106,6 +106,9 @@ const translations = {
         "about.odoo": "Configuración de portal web, comercio electrónico, facturación y CRM integrado en el ecosistema ERP para pymes.",
         "about.n8n": "Conexión de flujos de trabajo, webhooks y APIs. Sincronización automática de formularios web con WhatsApp, Gmail, hojas de cálculo, Notion, CRM, Odoo y Shopify sin costes por tarea.",
         "about.react": "Desarrollo a medida con máxima velocidad de carga (< 1.5s), sin dependencias pesadas y maquetación 100% adaptable.",
+        "about.backend": "Desarrollo de lógica de servidor, endpoints y APIs REST seguras con Node.js y Laravel (PHP). Autenticación, sesiones y lógica de negocio.",
+        "about.db": "Modelado relacional y NoSQL con PostgreSQL, MySQL/MariaDB (gestión en phpMyAdmin) y restdb.io para bases de datos ágiles en la nube.",
+        "about.ecosystemTitle": "Ecosistema, Integraciones & Herramientas Complementarias",
 
         "contact.label": "Contacto",
         "contact.headline": "Hablemos de tu proyecto",
@@ -254,6 +257,9 @@ const translations = {
         "about.odoo": "Web portal setup, e-commerce, invoicing, and CRM integration within the Odoo ERP ecosystem for businesses.",
         "about.n8n": "Workflow automations, webhooks, and API integrations. Automated synchronization of web forms with WhatsApp, Gmail, spreadsheets, Notion, CRM, Odoo, and Shopify without per-task subscription fees.",
         "about.react": "High-performance custom web development (< 1.5s), zero bloated libraries, and 100% responsive layout.",
+        "about.backend": "Backend server logic, endpoints, and secure REST APIs with Node.js and Laravel (PHP). User authentication, sessions, and business logic.",
+        "about.db": "Relational and NoSQL database modeling with PostgreSQL, MySQL/MariaDB (phpMyAdmin) and restdb.io for fast cloud data storage.",
+        "about.ecosystemTitle": "Ecosystem, Integrations & Complementary Tools",
 
         "contact.label": "Contact",
         "contact.headline": "Let's discuss your project",
