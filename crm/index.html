@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel de Prospección 1-Clic — Detección Multilingüe y Respuestas a Medida</title>
+<title>Panel de Prospección 1-Clic — Detección Multilingüe y Canales Inteligentes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -113,7 +113,11 @@
     margin-bottom: 16px;
     border-bottom: 1px solid var(--border);
     padding-bottom: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
   }
+  .tabs-left { display: flex; gap: 10px; flex-wrap: wrap; }
   .view-tab {
     background: transparent;
     border: 1px solid var(--border);
@@ -246,6 +250,9 @@
   .lead-card.is-meeting {
     border-left: 4px solid #F59E0B;
   }
+  .lead-card.is-discarded {
+    opacity: 0.7;
+  }
 
   .lead-top {
     display: flex;
@@ -270,10 +277,36 @@
   .lead-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    align-items: center;
+    gap: 10px;
     font-size: 0.78rem;
     color: var(--text-muted);
     margin-bottom: 12px;
+  }
+
+  .channel-pill-mobile {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #10B981;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 2px 7px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .channel-pill-landline {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #60A5FA;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 2px 7px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
   }
 
   /* LANGUAGE DETECTION BOX */
@@ -417,6 +450,12 @@
   }
   .btn-whatsapp { background: #10B981; color: #FFFFFF; }
   .btn-whatsapp:hover { background: #059669; }
+  .btn-email-primary {
+    background: #2563EB;
+    color: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(37, 99, 235, 0.25);
+  }
+  .btn-email-primary:hover { background: #1D4ED8; }
   .btn-email { background: rgba(255,255,255,0.06); color: var(--text-white); border: 1px solid var(--border); }
   .btn-email:hover { background: rgba(255,255,255,0.12); }
   .btn-copy { background: transparent; color: var(--text-secondary); font-size: 0.75rem; padding: 4px; }
@@ -632,16 +671,23 @@
 
     <!-- MAIN VIEW MODE TABS -->
     <div class="view-tabs">
-      <button class="view-tab active" id="tabAllLeads" onclick="setViewMode('all')">
-        <i data-lucide="layout-grid" style="width: 16px; height: 16px;"></i>
-        <span>Todos los Negocios</span>
-        <span class="badge" id="badgeAllCount">32</span>
-      </button>
+      <div class="tabs-left">
+        <button class="view-tab active" id="tabAllLeads" onclick="setViewMode('all')">
+          <i data-lucide="layout-grid" style="width: 16px; height: 16px;"></i>
+          <span>Todos los Negocios</span>
+          <span class="badge" id="badgeAllCount">32</span>
+        </button>
 
-      <button class="view-tab" id="tabContactedLeads" onclick="setViewMode('pipeline')">
-        <i data-lucide="target" style="width: 16px; height: 16px; color: #10B981;"></i>
-        <span>🎯 Mi Bandeja de Contactados & Seguimiento</span>
-        <span class="badge" id="badgeContactedCount" style="background: rgba(16, 185, 129, 0.3); color: #A7F3D0;">0</span>
+        <button class="view-tab" id="tabContactedLeads" onclick="setViewMode('pipeline')">
+          <i data-lucide="target" style="width: 16px; height: 16px; color: #10B981;"></i>
+          <span>🎯 Mi Bandeja de Contactados & Seguimiento</span>
+          <span class="badge" id="badgeContactedCount" style="background: rgba(16, 185, 129, 0.3); color: #A7F3D0;">0</span>
+        </button>
+      </div>
+
+      <button class="filter-pill" onclick="reactivateDiscardedForEmail()" style="border-color: rgba(59, 130, 246, 0.4); color: #93C5FD;" title="Permite enviar email a empresas con teléfono fijo">
+        <i data-lucide="mail-check" style="width: 14px; height: 14px; color: #60A5FA;"></i>
+        <span>Reactivar teléfonos fijos para contactar por Email</span>
       </button>
     </div>
 
@@ -660,6 +706,7 @@
           <button class="filter-pill" onclick="setStatusFilter('respondido')">💬 Han Respondido (<span id="countStatusResponded">0</span>)</button>
           <button class="filter-pill" onclick="setStatusFilter('reunion')">📅 Reunión (<span id="countStatusMeetings">0</span>)</button>
           <button class="filter-pill" onclick="setStatusFilter('pendiente')">⏳ Pendientes (<span id="countStatusPending">32</span>)</button>
+          <button class="filter-pill" onclick="setStatusFilter('descartado')">❌ Descartados (<span id="countStatusDiscarded">0</span>)</button>
         </div>
       </div>
 
@@ -741,7 +788,7 @@
             <span>Enviar por WhatsApp</span>
           </a>
 
-          <a id="modalMailBtn" href="#" class="btn btn-email" style="flex: 1;" onclick="handleModalEmailSend()">
+          <a id="modalMailBtn" href="#" class="btn btn-email-primary" style="flex: 1;" onclick="handleModalEmailSend()">
             <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
             <span>Enviar por Email</span>
           </a>
@@ -1554,6 +1601,13 @@
     let activeModalLang = 'ES';
     let activeModalScenario = 'info';
 
+    function isMobilePhone(phone) {
+      if (!phone) return false;
+      const clean = phone.replace(/[^0-9]/g, '');
+      const local = clean.startsWith('34') ? clean.slice(2) : clean;
+      return local.startsWith('6') || local.startsWith('7');
+    }
+
     function getCleanPhone(phone) {
       return phone ? phone.replace(/[^0-9]/g, '') : '';
     }
@@ -1619,12 +1673,26 @@
           (status === 'contactado' && p.textContent.includes('Contactados')) ||
           (status === 'respondido' && p.textContent.includes('Han Respondido')) ||
           (status === 'reunion' && p.textContent.includes('Reunión')) ||
-          (status === 'pendiente' && p.textContent.includes('Pendientes'))
+          (status === 'pendiente' && p.textContent.includes('Pendientes')) ||
+          (status === 'descartado' && p.textContent.includes('Descartados'))
         ) {
           p.classList.add('active-status');
         }
       });
       renderLeads();
+    }
+
+    function reactivateDiscardedForEmail() {
+      let count = 0;
+      LEADS.forEach(l => {
+        if (getLeadStatus(l.id) === 'descartado' && l.email) {
+          localStorage.setItem('crm_status_' + l.id, 'pendiente');
+          count++;
+        }
+      });
+      updateKPIs();
+      renderLeads();
+      showToast('✓ ' + count + ' empresas reactivadas para contactar por Email');
     }
 
     function setSectorFilter(sec) {
@@ -1696,7 +1764,7 @@
       const waBtn = card.querySelector('.btn-whatsapp');
       if (waBtn) waBtn.href = waUrl;
 
-      const mailBtn = card.querySelector('.btn-email');
+      const mailBtn = card.querySelector('.btn-email, .btn-email-primary');
       if (mailBtn) mailBtn.href = mailUrl;
 
       showToast('✓ Idioma cambiado a ' + (lang === 'ES' ? 'Español' : (lang === 'EN' ? 'English' : 'Deutsch')));
@@ -1714,18 +1782,18 @@
 
     function handleWhatsAppClick(id) {
       const current = getLeadStatus(id);
-      if (current === 'pendiente') {
+      if (current === 'pendiente' || current === 'descartado') {
         setLeadStatus(id, 'contactado');
       }
-      showToast("✓ Abriendo WhatsApp Web con mensaje listo");
+      showToast("✓ Abriendo WhatsApp con mensaje listo");
     }
 
     function handleEmailClick(id) {
       const current = getLeadStatus(id);
-      if (current === 'pendiente') {
+      if (current === 'pendiente' || current === 'descartado') {
         setLeadStatus(id, 'contactado');
       }
-      showToast("✓ Abriendo borrador de email");
+      showToast("✓ Abriendo borrador de email con la propuesta");
     }
 
     /* ==========================================================
@@ -1742,12 +1810,10 @@
       document.getElementById('modalLeadName').innerHTML = '<i data-lucide="message-square" style="color: #8B5CF6;"></i> Responder a ' + lead.name;
       document.getElementById('modalLeadSub').textContent = lead.sector + ' • ' + lead.zone + (lead.phone ? ' • ' + lead.phone : '') + (lead.email ? ' • ' + lead.email : '');
 
-      // Update lang buttons in modal
       document.querySelectorAll('#modalLangGroup .lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.getAttribute('data-lang') === activeModalLang);
       });
 
-      // Update scenario buttons
       document.querySelectorAll('.scenario-btn').forEach((b, idx) => {
         b.classList.toggle('active', idx === 0);
       });
@@ -1867,7 +1933,6 @@
       }
     }
 
-    // Bind real-time typing to update wa/email urls
     document.addEventListener('DOMContentLoaded', () => {
       const textarea = document.getElementById('modalResponseText');
       if (textarea) {
@@ -1936,7 +2001,7 @@
           <div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; background: var(--bg-surface); border: 1px dashed var(--border); border-radius: 12px; color: var(--text-muted);">
             <i data-lucide="inbox" style="width: 36px; height: 36px; margin-bottom: 10px; color: #4B5563;"></i>
             <h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 6px;">No hay empresas en esta vista</h3>
-            <p style="font-size: 0.84rem;">Prueba a cambiar los filtros de estado o sector, o escribe otro término en la búsqueda.</p>
+            <p style="font-size: 0.84rem;">Prueba a cambiar los filtros de estado o sector, o pulsa "Reactivar teléfonos fijos para contactar por Email".</p>
           </div>
         `;
         if (window.lucide) window.lucide.createIcons();
@@ -1950,6 +2015,7 @@
         const activeLang = getCardLang(lead.id, lead.primaryLang);
         const pitchText = (lead.pitches && lead.pitches[activeLang]) ? lead.pitches[activeLang] : (lead.pitches && lead.pitches[lead.primaryLang] ? lead.pitches[lead.primaryLang] : lead.pitch);
         const cleanPhone = getCleanPhone(lead.phone);
+        const isMob = isMobilePhone(lead.phone);
         const waUrl = cleanPhone ? 'https://wa.me/' + cleanPhone + '?text=' + encodeURIComponent(pitchText) : '#';
         
         let mailSubject = '';
@@ -1976,6 +2042,7 @@
         if (status === 'contactado') statusClass = 'is-contacted';
         else if (status === 'respondido') statusClass = 'is-responded';
         else if (status === 'reunion') statusClass = 'is-meeting';
+        else if (status === 'descartado') statusClass = 'is-discarded';
 
         return `
           <div class="lead-card ${statusClass}" id="lead-card-${lead.id}">
@@ -1985,6 +2052,12 @@
                 <div class="lead-meta" style="margin-top: 4px; margin-bottom: 0;">
                   <span>📍 ${lead.zone}</span>
                   ${lead.web ? '<span>🌐 <a href="https://' + lead.web + '" target="_blank" style="color: #9CA3AF; text-decoration: none;">' + lead.web + '</a></span>' : ''}
+                  ${lead.phone ? `
+                    ${isMob 
+                      ? '<span class="channel-pill-mobile"><i data-lucide="message-circle" style="width: 11px; height: 11px;"></i> WhatsApp</span>' 
+                      : '<span class="channel-pill-landline"><i data-lucide="mail" style="width: 11px; height: 11px;"></i> Fijo (Email)</span>'
+                    }
+                  ` : ''}
                 </div>
               </div>
               <span class="sector-badge">${lead.sector}</span>
@@ -2034,20 +2107,37 @@
               <span>💬 Responder / Enviar Dossier a Medida</span>
             </button>
 
+            <!-- ACCIONES ADAPTADAS SEGÚN CANAL (MÓVIL O TELÉFONO FIJO) -->
             <div class="lead-actions">
-              ${cleanPhone ? `
-                <a href="${waUrl}" target="_blank" class="btn btn-whatsapp" onclick="handleWhatsAppClick(${lead.id})">
-                  <i data-lucide="send" style="width: 15px; height: 15px;"></i>
-                  <span>Abrir WhatsApp (Primer Contacto)</span>
-                </a>
-              ` : ''}
+              ${isMob ? `
+                ${cleanPhone ? `
+                  <a href="${waUrl}" target="_blank" class="btn btn-whatsapp" onclick="handleWhatsAppClick(${lead.id})">
+                    <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                    <span>Abrir WhatsApp (Móvil verificado)</span>
+                  </a>
+                ` : ''}
 
-              ${lead.email ? `
-                <a href="${mailUrl}" class="btn btn-email" onclick="handleEmailClick(${lead.id})">
-                  <i data-lucide="mail" style="width: 15px; height: 15px;"></i>
-                  <span>Abrir Email (Primer Contacto)</span>
-                </a>
-              ` : ''}
+                ${lead.email ? `
+                  <a href="${mailUrl}" class="btn btn-email" onclick="handleEmailClick(${lead.id})">
+                    <i data-lucide="mail" style="width: 15px; height: 15px;"></i>
+                    <span>Abrir Email</span>
+                  </a>
+                ` : ''}
+              ` : `
+                ${lead.email ? `
+                  <a href="${mailUrl}" class="btn btn-email-primary" onclick="handleEmailClick(${lead.id})">
+                    <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                    <span>✉️ Enviar por Email (Canal recomendado)</span>
+                  </a>
+                ` : ''}
+
+                ${cleanPhone ? `
+                  <a href="${waUrl}" target="_blank" class="btn btn-email" style="font-size: 0.76rem; opacity: 0.75;" onclick="handleWhatsAppClick(${lead.id})" title="Teléfono fijo centralita de Baleares">
+                    <i data-lucide="phone" style="width: 13px; height: 13px;"></i>
+                    <span>Llamar / Probar WhatsApp (${lead.phone})</span>
+                  </a>
+                ` : ''}
+              `}
 
               <button class="btn btn-copy" onclick="copyPitch(${lead.id})">
                 <i data-lucide="copy" style="width: 12px; height: 12px;"></i>
@@ -2089,6 +2179,7 @@
       let contacted = 0;
       let responded = 0;
       let meetings = 0;
+      let discarded = 0;
 
       LEADS.forEach(l => {
         const s = getLeadStatus(l.id);
@@ -2096,9 +2187,10 @@
         else if (s === 'contactado') contacted++;
         else if (s === 'respondido') { contacted++; responded++; }
         else if (s === 'reunion') { contacted++; responded++; meetings++; }
+        else if (s === 'descartado') discarded++;
       });
 
-      const totalContactedPipeline = contacted; // all who have moved past pending
+      const totalContactedPipeline = contacted;
 
       document.getElementById('kpiTotal').textContent = LEADS.length;
       document.getElementById('kpiContacted').textContent = contacted;
@@ -2106,22 +2198,22 @@
       document.getElementById('kpiResponses').textContent = responded;
       document.getElementById('kpiMeetings').textContent = meetings;
 
-      // Badges in tabs
       document.getElementById('badgeAllCount').textContent = LEADS.length;
       document.getElementById('badgeContactedCount').textContent = totalContactedPipeline;
 
-      // Badges in status pills
       const elAll = document.getElementById('countStatusAll');
       const elCont = document.getElementById('countStatusContacted');
       const elResp = document.getElementById('countStatusResponded');
       const elMeet = document.getElementById('countStatusMeetings');
       const elPend = document.getElementById('countStatusPending');
+      const elDisc = document.getElementById('countStatusDiscarded');
 
       if (elAll) elAll.textContent = LEADS.length;
       if (elCont) elCont.textContent = contacted;
       if (elResp) elResp.textContent = responded;
       if (elMeet) elMeet.textContent = meetings;
       if (elPend) elPend.textContent = pending;
+      if (elDisc) elDisc.textContent = discarded;
     }
 
     function exportData() {
