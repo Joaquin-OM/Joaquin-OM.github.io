@@ -300,8 +300,11 @@ function setLanguage(lang) {
 
     document.documentElement.lang = lang;
 
-    if (window.lucide) {
-        window.lucide.createIcons();
+    const dossierLink = document.getElementById('dossierLink');
+    if (dossierLink) {
+        dossierLink.href = lang === 'en'
+            ? './assets/Dossier_Services_Joaquin_Oses_2026_EN.pdf'
+            : './assets/Dossier_Servicios_Joaquin_Oses_2026.pdf';
     }
 
     window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));

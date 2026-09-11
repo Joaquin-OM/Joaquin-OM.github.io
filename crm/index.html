@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de Prospección 1-Clic — Joaquín Oses Monti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  :root {
+    --bg-dark: #090A0D;
+    --bg-surface: #111318;
+    --bg-card: #161821;
+    --bg-card-hover: #1C1F2B;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 255, 255, 0.2);
+    --text-white: #FFFFFF;
+    --text-primary: #F3F4F6;
+    --text-secondary: #9CA3AF;
+    --text-muted: #6B7280;
+    --green: #10B981;
+    --green-bg: rgba(16, 185, 129, 0.12);
+    --blue: #3B82F6;
+    --amber: #F59E0B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.5;
+    padding-bottom: 80px;
+  }
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+  .crm-header {
+    background: rgba(17, 19, 24, 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 16px 0;
+    margin-bottom: 24px;
+  }
+  .crm-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .brand-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .brand-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: rgba(255,255,255,0.08);
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .kpi-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .kpi-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .kpi-val { font-size: 2rem; font-weight: 800; color: var(--text-white); line-height: 1; }
+  .kpi-sub { font-size: 0.78rem; color: var(--text-secondary); margin-top: 6px; }
+  .controls-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .search-input-wrap {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    gap: 10px;
+  }
+  .search-input-wrap input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    width: 100%;
+    outline: none;
+    font-size: 0.9rem;
+    font-family: inherit;
+  }
+  .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-pill {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-pill:hover { background: rgba(255,255,255,0.05); color: #fff; }
+  .filter-pill.active {
+    background: var(--text-white);
+    color: #090A0D;
+    border-color: var(--text-white);
+  }
+  .leads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 16px;
+  }
+  .lead-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.18s;
+  }
+  .lead-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-hover);
+  }
+  .lead-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .lead-name { font-size: 1.1rem; font-weight: 700; color: var(--text-white); line-height: 1.25; }
+  .sector-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.06);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .lead-meta { display: flex; gap: 10px; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; }
+  .lead-audit {
+    background: rgba(255,255,255,0.02);
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    color: #CBD5E1;
+    margin-bottom: 14px;
+  }
+  .lead-audit-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #F87171;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .lead-demo {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .lead-demo a { color: var(--text-white); text-decoration: underline; font-weight: 600; }
+  .lead-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 6px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    transition: all 0.15s;
+  }
+  .btn-whatsapp { background: #10B981; color: #FFFFFF; }
+  .btn-whatsapp:hover { background: #059669; }
+  .btn-email { background: rgba(255,255,255,0.06); color: var(--text-white); border: 1px solid var(--border); }
+  .btn-email:hover { background: rgba(255,255,255,0.12); }
+  .btn-copy { background: transparent; color: var(--text-secondary); font-size: 0.75rem; padding: 4px; }
+  .btn-copy:hover { color: var(--text-white); }
+  .status-select-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  .status-select {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--text-white);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    outline: none;
+  }
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #10B981;
+    color: #FFFFFF;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.2s;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+  <header class="crm-header">
+    <div class="container crm-header-row">
+      <div class="brand-title">
+        <i data-lucide="zap" style="width: 20px; height: 20px; color: #10B981;"></i>
+        <span>Panel de Prospección 1-Clic</span>
+        <span class="brand-badge">Palma de Mallorca &bull; 32 Negocios Verificados</span>
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <button class="filter-pill" onclick="exportData()">
+          <i data-lucide="download" style="width: 14px; height: 14px; vertical-align: -2px;"></i> Exportar Progreso a CSV
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Total Leads Verificados</div>
+        <div class="kpi-val" id="kpiTotal">32</div>
+        <div class="kpi-sub">5 sectores de alto ticket en Mallorca</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Contactados</div>
+        <div class="kpi-val" id="kpiContacted" style="color: #10B981;">0</div>
+        <div class="kpi-sub" id="kpiContactedPct">0% enviado</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Respuestas Recibidas</div>
+        <div class="kpi-val" id="kpiResponses" style="color: #3B82F6;">0</div>
+        <div class="kpi-sub">Clientes interesados</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Reuniones Agendadas</div>
+        <div class="kpi-val" id="kpiMeetings" style="color: #F59E0B;">0</div>
+        <div class="kpi-sub">Presencial en Palma o llamada</div>
+      </div>
+    </div>
+
+    <div class="controls-card">
+      <div class="search-input-wrap">
+        <i data-lucide="search" style="width: 18px; height: 18px; color: #6B7280;"></i>
+        <input type="text" id="searchInput" placeholder="Buscar por nombre de negocio o zona (ej: Alcúdia, Son Vida, Deià, Portals)..." oninput="renderLeads()">
+      </div>
+
+      <div class="filter-pills" id="sectorFilters">
+        <button class="filter-pill active" onclick="setSectorFilter('all')">Todos (32)</button>
+        <button class="filter-pill" onclick="setSectorFilter('Rent-a-Car')">Rent-a-Car (8)</button>
+        <button class="filter-pill" onclick="setSectorFilter('Náutica')">Náutica & Chárter (6)</button>
+        <button class="filter-pill" onclick="setSectorFilter('Asesoría')">Asesorías (6)</button>
+        <button class="filter-pill" onclick="setSectorFilter('Hotel')">Hoteles & Fincas (8)</button>
+        <button class="filter-pill" onclick="setSectorFilter('Clínica')">Salud & Dental (4)</button>
+      </div>
+    </div>
+
+    <div class="leads-grid" id="leadsGrid"></div>
+  </main>
+
+  <div id="toast" class="toast">Mensaje copiado al portapapeles</div>
+
+  <script>
+    const LEADS = [
+  {
+    "id": 1,
+    "name": "Palma Bay Vespa & Scooters",
+    "sector": "Rent-a-Car / Scooters",
+    "zone": "Palma",
+    "phone": "+34 698 535 071",
+    "email": "info@palmabayvesparental.com",
+    "web": "palmabayvesparental.com",
+    "audit": "Reserva compleja en móvil; sin cálculo dinámico directo a WhatsApp",
+    "demoName": "Moto-Rent",
+    "demoUrl": "https://joaquin-om.github.io/moto-rent/",
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Palma y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+  },
+  {
+    "id": 2,
+    "name": "Palma Riders",
+    "sector": "Rent-a-Car / Scooters",
+    "zone": "Palma & Can Pastilla",
+    "phone": "+34 640 681 357",
+    "email": "info@palmariders.com",
+    "web": "palmariders.com",
+    "audit": "Carga de fotos lenta; formulario clásico por email sin confirmación rápida",
+    "demoName": "Moto-Rent",
+    "demoUrl": "https://joaquin-om.github.io/moto-rent/",
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Palma & Can Pastilla y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+  },
+  {
+    "id": 3,
+    "name": "Vintage Motors",
+    "sector": "Rent-a-Car / Scooters",
+    "zone": "Palma & Alcúdia",
+    "phone": "+34 620 476 285",
+    "email": "reservas@vintagemotors.rent",
+    "web": "vintagemotors.rent",
+    "audit": "Web de catálogo sin confirmación instantánea de extras (cascos, seguro)",
+    "demoName": "Moto-Rent",
+    "demoUrl": "https://joaquin-om.github.io/moto-rent/",
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Palma & Alcúdia y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+  },
+  {
+    "id": 4,
+    "name": "Mallorca Scooter",
+    "sector": "Rent-a-Car / Scooters",
+    "zone": "Can Pastilla / S'Arenal",
+    "phone": "+34 623 172 339",
+    "email": "contacto@mallorcascooter.com",
+    "web": "mallorcascooter.com",
+    "audit": "Poco optimizada para smartphone; sin botón de reserva inmediata",
+    "demoName": "Moto-Rent",
+    "demoUrl": "https://joaquin-om.github.io/moto-rent/",
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Can Pastilla / S'Arenal y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+  },
+  {
+    "id": 5,
+    "name": "Loco Wheels",
+    "sector": "Rent-a-Car / Scooters",
+    "zone": "Palma Centro",
+    "phone": "+34 971 282 828",
+    "email": "info@locowheels.com",
+    "web": "locowheels.com",
+    "audit": "Diseño desactualizado; no transmite calidad ni puntos de entrega",
+    "demoName": "Moto-Rent",
+    "demoUrl": "https://joaquin-om.github.io/moto-rent/",
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Palma Centro y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+  },
+  {
+    "id": 6,
+    "name": "Buggy Mallorca / Motorradverleih",
+    "sector": "Rent-a-Car / Scooters",
+    "zone": "Alcúdia",
+    "phone": "+34 644 818 803",
+    "email": "info@buggymallorca.com",
+    "web": "buggymallorca.com",
+    "audit": "Interfaz recargada; tarifas confusas entre tours y alquiler",
+    "demoName": "Moto-Rent",
+    "demoUrl": "https://joaquin-om.github.io/moto-rent/",
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Alcúdia y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+  },
+  {
+    "id": 7,
+    "name": "Motocity Cala d'Or",
+    "sector": "Rent-a-Car / Scooters",
+    "zone": "Cala d'Or",
+    "phone": "+34 971 657 410",
+    "email": "info@motocitycalador.com",
+    "web": "motocitycalador.com",
+    "audit": "Ausencia de cálculo automático en tiempo real por días de reserva",
+    "demoName": "Moto-Rent",
+    "demoUrl": "https://joaquin-om.github.io/moto-rent/",
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Cala d'Or y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+  },
+  {
+    "id": 8,
+    "name": "Sprint Rental",
+    "sector": "Rent-a-Car / Scooters",
+    "zone": "Cala d'Or & Cala Ferrera",
+    "phone": "+34 971 643 312",
+    "email": "info@sprintrental.es",
+    "web": "sprintrental.es",
+    "audit": "Web institucional sin motor interactivo para smartphone",
+    "demoName": "Moto-Rent",
+    "demoUrl": "https://joaquin-om.github.io/moto-rent/",
+    "pitch": "¡Hola! He visto vuestro servicio de alquiler en Cala d'Or & Cala Ferrera y la gran demanda que tenéis en temporada. Os escribo porque soy desarrollador web aquí en Palma y he preparado una demo interactiva pensada específicamente para rent-a-cars y scooters en Mallorca: permite al turista elegir modelo, días y extras, y enviar la reserva confirmada directamente a vuestro WhatsApp sin comisiones: https://joaquin-om.github.io/moto-rent/. Si queréis que revisemos cómo renovar o acelerar vuestra web para esta temporada, os preparo una propuesta sin compromiso. ¡Un saludo, Joaquín! (+34 695 26 74 45)"
+  },
+  {
+    "id": 9,
+    "name": "Puerto Portals Charters",
+    "sector": "Náutica & Chárter",
+    "zone": "Puerto Portals",
+    "phone": "+34 622 310 803",
+    "email": "info@puertoportalscharters.com",
+    "web": "puertoportalscharters.com",
+    "audit": "Reserva manual por correo; sin selector de eslora ni cálculo medio día/día completo",
+    "demoName": "Moto-Rent / Luxury",
+    "demoUrl": "https://joaquin-om.github.io/moto-rent/",
+    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Puerto Portals. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 10,
+    "name": "Smart Boats Mallorca",
+    "sector": "Náutica & Chárter",
+    "zone": "Port d'Andratx",
+    "phone": "+34 663 819 567",
+    "email": "info@smartboatsmallorca.com",
+    "web": "smartboatsmallorca.com",
+    "audit": "Carga lenta de fichas de barcos; falta botón flotante WhatsApp clientes VIP",
+    "demoName": "Moto-Rent / Luxury",
+    "demoUrl": "https://joaquin-om.github.io/moto-rent/",
+    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Port d'Andratx. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 11,
+    "name": "Llaüts.com",
+    "sector": "Náutica & Chárter",
+    "zone": "Port d'Andratx",
+    "phone": "+34 657 10 69 10",
+    "email": "info@llauts.com",
+    "web": "llauts.com",
+    "audit": "Web anticuada que desaprovecha la venta de la experiencia tradicional en calas",
+    "demoName": "Mallorca Luxury",
+    "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
+    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Port d'Andratx. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/mallorca-luxury/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 12,
+    "name": "Mallorca Marine Group",
+    "sector": "Náutica & Chárter",
+    "zone": "Puerto Portals",
+    "phone": "+34 971 103 633",
+    "email": "charter@mallorcamarinegroup.com",
+    "web": "mallorcamarinegroup.com",
+    "audit": "Web corporativa orientada a desktop; navegación densa en smartphones",
+    "demoName": "Mallorca Luxury",
+    "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
+    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Puerto Portals. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/mallorca-luxury/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 13,
+    "name": "Mallorca Nautic",
+    "sector": "Náutica & Chárter",
+    "zone": "Paseo Marítimo Palma",
+    "phone": "+34 971 716 333",
+    "email": "info@mallorcanautic.com",
+    "web": "mallorcanautic.com",
+    "audit": "Interfaz poco táctil; tarifas y fianzas poco claras a primera vista",
+    "demoName": "Moto-Rent",
+    "demoUrl": "https://joaquin-om.github.io/moto-rent/",
+    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Paseo Marítimo Palma. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 14,
+    "name": "Andrews Charter",
+    "sector": "Náutica & Chárter",
+    "zone": "Port d'Andratx",
+    "phone": "+34 600 000 000",
+    "email": "info@andrewscharter.com",
+    "web": "andrewscharter.com",
+    "audit": "Web básica sin catálogo estructurado ni solicitud de disponibilidad en tiempo real",
+    "demoName": "Moto-Rent",
+    "demoUrl": "https://joaquin-om.github.io/moto-rent/",
+    "pitch": "¡Hola! Os contacto tras ver vuestra flota de embarcaciones en Port d'Andratx. Soy desarrollador web especializado en portales de reserva y plataformas para el sector náutico y turístico en Mallorca: he desarrollado una demo interactiva donde el cliente puede seleccionar embarcación, fecha, patrón y extras, recibiendo la solicitud con todos los datos directamente en vuestro WhatsApp: https://joaquin-om.github.io/moto-rent/. Si queréis potenciar la venta directa VIP para esta temporada, podemos revisarlo sin compromiso. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 15,
+    "name": "Penta Asesores",
+    "sector": "Asesoría / Gestoría",
+    "zone": "Palma Centro",
+    "phone": "+34 971 761 451",
+    "email": "info@pentaasesores.es",
+    "web": "pentaasesores.es",
+    "audit": "Web clásica estática; sin utilidades interactivas ni portal cliente",
+    "demoName": "GestorPro",
+    "demoUrl": "https://joaquin-om.github.io/gestor-pro/",
+    "pitch": "Estimados señores de Penta Asesores: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45)."
+  },
+  {
+    "id": 16,
+    "name": "Consulting Confislab",
+    "sector": "Asesoría / Gestoría",
+    "zone": "Palma (Aragó)",
+    "phone": "+34 971 759 736",
+    "email": "info@consultingconfislab.es",
+    "web": "consultingconfislab.es",
+    "audit": "Servidor lento; falta de simuladores o formularios ágiles",
+    "demoName": "GestorPro",
+    "demoUrl": "https://joaquin-om.github.io/gestor-pro/",
+    "pitch": "Estimados señores de Consulting Confislab: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45)."
+  },
+  {
+    "id": 17,
+    "name": "Moya & Emery",
+    "sector": "Asesoría / Jurídico",
+    "zone": "Palma & Calvià",
+    "phone": "+34 971 728 010",
+    "email": "info@moyaemery.com",
+    "web": "moyaemery.com",
+    "audit": "Contenido denso en móvil; útil panel ágil de expedientes",
+    "demoName": "GestorPro",
+    "demoUrl": "https://joaquin-om.github.io/gestor-pro/",
+    "pitch": "Estimados señores de Moya & Emery: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45)."
+  },
+  {
+    "id": 18,
+    "name": "COPIME Asesoría",
+    "sector": "Asesoría / Gestoría",
+    "zone": "Palma Centro",
+    "phone": "+34 971 713 733",
+    "email": "info@copime.es",
+    "web": "copime.es",
+    "audit": "Diseño anticuado que no refleja modernización técnica del equipo",
+    "demoName": "GestorPro",
+    "demoUrl": "https://joaquin-om.github.io/gestor-pro/",
+    "pitch": "Estimados señores de COPIME Asesoría: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45)."
+  },
+  {
+    "id": 19,
+    "name": "Gestoría Mas",
+    "sector": "Gestoría Administrativa",
+    "zone": "Palma (Jaume III)",
+    "phone": "+34 971 722 040",
+    "email": "info@gestoriamas.com",
+    "web": "gestoriamas.com",
+    "audit": "Imagen tradicional; necesita landing moderna para autónomos jóvenes",
+    "demoName": "GestorPro",
+    "demoUrl": "https://joaquin-om.github.io/gestor-pro/",
+    "pitch": "Hola, les contacto tras conocer su clínica en Palma (Jaume III). Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/gestor-pro/. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 20,
+    "name": "LGS Asesores",
+    "sector": "Asesoría Fiscal/Laboral",
+    "zone": "Polígon Son Castelló",
+    "phone": "+34 971 430 080",
+    "email": "info@lgsasesores.com",
+    "web": "lgsasesores.com",
+    "audit": "Sin herramientas de cotejo documental para empresas de la zona",
+    "demoName": "GestorPro",
+    "demoUrl": "https://joaquin-om.github.io/gestor-pro/",
+    "pitch": "Estimados señores de LGS Asesores: Les contacto porque soy desarrollador web en Palma especializado en digitalización y automatización de procesos para asesorías fiscales y despachos. He creado una demostración interactiva de software a medida que permite simular la normalización y renombrado masivo de expedientes de clientes (según NIF/trimestre) y cotejo con Excel: https://joaquin-om.github.io/gestor-pro/. Si desean modernizar su web corporativa o dotar a su despacho de herramientas internas que ahorren horas a su equipo contable, estaré encantado de mantener una breve reunión presencial en Palma. Atentamente, Joaquín Oses Monti (+34 695 26 74 45)."
+  },
+  {
+    "id": 21,
+    "name": "Sa Pedrissa Adults Only",
+    "sector": "Hotel Boutique / Finca",
+    "zone": "Deià",
+    "phone": "+34 971 639 111",
+    "email": "reservas@sapedrissa.com",
+    "web": "sapedrissa.com",
+    "audit": "Motor de reservas externo saca al usuario del entorno visual editorial",
+    "demoName": "Mallorca Luxury",
+    "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Sa Pedrissa Adults Only en Deià. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 22,
+    "name": "Hotel Es Molí",
+    "sector": "Hotel Boutique / Finca",
+    "zone": "Deià",
+    "phone": "+34 971 639 000",
+    "email": "info@esmoli.com",
+    "web": "esmoli.com",
+    "audit": "Carga lenta en móvil; tipografía poco diferenciadora",
+    "demoName": "Mallorca Luxury",
+    "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Hotel Es Molí en Deià. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 23,
+    "name": "Mirabó de Valldemossa",
+    "sector": "Hotel Boutique / Finca",
+    "zone": "Valldemossa",
+    "phone": "+34 971 612 400",
+    "email": "info@mirabo.es",
+    "web": "mirabo.es",
+    "audit": "Web desaprovecha venta directa de experiencias gastronómicas",
+    "demoName": "Mallorca Luxury",
+    "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Mirabó de Valldemossa en Valldemossa. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 24,
+    "name": "Ca's Xorc Luxury Retreat",
+    "sector": "Hotel Boutique & Restaurante",
+    "zone": "Sóller",
+    "phone": "+34 971 638 280",
+    "email": "stay@casxorc.com",
+    "web": "casxorc.com",
+    "audit": "No integra en una pantalla eventos privados y reservas restaurante",
+    "demoName": "Mallorca Luxury",
+    "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Ca's Xorc Luxury Retreat en Sóller. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 25,
+    "name": "Son Bleda Agroturismo",
+    "sector": "Agroturismo Boutique",
+    "zone": "Deià / Sóller",
+    "phone": "+34 971 636 000",
+    "email": "info@sonbleda.com",
+    "web": "sonbleda.com",
+    "audit": "Poca interactividad para clientes de alto poder adquisitivo",
+    "demoName": "Mallorca Luxury",
+    "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
+    "pitch": "Hola, les contacto tras conocer su clínica en Deià / Sóller. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/mallorca-luxury/. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 26,
+    "name": "Castillo Hotel Son Vida",
+    "sector": "Hotel 5* & Gastronomía",
+    "zone": "Son Vida (Palma)",
+    "phone": "+34 971 493 493",
+    "email": "reservas@castillohotelsonvida.com",
+    "web": "castillohotelsonvida.com",
+    "audit": "Web corporativa rígida que diluye la identidad única del enclave",
+    "demoName": "Mallorca Luxury",
+    "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Castillo Hotel Son Vida en Son Vida (Palma). Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 27,
+    "name": "Finca Hotel Can Estades",
+    "sector": "Hotel Rural",
+    "zone": "Calvià",
+    "phone": "+34 971 670 541",
+    "email": "info@canestades.com",
+    "web": "canestades.com",
+    "audit": "Diseño poco adaptado a pantallas táctiles modernas",
+    "demoName": "Mallorca Luxury",
+    "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Finca Hotel Can Estades en Calvià. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 28,
+    "name": "Boutique Hotel Calatrava",
+    "sector": "Hotel Boutique",
+    "zone": "Palma Centro",
+    "phone": "+34 971 230 000",
+    "email": "info@calatravahotel.com",
+    "web": "calatravahotel.com",
+    "audit": "Oportunidad de landing exclusiva para eventos en azotea y gastro",
+    "demoName": "Mallorca Luxury",
+    "demoUrl": "https://joaquin-om.github.io/mallorca-luxury/",
+    "pitch": "Buenas tardes. Les escribo tras apreciar la singularidad y exclusividad de Boutique Hotel Calatrava en Palma Centro. Soy desarrollador web en Mallorca y he diseñado una plataforma digital de alto standing (3-en-1) para el sector hotelero y gastronómico: integra motor de reserva directa de suites para reducir la dependencia de intermediarios, reserva de mesa y dossier privado: https://joaquin-om.github.io/mallorca-luxury/. Si tienen interés en reforzar la captación directa de huéspedes internacionales para esta temporada, podemos concertar una breve llamada. Saludos cordiales, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 29,
+    "name": "Clínica Dental Nadal",
+    "sector": "Clínica Salud / Dental",
+    "zone": "Palma Centro",
+    "phone": "+34 971 721 821",
+    "email": "info@clinicaesteticanadal.com",
+    "web": "clinicaesteticanadal.com",
+    "audit": "Formulario de cita rígido; sin consulta rápida por WhatsApp",
+    "demoName": "Web Rápida",
+    "demoUrl": "https://joaquin-om.github.io/#servicios",
+    "pitch": "Hola, les contacto tras conocer su clínica en Palma Centro. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 30,
+    "name": "Clínicas Udemax",
+    "sector": "Clínica Dental & Maxilofacial",
+    "zone": "Palma (Miramar)",
+    "phone": "+34 607 833 629",
+    "email": "info@clinicasudemax.com",
+    "web": "clinicasudemax.com",
+    "audit": "Web fragmentada y lenta; sin landing moderna de captación",
+    "demoName": "Web Corporativa",
+    "demoUrl": "https://joaquin-om.github.io/#servicios",
+    "pitch": "Hola, les contacto tras conocer su clínica en Palma (Miramar). Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 31,
+    "name": "Clínica Joana Rosselló",
+    "sector": "Estética Dental",
+    "zone": "Palma Centro",
+    "phone": "+34 971 715 000",
+    "email": "info@joanarossello.com",
+    "web": "joanarossello.com",
+    "audit": "Falta catálogo visual interactivo de tratamientos con valoración",
+    "demoName": "Web Corporativa",
+    "demoUrl": "https://joaquin-om.github.io/#servicios",
+    "pitch": "Hola, les contacto tras conocer su clínica en Palma Centro. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45)."
+  },
+  {
+    "id": 32,
+    "name": "Estética Dental Palma",
+    "sector": "Estética Dental",
+    "zone": "Palma Centro",
+    "phone": "+34 971 457 202",
+    "email": "info@esteticadental.es",
+    "web": "esteticadental.es",
+    "audit": "Web clásica sin diseño fluido ni botón de urgencias dentales",
+    "demoName": "Web Rápida",
+    "demoUrl": "https://joaquin-om.github.io/#servicios",
+    "pitch": "Hola, les contacto tras conocer su clínica en Palma Centro. Soy desarrollador web local y ayudo a clínicas y centros médicos de Mallorca a captar pacientes mediante páginas web rápidas y adaptadas a móvil con sistema de cita directa por WhatsApp: https://joaquin-om.github.io/#servicios. El 80% de los pacientes buscan hoy desde su smartphone; si desean renovar su web o facilitar que los pacientes agenden consulta en un clic, estaré encantado de prepararles una propuesta sin coste. Un saludo, Joaquín Oses (+34 695 26 74 45)."
+  }
+];
+    let currentSector = 'all';
+
+    function getCleanPhone(phone) {
+      return phone ? phone.replace(/[^0-9]/g, '') : '';
+    }
+
+    function getLeadStatus(id) {
+      return localStorage.getItem('crm_status_' + id) || 'pendiente';
+    }
+
+    function setLeadStatus(id, status) {
+      localStorage.setItem('crm_status_' + id, status);
+      updateKPIs();
+    }
+
+    function getLeadNotes(id) {
+      return localStorage.getItem('crm_notes_' + id) || '';
+    }
+
+    function setLeadNotes(id, notes) {
+      localStorage.setItem('crm_notes_' + id, notes);
+    }
+
+    function copyPitch(id) {
+      const lead = LEADS.find(l => l.id === id);
+      if (!lead) return;
+      navigator.clipboard.writeText(lead.pitch).then(() => {
+        showToast("✓ Mensaje copiado al portapapeles");
+      });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2400);
+    }
+
+    function handleWhatsAppClick(id) {
+      const current = getLeadStatus(id);
+      if (current === 'pendiente') {
+        setLeadStatus(id, 'contactado');
+        const sel = document.getElementById('status-select-' + id);
+        if (sel) sel.value = 'contactado';
+      }
+      showToast("✓ Abriendo WhatsApp Web con mensaje listo");
+    }
+
+    function handleEmailClick(id) {
+      const current = getLeadStatus(id);
+      if (current === 'pendiente') {
+        setLeadStatus(id, 'contactado');
+        const sel = document.getElementById('status-select-' + id);
+        if (sel) sel.value = 'contactado';
+      }
+      showToast("✓ Abriendo borrador de email");
+    }
+
+    function setSectorFilter(sec) {
+      currentSector = sec;
+      document.querySelectorAll('#sectorFilters .filter-pill').forEach(p => {
+        p.classList.remove('active');
+        if ((sec === 'all' && p.textContent.includes('Todos')) || p.textContent.includes(sec)) {
+          p.classList.add('active');
+        }
+      });
+      renderLeads();
+    }
+
+    function renderLeads() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const grid = document.getElementById('leadsGrid');
+      
+      const filtered = LEADS.filter(lead => {
+        const matchesSector = (currentSector === 'all') || (lead.sector.toLowerCase().includes(currentSector.toLowerCase()));
+        const matchesQuery = !query || 
+          lead.name.toLowerCase().includes(query) || 
+          lead.zone.toLowerCase().includes(query) || 
+          lead.sector.toLowerCase().includes(query);
+        return matchesSector && matchesQuery;
+      });
+
+      grid.innerHTML = filtered.map(lead => {
+        const status = getLeadStatus(lead.id);
+        const notes = getLeadNotes(lead.id);
+        const cleanPhone = getCleanPhone(lead.phone);
+        const waUrl = cleanPhone ? 'https://wa.me/' + cleanPhone + '?text=' + encodeURIComponent(lead.pitch) : '#';
+        const mailSubject = encodeURIComponent('Propuesta de modernización web y reservas directas para ' + lead.name + ' — Joaquín Oses');
+        const mailBody = encodeURIComponent(lead.pitch + "\n\nPuede consultar el dossier de servicios en línea: https://joaquin-om.github.io/assets/Dossier_Servicios_Joaquin_Oses_2026.pdf");
+        const mailUrl = lead.email ? 'mailto:' + lead.email + '?subject=' + mailSubject + '&body=' + mailBody : '#';
+
+        return `
+          <div class="lead-card" id="lead-card-${lead.id}">
+            <div class="lead-top">
+              <h3 class="lead-name">${lead.name}</h3>
+              <span class="sector-badge">${lead.sector}</span>
+            </div>
+
+            <div class="lead-meta">
+              <span>📍 ${lead.zone}</span>
+              ${lead.web ? '<span>🌐 <a href="https://' + lead.web + '" target="_blank" style="color: #9CA3AF; text-decoration: none;">' + lead.web + '</a></span>' : ''}
+            </div>
+
+            <div class="lead-audit">
+              <span class="lead-audit-label">Auditoría web flash:</span>
+              ${lead.audit}
+            </div>
+
+            <div class="lead-demo">
+              <i data-lucide="play" style="width: 13px; height: 13px; color: #10B981;"></i>
+              <span>Demo sugerida: <a href="${lead.demoUrl}" target="_blank">${lead.demoName}</a></span>
+            </div>
+
+            <div class="lead-actions">
+              ${cleanPhone ? `
+                <a href="${waUrl}" target="_blank" class="btn btn-whatsapp" onclick="handleWhatsAppClick(${lead.id})">
+                  <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                  <span>Abrir WhatsApp con mensaje listo</span>
+                </a>
+              ` : ''}
+
+              ${lead.email ? `
+                <a href="${mailUrl}" class="btn btn-email" onclick="handleEmailClick(${lead.id})">
+                  <i data-lucide="mail" style="width: 15px; height: 15px;"></i>
+                  <span>Abrir Email con mensaje listo</span>
+                </a>
+              ` : ''}
+
+              <button class="btn btn-copy" onclick="copyPitch(${lead.id})">
+                <i data-lucide="copy" style="width: 12px; height: 12px;"></i>
+                <span>Copiar texto del mensaje</span>
+              </button>
+
+              <div class="status-select-wrap">
+                <span>Estado:</span>
+                <select id="status-select-${lead.id}" class="status-select" onchange="setLeadStatus(${lead.id}, this.value)">
+                  <option value="pendiente" ${status === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
+                  <option value="contactado" ${status === 'contactado' ? 'selected' : ''}>📤 Contactado</option>
+                  <option value="respondido" ${status === 'respondido' ? 'selected' : ''}>💬 Ha Respondido</option>
+                  <option value="reunion" ${status === 'reunion' ? 'selected' : ''}>📅 Reunión Agendada</option>
+                  <option value="descartado" ${status === 'descartado' ? 'selected' : ''}>❌ Descartado</option>
+                </select>
+              </div>
+
+              <input 
+                type="text" 
+                placeholder="Notas de seguimiento..." 
+                value="${notes}" 
+                onchange="setLeadNotes(${lead.id}, this.value)"
+                style="margin-top: 6px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: #fff; padding: 5px 8px; border-radius: 4px; font-size: 0.76rem; outline: none;"
+              />
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      updateKPIs();
+    }
+
+    function updateKPIs() {
+      let contacted = 0;
+      let responded = 0;
+      let meetings = 0;
+
+      LEADS.forEach(l => {
+        const s = getLeadStatus(l.id);
+        if (s === 'contactado') contacted++;
+        else if (s === 'respondido') { contacted++; responded++; }
+        else if (s === 'reunion') { contacted++; responded++; meetings++; }
+      });
+
+      document.getElementById('kpiTotal').textContent = LEADS.length;
+      document.getElementById('kpiContacted').textContent = contacted;
+      document.getElementById('kpiContactedPct').textContent = Math.round((contacted / LEADS.length) * 100) + '% enviado';
+      document.getElementById('kpiResponses').textContent = responded;
+      document.getElementById('kpiMeetings').textContent = meetings;
+    }
+
+    function exportData() {
+      let csv = "ID,Nombre,Sector,Zona,Telefono,Email,Web,Estado,Notas\n";
+      LEADS.forEach(l => {
+        const s = getLeadStatus(l.id);
+        const n = getLeadNotes(l.id).replace(/"/g, '""');
+        csv += `"${l.id}","${l.name}","${l.sector}","${l.zone}","${l.phone}","${l.email}","${l.web}","${s}","${n}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'prospeccion_mallorca_' + new Date().toISOString().slice(0,10) + '.csv';
+      a.click();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderLeads();
+    });
+  </script>
+</body>
+</html>
