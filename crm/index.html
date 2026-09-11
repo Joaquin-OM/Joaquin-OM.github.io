@@ -631,14 +631,14 @@
       <div class="brand-title">
         <i data-lucide="zap" style="width: 20px; height: 20px; color: #10B981;"></i>
         <span>Panel de Prospección & Respuestas a Medida</span>
-        <span class="brand-badge">Mallorca &bull; 33 Negocios &bull; ES | EN | DE</span>
+        <span class="brand-badge">Mallorca &bull; 37 Negocios &bull; ES | EN | DE</span>
       </div>
 
       <div class="header-actions">
         <!-- EMAIL CLIENT SELECTOR -->
         <div style="display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; padding: 3px 8px;">
           <span style="font-size: 0.72rem; color: var(--text-muted);">Email:</span>
-          <button id="btnClientGmail" class="filter-pill active-gmail" style="padding: 3px 8px; font-size: 0.72rem;" onclick="setEmailClient('gmail')" title="Abrir en Gmail Web en nueva pestaña">🔴 Gmail Web</button>
+          <button id="btnClientGmail" class="filter-pill active-gmail" style="padding: 3px 8px; font-size: 0.72rem;" onclick="setEmailClient('gmail')" title="Abrir en Gmail Web desde la cuenta osesjoa@gmail.com">🔴 Gmail (osesjoa@gmail.com)</button>
           <button id="btnClientDefault" class="filter-pill" style="padding: 3px 8px; font-size: 0.72rem;" onclick="setEmailClient('default')" title="Abrir con la aplicación por defecto de Windows (Outlook/Mail)">💻 Outlook/Mail</button>
         </div>
 
@@ -1763,10 +1763,13 @@
       return phone ? phone.replace(/[^0-9]/g, '') : '';
     }
 
+    const GMAIL_ACCOUNT = 'osesjoa@gmail.com';
+
     function getEmailUrl(email, subject, body) {
       if (!email) return '#';
       if (emailClient === 'gmail') {
-        return 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(email) + '&su=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        const acc = encodeURIComponent(GMAIL_ACCOUNT);
+        return 'https://mail.google.com/mail/u/' + acc + '/?view=cm&fs=1&authuser=' + acc + '&to=' + encodeURIComponent(email) + '&su=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       } else {
         return 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       }
@@ -1780,7 +1783,7 @@
       if (activeModalLead) {
         updateModalActionUrls();
       }
-      showToast(client === 'gmail' ? '✓ Correos configurados con Gmail Web' : '✓ Correos configurados con Outlook / Sistema');
+      showToast(client === 'gmail' ? '✓ Correos configurados con Gmail (' + GMAIL_ACCOUNT + ')' : '✓ Correos configurados con Outlook / Sistema');
     }
 
     function updateEmailClientUI() {
