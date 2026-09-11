@@ -79,6 +79,14 @@ const translations = {
         "projects.p5Title": "SmartCook: Asistente Culinario con IA",
         "projects.p5Summary": "Planificador culinario inteligente que optimiza los ingredientes de la despensa para reducir el desperdicio. Integra personalidades de chef ('Abuela Teresa', 'Chef Gordon', 'Dr. Molecular') y modo cocina guiado.",
 
+        "projects.purecookCat": "Aplicación Web PWA",
+        "projects.purecookTitle": "PureCook: Gestor de Recetas Ultra-Minimalista",
+        "projects.purecookSummary": "Aplicación Web Progresiva (PWA) real en producción con soporte offline. Diseñada con enfoque ultra-minimalista, tipografía suiza y rendimiento inmediato sin tiempos de carga.",
+
+        "projects.luxuryCat": "Turismo de Lujo & Inmobiliaria",
+        "projects.luxuryTitle": "Mallorca Luxury: Hoteles, Restaurantes & Villas",
+        "projects.luxurySummary": "Plataforma 3-en-1 de alta gama para empresas de Mallorca. Integra catálogo de propiedades exclusivas en Son Vida y Andratx, reservas para hoteles boutique y menú con reserva de mesa para restauración.",
+
         "about.label": "Enfoque",
         "about.title": "Perfil técnico híbrido",
         "about.p1": "Soy <strong>Desarrollador Web</strong> y <strong>Técnico en Sistemas Microinformáticos y Redes</strong> afincado en Palma de Mallorca.",
@@ -178,6 +186,14 @@ const translations = {
         "projects.p5Cat": "AI & Culinary Tech",
         "projects.p5Title": "SmartCook: AI Kitchen & Recipe Assistant",
         "projects.p5Summary": "Smart culinary assistant that maximizes existing pantry ingredients to prevent food waste. Features AI chef personas ('Chef Gordon', 'Grandma Teresa', 'Dr. Molecular') and interactive cooking mode.",
+
+        "projects.purecookCat": "Progressive Web App (PWA)",
+        "projects.purecookTitle": "PureCook: Ultra-Minimalist Recipe Manager",
+        "projects.purecookSummary": "Live production PWA engineered with an offline-first architecture, zero-friction Swiss UI, and instantaneous client-side performance.",
+
+        "projects.luxuryCat": "Luxury Hospitality & Real Estate",
+        "projects.luxuryTitle": "Mallorca Luxury: Hotels, Dining & Estates",
+        "projects.luxurySummary": "Editorial 3-in-1 digital platform for Mallorca's premium sector: luxury villa showcase in Son Vida and Andratx, boutique hotel suite bookings, and restaurant table reservations.",
 
         "about.label": "Approach",
         "about.title": "Hybrid technical profile",

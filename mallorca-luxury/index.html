@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mallorca Luxury — Hoteles Boutique, Fincas Exclusivas & Gastronomía</title>
+    <meta name="description" content="Demostración de plataforma web de alto standing para el sector premium de Mallorca: inmobiliarias de lujo, hoteles boutique y restaurantes gastronómicos.">
+
+    <!-- Google Fonts: Cormorant Garamond (Editorial Luxury) + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <!-- Topbar Editorial -->
+    <header class="luxury-header">
+        <div class="header-container">
+            <div class="brand-box">
+                <span class="brand-loc">MALLORCA &bull; ILLES BALEARS</span>
+                <span class="brand-title">Can Tramuntana</span>
+                <span class="brand-sub">Estates &bull; Boutique Retreat &bull; Fine Dining</span>
+            </div>
+
+            <nav class="nav-experience">
+                <button class="exp-btn active" data-exp="villas">
+                    <span>1. Inmobiliaria & Villas</span>
+                </button>
+                <button class="exp-btn" data-exp="hotel">
+                    <span>2. Hotel Boutique</span>
+                </button>
+                <button class="exp-btn" data-exp="restaurante">
+                    <span>3. Restaurante & Terraza</span>
+                </button>
+            </nav>
+
+            <div class="header-actions">
+                <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20vi%20la%20demo%20de%20Mallorca%20Luxury%20y%20quiero%20consultar%20una%20web%20para%20mi%20negocio" target="_blank" class="btn btn-luxury-primary btn-sm">
+                    <i data-lucide="message-circle" class="btn-icon"></i>
+                    <span>Consultar Web Similar</span>
+                </a>
+                <a href="../#proyectos" class="btn btn-luxury-outline btn-sm">
+                    Volver al Portfolio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="luxury-main">
+        <!-- Hero Editorial -->
+        <section class="editorial-hero">
+            <div class="hero-backdrop"></div>
+            <div class="hero-content">
+                <span class="hero-tag">Solución Web para Hoteles, Restaurantes e Inmobiliarias en Baleares</span>
+                <h1 class="hero-heading" id="dynamicHeroHeading">
+                    Arquitectura, hospitalidad y gastronomía en el corazón de Mallorca.
+                </h1>
+                <p class="hero-lead" id="dynamicHeroLead">
+                    Diseño web concebido para transmitir exclusividad, justificar tarifas de alto ticket y convertir visitantes en reservas y compradores directos sin intermediarios.
+                </p>
+                <div class="hero-pills">
+                    <span class="pill-item"><i data-lucide="shield-check"></i> Sin comisiones de portales</span>
+                    <span class="pill-item"><i data-lucide="smartphone"></i> Reserva directa por WhatsApp</span>
+                    <span class="pill-item"><i data-lucide="zap"></i> Carga ultra-rápida</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 1: INMOBILIARIA & VILLAS -->
+        <section id="exp-villas" class="exp-section active">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <div>
+                        <span class="eyebrow">Catálogo Exclusivo</span>
+                        <h2 class="serif-title">Fincas & Villas de Alto Standing</h2>
+                    </div>
+                    <p class="section-description">
+                        Propiedades únicas seleccionadas en Son Vida, Deià y Port d'Andratx. Fotografías de calidad arquitectónica y solicitud directa de dossier confidencial.
+                    </p>
+                </div>
+
+                <div class="villas-grid" id="villasGrid">
+                    <!-- Inyectado dinámicamente -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: HOTEL BOUTIQUE & SUITES -->
+        <section id="exp-hotel" class="exp-section">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <div>
+                        <span class="eyebrow">Hospitalidad Exclusiva</span>
+                        <h2 class="serif-title">Suites & Retreat Can Tramuntana</h2>
+                    </div>
+                    <p class="section-description">
+                        Alojamiento boutique con vistas panorámicas a la Serra de Tramuntana. Motor de reservas directas para evitar hasta un 18% de comisiones a plataformas externas.
+                    </p>
+                </div>
+
+                <div class="hotel-booking-layout">
+                    <!-- Selector de Suites -->
+                    <div class="suites-list" id="suitesList">
+                        <!-- Inyectado -->
+                    </div>
+
+                    <!-- Widget de Reserva Directa -->
+                    <div class="booking-sticky-widget">
+                        <div class="widget-card">
+                            <h3 class="widget-title">Reserva de Estancia Directa</h3>
+                            <p class="widget-sub">Garantía de mejor tarifa disponible online.</p>
+
+                            <form id="hotelBookingForm">
+                                <div class="form-group">
+                                    <label class="f-label">Suite Seleccionada</label>
+                                    <input type="text" id="selectedSuiteName" class="f-input readonly" readonly value="Grand Sea View Suite">
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="f-label">Check-in</label>
+                                        <input type="date" id="hotelCheckIn" class="f-input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="f-label">Check-out</label>
+                                        <input type="date" id="hotelCheckOut" class="f-input" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="f-label">Huéspedes</label>
+                                        <select id="hotelGuests" class="f-input">
+                                            <option value="2">2 Adultos</option>
+                                            <option value="1">1 Adulto</option>
+                                            <option value="3">3 Huéspedes</option>
+                                            <option value="4">4 Huéspedes</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="f-label">Régimen</label>
+                                        <select id="hotelBoard" class="f-input">
+                                            <option value="0" data-name="Solo Alojamiento">Solo Alojamiento</option>
+                                            <option value="35" data-name="Desayuno Gourmet Km 0" selected>Desayuno Km 0 (+35 €/d)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="hotel-price-breakdown">
+                                    <div class="hp-row">
+                                        <span id="hpDays">2 noches</span>
+                                        <span id="hpBase">0 €</span>
+                                    </div>
+                                    <div class="hp-row">
+                                        <span>Régimen / Extras</span>
+                                        <span id="hpBoard">0 €</span>
+                                    </div>
+                                    <div class="hp-total-row">
+                                        <span>Total Estancia</span>
+                                        <span id="hpTotal">0 €</span>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-luxury-primary btn-block" style="padding: 0.85rem;">
+                                    Solicitar Reserva por WhatsApp
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: RESTAURANTE & TERRAZA GASTRONÓMICA -->
+        <section id="exp-restaurante" class="exp-section">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <div>
+                        <span class="eyebrow">Gastronomía Mediterránea Km 0</span>
+                        <h2 class="serif-title">Carta de Temporada & Reservas</h2>
+                    </div>
+                    <p class="section-description">
+                        Menú digital interactivo con ingredientes locales de Mallorca y sistema ágil de reserva de mesas con confirmación automática.
+                    </p>
+                </div>
+
+                <div class="restaurant-layout">
+                    <!-- Menú Digital -->
+                    <div class="menu-wrap">
+                        <div class="menu-categories" id="menuCategories">
+                            <button class="m-cat-btn active" data-mcat="entrantes">Entrantes & Crudos</button>
+                            <button class="m-cat-btn" data-mcat="principales">Pescados & Carnes</button>
+                            <button class="m-cat-btn" data-mcat="postres">Postres & Bodega</button>
+                        </div>
+
+                        <div class="menu-items-grid" id="menuItemsGrid">
+                            <!-- Inyectado dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Motor de Reserva de Mesa -->
+                    <div class="table-booking-widget">
+                        <div class="widget-card">
+                            <h3 class="widget-title">Reserva de Mesa</h3>
+                            <p class="widget-sub">Terraza con vistas a la puesta de sol o Salón Cava.</p>
+
+                            <form id="tableBookingForm">
+                                <div class="form-group">
+                                    <label class="f-label">Fecha de la Cena / Almuerzo</label>
+                                    <input type="date" id="tableDate" class="f-input" required>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="f-label">Turno / Hora</label>
+                                        <select id="tableTime" class="f-input">
+                                            <option value="13:30">13:30 (Almuerzo)</option>
+                                            <option value="15:00">15:00 (Almuerzo)</option>
+                                            <option value="20:00" selected>20:00 (Puesta de Sol)</option>
+                                            <option value="21:30">21:30 (Cena)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="f-label">Comensales</label>
+                                        <select id="tableGuests" class="f-input">
+                                            <option value="2">2 Personas</option>
+                                            <option value="4" selected>4 Personas</option>
+                                            <option value="6">6 Personas</option>
+                                            <option value="8">8+ (Grupo / Evento)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="f-label">Zona Preferida</label>
+                                    <select id="tableArea" class="f-input">
+                                        <option value="Terraza Panorámica">Terraza Panorámica (Vistas Bahía)</option>
+                                        <option value="Salón Cava Climatizado">Salón Cava Climatizado</option>
+                                        <option value="Mesa Íntima en Jardín">Mesa Íntima en Jardín de Olivos</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="f-label">Nombre para la Reserva</label>
+                                    <input type="text" id="tableName" class="f-input" placeholder="Ej: Dra. Elena Vidal" required>
+                                </div>
+
+                                <button type="submit" class="btn btn-luxury-primary btn-block" style="padding: 0.85rem;">
+                                    Confirmar Mesa por WhatsApp
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal Dossier Confidencial Inmobiliario -->
+        <div id="dossierModal" class="modal-backdrop hidden">
+            <div class="modal-box">
+                <button id="closeDossierModal" class="close-btn">&times;</button>
+                <div class="modal-head">
+                    <span class="eyebrow">Dossier Confidencial</span>
+                    <h3 class="serif-title" id="dossierPropTitle">Villa Son Vida Skyline</h3>
+                    <p class="modal-sub" id="dossierPropPrice">4.850.000 € &bull; Ref. CS-9021</p>
+                </div>
+
+                <form id="dossierForm">
+                    <div class="form-group">
+                        <label class="f-label">Nombre del Interesado o Representante</label>
+                        <input type="text" id="dossierName" class="f-input" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="f-label">Email o WhatsApp de Contacto</label>
+                        <input type="text" id="dossierContact" class="f-input" placeholder="+34 600 00 00 00 o email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="f-label">Interés Principal</label>
+                        <select id="dossierInterest" class="f-input">
+                            <option value="Dossier con planos y memoria de calidades">Dossier con planos y calidades</option>
+                            <option value="Agendar visita privada discreta">Agendar visita privada discreta</option>
+                            <option value="Consulta sobre rentabilidad de alquiler vacacional">Consulta sobre rentabilidad vacacional</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-luxury-primary btn-block">
+                        Enviar Solicitud Inmediata por WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="luxury-footer">
+        <div class="container">
+            <p>Can Tramuntana &bull; Plataforma web desarrollada por Joaquín Oses Monti para empresas del sector turístico e inmobiliario de Mallorca.</p>
+        </div>
+    </footer>
+
+    <script src="assets/main.js"></script>
+</body>
+</html>
