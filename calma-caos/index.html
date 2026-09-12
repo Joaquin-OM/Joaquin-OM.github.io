@@ -1,32 +1,105 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calma y Caos — Restaurante de Autor & Reservas en Palma</title>
-  <meta name="description" content="Propuesta de web gastronómica de autor para Calma y Caos (Palma de Mallorca). Carta interactiva y motor de reservas directas por WhatsApp.">
+  <meta name="description" content="Propuesta de web gastronómica de autor para Calma y Caos (Palma de Mallorca). Carta interactiva y motor de reservas directas por WhatsApp con selector Modo Claro / Oscuro.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
   
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('calma_caos_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
   <style>
+
+    /* SISTEMA DE TEMAS DINÁMICOS (MODO OSCURO & MODO CLARO OFICIAL) */
+    :root, html[data-theme="dark"] {
+      --theme-name: 'dark';
+      --bg-base: #07080A;
+      --bg-surface: #0E1015;
+      --bg-card: #13151C;
+      --bg-card-hover: #1A1D26;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(197, 168, 128, 0.35);
+      --text-title: #FFFFFF;
+      --text-primary: #F5F6F8;
+      --text-secondary: #9A9EA8;
+      --text-muted: #686C78;
+      --accent: #C5A880;
+      --accent-hover: #D4B890;
+      --accent-glow: rgba(197, 168, 128, 0.22);
+      
+      --demo-bar-bg: #050608;
+      --demo-bar-border: rgba(255, 255, 255, 0.08);
+      --demo-bar-text: #9A9EA8;
+      --header-bg: rgba(7, 8, 10, 0.92);
+      --header-border: rgba(255, 255, 255, 0.08);
+      --input-bg: #07080A;
+      --input-border: rgba(255, 255, 255, 0.14);
+      --btn-outline-bg: rgba(255, 255, 255, 0.03);
+      --btn-outline-border: rgba(255, 255, 255, 0.22);
+      --btn-outline-text: #FFFFFF;
+      --tab-bg: #13151C;
+      --tab-color: #9A9EA8;
+      --tab-border: rgba(255, 255, 255, 0.1);
+      --hero-overlay: linear-gradient(180deg, rgba(7, 8, 10, 0.88) 0%, rgba(7, 8, 10, 0.97) 100%);
+      --card-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
+      --card-hover-shadow: 0 16px 40px rgba(197, 168, 128, 0.12);
+      --map-filter: grayscale(1) invert(0.9) contrast(1.2);
+      --footer-bg: #050608;
+      --footer-border: rgba(255, 255, 255, 0.08);
+      --badge-bg: #C5A880;
+      --badge-text: #07080A;
+    }
+
+    html[data-theme="light"] {
+      --theme-name: 'light';
+      --bg-base: #FAF9F6;
+      --bg-surface: #F6F7F2;          /* Color exacto card oficial calmaycaos.com: HSL 72 12% 96% */
+      --bg-card: #FFFFFF;
+      --bg-card-hover: #FCFBF8;
+      --border: #E5E0D5;
+      --border-accent: rgba(184, 98, 31, 0.35);
+      --text-title: #0D0D0D;          /* Negro oficial calmaycaos.com */
+      --text-primary: #22201D;
+      --text-secondary: #5E5A54;
+      --text-muted: #848077;
+      --accent: #B8621F;              /* Terracota oficial calmaycaos.com: HSL 29 57% 46% */
+      --accent-hover: #9E5014;
+      --accent-glow: rgba(184, 98, 31, 0.20);
+      
+      --demo-bar-bg: #EAE6DC;
+      --demo-bar-border: #DCD6C8;
+      --demo-bar-text: #4E4A44;
+      --header-bg: rgba(250, 249, 246, 0.94);
+      --header-border: rgba(0, 0, 0, 0.08);
+      --input-bg: #FAF9F6;
+      --input-border: #D5CFBF;
+      --btn-outline-bg: #FFFFFF;
+      --btn-outline-border: #D5CFBF;
+      --btn-outline-text: #0D0D0D;
+      --tab-bg: #FFFFFF;
+      --tab-color: #5E5A54;
+      --tab-border: #E0DBD0;
+      --hero-overlay: linear-gradient(180deg, rgba(250, 249, 246, 0.88) 0%, rgba(250, 249, 246, 0.97) 100%);
+      --card-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+      --card-hover-shadow: 0 12px 32px rgba(184, 98, 31, 0.12);
+      --map-filter: none;
+      --footer-bg: #EAE6DC;
+      --footer-border: #DCD6C8;
+      --badge-bg: #B8621F;
+      --badge-text: #FFFFFF;
+    }
+
     :root {
-      --bg-base: #F7F5F0;           /* Crema cálida / lino gourmet oficial */
-      --bg-surface: #FAF9F6;        /* Marfil suave para contrastes */
-      --bg-card: #FFFFFF;           /* Blanco puro nítido para tarjetas */
-      --bg-card-hover: #FDFBF7;
-      --border: #E5E1D5;            /* Borde cálido neutro */
-      --border-accent: rgba(184, 101, 38, 0.35); /* Terracota oficial */
-      --text-title: #141312;         /* Negro espresso profundo, elegante */
-      --text-primary: #2B2926;       /* Texto de lectura de alto contraste */
-      --text-secondary: #5E5A54;     /* Secundario cálido */
-      --text-muted: #8A857D;
-      --accent: #B86526;             /* Terracota insignia de Calma y Caos */
-      --accent-hover: #9E531A;
-      --accent-gold: #C5A880;
-      --accent-glow: rgba(184, 101, 38, 0.18);
       --font-serif: 'Cormorant Garamond', Georgia, serif;
       --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
       --radius-sm: 4px;
@@ -42,30 +115,96 @@
       font-family: var(--font-sans);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
 
-    /* DEMO SWITCHER BAR */
+    /* DEMO BAR CON SELECTOR DE TEMA */
     .demo-bar {
-      background: #EDEAE1;
-      border-bottom: 1px solid #DED9CE;
-      padding: 9px 18px;
+      background: var(--demo-bar-bg);
+      border-bottom: 1px solid var(--demo-bar-border);
+      padding: 9px 20px;
       font-size: 0.8rem;
-      color: #4A4641;
+      color: var(--demo-bar-text);
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 200;
+      z-index: 300;
       backdrop-filter: blur(12px);
+      transition: background-color 0.25s ease, border-color 0.25s ease;
     }
-    .demo-bar-left { display: flex; align-items: center; gap: 8px; font-weight: 500; }
-    .demo-badge { background: var(--accent); color: #FFFFFF; padding: 3px 8px; border-radius: 3px; font-weight: 700; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .demo-bar-left { display: flex; align-items: center; gap: 9px; font-weight: 500; }
+    .demo-badge {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .demo-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .theme-switch-control {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .theme-control-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      color: var(--demo-bar-text);
+      opacity: 0.85;
+    }
+    .theme-pills {
+      display: inline-flex;
+      background: rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2px;
+      gap: 2px;
+    }
+    html[data-theme="dark"] .theme-pills {
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .theme-pill {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+      font-family: var(--font-sans);
+    }
+    .theme-pill:hover {
+      color: var(--text-title);
+    }
+    .theme-pill.active {
+      background: var(--accent);
+      color: #FFFFFF;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    }
+    html[data-theme="dark"] .theme-pill.active {
+      color: #07080A;
+    }
     .demo-switch-btn {
-      color: #141312;
+      color: var(--text-title);
       text-decoration: none;
-      background: #FFFFFF;
-      border: 1px solid #D2CDC1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
       padding: 5px 12px;
       border-radius: 4px;
       transition: all 0.2s;
@@ -76,17 +215,26 @@
       font-weight: 600;
       box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }
-    .demo-switch-btn:hover { background: var(--accent); color: #FFFFFF; border-color: var(--accent); }
+    .demo-switch-btn:hover {
+      background: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+    }
+    html[data-theme="dark"] .demo-switch-btn:hover {
+      color: #07080A;
+    }
+
 
     /* HEADER */
     .site-header {
-      background: rgba(247, 245, 240, 0.94);
+      background: var(--header-bg);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid var(--header-border);
       position: sticky;
       top: 38px;
-      z-index: 100;
+      z-index: 200;
       padding: 16px 0;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
     }
     .header-inner {
       max-width: 1200px;
@@ -108,6 +256,7 @@
       color: var(--text-title);
       line-height: 1;
       font-weight: 700;
+      transition: color 0.25s;
     }
     .brand-logo span {
       font-size: 0.64rem;
@@ -116,6 +265,7 @@
       color: var(--accent);
       margin-top: 3px;
       font-weight: 600;
+      transition: color 0.25s;
     }
 
     .nav-links {
@@ -135,8 +285,32 @@
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
+    .btn-theme-quick {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      font-family: var(--font-sans);
+    }
+    .btn-theme-quick:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    html[data-theme="dark"] .btn-theme-quick .sun-icon { display: inline-block; }
+    html[data-theme="dark"] .btn-theme-quick .moon-icon { display: none; }
+    html[data-theme="light"] .btn-theme-quick .sun-icon { display: none; }
+    html[data-theme="light"] .btn-theme-quick .moon-icon { display: inline-block; }
+
     .btn-reserve-nav {
       background: var(--accent);
       color: #FFFFFF;
@@ -149,22 +323,27 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      box-shadow: 0 2px 8px rgba(184, 101, 38, 0.25);
+      box-shadow: 0 2px 8px var(--accent-glow);
+    }
+    html[data-theme="dark"] .btn-reserve-nav {
+      color: #07080A;
+      font-weight: 700;
     }
     .btn-reserve-nav:hover {
       background: var(--accent-hover);
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(184, 101, 38, 0.35);
+      box-shadow: 0 4px 12px var(--accent-glow);
     }
 
     /* HERO */
     .hero {
       position: relative;
       padding: 120px 0 100px;
-      background: linear-gradient(180deg, rgba(247, 245, 240, 0.82) 0%, rgba(247, 245, 240, 0.96) 100%),
+      background: var(--hero-overlay),
                   url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
       text-align: center;
       border-bottom: 1px solid var(--border);
+      transition: background 0.25s ease, border-color 0.25s ease;
     }
     .hero-content {
       max-width: 820px;
@@ -214,36 +393,40 @@
       align-items: center;
       gap: 8px;
       transition: all 0.2s;
-      box-shadow: 0 4px 14px rgba(184, 101, 38, 0.25);
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+    html[data-theme="dark"] .btn-gold {
+      color: #07080A;
+      font-weight: 700;
     }
     .btn-gold:hover {
       background: var(--accent-hover);
       transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(184, 101, 38, 0.35);
+      box-shadow: 0 8px 22px var(--accent-glow);
     }
     .btn-outline-gold {
-      background: #FFFFFF;
-      border: 1px solid #D2CDC1;
-      color: var(--text-title);
+      background: var(--btn-outline-bg);
+      border: 1px solid var(--btn-outline-border);
+      color: var(--btn-outline-text);
       padding: 13px 30px;
       font-size: 0.94rem;
       font-weight: 600;
       border-radius: var(--radius-sm);
       text-decoration: none;
       transition: all 0.2s;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
     .btn-outline-gold:hover {
       border-color: var(--accent);
       color: var(--accent);
-      background: #FAF9F6;
       transform: translateY(-2px);
     }
 
-    /* FILOSOFÍA CALMA Y CAOS */
+    /* SECCIONES COMUNES */
     .section {
       padding: 90px 0;
       border-bottom: 1px solid var(--border);
+      background-color: var(--bg-base);
+      transition: background-color 0.25s ease, border-color 0.25s ease;
     }
     .container {
       max-width: 1140px;
@@ -257,13 +440,14 @@
       margin-top: 48px;
     }
     .concept-card {
-      background: #FFFFFF;
+      background: var(--bg-surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       padding: 42px 34px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+      box-shadow: var(--card-shadow);
+      transition: all 0.25s ease;
     }
     .concept-card::before {
       content: '';
@@ -274,7 +458,7 @@
       height: 4px;
     }
     .concept-calma::before { background: linear-gradient(90deg, #3B82F6, #06B6D4); }
-    .concept-caos::before { background: linear-gradient(90deg, #B86526, #EA580C); }
+    .concept-caos::before { background: linear-gradient(90deg, var(--accent), #EA580C); }
     
     .concept-title {
       font-family: var(--font-serif);
@@ -319,16 +503,15 @@
       flex-wrap: wrap;
     }
     .tab-btn {
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
+      background: var(--tab-bg);
+      border: 1px solid var(--tab-border);
+      color: var(--tab-color);
       padding: 9px 22px;
       font-size: 0.88rem;
       font-weight: 500;
       border-radius: var(--radius-sm);
       cursor: pointer;
       transition: all 0.2s;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
     }
     .tab-btn:hover { color: var(--text-title); border-color: var(--accent); }
     .tab-btn.active {
@@ -336,7 +519,11 @@
       color: #FFFFFF;
       border-color: var(--accent);
       font-weight: 600;
-      box-shadow: 0 2px 8px rgba(184, 101, 38, 0.25);
+      box-shadow: 0 2px 8px var(--accent-glow);
+    }
+    html[data-theme="dark"] .tab-btn.active {
+      color: #07080A;
+      font-weight: 700;
     }
 
     .dishes-grid {
@@ -345,19 +532,19 @@
       gap: 24px;
     }
     .dish-card {
-      background: #FFFFFF;
+      background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       padding: 24px;
       display: flex;
       justify-content: space-between;
       gap: 16px;
-      transition: all 0.2s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: all 0.25s ease;
+      box-shadow: var(--card-shadow);
     }
     .dish-card:hover {
       border-color: var(--border-accent);
-      box-shadow: 0 8px 24px rgba(184, 101, 38, 0.08);
+      box-shadow: var(--card-hover-shadow);
       transform: translateY(-2px);
     }
     .dish-info h4 {
@@ -382,16 +569,17 @@
 
     /* MOTOR DE RESERVAS */
     .reservation-section {
-      background: #EDEAE1;
+      background: var(--bg-surface);
     }
     .booking-container {
-      background: #FFFFFF;
+      background: var(--bg-card);
       border: 1px solid var(--border-accent);
       border-radius: var(--radius-lg);
       padding: 48px 40px;
       max-width: 780px;
       margin: 0 auto;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+      box-shadow: var(--card-shadow);
+      transition: all 0.25s ease;
     }
     .form-grid {
       display: grid;
@@ -411,8 +599,8 @@
     }
     .form-input, .form-select, .form-textarea {
       width: 100%;
-      background: #FAF9F6;
-      border: 1px solid #D2CDC1;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
       border-radius: var(--radius-sm);
       color: var(--text-title);
       padding: 12px 14px;
@@ -423,8 +611,7 @@
     .form-input:focus, .form-select:focus, .form-textarea:focus {
       outline: none;
       border-color: var(--accent);
-      background: #FFFFFF;
-      box-shadow: 0 0 0 3px rgba(184, 101, 38, 0.12);
+      box-shadow: 0 0 0 3px var(--accent-glow);
     }
 
     .btn-submit-booking {
@@ -443,12 +630,15 @@
       justify-content: center;
       gap: 10px;
       margin-top: 10px;
-      box-shadow: 0 4px 16px rgba(184, 101, 38, 0.25);
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+    html[data-theme="dark"] .btn-submit-booking {
+      color: #07080A;
     }
     .btn-submit-booking:hover {
       background: var(--accent-hover);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(184, 101, 38, 0.35);
+      box-shadow: 0 8px 24px var(--accent-glow);
     }
 
     /* UBICACIÓN */
@@ -477,12 +667,13 @@
 
     /* FOOTER */
     .site-footer {
-      background: #EAE7DF;
-      border-top: 1px solid var(--border);
+      background: var(--footer-bg);
+      border-top: 1px solid var(--footer-border);
       padding: 34px 0;
       text-align: center;
       font-size: 0.84rem;
       color: var(--text-muted);
+      transition: all 0.25s ease;
     }
     .site-footer a { color: var(--accent); text-decoration: none; }
 
@@ -491,22 +682,39 @@
       .dual-concept, .dishes-grid, .location-box, .form-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       .booking-container { padding: 28px 20px; }
-      .demo-bar { flex-direction: column; gap: 8px; text-align: center; }
+      .demo-bar { flex-direction: column; gap: 8px; text-align: center; padding: 10px 14px; }
+      .demo-bar-right { flex-wrap: wrap; justify-content: center; }
+      .site-header { top: 72px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- BARRA DE SWITCHER DE DEMO PARA EL CLIENTE -->
+  <!-- BARRA DE SWITCHER DE DEMO & SELECTOR DE TEMA -->
   <div class="demo-bar">
     <div class="demo-bar-left">
       <span class="demo-badge">Propuesta en Vivo</span>
       <span>Restaurante Calma y Caos &bull; <strong>Opción 1: Web Gastronómica Completa</strong></span>
     </div>
-    <div>
+    <div class="demo-bar-right">
+      <!-- SELECTOR INTERACTIVO MODO CLARO / MODO OSCURO -->
+      <div class="theme-switch-control" title="Seleccionar tema visual">
+        <span class="theme-control-label">Paleta:</span>
+        <div class="theme-pills">
+          <button type="button" class="theme-pill" id="pill-dark" onclick="setCalmaTheme('dark')" title="Modo Oscuro Gourmet">
+            <i data-lucide="moon" style="width: 12px; height: 12px;"></i>
+            <span>Oscuro</span>
+          </button>
+          <button type="button" class="theme-pill" id="pill-light" onclick="setCalmaTheme('light')" title="Modo Claro Oficial (calmaycaos.com)">
+            <i data-lucide="sun" style="width: 12px; height: 12px;"></i>
+            <span>Claro (Oficial)</span>
+          </button>
+        </div>
+      </div>
+
       <a href="./landing/" class="demo-switch-btn">
         <i data-lucide="zap" style="width: 13px; height: 13px;"></i>
-        <span>Probar Opción 2: Landing Page Express →</span>
+        <span>Probar Opción 2: Landing Express →</span>
       </a>
     </div>
   </div>
@@ -527,6 +735,12 @@
       </nav>
 
       <div class="header-actions">
+        <button type="button" class="btn-theme-quick" onclick="toggleCalmaTheme()" title="Alternar Modo Claro / Oscuro">
+          <i data-lucide="sun" class="sun-icon" style="width: 14px; height: 14px;"></i>
+          <i data-lucide="moon" class="moon-icon" style="width: 14px; height: 14px;"></i>
+          <span id="header-theme-text">Modo Claro</span>
+        </button>
+
         <a href="#reservas" class="btn-reserve-nav">
           <i data-lucide="calendar" style="width: 14px; height: 14px;"></i>
           <span>Reservar</span>
@@ -585,7 +799,7 @@
   </section>
 
   <!-- CARTA DE AUTOR -->
-  <section class="section" id="carta" style="background: var(--bg-base);">
+  <section class="section" id="carta">
     <div class="container">
       <div class="section-title-wrap">
         <span class="section-tag">Propuesta Culinaria</span>
@@ -599,109 +813,130 @@
         <button class="tab-btn" onclick="switchCategory('vinos', this)">Bodega Balear</button>
       </div>
 
-      <!-- Platos: La Calma -->
-      <div id="cat-calma" class="dishes-grid">
+      <!-- CATERGORÍA 1: ENTRANTES (LA CALMA) -->
+      <div class="dishes-grid" id="cat-calma">
         <div class="dish-card">
           <div class="dish-info">
-            <h4>Ostras Especiales N.º 2 con Emulsión Cítrica</h4>
-            <p>Ostras aliñadas con granizado de manzana ácida, salicornia de las salinas de Es Trenc y perlas de lima.</p>
+            <h4>Tartar de Atún Rojo Balear</h4>
+            <p>Atún de almadraba picado a cuchillo, emulsión de trufa negra, yema de caserío curada y crujiente de sésamo negro.</p>
           </div>
-          <span class="dish-price">19 €</span>
+          <div class="dish-price">24 €</div>
         </div>
         <div class="dish-card">
           <div class="dish-info">
-            <h4>Tartar de Atún Rojo Balear sobre Brioche Crujiente</h4>
-            <p>Lomo de atún macerado con soja añeja, yema curada al humo y emulsión de trufa de verano.</p>
+            <h4>Croquetas Artesanas de Gamba Roja de Sóller</h4>
+            <p>Bechamel infusionada en las cabezas de gamba, rebozado panko ultracrujiente y velo de papada ibérica (4 unidades).</p>
           </div>
-          <span class="dish-price">24 €</span>
+          <div class="dish-price">15 €</div>
         </div>
         <div class="dish-card">
           <div class="dish-info">
-            <h4>Carpaccio de Remolacha Asada & Queso Mahonés</h4>
-            <p>Láminas finas de remolacha al carbón, crema de queso curado de Menorca, nueces garrapiñadas y vinagreta de miel de azahar.</p>
+            <h4>Carpaccio de Calabacín de Huerto Mallorquín</h4>
+            <p>Láminas finas, vinagreta de miel de azahar y limón de Sóller, piñones tostados y lascas de queso Mahón curado.</p>
           </div>
-          <span class="dish-price">16 €</span>
+          <div class="dish-price">16 €</div>
         </div>
         <div class="dish-card">
           <div class="dish-info">
-            <h4>Croquetas Cremosas de Gamba Roja de Sóller</h4>
-            <p>Bechamel infusionada con corales de gamba roja de Mallorca, velo de panceta ibérica y alioli suave de azafrán.</p>
+            <h4>Ostras Especiales al Natural</h4>
+            <p>Con vinagreta de chalota francesa, cítricos mediterráneos y un toque de ginebra menorquina (2 unidades).</p>
           </div>
-          <span class="dish-price">15 €</span>
-        </div>
-      </div>
-
-      <!-- Platos: El Caos -->
-      <div id="cat-caos" class="dishes-grid" style="display: none;">
-        <div class="dish-card">
-          <div class="dish-info">
-            <h4>Arroz Meloso de Bogavante & Plancton Marino</h4>
-            <p>Arroz bomba en caldo concentrado de crustáceos de roca, cola de bogavante a la brasa y emulsión de plancton.</p>
-          </div>
-          <span class="dish-price">32 €</span>
-        </div>
-        <div class="dish-card">
-          <div class="dish-info">
-            <h4>Lubina Salvaje a la Brasa con Demi-Glace Marino</h4>
-            <p>Lomo asado al sarmiento, puré sedoso de coliflor tostada, espárragos trigueros y jugo glaseado de sus espinas.</p>
-          </div>
-          <span class="dish-price">28 €</span>
-        </div>
-        <div class="dish-card">
-          <div class="dish-info">
-            <h4>Canelón de Carrillera Melosa Glaseada</h4>
-            <p>Carne estofada 18 horas a baja temperatura, bechamel ligera trufada, crujiente de queso Idiazábal y reducción de vino negro.</p>
-          </div>
-          <span class="dish-price">25 €</span>
-        </div>
-        <div class="dish-card">
-          <div class="dish-info">
-            <h4>Chuletón Madurado 45 Días al Carbón de Encina</h4>
-            <p>Corte noble de vaca gallega, flor de sal de Es Trenc, pimientos de Padrón confitados y patatas pont-neuf (para 2 pax).</p>
-          </div>
-          <span class="dish-price">68 €</span>
+          <div class="dish-price">18 €</div>
         </div>
       </div>
 
-      <!-- Platos: Postres -->
-      <div id="cat-postres" class="dishes-grid" style="display: none;">
+      <!-- CATEGORÍA 2: PRINCIPALES (EL CAOS) -->
+      <div class="dishes-grid" id="cat-caos" style="display: none;">
         <div class="dish-card">
           <div class="dish-info">
-            <h4>Texturas de Algarroba Mallorquina & Cacao 70%</h4>
-            <p>Bizcocho aireado de algarroba, mousse de chocolate negro amargo, helado artesano de avellana y tierra de cacao.</p>
+            <h4>Arroz Meloso de Bogavante & Plancton</h4>
+            <p>Arroz balear cocinado en fondo profundo de marisco de roca, bogavante salteado al momento y alioli ligero de plancton (mín. 2 pers.).</p>
           </div>
-          <span class="dish-price">10 €</span>
+          <div class="dish-price">32 € /p</div>
         </div>
         <div class="dish-card">
           <div class="dish-info">
-            <h4>Torrija Caramelizada en Leche de Coco & Flor de Sal</h4>
-            <p>Pan brioche infusionado en leche de coco y vainilla Bourbon, toffee salado y helado de leche merengada.</p>
+            <h4>Lubina Salvaje al Sarmiento</h4>
+            <p>Pescado de lonja asado a la brasa, velouté de hinojo marino, tirabeques tiernos y aceite virgen picual.</p>
           </div>
-          <span class="dish-price">11 €</span>
+          <div class="dish-price">28 €</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-info">
+            <h4>Lechona Mallorquina Crujiente</h4>
+            <p>Deshuesada, cocinada 24 horas a 68ºC con piel vidriada extra crujiente, puré de boniato asado y jugo de granada ácida.</p>
+          </div>
+          <div class="dish-price">26 €</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-info">
+            <h4>Lomo Alto de Vaca Balear Madurada</h4>
+            <p>Maduración de 45 días a las brasas, flor de sal d'Es Trenc, patata rústica trufada y pimientos de Padrón confitados.</p>
+          </div>
+          <div class="dish-price">30 €</div>
         </div>
       </div>
 
-      <!-- Platos: Vinos -->
-      <div id="cat-vinos" class="dishes-grid" style="display: none;">
+      <!-- CATEGORÍA 3: POSTRES -->
+      <div class="dishes-grid" id="cat-postres" style="display: none;">
         <div class="dish-card">
           <div class="dish-info">
-            <h4>Ànima Negra 'ÀN/2' (D.O. Mallorca)</h4>
-            <p>Callet, Mantonegro y Fogoneu. Tinto con crianza en roble francés, notas de frutas rojas maduras y especias mediterráneas.</p>
+            <h4>Texturas de Algarroba y Cacao 70%</h4>
+            <p>Mousse aérea de chocolate puro, bizcocho esponjoso de algarroba mallorquina, helado de avellana tostada y sal marina.</p>
           </div>
-          <span class="dish-price">36 €</span>
+          <div class="dish-price">10 €</div>
         </div>
         <div class="dish-card">
           <div class="dish-info">
-            <h4>Quíbia (D.O. Illes Balears)</h4>
-            <p>Prensal Blanc y Giró Ros. Blanco fresco, floral y mineral con marcada personalidad mallorquina.</p>
+            <h4>Tarta Fina de Manzana Caramelizada</h4>
+            <p>Hojaldre invertido crujiente, manzana golden caramelizada al ron balear y helado artesano de canela de Ceilán.</p>
           </div>
-          <span class="dish-price">29 €</span>
+          <div class="dish-price">9 €</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-info">
+            <h4>Torrija de Brioche Caramelizada</h4>
+            <p>Empapada en crema de vainilla bourbon y azahar, caramelizada con soplete y sopa fría de chocolate blanco.</p>
+          </div>
+          <div class="dish-price">9 €</div>
+        </div>
+      </div>
+
+      <!-- CATEGORÍA 4: VINOS -->
+      <div class="dishes-grid" id="cat-vinos" style="display: none;">
+        <div class="dish-card">
+          <div class="dish-info">
+            <h4>Ánima Negra (ÀN) — D.O. Pla i Llevant</h4>
+            <p>Callet, Fogoneu y Mantonegro. Elegante, notas minerales y frutos del bosque con crianza en roble francés.</p>
+          </div>
+          <div class="dish-price">44 €</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-info">
+            <h4>Sió Tinto — Bodegas Ribas (Consell)</h4>
+            <p>Mantonegro y Syrah. Tinto equilibrado, redondo y con gran identidad mallorquina.</p>
+          </div>
+          <div class="dish-price">36 €</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-info">
+            <h4>Quíbia Blanco — Bodega Ànima Negra</h4>
+            <p>Premsal Blanc y Callet vinificado en blanco. Fresco, aromático con recuerdos a pera y hierbas de monte.</p>
+          </div>
+          <div class="dish-price">28 €</div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-info">
+            <h4>Mortitx Blanc de Blancs — Pollença</h4>
+            <p>Malvasía, Chardonnay y Moscatel. Expresión floral y salina nacida en la Sierra de Tramuntana.</p>
+          </div>
+          <div class="dish-price">24 €</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MOTOR DE RESERVAS DIRECTO POR WHATSAPP -->
+  <!-- MOTOR DE RESERVAS DIRECTO A WHATSAPP -->
   <section class="section reservation-section" id="reservas">
     <div class="container">
       <div class="section-title-wrap">
@@ -716,60 +951,54 @@
         <form id="reservationForm" onsubmit="handleReservation(event)">
           <div class="form-grid">
             <div>
-              <label class="form-label" for="resDate">Fecha de Reserva *</label>
+              <label class="form-label" for="resDate">Fecha de la Visita</label>
               <input type="date" id="resDate" class="form-input" required>
             </div>
+
             <div>
-              <label class="form-label" for="resShift">Turno & Hora *</label>
+              <label class="form-label" for="resShift">Turno Deseado</label>
               <select id="resShift" class="form-select" required>
-                <option value="">Selecciona turno</option>
-                <optgroup label="Almuerzo (Comida)">
-                  <option value="Comida 13:30 h">13:30 h</option>
-                  <option value="Comida 14:00 h">14:00 h</option>
-                  <option value="Comida 14:30 h">14:30 h</option>
-                </optgroup>
-                <optgroup label="Cena">
-                  <option value="Cena 20:30 h">20:30 h</option>
-                  <option value="Cena 21:00 h">21:00 h</option>
-                  <option value="Cena 21:30 h">21:30 h</option>
-                  <option value="Cena 22:00 h">22:00 h</option>
-                </optgroup>
+                <option value="Comida (13:30 - 15:30)">Comida (13:30 - 15:30)</option>
+                <option value="Cena - Primer Turno (20:15)">Cena - Primer Turno (20:15)</option>
+                <option value="Cena - Segundo Turno (22:00)" selected>Cena - Segundo Turno (22:00)</option>
               </select>
             </div>
 
             <div>
-              <label class="form-label" for="resGuests">Número de Comensales *</label>
+              <label class="form-label" for="resGuests">Número de Comensales</label>
               <select id="resGuests" class="form-select" required>
-                <option value="2 personas">2 comensales</option>
-                <option value="1 persona">1 comensal</option>
-                <option value="3 personas">3 comensales</option>
-                <option value="4 personas" selected>4 comensales</option>
-                <option value="5 personas">5 comensales</option>
-                <option value="6 personas">6 comensales</option>
-                <option value="7+ personas (Grupo)">7 o más (Grupo)</option>
-              </select>
-            </div>
-            <div>
-              <label class="form-label" for="resZone">Preferencia de Espacio</label>
-              <select id="resZone" class="form-select">
-                <option value="Sala Principal">Sala Principal (Íntima)</option>
-                <option value="Barra Gastronómica (Pase de Cocina)">Barra Vista a Cocina</option>
-                <option value="Sin preferencia">Sin preferencia</option>
+                <option value="1 persona">1 persona</option>
+                <option value="2 personas" selected>2 personas</option>
+                <option value="3 personas">3 personas</option>
+                <option value="4 personas">4 personas</option>
+                <option value="5 personas">5 personas</option>
+                <option value="6 personas">6 personas</option>
+                <option value="Grupo (+6 personas)">Grupo (+6 personas)</option>
               </select>
             </div>
 
             <div>
-              <label class="form-label" for="resName">Nombre Completo *</label>
-              <input type="text" id="resName" class="form-input" required placeholder="Ej: María Gómez">
+              <label class="form-label" for="resZone">Preferencia de Ubicación</label>
+              <select id="resZone" class="form-select">
+                <option value="Sala Principal (Ambiente Cálido)" selected>Sala Principal</option>
+                <option value="Barra Gastronómica (Pase de Cocina)">Barra Gastronómica</option>
+                <option value="Terraza Exterior">Terraza Exterior</option>
+              </select>
             </div>
+
             <div>
-              <label class="form-label" for="resPhone">Teléfono de Contacto *</label>
-              <input type="tel" id="resPhone" class="form-input" required placeholder="+34 600 000 000">
+              <label class="form-label" for="resName">Nombre Completo</label>
+              <input type="text" id="resName" class="form-input" placeholder="Ej. Carlos Martínez" required>
+            </div>
+
+            <div>
+              <label class="form-label" for="resPhone">Teléfono de Contacto</label>
+              <input type="tel" id="resPhone" class="form-input" placeholder="+34 600 00 00 00" required>
             </div>
 
             <div class="form-group-full">
-              <label class="form-label" for="resNotes">Alergias, Intolerancias u Ocasión Especial</label>
-              <textarea id="resNotes" class="form-textarea" rows="2" placeholder="Ej: 1 celíaco (sin gluten), celebración de aniversario..."></textarea>
+              <label class="form-label" for="resNotes">Alergias, Intolerancias u Ocasión Especial (Opcional)</label>
+              <textarea id="resNotes" class="form-textarea" rows="2" placeholder="Ej. Celíaco / Aniversario / Mesa tranquila"></textarea>
             </div>
           </div>
 
@@ -792,23 +1021,15 @@
     <div class="container">
       <div class="location-box">
         <div class="loc-details">
-          <span class="section-tag">Encuéntranos</span>
-          <h3>En el centro de Palma</h3>
+          <span class="section-tag">Encuéntranos en Palma</span>
+          <h3>Carrer d'Antoni Marquès, 27</h3>
           
-          <div class="loc-info-item">
-            <i data-lucide="map-pin"></i>
-            <div>
-              <strong>Carrer d'Antoni Marquès, 27</strong><br>
-              07003 Palma de Mallorca, Illes Balears
-            </div>
-          </div>
-
           <div class="loc-info-item">
             <i data-lucide="clock"></i>
             <div>
-              <strong>Horarios de Cocina:</strong><br>
-              Martes a Sábado: 13:30 – 15:30 | 20:30 – 23:00<br>
-              Domingo y Lunes: Cerrado
+              <strong>Horario de Cocina:</strong><br>
+              Martes a Sábado: 13:30h – 15:30h y 20:30h – 23:00h<br>
+              Domingos y Lunes: Descanso del equipo
             </div>
           </div>
 
@@ -820,20 +1041,21 @@
             </div>
           </div>
 
-          <div style="margin-top: 24px;">
-            <a href="https://maps.google.com/?q=Carrer+d'Antoni+Marqu%C3%A8s+27+Palma" target="_blank" class="btn-outline-gold" style="display: inline-flex; align-items: center; gap: 8px;">
-              <i data-lucide="navigation" style="width: 14px; height: 14px;"></i>
-              <span>Cómo Llegar (Google Maps)</span>
-            </a>
+          <div class="loc-info-item">
+            <i data-lucide="map-pin"></i>
+            <div>
+              <strong>Ubicación Céntrica:</strong><br>
+              A 3 minutos de Plaça d'Espanya y Estación Intermodal de Palma.
+            </div>
           </div>
         </div>
 
-        <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); height: 320px; background: #EAE7DF; position: relative; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
+        <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); height: 320px; background: var(--bg-surface); position: relative; box-shadow: var(--card-shadow);">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3075.0531583344695!2d2.6483546764371755!3d39.5772391060934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1297925a1b32d00f%3A0x6b7b251a547743d5!2sCarrer%20d'Antoni%20Marqu%C3%A8s%2C%2027%2C%2007003%20Palma%2C%20Illes%20Balears!5e0!3m2!1ses!2ses!4v1710000000000!5m2!1ses!2ses" 
             width="100%" 
             height="100%" 
-            style="border:0;" 
+            style="border:0; filter: var(--map-filter); transition: filter 0.25s ease;" 
             allowfullscreen="" 
             loading="lazy">
           </iframe>
@@ -852,9 +1074,55 @@
     </div>
   </footer>
 
-  <script>
-    lucide.createIcons();
 
+  <script>
+    // Inicialización inmediata para prevenir parpadeos
+    (function() {
+      const savedTheme = localStorage.getItem('calma_caos_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+
+    function setCalmaTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('calma_caos_theme', theme);
+      updateThemeUI(theme);
+    }
+
+    function toggleCalmaTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      setCalmaTheme(next);
+    }
+
+    function updateThemeUI(theme) {
+      const pillDark = document.getElementById('pill-dark');
+      const pillLight = document.getElementById('pill-light');
+      if (pillDark && pillLight) {
+        if (theme === 'dark') {
+          pillDark.classList.add('active');
+          pillLight.classList.remove('active');
+        } else {
+          pillDark.classList.remove('active');
+          pillLight.classList.add('active');
+        }
+      }
+      const headerText = document.getElementById('header-theme-text');
+      if (headerText) {
+        headerText.textContent = theme === 'dark' ? 'Modo Claro' : 'Modo Oscuro';
+      }
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const active = document.documentElement.getAttribute('data-theme') || 'dark';
+      updateThemeUI(active);
+    });
+  </script>
+
+
+  <script>
     // Establecer fecha mínima de hoy en el calendario
     const dateInput = document.getElementById('resDate');
     if (dateInput) {

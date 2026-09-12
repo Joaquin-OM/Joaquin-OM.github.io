@@ -1,69 +1,234 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calma y Caos — Reserva de Mesa & Experiencia Express</title>
-  <meta name="description" content="Landing page de reserva instantánea para Calma y Caos en Palma. Menú degustación y confirmación en 60 segundos por WhatsApp.">
+  <meta name="description" content="Landing page de reserva instantánea para Calma y Caos en Palma. Menú degustación y confirmación en 60 segundos por WhatsApp con selector Modo Claro / Oscuro.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
   
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('calma_caos_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
   <style>
+
+    /* SISTEMA DE TEMAS DINÁMICOS (MODO OSCURO & MODO CLARO OFICIAL) */
+    :root, html[data-theme="dark"] {
+      --theme-name: 'dark';
+      --bg-base: #07080A;
+      --bg-surface: #0E1015;
+      --bg-card: #13151C;
+      --bg-card-hover: #1A1D26;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(197, 168, 128, 0.35);
+      --text-title: #FFFFFF;
+      --text-primary: #F5F6F8;
+      --text-secondary: #9A9EA8;
+      --text-muted: #686C78;
+      --accent: #C5A880;
+      --accent-hover: #D4B890;
+      --accent-glow: rgba(197, 168, 128, 0.22);
+      
+      --demo-bar-bg: #050608;
+      --demo-bar-border: rgba(255, 255, 255, 0.08);
+      --demo-bar-text: #9A9EA8;
+      --header-bg: rgba(7, 8, 10, 0.92);
+      --header-border: rgba(255, 255, 255, 0.08);
+      --input-bg: #07080A;
+      --input-border: rgba(255, 255, 255, 0.14);
+      --btn-outline-bg: rgba(255, 255, 255, 0.03);
+      --btn-outline-border: rgba(255, 255, 255, 0.22);
+      --btn-outline-text: #FFFFFF;
+      --tab-bg: #13151C;
+      --tab-color: #9A9EA8;
+      --tab-border: rgba(255, 255, 255, 0.1);
+      --hero-overlay: linear-gradient(180deg, rgba(7, 8, 10, 0.88) 0%, rgba(7, 8, 10, 0.97) 100%);
+      --card-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
+      --card-hover-shadow: 0 16px 40px rgba(197, 168, 128, 0.12);
+      --map-filter: grayscale(1) invert(0.9) contrast(1.2);
+      --footer-bg: #050608;
+      --footer-border: rgba(255, 255, 255, 0.08);
+      --badge-bg: #C5A880;
+      --badge-text: #07080A;
+    }
+
+    html[data-theme="light"] {
+      --theme-name: 'light';
+      --bg-base: #FAF9F6;
+      --bg-surface: #F6F7F2;          /* Color exacto card oficial calmaycaos.com: HSL 72 12% 96% */
+      --bg-card: #FFFFFF;
+      --bg-card-hover: #FCFBF8;
+      --border: #E5E0D5;
+      --border-accent: rgba(184, 98, 31, 0.35);
+      --text-title: #0D0D0D;          /* Negro oficial calmaycaos.com */
+      --text-primary: #22201D;
+      --text-secondary: #5E5A54;
+      --text-muted: #848077;
+      --accent: #B8621F;              /* Terracota oficial calmaycaos.com: HSL 29 57% 46% */
+      --accent-hover: #9E5014;
+      --accent-glow: rgba(184, 98, 31, 0.20);
+      
+      --demo-bar-bg: #EAE6DC;
+      --demo-bar-border: #DCD6C8;
+      --demo-bar-text: #4E4A44;
+      --header-bg: rgba(250, 249, 246, 0.94);
+      --header-border: rgba(0, 0, 0, 0.08);
+      --input-bg: #FAF9F6;
+      --input-border: #D5CFBF;
+      --btn-outline-bg: #FFFFFF;
+      --btn-outline-border: #D5CFBF;
+      --btn-outline-text: #0D0D0D;
+      --tab-bg: #FFFFFF;
+      --tab-color: #5E5A54;
+      --tab-border: #E0DBD0;
+      --hero-overlay: linear-gradient(180deg, rgba(250, 249, 246, 0.88) 0%, rgba(250, 249, 246, 0.97) 100%);
+      --card-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+      --card-hover-shadow: 0 12px 32px rgba(184, 98, 31, 0.12);
+      --map-filter: none;
+      --footer-bg: #EAE6DC;
+      --footer-border: #DCD6C8;
+      --badge-bg: #B8621F;
+      --badge-text: #FFFFFF;
+    }
+
     :root {
-      --bg-base: #F7F5F0;           /* Crema cálida lino de Calma y Caos */
-      --bg-card: #FFFFFF;           /* Tarjeta blanca pura */
-      --border: #E5E1D5;            /* Borde cálido neutro */
-      --border-accent: rgba(184, 101, 38, 0.35); /* Terracota oficial */
-      --text-title: #141312;         /* Negro espresso */
-      --text-primary: #2B2926;       /* Texto lectura */
-      --text-secondary: #5E5A54;     /* Secundario cálido */
-      --accent: #B86526;             /* Terracota insignia */
-      --accent-hover: #9E531A;
       --font-serif: 'Cormorant Garamond', Georgia, serif;
       --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 14px;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      background: var(--bg-base);
+      background-color: var(--bg-base);
       color: var(--text-primary);
       font-family: var(--font-sans);
       line-height: 1.6;
-      padding-bottom: 60px;
       -webkit-font-smoothing: antialiased;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
-    .container { max-width: 680px; margin: 0 auto; padding: 0 20px; }
 
-    /* SWITCHER TOP */
+    /* DEMO BAR CON SELECTOR DE TEMA */
     .demo-bar {
-      background: #EDEAE1;
-      border-bottom: 1px solid #DED9CE;
-      padding: 9px 18px;
-      font-size: 0.78rem;
-      color: #4A4641;
+      background: var(--demo-bar-bg);
+      border-bottom: 1px solid var(--demo-bar-border);
+      padding: 9px 20px;
+      font-size: 0.8rem;
+      color: var(--demo-bar-text);
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 300;
+      backdrop-filter: blur(12px);
+      transition: background-color 0.25s ease, border-color 0.25s ease;
     }
-    .demo-badge { background: #059669; color: #FFFFFF; padding: 3px 8px; border-radius: 3px; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.04em; }
+    .demo-bar-left { display: flex; align-items: center; gap: 9px; font-weight: 500; }
+    .demo-badge {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .demo-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .theme-switch-control {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .theme-control-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      color: var(--demo-bar-text);
+      opacity: 0.85;
+    }
+    .theme-pills {
+      display: inline-flex;
+      background: rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2px;
+      gap: 2px;
+    }
+    html[data-theme="dark"] .theme-pills {
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .theme-pill {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+      font-family: var(--font-sans);
+    }
+    .theme-pill:hover {
+      color: var(--text-title);
+    }
+    .theme-pill.active {
+      background: var(--accent);
+      color: #FFFFFF;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    }
+    html[data-theme="dark"] .theme-pill.active {
+      color: #07080A;
+    }
     .demo-switch-btn {
-      color: #141312;
+      color: var(--text-title);
       text-decoration: none;
-      background: #FFFFFF;
-      border: 1px solid #D2CDC1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
       padding: 5px 12px;
       border-radius: 4px;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-size: 0.76rem;
       font-weight: 600;
       box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      transition: all 0.2s;
     }
-    .demo-switch-btn:hover { background: var(--accent); color: #FFFFFF; border-color: var(--accent); }
+    .demo-switch-btn:hover {
+      background: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+    }
+    html[data-theme="dark"] .demo-switch-btn:hover {
+      color: #07080A;
+    }
+
+
+    body {
+      padding-bottom: 60px;
+    }
+    .container { max-width: 680px; margin: 0 auto; padding: 0 20px; }
 
     /* HERO */
     .landing-hero {
@@ -78,6 +243,7 @@
       line-height: 1;
       color: var(--text-title);
       font-weight: 700;
+      transition: color 0.25s;
     }
     .logo-sub {
       font-size: 0.68rem;
@@ -87,6 +253,7 @@
       margin-bottom: 24px;
       display: block;
       font-weight: 700;
+      transition: color 0.25s;
     }
     .hero-img {
       width: 100%;
@@ -96,7 +263,8 @@
       border: 1px solid var(--border);
       margin-bottom: 24px;
       display: block;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      box-shadow: var(--card-shadow);
+      transition: all 0.25s ease;
     }
     .hero-pitch {
       font-size: 1.06rem;
@@ -111,8 +279,9 @@
       border: 1px solid var(--border-accent);
       border-radius: 14px;
       padding: 32px 26px;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.06);
+      box-shadow: var(--card-shadow);
       margin-bottom: 32px;
+      transition: all 0.25s ease;
     }
     .card-title {
       font-family: var(--font-serif);
@@ -141,8 +310,8 @@
     }
     .f-input, .f-select {
       width: 100%;
-      background: #FAF9F6;
-      border: 1px solid #D2CDC1;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
       border-radius: 6px;
       color: var(--text-title);
       padding: 12px;
@@ -152,8 +321,7 @@
     .f-input:focus, .f-select:focus {
       outline: none;
       border-color: var(--accent);
-      background: #FFFFFF;
-      box-shadow: 0 0 0 3px rgba(184, 101, 38, 0.12);
+      box-shadow: 0 0 0 3px var(--accent-glow);
     }
     .btn-submit {
       width: 100%;
@@ -171,149 +339,170 @@
       gap: 8px;
       margin-top: 18px;
       transition: all 0.2s;
-      box-shadow: 0 4px 14px rgba(184, 101, 38, 0.25);
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+    html[data-theme="dark"] .btn-submit {
+      color: #07080A;
     }
     .btn-submit:hover {
       background: var(--accent-hover);
       transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(184, 101, 38, 0.35);
+      box-shadow: 0 6px 20px var(--accent-glow);
     }
 
-    /* MENU HIGHLIGHTS */
+    /* MINI MENÚ */
     .menu-mini {
-      background: #FFFFFF;
+      background: var(--bg-surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 24px 28px;
-      margin-bottom: 30px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--card-shadow);
+      transition: all 0.25s ease;
     }
     .menu-mini h3 {
       font-family: var(--font-serif);
-      font-size: 1.6rem;
+      font-size: 1.35rem;
       margin-bottom: 16px;
-      color: var(--accent);
-      text-align: center;
-      font-weight: 600;
+      color: var(--text-title);
     }
     .mini-dish {
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid #F0ECE2;
-      padding: 11px 0;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
       font-size: 0.92rem;
       color: var(--text-primary);
     }
     .mini-dish:last-child { border-bottom: none; }
-    .mini-dish span strong { color: var(--accent); font-weight: 700; }
+    .mini-dish strong { color: var(--accent); }
 
-    /* DIRECCIÓN RÁPIDA */
+    /* UBICACIÓN */
     .quick-loc {
       text-align: center;
-      padding: 22px;
-      background: #EDEAE1;
-      border-radius: 10px;
+      padding: 24px;
+      background: var(--bg-surface);
       border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-top: 24px;
+      box-shadow: var(--card-shadow);
+      transition: all 0.25s ease;
     }
     .btn-maps {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #FFFFFF;
-      border: 1px solid #D2CDC1;
       color: var(--text-title);
-      padding: 8px 18px;
-      border-radius: 6px;
       text-decoration: none;
-      font-size: 0.86rem;
-      font-weight: 600;
-      margin-top: 12px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      font-size: 0.82rem;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 4px;
+      margin-top: 10px;
+      background: var(--bg-card);
       transition: all 0.2s;
     }
-    .btn-maps:hover {
-      background: var(--accent);
-      color: #FFFFFF;
-      border-color: var(--accent);
-      transform: translateY(-1px);
+    .btn-maps:hover { border-color: var(--accent); color: var(--accent); }
+
+    @media (max-width: 600px) {
+      .demo-bar { flex-direction: column; gap: 8px; text-align: center; padding: 10px 14px; }
+      .demo-bar-right { flex-wrap: wrap; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- BARRA SWITCHER -->
+  <!-- BARRA DE CONTROL TOP -->
   <div class="demo-bar">
-    <div>
-      <span class="demo-badge">Landing Express</span>
-      <span>Restaurante Calma y Caos</span>
+    <div class="demo-bar-left">
+      <span class="demo-badge">Propuesta Express</span>
+      <span>Calma y Caos &bull; <strong>Opción 2: Landing Express</strong></span>
     </div>
-    <a href="../" class="demo-switch-btn">
-      <span>Ver Opción 1: Web Completa →</span>
-    </a>
+    <div class="demo-bar-right">
+      <!-- SELECTOR INTERACTIVO MODO CLARO / OSCURO -->
+      <div class="theme-switch-control" title="Seleccionar tema visual">
+        <span class="theme-control-label">Paleta:</span>
+        <div class="theme-pills">
+          <button type="button" class="theme-pill" id="pill-dark" onclick="setCalmaTheme('dark')" title="Modo Oscuro Gourmet">
+            <i data-lucide="moon" style="width: 12px; height: 12px;"></i>
+            <span>Oscuro</span>
+          </button>
+          <button type="button" class="theme-pill" id="pill-light" onclick="setCalmaTheme('light')" title="Modo Claro Oficial (calmaycaos.com)">
+            <i data-lucide="sun" style="width: 12px; height: 12px;"></i>
+            <span>Claro (Oficial)</span>
+          </button>
+        </div>
+      </div>
+
+      <a href="../" class="demo-switch-btn">
+        <i data-lucide="arrow-left" style="width: 13px; height: 13px;"></i>
+        <span>Ver Web Completa</span>
+      </a>
+    </div>
   </div>
 
   <div class="container">
     <div class="landing-hero">
       <h1 class="logo-serif">CALMA Y CAOS</h1>
-      <span class="logo-sub">Cocina de Autor &bull; Palma Centro</span>
-      
-      <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop" class="hero-img" alt="Calma y Caos Palma">
-      
+      <span class="logo-sub">Cocina de Autor &bull; Palma</span>
+
+      <img 
+        src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop" 
+        alt="Calma y Caos Palma Interior" 
+        class="hero-img"
+      >
+
       <p class="hero-pitch">
-        Producto balear fresco de lonja, técnica sosegada y el arrebato creativo de Iván y Carlos. Reserva tu mesa en 60 segundos sin intermediarios.
+        Una propuesta culinaria de contrastes en Palma. Producto balear honesto de lonja tratado con técnica vanguardista. Reserva tu mesa en segundos sin intermediarios.
       </p>
     </div>
 
-    <!-- TARJETA RESERVA EXPRESS -->
+    <!-- FORMULARIO DE RESERVA RÁPIDA -->
     <div class="express-card">
-      <h2 class="card-title">Reserva de Mesa Express</h2>
-      <p class="card-subtitle">Confirmación directa en WhatsApp con el equipo del restaurante</p>
+      <h2 class="card-title">Reserva Inmediata</h2>
+      <p class="card-subtitle">Confirmación directa en WhatsApp con el restaurante en menos de 1 minuto</p>
 
       <form onsubmit="handleExpress(event)">
         <div class="form-row">
-          <label for="eName">Nombre Completo *</label>
-          <input type="text" id="eName" class="f-input" required placeholder="Tu nombre">
+          <label>Nombre y Apellidos</label>
+          <input type="text" id="eName" class="f-input" placeholder="Tu nombre" required>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="form-row">
           <div>
-            <label for="eDate">Fecha *</label>
+            <label>Fecha</label>
             <input type="date" id="eDate" class="f-input" required>
           </div>
           <div>
-            <label for="eShift">Turno *</label>
+            <label>Turno</label>
             <select id="eShift" class="f-select" required>
-              <option value="Comida 13:30 h">Comida 13:30 h</option>
-              <option value="Comida 14:00 h">Comida 14:00 h</option>
-              <option value="Comida 14:30 h">Comida 14:30 h</option>
-              <option value="Cena 20:30 h">Cena 20:30 h</option>
-              <option value="Cena 21:00 h" selected>Cena 21:00 h</option>
-              <option value="Cena 21:30 h">Cena 21:30 h</option>
-              <option value="Cena 22:00 h">Cena 22:00 h</option>
+              <option value="Comida (13:30 - 15:30)">Comida (13:30)</option>
+              <option value="Cena 1er Turno (20:15)">Cena (20:15)</option>
+              <option value="Cena 2º Turno (22:00)" selected>Cena (22:00)</option>
             </select>
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="form-row">
           <div>
-            <label for="eGuests">Comensales *</label>
+            <label>Comensales</label>
             <select id="eGuests" class="f-select" required>
-              <option value="2 personas" selected>2 comensales</option>
-              <option value="3 personas">3 comensales</option>
-              <option value="4 personas">4 comensales</option>
-              <option value="5 personas">5 comensales</option>
-              <option value="6+ personas">6+ (Grupo)</option>
+              <option value="2 personas" selected>2 personas</option>
+              <option value="3 personas">3 personas</option>
+              <option value="4 personas">4 personas</option>
+              <option value="5 personas">5 personas</option>
+              <option value="6+ personas">6 o más personas</option>
             </select>
           </div>
           <div>
-            <label for="ePhone">Teléfono *</label>
-            <input type="tel" id="ePhone" class="f-input" required placeholder="+34 600...">
+            <label>Móvil de Contacto</label>
+            <input type="tel" id="ePhone" class="f-input" placeholder="+34 600 00 00 00" required>
           </div>
         </div>
 
         <div class="form-row">
-          <label for="eNotes">Alergias u Observaciones</label>
-          <input type="text" id="eNotes" class="f-input" placeholder="Ej: Sin gluten / Aniversario">
+          <label>Alergias o Petición Especial</label>
+          <input type="text" id="eNotes" class="f-input" placeholder="Opcional (alergias, mesa terraza, etc.)">
         </div>
 
         <button type="submit" class="btn-submit">
@@ -358,13 +547,60 @@
       </a>
     </div>
 
-    <p style="text-align: center; margin-top: 30px; font-size: 0.78rem; color: #777;">
+    <p style="text-align: center; margin-top: 30px; font-size: 0.78rem; color: var(--text-muted);">
       Demo creada por <a href="https://joaquin-om.github.io/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Joaquín Oses Monti</a> &bull; Palma de Mallorca
     </p>
   </div>
 
+
   <script>
-    lucide.createIcons();
+    // Inicialización inmediata para prevenir parpadeos
+    (function() {
+      const savedTheme = localStorage.getItem('calma_caos_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+
+    function setCalmaTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('calma_caos_theme', theme);
+      updateThemeUI(theme);
+    }
+
+    function toggleCalmaTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      setCalmaTheme(next);
+    }
+
+    function updateThemeUI(theme) {
+      const pillDark = document.getElementById('pill-dark');
+      const pillLight = document.getElementById('pill-light');
+      if (pillDark && pillLight) {
+        if (theme === 'dark') {
+          pillDark.classList.add('active');
+          pillLight.classList.remove('active');
+        } else {
+          pillDark.classList.remove('active');
+          pillLight.classList.add('active');
+        }
+      }
+      const headerText = document.getElementById('header-theme-text');
+      if (headerText) {
+        headerText.textContent = theme === 'dark' ? 'Modo Claro' : 'Modo Oscuro';
+      }
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const active = document.documentElement.getAttribute('data-theme') || 'dark';
+      updateThemeUI(active);
+    });
+  </script>
+
+
+  <script>
     const dateInput = document.getElementById('eDate');
     if (dateInput) {
       const today = new Date().toISOString().split('T')[0];
