@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dossier de Propuesta Técnico-Comercial — Web & Reservas para Terapeuta Holística</title>
+  <meta name="description" content="Propuesta completa de desarrollo web, motor de reservas, hosting y mantenimiento para constelaciones familiares y registros akáshicos.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg-base: #FAF8F5;
+      --bg-surface: #F3ECE1;
+      --bg-card: #FFFFFF;
+      --border-subtle: #EAE3D5;
+      --border-gold: rgba(184, 138, 68, 0.35);
+      --text-main: #2C2621;
+      --text-muted: #6B6258;
+      --gold-primary: #B88A44;
+      --gold-hover: #9E7434;
+      --gold-soft: rgba(184, 138, 68, 0.1);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
+    }
+
+    /* BARRA SUPERIOR DE ACCIONES (NO IMPRIMIBLE) */
+    .top-action-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-action-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .btn-back-demo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.2s ease;
+    }
+    .btn-back-demo:hover {
+      color: var(--gold-primary);
+      border-color: var(--gold-primary);
+    }
+    .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      background: var(--gold-primary);
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-print:hover {
+      background: var(--gold-hover);
+      transform: translateY(-1px);
+    }
+
+    .document-container {
+      max-width: 960px;
+      margin: 40px auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 10px 40px rgba(74, 66, 58, 0.06);
+      padding: 60px 56px;
+    }
+
+    /* HEADER DEL DOSSIER */
+    .dossier-header {
+      border-bottom: 2px solid var(--border-gold);
+      padding-bottom: 32px;
+      margin-bottom: 40px;
+    }
+    .dossier-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--gold-primary);
+      background: var(--gold-soft);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .dossier-title {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+    .dossier-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      line-height: 1.6;
+    }
+
+    /* FICHA METADATOS */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      background: var(--bg-surface);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 40px;
+      border: 1px solid var(--border-subtle);
+    }
+    .meta-item-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .meta-item-value {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .meta-item-value a {
+      color: var(--gold-primary);
+      text-decoration: none;
+    }
+
+    /* SECCIONES DEL DOCUMENTO */
+    .section-block {
+      margin-bottom: 48px;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title::after {
+      content: '';
+      flex-grow: 1;
+      height: 1px;
+      background: var(--border-subtle);
+    }
+    .section-p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    /* CARDS COMPARATIVAS DE PRECIOS */
+    .pricing-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 28px 0;
+    }
+    .price-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+    .price-card.recommended {
+      border: 2px solid var(--gold-primary);
+      background: #FFFCF9;
+      box-shadow: 0 10px 30px rgba(184, 138, 68, 0.12);
+    }
+    .card-badge-top {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--gold-primary);
+      color: #FFFFFF;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .card-ideal {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      min-height: 40px;
+    }
+    .card-price-num {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .card-price-note {
+      font-size: 0.78rem;
+      color: var(--gold-primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 24px;
+    }
+    .card-features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+    .card-features-list li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.45;
+    }
+    .card-features-list li i {
+      color: var(--gold-primary);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* TABLA COMPARATIVA */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0 32px 0;
+      font-size: 0.88rem;
+    }
+    .compare-table th {
+      background: var(--bg-surface);
+      padding: 14px 16px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-main);
+      border-bottom: 2px solid var(--border-gold);
+    }
+    .compare-table th:last-child {
+      background: rgba(184, 138, 68, 0.12);
+    }
+    .compare-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+    .compare-table tr:hover td {
+      background: #FAF6F0;
+    }
+    .compare-table td.highlight {
+      font-weight: 600;
+      color: var(--text-main);
+      background: rgba(184, 138, 68, 0.04);
+    }
+    .status-check {
+      color: var(--gold-primary);
+      font-weight: 600;
+    }
+    .status-cross {
+      color: #A09A92;
+      font-size: 0.82rem;
+    }
+
+    /* CAJAS DESTACADAS / CALLOUTS */
+    .callout-box {
+      background: var(--bg-surface);
+      border-left: 4px solid var(--gold-primary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .callout-box-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .callout-box-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* HOSTING & MOTOR CARDS */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .tool-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+    .tool-card.featured {
+      border: 1.5px solid var(--gold-primary);
+      background: #FFFCF8;
+    }
+    .tool-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .tool-name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .tool-price {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      background: var(--gold-soft);
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .tool-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    .tool-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .tool-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tool-bullets li i {
+      color: var(--gold-primary);
+    }
+
+    /* FLUJO DE RESERVA PASO A PASO */
+    .flow-steps-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .flow-step-box {
+      background: var(--bg-surface);
+      border-radius: var(--radius-sm);
+      padding: 16px 12px;
+      text-align: center;
+      border: 1px solid var(--border-subtle);
+    }
+    .flow-step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--gold-primary);
+      color: #FFFFFF;
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px auto;
+    }
+    .flow-step-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .flow-step-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* CRONOGRAMA TIMELINE */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .timeline-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+    .timeline-phase {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--gold-primary);
+      margin-bottom: 6px;
+    }
+    .timeline-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+    .timeline-text {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* FOOTER FIRMA */
+    .dossier-footer {
+      border-top: 2px solid var(--border-gold);
+      padding-top: 32px;
+      margin-top: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .signature-block {
+      display: flex;
+      flex-direction: column;
+    }
+    .sig-name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .sig-role {
+      font-size: 0.8rem;
+      color: var(--gold-primary);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .sig-contact {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ESTILOS DE IMPRESIÓN (PDF PERFECTO) */
+    @media print {
+      .top-action-bar { display: none !important; }
+      body {
+        background: #FFFFFF;
+        padding: 0;
+        font-size: 10pt;
+      }
+      .document-container {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+      }
+      .section-block {
+        page-break-inside: avoid;
+        margin-bottom: 32px;
+      }
+      .price-card, .tool-card {
+        page-break-inside: avoid;
+      }
+      a { text-decoration: none; color: inherit; }
+    }
+
+    @media (max-width: 768px) {
+      .document-container { padding: 32px 20px; margin: 16px auto; }
+      .meta-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-cards-grid { grid-template-columns: 1fr; }
+      .tool-grid { grid-template-columns: 1fr; }
+      .flow-steps-row { grid-template-columns: 1fr; }
+      .timeline-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR DE ACCIONES -->
+  <aside class="top-action-bar" aria-label="Acciones del documento">
+    <div class="top-action-left">
+      <a href="index.html" class="btn-back-demo">
+        <i data-lucide="arrow-left" style="width: 15px; height: 15px;"></i>
+        <span>Ver Demo Web Interactiva</span>
+      </a>
+      <span style="font-size: 0.82rem; color: var(--text-muted);">
+        Propuesta para Reunión del Lunes 15:30
+      </span>
+    </div>
+    <div>
+      <button class="btn-print" onclick="window.print()">
+        <i data-lucide="printer" style="width: 15px; height: 15px;"></i>
+        <span>Guardar como PDF / Imprimir</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- CONTENEDOR DEL DOCUMENTO TIPO DOSSIER -->
+  <main class="document-container">
+
+    <!-- CABECERA -->
+    <header class="dossier-header">
+      <span class="dossier-tag">Dossier Técnico-Comercial</span>
+      <h1 class="dossier-title">Propuesta de Presencia Web, Motor de Reservas & Showcase de Formaciones</h1>
+      <p class="dossier-subtitle">
+        Solución integral de desarrollo a medida para profesionalizar tu actividad terapéutica, automatizar tu agenda y captar alumnas para tus cursos de Registros Akáshicos y talleres de Constelaciones Familiares.
+      </p>
+    </header>
+
+    <!-- METADATOS EJECUTIVOS -->
+    <section class="meta-grid" aria-label="Datos de la propuesta">
+      <div>
+        <div class="meta-item-label">Cliente</div>
+        <div class="meta-item-value">Terapeuta Holística</div>
+      </div>
+      <div>
+        <div class="meta-item-label">Desarrollador</div>
+        <div class="meta-item-value">Joaquín Oses Monti</div>
+      </div>
+      <div>
+        <div class="meta-item-label">Reunión Oficial</div>
+        <div class="meta-item-value">Lunes, 14 Sep — 15:30</div>
+      </div>
+      <div>
+        <div class="meta-item-label">Demo en Vivo</div>
+        <div class="meta-item-value"><a href="https://joaquin-om.github.io/terapia/" target="_blank">Ver en navegador ↗</a></div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 1: VISIÓN Y OBJETIVOS -->
+    <section class="section-block">
+      <h2 class="section-title"><i data-lucide="sparkles" style="width: 22px; height: 22px; color: var(--gold-primary);"></i> 1. Visión del Proyecto</h2>
+      <p class="section-p">
+        Tu espacio terapéutico requiere un entorno digital que no se sienta agresivo ni comercial, sino como un <strong>remanso de paz y confianza</strong>. Tomando como referencia la calidez luminosa de <em>Sophie Sun</em> y la estructura clara de <em>Mars Gutiérrez</em> y <em>Amanecer Interior</em>, este proyecto resuelve tres necesidades clave:
+      </p>
+      
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0;">
+        <div style="background: var(--bg-surface); padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+          <div style="font-weight: 700; color: var(--text-main); font-size: 0.9rem; margin-bottom: 6px;">1. Conexión de Almas</div>
+          <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">
+            Diseño editorial y cuidado que transmite el rigor y la delicadeza con que sostienes a tus consultantes.
+          </p>
+        </div>
+        <div style="background: var(--bg-surface); padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+          <div style="font-weight: 700; color: var(--text-main); font-size: 0.9rem; margin-bottom: 6px;">2. Cero Fricción en Citas</div>
+          <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">
+            Calendario inteligente que evita perder horas al teléfono o en WhatsApp intentando cuadrar huecos.
+          </p>
+        </div>
+        <div style="background: var(--bg-surface); padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+          <div style="font-weight: 700; color: var(--text-main); font-size: 0.9rem; margin-bottom: 6px;">3. Llenado de Cursos</div>
+          <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">
+            Fichas persuasivas de tus formaciones con temario, qué incluye y reserva directa de plaza por Zoom o en Palma.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: OPCIONES DE PRECIO -->
+    <section class="section-block">
+      <h2 class="section-title"><i data-lucide="coins" style="width: 22px; height: 22px; color: var(--gold-primary);"></i> 2. Opciones de Inversión</h2>
+      <p class="section-p">
+        Para ajustarnos a tu prioridad actual, tienes a tu disposición dos alternativas de desarrollo llave en mano:
+      </p>
+
+      <div class="pricing-cards-grid">
+        
+        <!-- Opción 1 -->
+        <div class="price-card">
+          <h3 class="card-title">Opción 1: Esencial de Lanzamiento</h3>
+          <p class="card-ideal">Para establecer una presencia digital hermosa y profesional en tiempo récord con contacto directo.</p>
+          <div class="card-price-num">590 €</div>
+          <div class="card-price-note">Inversión única de desarrollo</div>
+
+          <ul class="card-features-list">
+            <li><i data-lucide="check"></i> <strong>Hasta 3 secciones esenciales:</strong> Portada (Home), Servicios 1 a 1 y Contacto/Reservas.</li>
+            <li><i data-lucide="check"></i> <strong>Diseño visual boho-sagrado exclusivo</strong> adaptado a móviles y ordenadores.</li>
+            <li><i data-lucide="check"></i> <strong>Enlace directo a WhatsApp:</strong> Mensaje pre-rellenado para solicitar sesión sin intermediarios.</li>
+            <li><i data-lucide="check"></i> <strong>Mención básica a formaciones</strong> en la página principal.</li>
+            <li><i data-lucide="check"></i> <strong>Configuración técnica:</strong> Dominio y correos corporativos incluidos.</li>
+            <li><i data-lucide="clock"></i> <strong>Plazo de entrega:</strong> 5 a 7 días laborables.</li>
+          </ul>
+        </div>
+
+        <!-- Opción 2 (Recomendada) -->
+        <div class="price-card recommended">
+          <span class="card-badge-top">Recomendada ⭐</span>
+          <h3 class="card-title">Opción 2: Completa Cursos & Reservas</h3>
+          <p class="card-ideal">La web definitiva para delegar tu agenda, vender plazas de cursos y transmitir la máxima autoridad terapéutica.</p>
+          <div class="card-price-num">790 €</div>
+          <div class="card-price-note">Inversión única de desarrollo</div>
+
+          <ul class="card-features-list">
+            <li><i data-lucide="check"></i> <strong>Hasta 6 secciones completas:</strong> Home, Sobre Mí (historia y linaje), Sesiones 1 a 1, Cursos & Formación, Testimonios y Agenda.</li>
+            <li><i data-lucide="check"></i> <strong>Motor de Reservas Sincronizado:</strong> Conexión en vivo con Google Calendar y generación automática de Zoom.</li>
+            <li><i data-lucide="check"></i> <strong>Módulo Avanzado de Cursos:</strong> Fichas detalladas con temario, fechas, modalidad y reserva de plazas.</li>
+            <li><i data-lucide="check"></i> <strong>Cuestionario de salud / motivo de consulta</strong> previo a la cita.</li>
+            <li><i data-lucide="check"></i> <strong>Preguntas Frecuentes (FAQ) en acordeón</strong> y muro extenso de testimonios.</li>
+            <li><i data-lucide="check"></i> <strong>SEO Local y Online optimizado:</strong> Posicionamiento para búsquedas en Palma y España.</li>
+            <li><i data-lucide="clock"></i> <strong>Plazo de entrega:</strong> 7 a 10 días laborables.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- TABLA COMPARATIVA -->
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Entregable / Funcionalidad</th>
+            <th style="text-align: center;">Opción 1 (590 €)</th>
+            <th style="text-align: center;">Opción 2 ⭐ (790 €)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Diseño visual exclusivo inspirado en Sophie Sun & Mars Gutiérrez</td>
+            <td style="text-align: center;" class="status-check">✔ Sí</td>
+            <td style="text-align: center;" class="status-check">✔ Sí</td>
+          </tr>
+          <tr>
+            <td>Sección Sobre Mí extensa (trayectoria, linaje y vocación)</td>
+            <td style="text-align: center;" class="status-cross">Resumen corto</td>
+            <td style="text-align: center;" class="status-check">✔ Página / bloque dedicado</td>
+          </tr>
+          <tr>
+            <td>Motor de reservas con sincronización automática en calendario</td>
+            <td style="text-align: center;" class="status-cross">No (WhatsApp)</td>
+            <td style="text-align: center;" class="status-check">✔ Sí (Google Calendar + Zoom)</td>
+          </tr>
+          <tr>
+            <td>Preguntas previas obligatorias para el consultante</td>
+            <td style="text-align: center;" class="status-cross">No</td>
+            <td style="text-align: center;" class="status-check">✔ Sí (motivo, fecha nacimiento)</td>
+          </tr>
+          <tr>
+            <td>Fichas individuales de Cursos con temario desplegable</td>
+            <td style="text-align: center;" class="status-cross">Mención básica</td>
+            <td style="text-align: center;" class="status-check">✔ Sí (con plazas y fechas)</td>
+          </tr>
+          <tr>
+            <td>Recordatorios automáticos por email para evitar ausencias</td>
+            <td style="text-align: center;" class="status-cross">No</td>
+            <td style="text-align: center;" class="status-check">✔ Sí</td>
+          </tr>
+          <tr>
+            <td>Acompañamiento en compra de hosting y dominio a tu nombre</td>
+            <td style="text-align: center;" class="status-check">✔ Sí</td>
+            <td style="text-align: center;" class="status-check">✔ Sí</td>
+          </tr>
+          <tr>
+            <td>Garantía de revisiones (ajustes ilimitados en 2 rondas)</td>
+            <td style="text-align: center;" class="status-check">✔ Sí</td>
+            <td style="text-align: center;" class="status-check">✔ Sí</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout-box">
+        <div class="callout-box-title">
+          <i data-lucide="lightbulb" style="width: 18px; height: 18px; color: var(--gold-primary);"></i>
+          Rentabilidad de la Opción 2
+        </div>
+        <div class="callout-box-text">
+          La diferencia entre ambas opciones es de <strong>200 €</strong>. Al disponer del módulo de cursos y el motor automatizado, esa inversión se recupera íntegramente con las <strong>primeras 2 inscripciones a tu taller</strong> o ahorrando 15 horas de coordinación de citas durante tu primer mes.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: HOSTING Y DOMINIO -->
+    <section class="section-block">
+      <h2 class="section-title"><i data-lucide="server" style="width: 22px; height: 22px; color: var(--gold-primary);"></i> 3. Alojamiento Web & Dominio (Hosting)</h2>
+      <p class="section-p">
+        <strong>Principio ético fundamental:</strong> El dominio y el servidor se contratarán <strong>100% a tu nombre</strong>. De esta manera, tú eres la única dueña de tu web, de tu marca y de los datos de tus consultantes. Yo me encargo de hacer toda la configuración técnica y de conectarlo.
+      </p>
+
+      <div class="tool-grid">
+        
+        <!-- Hostinger -->
+        <div class="tool-card featured">
+          <div class="tool-card-head">
+            <div>
+              <span style="font-size: 0.68rem; font-weight: 700; color: var(--gold-primary); letter-spacing: 0.12em; text-transform: uppercase;">Opción Recomendada</span>
+              <div class="tool-name">Hostinger Business</div>
+            </div>
+            <div class="tool-price">~48 € - 60 € / año</div>
+          </div>
+          <p class="tool-desc">
+            La mejor combinación de velocidad europea, facilidad de uso y ahorro económico para proyectos personales y terapeutas independientes.
+          </p>
+          <ul class="tool-bullets">
+            <li><i data-lucide="check-circle-2"></i> <strong>Dominio .com o .es GRATIS</strong> el 1.er año (~12 € de ahorro).</li>
+            <li><i data-lucide="check-circle-2"></i> <strong>Certificado de seguridad SSL gratis</strong> de por vida.</li>
+            <li><i data-lucide="check-circle-2"></i> <strong>Correos profesionales ilimitados</strong> (ej. <em>sesiones@tudominio.com</em>).</li>
+            <li><i data-lucide="check-circle-2"></i> <strong>Servidor LiteSpeed ultra-rápido:</strong> carga en menos de 1,2 segundos.</li>
+            <li><i data-lucide="check-circle-2"></i> Copias de seguridad automáticas diarias.</li>
+          </ul>
+        </div>
+
+        <!-- SiteGround / Raiola -->
+        <div class="tool-card">
+          <div class="tool-card-head">
+            <div>
+              <span style="font-size: 0.68rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase;">Opción Premium Alternativa</span>
+              <div class="tool-name">Raiola / SiteGround</div>
+            </div>
+            <div class="tool-price">~85 € - 110 € / año</div>
+          </div>
+          <p class="tool-desc">
+            Servidores de altísima gama con atención telefónica en español para empresas con necesidades avanzadas de infraestructura.
+          </p>
+          <ul class="tool-bullets">
+            <li><i data-lucide="check-circle-2"></i> Soporte técnico telefónico en España 24/7.</li>
+            <li><i data-lucide="check-circle-2"></i> Infraestructura robusta y centros de datos en Madrid.</li>
+            <li><i data-lucide="alert-circle" style="color: #C47862;"></i> Renovación anual más elevada tras el primer año.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: MOTOR DE RESERVAS -->
+    <section class="section-block">
+      <h2 class="section-title"><i data-lucide="calendar-check" style="width: 22px; height: 22px; color: var(--gold-primary);"></i> 4. Motor de Reservas & Calendario</h2>
+      <p class="section-p">
+        El motor de reservas te permite trabajar con la tranquilidad de que tu agenda se organiza sola respetando tus horarios libres y de descanso:
+      </p>
+
+      <div class="tool-grid">
+        
+        <!-- TidyCal -->
+        <div class="tool-card featured">
+          <div class="tool-card-head">
+            <div>
+              <span style="font-size: 0.68rem; font-weight: 700; color: var(--gold-primary); letter-spacing: 0.12em; text-transform: uppercase;">Recomendación Máximo Ahorro</span>
+              <div class="tool-name">TidyCal (Licencia Lifetime)</div>
+            </div>
+            <div class="tool-price">29 $ (~27 €) ¡Una sola vez!</div>
+          </div>
+          <p class="tool-desc">
+            Una herramienta profesional con pago único de por vida. Te ahorras los 120 €/año de suscripción que cobran otras plataformas.
+          </p>
+          <ul class="tool-bullets">
+            <li><i data-lucide="check-circle-2"></i> <strong>Sin cuotas mensuales nunca:</strong> se paga 29 $ una vez y es tuyo para siempre.</li>
+            <li><i data-lucide="check-circle-2"></i> <strong>Sincronización en vivo</strong> con tu Google Calendar o Apple Calendar.</li>
+            <li><i data-lucide="check-circle-2"></i> <strong>Generación de enlaces Zoom automáticos:</strong> crea la videollamada solo.</li>
+            <li><i data-lucide="check-circle-2"></i> Múltiples servicios (Constelaciones 90m, Registros 75m, etc.).</li>
+            <li><i data-lucide="check-circle-2"></i> Cobro por Stripe / PayPal o aviso para pago por <strong>Bizum</strong>.</li>
+          </ul>
+        </div>
+
+        <!-- Calendly / Cal.com -->
+        <div class="tool-card">
+          <div class="tool-card-head">
+            <div>
+              <span style="font-size: 0.68rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase;">Alternativa Gratuita / Mensual</span>
+              <div class="tool-name">Calendly / Cal.com</div>
+            </div>
+            <div class="tool-price">0 € a 10 € / mes</div>
+          </div>
+          <p class="tool-desc">
+            La plataforma más famosa del mercado. Su plan gratuito permite 1 tipo de cita básico; el plan con varios servicios requiere suscripción mensual.
+          </p>
+          <ul class="tool-bullets">
+            <li><i data-lucide="check-circle-2"></i> Plan gratuito muy útil para arrancar con coste cero.</li>
+            <li><i data-lucide="check-circle-2"></i> Interfaz muy intuitiva y conocida por los usuarios.</li>
+            <li><i data-lucide="alert-circle" style="color: #C47862;"></i> Para más de 1 servicio en Calendly requiere pagar ~10 € cada mes.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- FLUJO DE RESERVA -->
+      <div style="margin-top: 28px;">
+        <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-main); margin-bottom: 12px;">
+          El flujo de tu consultante en 5 pasos sencillos:
+        </div>
+        <div class="flow-steps-row">
+          <div class="flow-step-box">
+            <div class="flow-step-num">1</div>
+            <div class="flow-step-title">Elige Servicio</div>
+            <div class="flow-step-desc">Constelación, Registros o Acompañamiento.</div>
+          </div>
+          <div class="flow-step-box">
+            <div class="flow-step-num">2</div>
+            <div class="flow-step-title">Modalidad</div>
+            <div class="flow-step-desc">Online (Zoom) o presencial en tu consulta.</div>
+          </div>
+          <div class="flow-step-box">
+            <div class="flow-step-num">3</div>
+            <div class="flow-step-title">Fecha y Hora</div>
+            <div class="flow-step-desc">Solo entre los huecos que tengas abiertos.</div>
+          </div>
+          <div class="flow-step-box">
+            <div class="flow-step-num">4</div>
+            <div class="flow-step-title">Preguntas</div>
+            <div class="flow-step-desc">Motivo de consulta y datos de contacto.</div>
+          </div>
+          <div class="flow-step-box">
+            <div class="flow-step-num">5</div>
+            <div class="flow-step-title">Confirmación</div>
+            <div class="flow-step-desc">Aviso a tu móvil, enlace Zoom y Bizum.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: MANTENIMIENTO TÉCNICO -->
+    <section class="section-block">
+      <h2 class="section-title"><i data-lucide="shield-check" style="width: 22px; height: 22px; color: var(--gold-primary);"></i> 5. Plan de Mantenimiento & Soporte Técnico</h2>
+      <p class="section-p">
+        Una vez publicada tu web, puedes gestionarla tú misma o dejar todas las tareas técnicas en mis manos para que no te preocupes de nada:
+      </p>
+
+      <div style="background: #FFFCF8; border: 1.5px solid var(--gold-primary); border-radius: var(--radius-md); padding: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+          <div>
+            <div style="font-family: var(--font-serif); font-size: 1.4rem; font-weight: 600; color: var(--text-main);">Pack Tranquilidad Mensual</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Sin permanencia • Puedes activarlo o pausarlo cuando lo necesites</div>
+          </div>
+          <div style="font-family: var(--font-serif); font-size: 2.2rem; font-weight: 700; color: var(--gold-primary);">49 € <span style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted);">/ mes</span></div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; color: var(--text-muted);">
+            <li style="display: flex; gap: 8px;"><i data-lucide="check" style="color: var(--gold-primary); flex-shrink: 0;"></i> <strong>Actualización de Cursos:</strong> Nuevas fechas y temarios subidos en menos de 24-48h.</li>
+            <li style="display: flex; gap: 8px;"><i data-lucide="check" style="color: var(--gold-primary); flex-shrink: 0;"></i> <strong>Subida de nuevos testimonios:</strong> Publicación de opiniones de tus consultantes.</li>
+            <li style="display: flex; gap: 8px;"><i data-lucide="check" style="color: var(--gold-primary); flex-shrink: 0;"></i> <strong>Cambios de tarifas y horarios:</strong> Ajustes en precios o días disponibles.</li>
+          </ul>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; color: var(--text-muted);">
+            <li style="display: flex; gap: 8px;"><i data-lucide="check" style="color: var(--gold-primary); flex-shrink: 0;"></i> <strong>Copias de seguridad semanales:</strong> Tu web 100% protegida ante caídas o imprevistos.</li>
+            <li style="display: flex; gap: 8px;"><i data-lucide="check" style="color: var(--gold-primary); flex-shrink: 0;"></i> <strong>Vigilancia técnica & SSL:</strong> Supervisión de velocidad y certificado seguro.</li>
+            <li style="display: flex; gap: 8px;"><i data-lucide="check" style="color: var(--gold-primary); flex-shrink: 0;"></i> <strong>Soporte prioritario por WhatsApp:</strong> Contacto directo conmigo sin tickets lentos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 6: CRONOGRAMA Y CONDICIONES -->
+    <section class="section-block">
+      <h2 class="section-title"><i data-lucide="clock" style="width: 22px; height: 22px; color: var(--gold-primary);"></i> 6. Cronograma & Condiciones de Pago</h2>
+      
+      <div class="timeline-grid">
+        <div class="timeline-card">
+          <div class="timeline-phase">Fase 1 • Días 1 a 3</div>
+          <h4 class="timeline-title">Estructura & Textos</h4>
+          <p class="timeline-text">Definición final de tus textos, asesoría en tus fotografías personales y alta del hosting a tu nombre.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-phase">Fase 2 • Días 4 a 7</div>
+          <h4 class="timeline-title">Maquetación & Agenda</h4>
+          <p class="timeline-text">Desarrollo del diseño visual, configuración de tus cursos y conexión del motor de reservas con Zoom y WhatsApp.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-phase">Fase 3 • Días 8 a 10</div>
+          <h4 class="timeline-title">Revisión & Entrega</h4>
+          <p class="timeline-text">Revisión conjunta, aplicación de tus ajustes en directo, publicación oficial y entrega de videotutorial explicativo.</p>
+        </div>
+      </div>
+
+      <div style="background: var(--bg-surface); padding: 20px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); margin-top: 20px;">
+        <div style="font-weight: 700; color: var(--text-main); font-size: 0.95rem; margin-bottom: 8px;">Condiciones de Contratación:</div>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-muted);">
+          <li>• <strong>50% de anticipo al inicio:</strong> Para reservar hueco en calendario y comenzar de inmediato.</li>
+          <li>• <strong>50% restante a la entrega y aprobación:</strong> Una vez que la web esté exactamente como a ti te gusta y publicada.</li>
+          <li>• <strong>Garantía de Satisfacción:</strong> Incluye hasta 2 rondas completas de revisiones sobre la primera versión.</li>
+          <li>• <strong>Facturación formal:</strong> Emisión de factura con desglose de IVA para desgravar el gasto.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- RESUMEN FINAL -->
+    <section class="section-block">
+      <h2 class="section-title"><i data-lucide="receipt" style="width: 22px; height: 22px; color: var(--gold-primary);"></i> 7. Resumen de Inversión Global</h2>
+      
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Concepto</th>
+            <th>Inversión Inicial</th>
+            <th>Coste Anual / Mensual</th>
+            <th>Observaciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Opción 1: Web Esencial de Lanzamiento</strong></td>
+            <td style="font-weight: 700; color: var(--text-main);">590 €</td>
+            <td>0 €</td>
+            <td>Pago único de desarrollo</td>
+          </tr>
+          <tr>
+            <td><strong>Opción 2: Web Completa Cursos & Reservas ⭐</strong></td>
+            <td style="font-weight: 700; color: var(--gold-primary);">790 €</td>
+            <td>0 €</td>
+            <td>Recomendada • Pago único</td>
+          </tr>
+          <tr>
+            <td><strong>Hosting Profesional Hostinger + Dominio Gratis</strong></td>
+            <td>—</td>
+            <td style="font-weight: 600;">~48 € / año</td>
+            <td>Se contrata a tu nombre (1.er año)</td>
+          </tr>
+          <tr>
+            <td><strong>Motor de Reservas TidyCal (Licencia De por vida)</strong></td>
+            <td style="font-weight: 600;">~27 € (29 $)</td>
+            <td style="color: var(--gold-primary); font-weight: 600;">0 € / mes para siempre</td>
+            <td>O Calendly gratuito (0 €) para empezar</td>
+          </tr>
+          <tr>
+            <td><strong>Plan de Mantenimiento Técnico</strong> <em>(Opcional)</em></td>
+            <td>—</td>
+            <td style="font-weight: 600;">49 € / mes</td>
+            <td>Sin permanencia, cancelable cuando quieras</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- PIE DE PÁGINA Y FIRMA -->
+    <footer class="dossier-footer">
+      <div class="signature-block">
+        <span class="sig-name">Joaquín Oses Monti</span>
+        <span class="sig-role">Consultor & Desarrollador Web Freelance</span>
+        <span class="sig-contact">Palma de Mallorca • +34 695 26 74 45 • osesjoa@gmail.com</span>
+      </div>
+
+      <div style="text-align: right;">
+        <a href="https://api.whatsapp.com/send?phone=34695267445&text=Hola%20Joaqu%C3%ADn,%20he%20le%C3%ADdo%20el%20dossier%20y%20nos%20vemos%20el%20lunes%20a%20las%2015:30" target="_blank" class="btn-print" style="text-decoration: none;">
+          <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+          <span>Confirmar Reunión por WhatsApp</span>
+        </a>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
