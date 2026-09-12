@@ -1,0 +1,2058 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alma & Linaje — Constelaciones Familiares, Registros Akáshicos & Formación</title>
+  <meta name="description" content="Espacio sagrado de sanación sistémica, lectura de registros akáshicos y cursos vivenciales. Sesiones individuales online y presenciales con motor de reservas integrado.">
+  
+  <!-- Google Fonts: Cormorant Garamond + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg-base: #FAF8F5;          /* Blanco roto / lino cálido */
+      --bg-surface: #F3ECE1;       /* Arena suave para alternar bloques */
+      --bg-card: #FFFFFF;          /* Blanco puro para tarjetas limpias */
+      --bg-card-hover: #FCFAF7;
+      --border-subtle: #EAE3D5;    /* Borde delicado */
+      --border-gold: rgba(184, 138, 68, 0.3);
+      
+      --text-main: #2C2621;        /* Carbón profundo cálido, nunca negro puro */
+      --text-muted: #726A61;       /* Tierra suave para textos secundarios */
+      --text-light: #9B9388;
+      
+      --gold-primary: #B88A44;     /* Oro antiguo / sol sagrado */
+      --gold-hover: #9E7434;
+      --gold-soft: rgba(184, 138, 68, 0.12);
+      
+      --sage-accent: #7D9686;      /* Verde salvia para serenidad y salud */
+      --sage-soft: rgba(125, 150, 134, 0.14);
+      --terracotta-accent: #C47862;
+      
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --radius-full: 999px;
+      
+      --shadow-subtle: 0 4px 20px rgba(74, 66, 58, 0.05);
+      --shadow-card: 0 10px 30px rgba(74, 66, 58, 0.08);
+      --shadow-hover: 0 16px 40px rgba(184, 138, 68, 0.14);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* HEADER / NAVBAR ELEGANTE Y TRANSLÚCIDO */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(250, 248, 245, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: all 0.3s ease;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      line-height: 1;
+    }
+    .brand-subtitle {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      font-weight: 500;
+      margin-top: 3px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+    .nav-links a:hover {
+      color: var(--gold-primary);
+    }
+    .btn-reserve-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--gold-primary);
+      color: #FFFFFF;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 14px rgba(184, 138, 68, 0.25);
+      transition: all 0.25s ease;
+    }
+    .btn-reserve-nav:hover {
+      background-color: var(--gold-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(184, 138, 68, 0.35);
+    }
+
+    /* HERO SECTION BOHO SAGRADO */
+    .hero {
+      padding-top: 150px;
+      padding-bottom: 90px;
+      position: relative;
+      background: radial-gradient(circle at 80% 20%, rgba(243, 236, 225, 0.8) 0%, var(--bg-base) 60%);
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--gold-soft);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.12;
+      color: var(--text-main);
+      margin-bottom: 24px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-primary);
+      font-weight: 500;
+    }
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 36px;
+      max-width: 540px;
+    }
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: var(--gold-primary);
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 15px 32px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 6px 20px rgba(184, 138, 68, 0.3);
+      transition: all 0.25s ease;
+    }
+    .btn-hero-primary:hover {
+      background-color: var(--gold-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(184, 138, 68, 0.4);
+    }
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 15px 28px;
+      border-radius: var(--radius-full);
+      transition: all 0.25s ease;
+    }
+    .btn-hero-secondary:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+      background-color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+    .hero-features {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .hero-feat-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .hero-feat-item i {
+      color: var(--gold-primary);
+      width: 16px;
+      height: 16px;
+    }
+
+    /* IMAGEN HERO ESTILO EDITORIAL */
+    .hero-image-wrap {
+      position: relative;
+    }
+    .hero-image-frame {
+      border-radius: 200px 200px 24px 24px; /* Arco superior sagrado */
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      border: 6px solid #FFFFFF;
+      height: 520px;
+      position: relative;
+    }
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.02);
+      transition: transform 0.6s ease;
+    }
+    .hero-image-frame:hover .hero-image {
+      transform: scale(1.03);
+    }
+    .hero-floating-card {
+      position: absolute;
+      bottom: 24px;
+      left: -24px;
+      background: #FFFFFF;
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(74, 66, 58, 0.12);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      max-width: 280px;
+    }
+    .floating-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+      flex-shrink: 0;
+    }
+    .floating-title {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+    .floating-sub {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    /* SECCIÓN DE IDENTIFICACIÓN: A QUIÉN ACOMPAÑO */
+    .identify-section {
+      padding: 80px 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 50px auto;
+    }
+    .section-tag {
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .identify-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .identify-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .identify-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
+      border-color: var(--border-gold);
+    }
+    .identify-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      color: var(--gold-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+    }
+    .identify-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .identify-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* SECCIÓN DE SERVICIOS 1 A 1 */
+    .services-section {
+      padding: 100px 0;
+      background: var(--bg-base);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .service-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-subtle);
+      transition: all 0.35s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--border-gold);
+    }
+    .service-img-wrap {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .service-card:hover .service-img {
+      transform: scale(1.05);
+    }
+    .service-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(250, 248, 245, 0.9);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--gold-primary);
+      letter-spacing: 0.05em;
+      border: 1px solid var(--border-subtle);
+    }
+    .service-body {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .service-duration {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .service-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+    .service-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+    .service-features {
+      list-style: none;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 18px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .service-features li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+    .service-features li i {
+      color: var(--sage-accent);
+      width: 15px;
+      height: 15px;
+    }
+    .service-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 18px;
+    }
+    .service-price {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .btn-service-book {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      background: var(--gold-soft);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-primary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      transition: all 0.2s ease;
+    }
+    .btn-service-book:hover {
+      background: var(--gold-primary);
+      color: #FFFFFF;
+    }
+
+    /* SECCIÓN DE CURSOS & FORMACIONES GRUPALES */
+    .courses-section {
+      padding: 100px 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+    .course-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 36px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .course-badge-top {
+      align-self: flex-start;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      background: var(--sage-soft);
+      color: var(--sage-accent);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .course-title {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+    .course-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .meta-item i {
+      color: var(--gold-primary);
+      width: 15px;
+      height: 15px;
+    }
+    .course-desc {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+    .course-curriculum {
+      background: var(--bg-base);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 28px;
+    }
+    .curriculum-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold-primary);
+      margin-bottom: 12px;
+    }
+    .curriculum-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .curriculum-list li {
+      font-size: 0.86rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .curriculum-list li i {
+      color: var(--gold-primary);
+      width: 14px;
+      height: 14px;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+    .course-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: auto;
+    }
+    .course-price-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .course-price-label {
+      font-size: 0.72rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+    }
+    .course-price-val {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1;
+    }
+    .btn-course-enroll {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-primary);
+      color: #FFFFFF;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 16px rgba(184, 138, 68, 0.25);
+      transition: all 0.25s ease;
+    }
+    .btn-course-enroll:hover {
+      background: var(--gold-hover);
+      transform: translateY(-2px);
+    }
+
+    /* SECCIÓN SOBRE MÍ */
+    .about-section {
+      padding: 100px 0;
+      background: var(--bg-base);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-photo-wrap {
+      position: relative;
+    }
+    .about-photo-frame {
+      border-radius: 200px 24px 200px 24px;
+      overflow: hidden;
+      border: 6px solid #FFFFFF;
+      box-shadow: var(--shadow-card);
+      height: 480px;
+    }
+    .about-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about-content {
+      display: flex;
+      flex-direction: column;
+    }
+    .about-name {
+      font-family: var(--font-serif);
+      font-size: 2.6rem;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+    .about-title-tag {
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .about-text {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .about-quote {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--gold-primary);
+      padding: 20px 24px;
+      background: var(--bg-surface);
+      border-left: 3px solid var(--gold-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 16px 0 28px 0;
+    }
+
+    /* SECCIÓN MOTOR DE RESERVAS (CALENDLY SIMULATOR) */
+    .booking-section {
+      padding: 100px 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .booking-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+    .booking-top-bar {
+      padding: 28px 36px;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .booking-top-title {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+    .booking-steps-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .step-pill {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface);
+      color: var(--text-muted);
+    }
+    .step-pill.active {
+      background: var(--gold-primary);
+      color: #FFFFFF;
+    }
+    .booking-main-body {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+    }
+    .booking-service-sidebar {
+      padding: 32px;
+      background: var(--bg-base);
+      border-right: 1px solid var(--border-subtle);
+    }
+    .sidebar-label {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold-primary);
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .service-radio-option {
+      border: 1px solid var(--border-subtle);
+      background: #FFFFFF;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .service-radio-option:hover {
+      border-color: var(--gold-primary);
+    }
+    .service-radio-option.selected {
+      border-color: var(--gold-primary);
+      background: var(--gold-soft);
+      box-shadow: 0 0 0 1px var(--gold-primary);
+    }
+    .radio-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+    .radio-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* CALENDARIO & HORAS */
+    .booking-calendar-area {
+      padding: 32px;
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .month-name {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .calendar-days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .day-label {
+      font-size: 0.72rem;
+      color: var(--text-light);
+      font-weight: 600;
+      text-transform: uppercase;
+      padding-bottom: 8px;
+    }
+    .calendar-day-btn {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-main);
+      transition: all 0.2s ease;
+    }
+    .calendar-day-btn.available {
+      background: var(--bg-surface);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .calendar-day-btn.available:hover {
+      background: var(--gold-soft);
+      color: var(--gold-primary);
+    }
+    .calendar-day-btn.selected {
+      background: var(--gold-primary);
+      color: #FFFFFF;
+      box-shadow: 0 4px 10px rgba(184, 138, 68, 0.35);
+    }
+    .calendar-day-btn.disabled {
+      color: #D3CDC2;
+      cursor: not-allowed;
+    }
+
+    /* SLOTS DE HORA */
+    .time-slots-section {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 20px;
+    }
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .slot-btn {
+      padding: 10px 12px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      background: #FFFFFF;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+    .slot-btn:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+    }
+    .slot-btn.selected {
+      background: var(--gold-primary);
+      color: #FFFFFF;
+      border-color: var(--gold-primary);
+    }
+
+    /* FORMULARIO DE CONFIRMACIÓN */
+    .booking-confirm-form {
+      padding: 32px;
+      display: none;
+    }
+    .booking-confirm-form.active {
+      display: block;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .form-control {
+      padding: 12px 14px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      outline: none;
+      background: var(--bg-base);
+    }
+    .form-control:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 2px var(--gold-soft);
+    }
+    .btn-finish-booking {
+      width: 100%;
+      background: var(--gold-primary);
+      color: #FFFFFF;
+      padding: 14px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      box-shadow: 0 4px 16px rgba(184, 138, 68, 0.3);
+      transition: all 0.25s ease;
+    }
+    .btn-finish-booking:hover {
+      background: var(--gold-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ÉXITO DE RESERVA */
+    .booking-success-box {
+      padding: 60px 40px;
+      text-align: center;
+      display: none;
+    }
+    .booking-success-box.active {
+      display: block;
+    }
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--sage-soft);
+      color: var(--sage-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+    }
+    .success-title {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+    .success-text {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 24px auto;
+      font-size: 0.95rem;
+    }
+
+    /* TESTIMONIOS */
+    .testimonials-section {
+      padding: 100px 0;
+      background: var(--bg-base);
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .testimonial-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 32px 26px;
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      flex-direction: column;
+    }
+    .stars-row {
+      color: #E6A23C;
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+    .test-quote {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .test-author-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 16px;
+    }
+    .test-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--bg-surface);
+    }
+    .test-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+    .test-service {
+      font-size: 0.76rem;
+      color: var(--gold-primary);
+    }
+
+    /* PREGUNTAS FRECUENTES (FAQ ACCORDION) */
+    .faq-section {
+      padding: 90px 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+    }
+    .faq-wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .faq-item:hover {
+      border-color: var(--gold-primary);
+    }
+    .faq-question {
+      padding: 20px 24px;
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .faq-question i {
+      transition: transform 0.3s ease;
+      color: var(--gold-primary);
+    }
+    .faq-answer {
+      padding: 0 24px 20px 24px;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      display: none;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #201B17;
+      color: #E8E2D8;
+      padding: 60px 0 30px 0;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .footer-brand {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      font-size: 0.85rem;
+    }
+    .footer-links a:hover {
+      color: var(--gold-primary);
+    }
+    .footer-copy {
+      text-align: center;
+      padding-top: 30px;
+      font-size: 0.8rem;
+      color: #8C847A;
+    }
+
+    /* FLOATING WHATSAPP BUTTON */
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 99;
+      background: #25D366;
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
+      transition: all 0.25s ease;
+    }
+    .floating-whatsapp:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.55);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-grid, .about-grid, .courses-grid, .booking-main-body {
+        grid-template-columns: 1fr;
+      }
+      .services-grid, .testimonials-grid, .identify-grid {
+        grid-template-columns: 1fr;
+      }
+      .booking-service-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .hero-floating-card {
+        left: 0;
+        bottom: 10px;
+      }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .slots-grid { grid-template-columns: repeat(2, 1fr); }
+      .floating-whatsapp span { display: none; }
+      .floating-whatsapp { padding: 14px; border-radius: 50%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#hero" class="brand">
+        <span class="brand-title">Alma & Linaje</span>
+        <span class="brand-subtitle">Constelaciones & Registros Akáshicos</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#sobre-mi">Sobre Mí</a></li>
+          <li><a href="#servicios">Sesiones 1 a 1</a></li>
+          <li><a href="#cursos">Cursos & Talleres</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#reservas">Agenda</a></li>
+          <li><a href="#faq">Preguntas</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <a href="#reservas" class="btn-reserve-nav">
+          <i data-lucide="calendar" style="width: 15px; height: 15px;"></i>
+          <span>Agendar Sesión</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i>
+          <span>Espacio Sagrado de Transformación</span>
+        </div>
+
+        <h1 class="hero-title">
+          Un espacio para ordenar tu historia, escuchar tu <em>alma</em> y habitar tu verdad.
+        </h1>
+
+        <p class="hero-lead">
+          Acompañamiento terapéutico y sistémico para liberar cargas invisibles, sanar lealtades familiares inconscientes y reconectar con el propósito profundo de tu vida.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#reservas" class="btn-hero-primary">
+            <i data-lucide="calendar-heart" style="width: 18px; height: 18px;"></i>
+            <span>Agendar mi Sesión</span>
+          </a>
+          <a href="#cursos" class="btn-hero-secondary">
+            <span>Ver Próximos Cursos</span>
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </a>
+        </div>
+
+        <div class="hero-features">
+          <div class="hero-feat-item">
+            <i data-lucide="video"></i>
+            <span>Sesiones Online (Zoom)</span>
+          </div>
+          <div class="hero-feat-item">
+            <i data-lucide="map-pin"></i>
+            <span>Presencial en Consulta</span>
+          </div>
+          <div class="hero-feat-item">
+            <i data-lucide="shield-check"></i>
+            <span>Confidencialidad Absoluta</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image-wrap">
+        <div class="hero-image-frame">
+          <!-- Foto serena y luminosa representativa de terapeuta -->
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1000&q=80" alt="Terapeuta holística y consteladora familiar" class="hero-image">
+        </div>
+        
+        <div class="hero-floating-card">
+          <div class="floating-icon">
+            <i data-lucide="heart-handshake" style="width: 22px; height: 22px;"></i>
+          </div>
+          <div>
+            <div class="floating-title">Acompañamiento Cercano</div>
+            <div class="floating-sub">Sin juicios, desde el amor al sistema</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDENTIFICACIÓN: A QUIÉN ACOMPAÑO -->
+  <section class="identify-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">¿Sientes este llamado?</span>
+        <h2 class="section-title">El dolor no resuelto pide ser mirado con amor</h2>
+        <p class="section-subtitle">
+          A menudo cargamos con pesos que no nos pertenecen o sentimos bloqueos invisibles que la mente racional no logra desanudar.
+        </p>
+      </div>
+
+      <div class="identify-grid">
+        <div class="identify-card">
+          <div class="identify-icon">
+            <i data-lucide="users" style="width: 26px; height: 26px;"></i>
+          </div>
+          <h3 class="identify-title">Patrones Familiares Repetitivos</h3>
+          <p class="identify-text">
+            Dificultades en relaciones de pareja, dinámicas dolorosas con tus padres o bloqueos de abundancia que sientes heredados de tu linaje ancestral.
+          </p>
+        </div>
+
+        <div class="identify-card">
+          <div class="identify-icon">
+            <i data-lucide="compass" style="width: 26px; height: 26px;"></i>
+          </div>
+          <h3 class="identify-title">Desorientación & Pérdida de Sentido</h3>
+          <p class="identify-text">
+            Sensación de vacío, de estar viviendo la vida que otros esperaban de ti o una profunda necesidad de reconectar con la voz sabia de tu alma.
+          </p>
+        </div>
+
+        <div class="identify-card">
+          <div class="identify-icon">
+            <i data-lucide="feather" style="width: 26px; height: 26px;"></i>
+          </div>
+          <h3 class="identify-title">Cargas Emocionales Inexplicables</h3>
+          <p class="identify-text">
+            Ansiedad o tristeza crónica que no tiene un origen evidente en tu biografía, vinculada a duelos no elaborados o excluidos de tu sistema familiar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS 1 A 1 -->
+  <section class="services-section" id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Sesiones Individuales</span>
+        <h2 class="section-title">Caminos de Sanación & Conciencia</h2>
+        <p class="section-subtitle">
+          Cada sesión es un contenedor seguro y confidencial donde profundizar en tu historia a tu propio ritmo.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        
+        <!-- Servicio 1: Constelación Individual -->
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Sesión de Constelaciones Familiares" class="service-img">
+            <span class="service-badge">Online / Presencial</span>
+          </div>
+          <div class="service-body">
+            <div class="service-duration">
+              <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+              <span>Duración: 90 Minutos</span>
+            </div>
+            <h3 class="service-title">Constelación Familiar Individual</h3>
+            <p class="service-desc">
+              Miramos el campo cuántico y sistémico de tu familia a través de muñecos o visualizaciones profundas para ordenar lealtades ciegas y recuperar tu lugar de fuerza.
+            </p>
+            <ul class="service-features">
+              <li><i data-lucide="check"></i> Diagnóstico del desorden sistémico</li>
+              <li><i data-lucide="check"></i> Frases sanadoras e imágenes de solución</li>
+              <li><i data-lucide="check"></i> Ejercicios de integración post-sesión</li>
+            </ul>
+            <div class="service-footer">
+              <span class="service-price">85 €</span>
+              <button class="btn-service-book" onclick="selectServiceInBooking('Constelación Familiar Individual')">
+                <span>Reservar</span>
+                <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Servicio 2: Lectura de Registros Akáshicos -->
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=800&q=80" alt="Lectura de Registros Akáshicos" class="service-img">
+            <span class="service-badge">Canalización Sagrada</span>
+          </div>
+          <div class="service-body">
+            <div class="service-duration">
+              <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+              <span>Duración: 75 Minutos</span>
+            </div>
+            <h3 class="service-title">Lectura de Registros Akáshicos</h3>
+            <p class="service-desc">
+              Accedemos a la biblioteca energética de tu alma para recibir orientación de tus Maestros y Guías sobre tu misión, contratos álmicos y aprendizajes pendientes.
+            </p>
+            <ul class="service-features">
+              <li><i data-lucide="check"></i> Respuestas a 5 preguntas concretas</li>
+              <li><i data-lucide="check"></i> Sanación y armonización áurica</li>
+              <li><i data-lucide="check"></i> Grabación en audio de toda la lectura</li>
+            </ul>
+            <div class="service-footer">
+              <span class="service-price">75 €</span>
+              <button class="btn-service-book" onclick="selectServiceInBooking('Lectura de Registros Akáshicos')">
+                <span>Reservar</span>
+                <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Servicio 3: Sesión Integrativa de Claridad -->
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=80" alt="Sesión de Acompañamiento y Claridad" class="service-img">
+            <span class="service-badge">Orientación Holística</span>
+          </div>
+          <div class="service-body">
+            <div class="service-duration">
+              <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+              <span>Duración: 60 Minutos</span>
+            </div>
+            <h3 class="service-title">Sesión de Claridad & Acompañamiento</h3>
+            <p class="service-desc">
+              Espacio de discernimiento profundo para momentos de encrucijada vital, toma de decisiones importantes o integración de procesos emocionales intensos.
+            </p>
+            <ul class="service-features">
+              <li><i data-lucide="check"></i> Enfoque terapéutico y compasivo</li>
+              <li><i data-lucide="check"></i> Plan de acción consciente</li>
+              <li><i data-lucide="check"></i> Seguimiento por WhatsApp durante 7 días</li>
+            </ul>
+            <div class="service-footer">
+              <span class="service-price">60 €</span>
+              <button class="btn-service-book" onclick="selectServiceInBooking('Sesión de Claridad & Acompañamiento')">
+                <span>Reservar</span>
+                <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CURSOS & FORMACIONES GRUPALES -->
+  <section class="courses-section" id="cursos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Formaciones Vivenciales</span>
+        <h2 class="section-title">Cursos de Conciencia & Maestría</h2>
+        <p class="section-subtitle">
+          Espacios de formación en grupo reducido para profundizar en tus dones intuitivos y abrir tu propio canal de sabiduría.
+        </p>
+      </div>
+
+      <div class="courses-grid">
+        
+        <!-- Curso 1: Registros Akáshicos -->
+        <div class="course-card">
+          <span class="course-badge-top">Próxima Edición: 3 y 4 de Octubre</span>
+          <h3 class="course-title">Formación en Registros Akáshicos (Nivel I & II)</h3>
+          
+          <div class="course-meta-bar">
+            <div class="meta-item"><i data-lucide="video"></i><span>En Directo por Zoom</span></div>
+            <div class="meta-item"><i data-lucide="users"></i><span>Máximo 12 plazas</span></div>
+            <div class="meta-item"><i data-lucide="award"></i><span>Certificado Incluido</span></div>
+          </div>
+
+          <p class="course-desc">
+            Aprende a conectar de manera ética y segura con la dimensión akáshica. Durante un fin de semana intensivo aprenderás la oración sagrada, los protocolos de apertura para ti y para terceros, y el anclaje de luz.
+          </p>
+
+          <div class="course-curriculum">
+            <div class="curriculum-title">Qué incluye la formación:</div>
+            <ul class="curriculum-list">
+              <li><i data-lucide="check-circle-2"></i> Manual completo de iniciación en PDF imprimible</li>
+              <li><i data-lucide="check-circle-2"></i> Prácticas supervisadas en parejas durante el taller</li>
+              <li><i data-lucide="check-circle-2"></i> 4 meditaciones guiadas en audio para activar el canal</li>
+              <li><i data-lucide="check-circle-2"></i> Grupo de soporte y acompañamiento de 30 días</li>
+            </ul>
+          </div>
+
+          <div class="course-action-row">
+            <div class="course-price-wrap">
+              <span class="course-price-label">Inversión completa</span>
+              <span class="course-price-val">190 €</span>
+            </div>
+            <a href="https://api.whatsapp.com/send?phone=34695267445&text=Hola,%20me%20gustar%C3%ADa%20reservar%20mi%20plaza%20para%20el%20Curso%20de%20Registros%20Ak%C3%A1shicos" target="_blank" class="btn-course-enroll">
+              <i data-lucide="check"></i>
+              <span>Reservar mi Plaza</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Curso 2: Taller Vivencial de Constelaciones -->
+        <div class="course-card">
+          <span class="course-badge-top" style="background: rgba(196, 120, 98, 0.12); color: #C47862;">Próxima Fecha: 24 de Octubre</span>
+          <h3 class="course-title">Taller Vivencial de Constelaciones Familiares</h3>
+          
+          <div class="course-meta-bar">
+            <div class="meta-item"><i data-lucide="home"></i><span>Presencial en Palma de Mallorca</span></div>
+            <div class="meta-item"><i data-lucide="calendar"></i><span>Jornada Completa (10h - 18h)</span></div>
+            <div class="meta-item"><i data-lucide="shield"></i><span>Espacio de Respeto Sagrado</span></div>
+          </div>
+
+          <p class="course-desc">
+            Un día de inmersión en la fuerza del grupo. La constelación grupal permite experimentar la resonancia del campo mórfico, representar a miembros de otros sistemas y sanar aspectos de tu propia historia a través de los demás.
+          </p>
+
+          <div class="course-curriculum">
+            <div class="curriculum-title">Modalidades de asistencia:</div>
+            <ul class="curriculum-list">
+              <li><i data-lucide="check-circle-2"></i> <strong>Asistir como Constelante:</strong> Trabajas tu propio asunto personal o familiar (75 €).</li>
+              <li><i data-lucide="check-circle-2"></i> <strong>Asistir como Representante / Participante:</strong> Participas en las dinámicas y sostienes el campo (35 €).</li>
+              <li><i data-lucide="check-circle-2"></i> Incluye café, infusiones ecológicas y refrigerio consciente.</li>
+            </ul>
+          </div>
+
+          <div class="course-action-row">
+            <div class="course-price-wrap">
+              <span class="course-price-label">Desde</span>
+              <span class="course-price-val">35 €</span>
+            </div>
+            <a href="https://api.whatsapp.com/send?phone=34695267445&text=Hola,%20me%20gustar%C3%ADa%20inscribirme%20al%20Taller%20Vivencial%20de%20Constelaciones" target="_blank" class="btn-course-enroll">
+              <i data-lucide="check"></i>
+              <span>Inscribirme al Taller</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section class="about-section" id="sobre-mi">
+    <div class="container about-grid">
+      <div class="about-photo-wrap">
+        <div class="about-photo-frame">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80" alt="Terapeuta holística y facilitadora" class="about-photo">
+        </div>
+      </div>
+
+      <div class="about-content">
+        <span class="section-tag">Mi Historia & Vocación</span>
+        <h2 class="about-name">Facilitadora de Almas & Linajes</h2>
+        <div class="about-title-tag">Consteladora Familiar • Lectora de Registros Akáshicos • Guía de Conciencia</div>
+
+        <p class="about-text">
+          Mi camino comenzó con mis propias heridas: buscando respuestas a preguntas familiares que nadie se atrevía a pronunciar y sintiendo una llamada interna que la lógica cotidiana no podía explicar.
+        </p>
+
+        <div class="about-quote">
+          «Cuando una persona se atreve a mirar con amor lo que fue excluido en su familia, todo el sistema respira aliviado y las siguientes generaciones quedan libres para vivir su propia vida.»
+        </div>
+
+        <p class="about-text">
+          Tras años de formación rigurosa en terapia sistémica según Bert Hellinger y en la tradición sagrada de los Registros Akáshicos, hoy pongo mi corazón y mi presencia al servicio de tu proceso personal. Aquí encontrarás un espacio sin juicios, con el máximo respeto por tus tiempos y tu historia.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOTOR DE RESERVAS (CALENDLY INTERACTIVO SIMULADO) -->
+  <section class="booking-section" id="reservas">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Agenda tu Cita</span>
+        <h2 class="section-title">Elige tu Momento de Paz</h2>
+        <p class="section-subtitle">
+          Selecciona tu servicio y encuentra el hueco que mejor se adapte a tu semana. Recibirás confirmación inmediata y el enlace de videollamada.
+        </p>
+      </div>
+
+      <div class="booking-wrapper">
+        <!-- Barra superior del motor de reservas -->
+        <div class="booking-top-bar">
+          <div class="booking-top-title" id="bookingBarTitle">
+            Reserva de Sesión Online / Presencial
+          </div>
+          <div class="booking-steps-nav">
+            <span class="step-pill active" id="pill-step-1">1. Servicio & Fecha</span>
+            <span class="step-pill" id="pill-step-2">2. Tus Datos</span>
+            <span class="step-pill" id="pill-step-3">3. Confirmado</span>
+          </div>
+        </div>
+
+        <!-- Pantalla 1: Calendario & Selección -->
+        <div class="booking-main-body" id="bookingStep1">
+          <!-- Columna Izquierda: Servicios -->
+          <div class="booking-service-sidebar">
+            <span class="sidebar-label">1. Selecciona el Servicio</span>
+            
+            <div class="service-radio-option selected" onclick="chooseService(this, 'Constelación Familiar Individual', '85 €', '90 min')">
+              <div class="radio-head">
+                <span>Constelación Familiar</span>
+                <span>85 €</span>
+              </div>
+              <div class="radio-meta">90 min • Sesión individual profunda</div>
+            </div>
+
+            <div class="service-radio-option" onclick="chooseService(this, 'Lectura de Registros Akáshicos', '75 €', '75 min')">
+              <div class="radio-head">
+                <span>Registros Akáshicos</span>
+                <span>75 €</span>
+              </div>
+              <div class="radio-meta">75 min • Canalización con preguntas</div>
+            </div>
+
+            <div class="service-radio-option" onclick="chooseService(this, 'Sesión de Claridad & Acompañamiento', '60 €', '60 min')">
+              <div class="radio-head">
+                <span>Sesión de Claridad</span>
+                <span>60 €</span>
+              </div>
+              <div class="radio-meta">60 min • Orientación y desbloqueo</div>
+            </div>
+
+            <div style="margin-top: 24px;">
+              <span class="sidebar-label">Modalidad</span>
+              <select class="form-control" style="width: 100%;" id="resModality">
+                <option value="Online por Zoom">Online por Videollamada (Zoom)</option>
+                <option value="Presencial en Consulta">Presencial (Palma de Mallorca)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Calendario y Horas -->
+          <div class="booking-calendar-area">
+            <div class="calendar-header">
+              <span class="month-name">Octubre 2026</span>
+              <span style="font-size: 0.8rem; color: var(--gold-primary); font-weight: 600;">Zona Horaria: Madrid (GMT+2)</span>
+            </div>
+
+            <div class="calendar-days-grid">
+              <span class="day-label">L</span>
+              <span class="day-label">M</span>
+              <span class="day-label">X</span>
+              <span class="day-label">J</span>
+              <span class="day-label">V</span>
+              <span class="day-label">S</span>
+              <span class="day-label">D</span>
+
+              <!-- Días del mes (ejemplo interactivo) -->
+              <span class="calendar-day-btn disabled">28</span>
+              <span class="calendar-day-btn disabled">29</span>
+              <span class="calendar-day-btn disabled">30</span>
+              <span class="calendar-day-btn available" onclick="selectCalendarDay(this, '1 de Octubre')">1</span>
+              <span class="calendar-day-btn available" onclick="selectCalendarDay(this, '2 de Octubre')">2</span>
+              <span class="calendar-day-btn disabled">3</span>
+              <span class="calendar-day-btn disabled">4</span>
+              
+              <span class="calendar-day-btn disabled">5</span>
+              <span class="calendar-day-btn available selected" onclick="selectCalendarDay(this, '6 de Octubre')">6</span>
+              <span class="calendar-day-btn available" onclick="selectCalendarDay(this, '7 de Octubre')">7</span>
+              <span class="calendar-day-btn available" onclick="selectCalendarDay(this, '8 de Octubre')">8</span>
+              <span class="calendar-day-btn available" onclick="selectCalendarDay(this, '9 de Octubre')">9</span>
+              <span class="calendar-day-btn disabled">10</span>
+              <span class="calendar-day-btn disabled">11</span>
+
+              <span class="calendar-day-btn disabled">12</span>
+              <span class="calendar-day-btn available" onclick="selectCalendarDay(this, '13 de Octubre')">13</span>
+              <span class="calendar-day-btn available" onclick="selectCalendarDay(this, '14 de Octubre')">14</span>
+              <span class="calendar-day-btn available" onclick="selectCalendarDay(this, '15 de Octubre')">15</span>
+              <span class="calendar-day-btn available" onclick="selectCalendarDay(this, '16 de Octubre')">16</span>
+              <span class="calendar-day-btn disabled">17</span>
+              <span class="calendar-day-btn disabled">18</span>
+            </div>
+
+            <!-- Horas disponibles para el día seleccionado -->
+            <div class="time-slots-section">
+              <span class="sidebar-label" id="slotsLabel">Horas disponibles para el Martes 6 de Octubre:</span>
+              <div class="slots-grid">
+                <button type="button" class="slot-btn" onclick="selectTimeSlot(this, '10:30')">10:30</button>
+                <button type="button" class="slot-btn selected" onclick="selectTimeSlot(this, '12:00')">12:00</button>
+                <button type="button" class="slot-btn" onclick="selectTimeSlot(this, '16:30')">16:30</button>
+                <button type="button" class="slot-btn" onclick="selectTimeSlot(this, '18:00')">18:00</button>
+                <button type="button" class="slot-btn" onclick="selectTimeSlot(this, '19:30')">19:30</button>
+              </div>
+
+              <div style="margin-top: 24px; text-align: right;">
+                <button type="button" class="btn-hero-primary" style="padding: 10px 24px; font-size: 0.88rem;" onclick="goToStep2()">
+                  <span>Continuar con mis datos</span>
+                  <i data-lucide="arrow-right" style="width: 15px; height: 15px;"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pantalla 2: Formulario de Datos Previos -->
+        <div class="booking-confirm-form" id="bookingStep2">
+          <div style="margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border-subtle);">
+            <h4 style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 4px;" id="summaryBookingTitle">
+              Constelación Familiar Individual — Martes 6 de Octubre a las 12:00
+            </h4>
+            <span style="font-size: 0.85rem; color: var(--gold-primary); font-weight: 600;" id="summaryBookingPrice">Inversión: 85 €</span>
+          </div>
+
+          <form onsubmit="submitBooking(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nombre y Apellidos *</label>
+                <input type="text" class="form-control" id="clientName" placeholder="Ej. María Gómez" required>
+              </div>
+              <div class="form-group">
+                <label>Correo Electrónico *</label>
+                <input type="email" class="form-control" id="clientEmail" placeholder="tuemail@ejemplo.com" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Teléfono móvil (WhatsApp para recordatorio) *</label>
+                <input type="tel" class="form-control" id="clientPhone" placeholder="+34 600 000 000" required>
+              </div>
+              <div class="form-group">
+                <label>¿Has constelado o leído tus registros antes?</label>
+                <select class="form-control" id="clientExperience">
+                  <option value="Primera vez">Es mi primera vez</option>
+                  <option value="Ya he constelado antes">Ya he constelado antes</option>
+                  <option value="Tengo experiencia">Tengo experiencia en terapias</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Breve motivo de consulta o intención que deseas trabajar</label>
+              <textarea class="form-control" id="clientNotes" rows="3" placeholder="Ej. Deseo mirar un bloqueo en mis relaciones de pareja y sentirme más en paz con mi linaje materno..."></textarea>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px;">
+              <button type="button" class="btn-hero-secondary" style="padding: 10px 20px; font-size: 0.85rem;" onclick="goBackToStep1()">
+                <i data-lucide="arrow-left" style="width: 15px; height: 15px;"></i>
+                <span>Volver al calendario</span>
+              </button>
+              <button type="submit" class="btn-finish-booking" style="width: auto; padding: 12px 28px;">
+                <i data-lucide="check-circle" style="width: 18px; height: 18px;"></i>
+                <span>Confirmar Reserva de Cita</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Pantalla 3: Éxito y Confirmación -->
+        <div class="booking-success-box" id="bookingStep3">
+          <div class="success-icon">
+            <i data-lucide="check" style="width: 32px; height: 32px;"></i>
+          </div>
+          <h3 class="success-title">¡Tu cita ha sido pre-reservada con éxito!</h3>
+          <p class="success-text" id="successDetails">
+            Te hemos enviado un correo de confirmación con los detalles y el enlace de Zoom. Para formalizar la sesión, puedes enviar el justificante de Bizum o consultar cualquier duda directamente por WhatsApp.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+            <a href="https://api.whatsapp.com/send?phone=34695267445&text=Hola,%20acabo%20de%20reservar%20mi%20sesi%C3%B3n%20en%20la%20web" target="_blank" class="btn-hero-primary">
+              <i data-lucide="message-circle" style="width: 18px; height: 18px;"></i>
+              <span>Enviar confirmación por WhatsApp</span>
+            </a>
+            <button type="button" class="btn-hero-secondary" onclick="resetBookingEngine()">
+              <span>Reservar otra sesión</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="testimonials-section" id="testimonios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Voces de Gratitud</span>
+        <h2 class="section-title">Historias de Transformación</h2>
+        <p class="section-subtitle">
+          El testimonio de personas que dieron el paso de mirar su historia y abrieron su corazón a una nueva paz.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        
+        <div class="testimonial-card">
+          <div class="stars-row">
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+          </div>
+          <p class="test-quote">
+            «La constelación individual online superó todas mis expectativas. Pude ver claramente la carga que llevaba de mi abuela materna y que no me dejaba prosperar. Sentí un alivio en el pecho que aún perdura.»
+          </p>
+          <div class="test-author-info">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Laura V." class="test-avatar">
+            <div>
+              <div class="test-name">Laura V.</div>
+              <div class="test-service">Constelación Familiar Online</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars-row">
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+          </div>
+          <p class="test-quote">
+            «Mi lectura de Registros Akáshicos fue un antes y un después. Los mensajes de mis guías fueron increíblemente precisos y amorosos. Me dio la claridad que llevaba dos años buscando para cambiar de rumbo profesional.»
+          </p>
+          <div class="test-author-info">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Marcos R." class="test-avatar">
+            <div>
+              <div class="test-name">Marcos R.</div>
+              <div class="test-service">Lectura de Registros Akáshicos</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars-row">
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+            <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>
+          </div>
+          <p class="test-quote">
+            «Hice el curso de Registros Nivel I y II. La delicadeza pedagógica, las meditaciones y las prácticas supervisadas hicieron que perdiera el miedo a canalizar. Hoy abro mis propios registros cada mañana.»
+          </p>
+          <div class="test-author-info">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Elena S." class="test-avatar">
+            <div>
+              <div class="test-name">Elena S.</div>
+              <div class="test-service">Alumna de Formación Akáshica</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PREGUNTAS FRECUENTES (FAQ) -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Claridad Previa</span>
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+        <p class="section-subtitle">
+          Todo lo que necesitas saber antes de dar el paso de agendar tu sesión.
+        </p>
+      </div>
+
+      <div class="faq-wrapper">
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>¿Cómo funciona una Constelación Familiar Online?</span>
+            <i data-lucide="chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Nos conectamos por videollamada a través de Zoom. Trabajamos con figuras sistémicas, anclajes espaciales en mesa y visualizaciones guiadas. El campo mórfico y la energía no entienden de distancias físicas; la profundidad y la revelación son idénticas a una sesión presencial.
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>¿Qué diferencia hay entre Constelaciones y Registros Akáshicos?</span>
+            <i data-lucide="chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Las **Constelaciones Familiares** trabajan la dimensión transgeneracional y sistémica: tu lugar en tu familia biológica, lealtades a ancestros y orden del amor. Los **Registros Akáshicos** conectan con la dimensión álmica: el libro de tu alma a lo largo de tus encarnaciones, tus dones de nacimiento y la guía directa de tus Maestros espirituales.
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>¿Necesito saber datos de mis antepasados para constelar?</span>
+            <i data-lucide="chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            No es imprescindible. Si conoces hechos relevantes (muertes prematuras, quiebras, exclusiones) ayudan al contexto, pero la información esencial emerge durante el propio movimiento de la constelación en el campo.
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>¿Puedo grabar mi sesión de Registros Akáshicos?</span>
+            <i data-lucide="chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            ¡Totalmente! De hecho, yo misma grabo el audio en alta calidad durante la sesión y te lo envío por correo al finalizar para que puedas escucharlo tranquilamente en casa y seguir integrando la información con los meses.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">Alma & Linaje</div>
+          <p style="font-size: 0.82rem; color: #A8A096; margin-top: 4px;">
+            Constelaciones Familiares, Registros Akáshicos & Cursos de Conciencia
+          </p>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="#sobre-mi">Sobre Mí</a></li>
+          <li><a href="#servicios">Sesiones</a></li>
+          <li><a href="#cursos">Formaciones</a></li>
+          <li><a href="#reservas">Agenda Online</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-copy">
+        <p>&copy; 2026 Alma & Linaje • Espacio terapéutico de conciencia y sanación sistémica.</p>
+        <p style="margin-top: 4px; font-size: 0.74rem; color: #6E675E;">
+          Diseño web y sistema de reservas maquetado con amor y tecnología fluida por Joaquín Oses Monti.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://api.whatsapp.com/send?phone=34695267445&text=Hola,%20me%20gustar%C3%ADa%20consultar%20informaci%C3%B3n%20sobre%20tus%20sesiones" target="_blank" class="floating-whatsapp" title="Consultar por WhatsApp">
+    <i data-lucide="message-circle" style="width: 22px; height: 22px;"></i>
+    <span>¿Dudas? Escríbeme</span>
+  </a>
+
+  <!-- SCRIPT INTERACTIVO -->
+  <script>
+    lucide.createIcons();
+
+    let currentBookingService = 'Constelación Familiar Individual';
+    let currentBookingPrice = '85 €';
+    let currentBookingDay = '6 de Octubre';
+    let currentBookingTime = '12:00';
+
+    function selectServiceInBooking(serviceName) {
+      document.getElementById('reservas').scrollIntoView({ behavior: 'smooth' });
+      const options = document.querySelectorAll('.service-radio-option');
+      options.forEach(opt => {
+        if (opt.textContent.includes(serviceName)) {
+          opt.click();
+        }
+      });
+    }
+
+    function chooseService(element, name, price, duration) {
+      document.querySelectorAll('.service-radio-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      currentBookingService = name;
+      currentBookingPrice = price;
+      updateSummaryText();
+    }
+
+    function selectCalendarDay(element, dayText) {
+      if (element.classList.contains('disabled')) return;
+      document.querySelectorAll('.calendar-day-btn').forEach(btn => btn.classList.remove('selected'));
+      element.classList.add('selected');
+      currentBookingDay = dayText;
+      document.getElementById('slotsLabel').textContent = 'Horas disponibles para el ' + dayText + ':';
+      updateSummaryText();
+    }
+
+    function selectTimeSlot(element, timeText) {
+      document.querySelectorAll('.slot-btn').forEach(btn => btn.classList.remove('selected'));
+      element.classList.add('selected');
+      currentBookingTime = timeText;
+      updateSummaryText();
+    }
+
+    function updateSummaryText() {
+      const modality = document.getElementById('resModality') ? document.getElementById('resModality').value : 'Online';
+      document.getElementById('summaryBookingTitle').textContent = currentBookingService + ' (' + modality + ') — ' + currentBookingDay + ' a las ' + currentBookingTime;
+      document.getElementById('summaryBookingPrice').textContent = 'Inversión de la sesión: ' + currentBookingPrice;
+    }
+
+    function goToStep2() {
+      updateSummaryText();
+      document.getElementById('bookingStep1').style.display = 'none';
+      document.getElementById('bookingStep2').classList.add('active');
+      document.getElementById('pill-step-1').classList.remove('active');
+      document.getElementById('pill-step-2').classList.add('active');
+      document.getElementById('bookingBarTitle').textContent = 'Tus Datos para la Sesión';
+    }
+
+    function goBackToStep1() {
+      document.getElementById('bookingStep2').classList.remove('active');
+      document.getElementById('bookingStep1').style.display = 'grid';
+      document.getElementById('pill-step-2').classList.remove('active');
+      document.getElementById('pill-step-1').classList.add('active');
+      document.getElementById('bookingBarTitle').textContent = 'Reserva de Sesión Online / Presencial';
+    }
+
+    function submitBooking(e) {
+      e.preventDefault();
+      const name = document.getElementById('clientName').value.trim();
+      const email = document.getElementById('clientEmail').value.trim();
+      const modality = document.getElementById('resModality').value;
+      
+      document.getElementById('bookingStep2').classList.remove('active');
+      document.getElementById('bookingStep3').classList.add('active');
+      document.getElementById('pill-step-2').classList.remove('active');
+      document.getElementById('pill-step-3').classList.add('active');
+      document.getElementById('bookingBarTitle').textContent = '¡Cita Pre-Reservada!';
+
+      document.getElementById('successDetails').innerHTML = 
+        '<strong>' + name + '</strong>, tu solicitud para <strong>' + currentBookingService + '</strong> (' + modality + ') el <strong>' + currentBookingDay + ' a las ' + currentBookingTime + '</strong> ha quedado registrada.<br><br>Hemos enviado un correo a <em>' + email + '</em> con las instrucciones para formalizarla y el enlace de conexión.';
+    }
+
+    function resetBookingEngine() {
+      document.getElementById('bookingStep3').classList.remove('active');
+      document.getElementById('bookingStep1').style.display = 'grid';
+      document.getElementById('pill-step-3').classList.remove('active');
+      document.getElementById('pill-step-1').classList.add('active');
+      document.getElementById('bookingBarTitle').textContent = 'Reserva de Sesión Online / Presencial';
+      document.getElementById('clientName').value = '';
+      document.getElementById('clientEmail').value = '';
+      document.getElementById('clientPhone').value = '';
+      document.getElementById('clientNotes').value = '';
+    }
+
+    function toggleFaq(element) {
+      element.classList.toggle('active');
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
