@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banners Promocionales | Joaquín Oses Monti</title>
+  <meta name="description" content="Kit de banners promocionales oficiales de Joaquín Oses Monti en alta resolución (LinkedIn, Twitter, Instagram y Redes Sociales).">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    .banner-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 40px;
+      transition: border-color var(--transition);
+    }
+    .banner-card:hover {
+      border-color: var(--border-hover);
+    }
+    .banner-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .banner-card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .banner-specs {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+    .banner-img-wrap {
+      background: #090A0C;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .banner-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+    .banner-img-wrap:hover img {
+      transform: scale(1.01);
+    }
+    .banner-card-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .banner-info-note {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      max-width: 650px;
+    }
+    .copy-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-top: 18px;
+    }
+    .copy-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .copy-box-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-white);
+    }
+    .copy-text {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      font-family: var(--font);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+      user-select: all;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="../" class="logo" style="display: flex; align-items: center; gap: 8px;">
+        <span class="logo-name">JOAQUÍN OSES MONTI</span>
+      </a>
+      <nav class="nav-menu">
+        <a href="../#conoceme" class="nav-link">Conóceme</a>
+        <a href="../#proyectos" class="nav-link">Proyectos</a>
+        <a href="../#servicios" class="nav-link">Servicios</a>
+        <a href="../assets/Dossier_Servicios_Joaquin_Oses_2026.pdf" target="_blank" class="nav-link">Dossier PDF</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="../#contacto" class="btn btn-sm btn-primary">
+          <i data-lucide="mail" class="btn-icon"></i>
+          <span>Contacto</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding: 60px 0 100px;">
+    <div class="container">
+      
+      <!-- Top Title -->
+      <div style="margin-bottom: 48px;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 5px 14px; border-radius: 9999px; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 16px;">
+          <span style="width: 6px; height: 6px; background: #22C55E; border-radius: 50%;"></span>
+          KIT DE MARCA &bull; PROMOCIÓN FREELANCE
+        </div>
+        <h1 style="font-size: 2.5rem; font-weight: 700; color: var(--text-white); letter-spacing: -0.03em; margin-bottom: 12px;">
+          Banners Promocionales Oficiales
+        </h1>
+        <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 720px; line-height: 1.55;">
+          Diseñados bajo la misma identidad visual sobria y minimalista del portfolio. Sin sobrecarga visual, con tipografía <em>Inter</em>, escala monocromática y adaptados a las zonas seguras de cada red social.
+        </p>
+      </div>
+
+      <!-- BANNER 1: LINKEDIN -->
+      <div class="banner-card">
+        <div class="banner-card-header">
+          <div class="banner-card-title">
+            <i data-lucide="linkedin" style="color: #60A5FA;"></i>
+            <span>Cabecera para Perfil de LinkedIn</span>
+          </div>
+          <div class="banner-specs">1584 &times; 396 px &bull; Formato Recomendado LinkedIn</div>
+        </div>
+        <div class="banner-img-wrap">
+          <img src="../assets/banner-linkedin.png" alt="Banner para Perfil de LinkedIn - Joaquín Oses Monti" loading="lazy">
+        </div>
+        <div class="banner-card-actions">
+          <div class="banner-info-note">
+            <strong>Zona segura garantizada:</strong> El contenido principal está desplazado hacia el centro-derecha para que tu foto circular de perfil (en la esquina inferior izquierda) no tape el nombre ni la propuesta de valor, ni en escritorio ni en móvil.
+          </div>
+          <a href="../assets/banner-linkedin.png" download="banner-linkedin-joaquin-oses.png" class="btn btn-primary">
+            <i data-lucide="download" class="btn-icon"></i>
+            <span>Descargar PNG</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- BANNER 2: SOCIAL / TWITTER / POST -->
+      <div class="banner-card">
+        <div class="banner-card-header">
+          <div class="banner-card-title">
+            <i data-lucide="share-2" style="color: #4ADE80;"></i>
+            <span>Banner Horizontal / Publicación de Redes / Twitter</span>
+          </div>
+          <div class="banner-specs">1200 &times; 630 px &bull; Formato 1.91:1 OpenGraph</div>
+        </div>
+        <div class="banner-img-wrap">
+          <img src="../assets/banner-social.png" alt="Banner Horizontal de Redes - Joaquín Oses Monti" loading="lazy">
+        </div>
+        <div class="banner-card-actions">
+          <div class="banner-info-note">
+            <strong>Ideal para publicaciones:</strong> Perfecto para anunciar disponibilidad en LinkedIn, Twitter/X, cabecera de artículos de blog o tarjeta de previsualización al compartir tu enlace por WhatsApp.
+          </div>
+          <a href="../assets/banner-social.png" download="banner-social-joaquin-oses.png" class="btn btn-primary">
+            <i data-lucide="download" class="btn-icon"></i>
+            <span>Descargar PNG</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- BANNER 3: POST CUADRADO -->
+      <div class="banner-card">
+        <div class="banner-card-header">
+          <div class="banner-card-title">
+            <i data-lucide="instagram" style="color: #F472B6;"></i>
+            <span>Banner Cuadrado (1:1) / Feed de Instagram & LinkedIn</span>
+          </div>
+          <div class="banner-specs">1080 &times; 1080 px &bull; Formato Cuadrado</div>
+        </div>
+        <div class="banner-img-wrap" style="max-width: 680px; margin: 0 auto 20px;">
+          <img src="../assets/banner-cuadrado.png" alt="Banner Cuadrado - Joaquín Oses Monti" loading="lazy">
+        </div>
+        <div class="banner-card-actions">
+          <div class="banner-info-note">
+            <strong>Máximo impacto visual:</strong> Formato optimizado para el feed de Instagram, post individual de LinkedIn o portada de carrusel informativo.
+          </div>
+          <a href="../assets/banner-cuadrado.png" download="banner-cuadrado-joaquin-oses.png" class="btn btn-primary">
+            <i data-lucide="download" class="btn-icon"></i>
+            <span>Descargar PNG</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- TEXTOS LISTOS PARA COPIAR -->
+      <div style="margin-top: 60px;">
+        <h2 style="font-size: 1.6rem; font-weight: 600; color: var(--text-white); margin-bottom: 8px;">
+          Textos Listos para Publicar
+        </h2>
+        <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 24px;">
+          Acompaña tu nuevo banner con un texto directo y profesional para captar clientes en redes sociales:
+        </p>
+
+        <!-- Copy 1 -->
+        <div class="copy-box">
+          <div class="copy-box-header">
+            <div class="copy-box-title">Opción 1: Post para LinkedIn (Anuncio de Disponibilidad)</div>
+            <button class="btn btn-sm btn-outline" onclick="copyText('copy-linkedin', this)">
+              <i data-lucide="copy" class="btn-icon"></i>
+              <span>Copiar Texto</span>
+            </button>
+          </div>
+          <div class="copy-text" id="copy-linkedin">🚀 Abro disponibilidad para nuevos proyectos de desarrollo web y automatización este mes.
+
+Si tienes una empresa, pyme o negocio en Palma de Mallorca (o en cualquier lugar en remoto) y necesitas:
+
+✅ Una landing page o web corporativa que cargue al instante y convierta visitas en clientes.
+✅ Una tienda online en Shopify o WordPress limpia y optimizada para móvil.
+✅ Automatizar procesos repetitivos con n8n (conectar tu formulario web con WhatsApp, email o CRM para no perder ni un solo lead).
+
+Trabajo con código limpio, diseño minimalista y sin plantillas lentas o sobrecargadas.
+
+💬 Si tienes una idea en mente o quieres renovar tu web actual, escríbeme por mensaje directo o visita mi portfolio con demos reales en vivo:
+🔗 https://joaquin-om.github.io
+📱 WhatsApp directo: +34 695 26 74 45
+
+#DesarrolloWeb #Freelance #PalmadeMallorca #WordPress #Shopify #React #n8n #Automatizacion</div>
+        </div>
+
+        <!-- Copy 2 -->
+        <div class="copy-box">
+          <div class="copy-box-header">
+            <div class="copy-box-title">Opción 2: Mensaje directo para WhatsApp o Email a Contactos</div>
+            <button class="btn btn-sm btn-outline" onclick="copyText('copy-directo', this)">
+              <i data-lucide="copy" class="btn-icon"></i>
+              <span>Copiar Texto</span>
+            </button>
+          </div>
+          <div class="copy-text" id="copy-directo">¡Hola! Te escribo brevemente porque estoy abriendo agenda para nuevos proyectos de desarrollo web y automatización para pymes y profesionales en Mallorca y remoto.
+
+Me especializo en crear webs de carga ultrarrápida (WordPress, Shopify, React) y flujos automáticos que ahorran tiempo gestionando clientes.
+
+Si estás pensando en lanzar un nuevo proyecto o actualizar tu web actual, te comparto mi portfolio donde puedes ver demos interactivas y calcular presupuestos al instante:
+👉 https://joaquin-om.github.io
+
+¡Un saludo!
+Joaquín Oses Monti &bull; +34 695 26 74 45</div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer style="border-top: 1px solid var(--border); padding: 40px 0; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+    <div class="container">
+      <p>&copy; 2026 Joaquín Oses Monti &bull; Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    function copyText(id, btn) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const origText = btn.innerHTML;
+        btn.innerHTML = '<i data-lucide="check" class="btn-icon"></i><span>¡Copiado!</span>';
+        lucide.createIcons();
+        setTimeout(() => {
+          btn.innerHTML = origText;
+          lucide.createIcons();
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

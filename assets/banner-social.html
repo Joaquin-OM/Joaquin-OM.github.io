@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    width: 1200px;
+    height: 630px;
+    background-color: #090A0C;
+    background-image: 
+      radial-gradient(circle at 82% 28%, rgba(255, 255, 255, 0.045) 0%, transparent 60%),
+      radial-gradient(circle at 18% 75%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #F4F4F5;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 64px 72px;
+  }
+
+  .frame-border {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+  }
+
+  /* Header */
+  .header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .brand-id {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-symbol {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #121316;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    color: #FFFFFF;
+    letter-spacing: -0.02em;
+  }
+
+  .brand-name {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.28);
+    padding: 6px 15px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #4ADE80;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    background: #22C55E;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+  }
+
+  /* Hero Content */
+  .hero-block {
+    position: relative;
+    z-index: 2;
+    margin: auto 0;
+  }
+
+  .service-tag {
+    display: inline-block;
+    color: #71717A;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .main-heading {
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.18;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    max-width: 1020px;
+  }
+
+  .main-heading span {
+    color: #8E8E93;
+    font-weight: 400;
+  }
+
+  .sub-heading {
+    font-size: 21px;
+    font-weight: 400;
+    color: #A1A1AA;
+    line-height: 1.5;
+    max-width: 860px;
+  }
+
+  /* Footer */
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 2;
+  }
+
+  .tag-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tag {
+    background: #121316;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    color: #D4D4D8;
+    padding: 7px 15px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .contact-group {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .location-info {
+    color: #71717A;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .cta-pill {
+    background: #FFFFFF;
+    color: #090A0C;
+    padding: 9px 20px;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+  }
+</style>
+</head>
+<body>
+  <div class="frame-border"></div>
+
+  <div class="header-nav">
+    <div class="brand-id">
+      <div class="brand-symbol">JO</div>
+      <div class="brand-name">JOAQUÍN OSES MONTI</div>
+    </div>
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      Disponible para proyectos
+    </div>
+  </div>
+
+  <div class="hero-block">
+    <div class="service-tag">Desarrollo Web Freelance &bull; Palma de Mallorca & Remoto</div>
+    <h1 class="main-heading">
+      Webs de alto rendimiento y automatizaciones<br>
+      <span>diseñadas para impulsar tu negocio.</span>
+    </h1>
+    <p class="sub-heading">
+      Landing pages de alta conversión, webs corporativas y flujos conectados con n8n para empresas, pymes y profesionales.
+    </p>
+  </div>
+
+  <div class="footer-row">
+    <div class="tag-group">
+      <span class="tag">WordPress</span>
+      <span class="tag">Shopify</span>
+      <span class="tag">React</span>
+      <span class="tag">n8n Automatizaciones</span>
+    </div>
+    <div class="contact-group">
+      <div class="location-info">Palma &bull; +34 695 26 74 45</div>
+      <div class="cta-pill">joaquin-om.github.io</div>
+    </div>
+  </div>
+</body>
+</html>

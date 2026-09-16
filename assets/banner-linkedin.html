@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    width: 1584px;
+    height: 396px;
+    background-color: #090A0C;
+    background-image: 
+      radial-gradient(circle at 80% 35%, rgba(255, 255, 255, 0.04) 0%, transparent 60%),
+      radial-gradient(circle at 25% 75%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #F4F4F5;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .frame-border {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+  }
+
+  /* Watermark background on left (LinkedIn avatar area) */
+  .left-monogram {
+    position: absolute;
+    left: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 130px;
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    color: rgba(255, 255, 255, 0.025);
+    user-select: none;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  /* Safe container avoiding avatar overlap and mobile edge trimming */
+  .content-container {
+    margin-left: 310px;
+    max-width: 1180px;
+    width: 100%;
+    padding-right: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .top-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.32);
+    padding: 5px 13px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4ADE80;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    background: #22C55E;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+  }
+
+  .location-tag {
+    color: #71717A;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .title {
+    font-size: 46px;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    font-size: 19px;
+    font-weight: 400;
+    color: #A1A1AA;
+    line-height: 1.45;
+    margin-bottom: 22px;
+  }
+
+  .subtitle strong {
+    color: #F4F4F5;
+    font-weight: 500;
+  }
+
+  .bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stack-pills {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pill {
+    background: #121316;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    color: #D4D4D8;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .contact-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .contact-phone {
+    font-size: 13px;
+    font-weight: 500;
+    color: #71717A;
+  }
+
+  .contact-phone strong {
+    color: #E4E4E7;
+    font-weight: 500;
+  }
+
+  .contact-url {
+    background: #FFFFFF;
+    color: #090A0C;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.01em;
+  }
+</style>
+</head>
+<body>
+  <div class="frame-border"></div>
+  <div class="left-monogram">JO</div>
+  
+  <div class="content-container">
+    <div class="top-row">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        Disponible para proyectos
+      </div>
+      <div class="location-tag">
+        Palma de Mallorca &bull; Remoto
+      </div>
+    </div>
+
+    <h1 class="title">Joaquín Oses Monti</h1>
+    <p class="subtitle">
+      <strong>Desarrollo Web & Automatizaciones</strong> &bull; Webs de alto rendimiento, landing pages y flujos con n8n a medida.
+    </p>
+
+    <div class="bottom-row">
+      <div class="stack-pills">
+        <span class="pill">WordPress & Shopify</span>
+        <span class="pill">React / JavaScript</span>
+        <span class="pill">Automatizaciones n8n</span>
+        <span class="pill">Optimización & SEO</span>
+      </div>
+      <div class="contact-box">
+        <div class="contact-phone">Tel: <strong>+34 695 26 74 45</strong></div>
+        <div class="contact-url">joaquin-om.github.io</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
