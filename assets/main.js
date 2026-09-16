@@ -831,11 +831,9 @@ function initMinimalistBackground() {
     const mouseRadius = isMobile ? 110 : 160;
 
     let mouse = {
-        x: width / 2,
-        y: height / 3,
-        targetX: width / 2,
-        targetY: height / 3,
-        active: true
+        x: null,
+        y: null,
+        active: false
     };
 
     class Particle {
@@ -892,19 +890,32 @@ function initMinimalistBackground() {
 
     createParticles();
 
+    // Seguimiento inmediato 1:1 con el cursor (sin lag ni cámara lenta)
     window.addEventListener('mousemove', (e) => {
-        mouse.targetX = e.clientX;
-        mouse.targetY = e.clientY;
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
         mouse.active = true;
+    });
+
+    window.addEventListener('mouseleave', () => {
+        mouse.active = false;
+        mouse.x = null;
+        mouse.y = null;
     });
 
     window.addEventListener('touchmove', (e) => {
         if (e.touches.length > 0) {
-            mouse.targetX = e.touches[0].clientX;
-            mouse.targetY = e.touches[0].clientY;
+            mouse.x = e.touches[0].clientX;
+            mouse.y = e.touches[0].clientY;
             mouse.active = true;
         }
     }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+        mouse.active = false;
+        mouse.x = null;
+        mouse.y = null;
+    });
 
     window.addEventListener('resize', () => {
         width = canvas.width = window.innerWidth;
@@ -915,11 +926,8 @@ function initMinimalistBackground() {
     function animate() {
         ctx.clearRect(0, 0, width, height);
 
-        // Halo suave sutil en el cursor (blanco muy tenue)
-        if (mouse.active) {
-            mouse.x += (mouse.targetX - mouse.x) * 0.1;
-            mouse.y += (mouse.targetY - mouse.y) * 0.1;
-
+        // Halo justo debajo del cursor sin retardo
+        if (mouse.active && mouse.x !== null) {
             const halo = ctx.createRadialGradient(
                 mouse.x, mouse.y, 0,
                 mouse.x, mouse.y, mouseRadius
