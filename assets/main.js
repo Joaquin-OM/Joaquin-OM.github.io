@@ -73,6 +73,7 @@ const translations = {
         "projects.openDemo": "Abrir demo en vivo",
 
         "hero.ctaDemos": "Ver demos en vivo",
+        "hero.threeHint": "Arrastra para rotar &bull; Click: Geometría",
         "demos.label": "Demostraciones",
         "demos.title": "Webs interactivas por sector",
         "demos.desc": "Prueba en vivo soluciones reales maquetadas y optimizadas para negocios de Baleares.",
@@ -297,6 +298,7 @@ const translations = {
         "projects.openDemo": "Open live demo",
 
         "hero.ctaDemos": "View live demos",
+        "hero.threeHint": "Drag to rotate &bull; Click: Geometry",
         "demos.label": "Demonstrations",
         "demos.title": "Interactive websites by sector",
         "demos.desc": "Test live solutions designed and optimized for Balearic businesses.",
@@ -533,6 +535,9 @@ function switchView(viewName) {
     if (window.lucide) {
         window.lucide.createIcons();
     }
+
+    // 6. Notificar a la escena Three.js del cambio de vista
+    window.dispatchEvent(new CustomEvent('portfolioViewChanged', { detail: { view: viewName } }));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -665,8 +670,9 @@ document.addEventListener('DOMContentLoaded', () => {
         window.lucide.createIcons();
     }
 
-    // 7. Iniciar Fondo Interactivo Monocromático
+    // 7. Iniciar Escenario 3D de Fondo (Three.js) y Escultura 3D en el Hero
     initMinimalistBackground();
+    initHero3DObject();
 });
 
 /**
@@ -812,186 +818,640 @@ function initBudgetCalculator() {
 }
 
 /**
- * Fondo Interactivo Monocromático (Escala de Grises y Blancos)
- * Malla sutil y elegante de partículas que reacciona limpiamente al paso del cursor
+ * Escenario 3D de Fondo con Three.js (Monocromático & Editorial con acentos sutiles)
+ * Malla topográfica arquitectónica en 3D + campo de partículas espaciales y poliedros flotantes.
+ * Reacciona al ratón, al scroll vertical y al cambio entre vistas (Conóceme / Proyectos / Servicios).
  */
 function initMinimalistBackground() {
     const canvas = document.getElementById('interactive-canvas');
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
 
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    // Si Three.js no está disponible por cualquier motivo, evitar errores
+    if (typeof THREE === 'undefined') return;
 
-    let particles = [];
+    let renderer;
+    try {
+        renderer = new THREE.WebGLRenderer({
+            canvas: canvas,
+            alpha: true,
+            antialias: true,
+            powerPreference: 'high-performance'
+        });
+    } catch (e) {
+        return;
+    }
+
     const isMobile = window.innerWidth <= 768;
-    const particleCount = isMobile ? 35 : 70;
-    const maxDistance = isMobile ? 95 : 135;
-    const mouseRadius = isMobile ? 110 : 160;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
 
-    let mouse = {
-        x: null,
-        y: null,
-        active: false
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x090a0c, 0.038);
+
+    const camera = new THREE.PerspectiveCamera(
+        55,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        120
+    );
+    camera.position.set(0, 1.2, 11);
+
+    // Textura circular suave generada por canvas para partículas limpias
+    function createSoftDotTexture() {
+        const c = document.createElement('canvas');
+        c.width = 64;
+        c.height = 64;
+        const g = c.getContext('2d');
+        const grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+        grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+        grad.addColorStop(0.35, 'rgba(255, 255, 255, 0.65)');
+        grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        g.fillStyle = grad;
+        g.fillRect(0, 0, 64, 64);
+        return new THREE.CanvasTexture(c);
+    }
+
+    // 1. Malla Topográfica Arquitectónica 3D (Plano inferior/fondo en perspectiva)
+    const gridCols = isMobile ? 28 : 46;
+    const gridRows = isMobile ? 20 : 30;
+    const waveGeo = new THREE.PlaneGeometry(36, 24, gridCols, gridRows);
+    const waveMat = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.048
+    });
+    const waveMesh = new THREE.Mesh(waveGeo, waveMat);
+    waveMesh.rotation.x = -Math.PI * 0.41;
+    waveMesh.position.set(0, -3.6, -2.5);
+    scene.add(waveMesh);
+
+    // Guardar posiciones base de la malla para deformación armónica
+    const wavePosAttr = waveGeo.attributes.position;
+    const baseWaveXY = new Float32Array(wavePosAttr.count * 2);
+    for (let i = 0; i < wavePosAttr.count; i++) {
+        baseWaveXY[i * 2] = wavePosAttr.getX(i);
+        baseWaveXY[i * 2 + 1] = wavePosAttr.getY(i);
+    }
+
+    // 2. Campo de Partículas 3D con Profundidad Espacial
+    const particleCount = isMobile ? 240 : 520;
+    const positions = new Float32Array(particleCount * 3);
+    const basePositions = new Float32Array(particleCount * 3);
+    const speeds = new Float32Array(particleCount);
+
+    for (let i = 0; i < particleCount; i++) {
+        const px = (Math.random() - 0.5) * 32;
+        const py = (Math.random() - 0.5) * 22;
+        const pz = (Math.random() - 0.6) * 22;
+
+        positions[i * 3] = px;
+        positions[i * 3 + 1] = py;
+        positions[i * 3 + 2] = pz;
+
+        basePositions[i * 3] = px;
+        basePositions[i * 3 + 1] = py;
+        basePositions[i * 3 + 2] = pz;
+
+        speeds[i] = 0.25 + Math.random() * 0.65;
+    }
+
+    const particlesGeo = new THREE.BufferGeometry();
+    particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    const particlesMat = new THREE.PointsMaterial({
+        color: 0xf4f4f5,
+        size: isMobile ? 0.16 : 0.14,
+        map: createSoftDotTexture(),
+        transparent: true,
+        opacity: 0.58,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending
+    });
+
+    const particleSystem = new THREE.Points(particlesGeo, particlesMat);
+    scene.add(particleSystem);
+
+    // 3. Poliedros Wireframe Flotantes en el Espacio Profundo
+    const floatingGroup = new THREE.Group();
+    scene.add(floatingGroup);
+    const floatingShapes = [];
+    const shapeCount = isMobile ? 3 : 6;
+
+    for (let i = 0; i < shapeCount; i++) {
+        const radius = 0.45 + Math.random() * 0.55;
+        const baseGeo = i % 2 === 0
+            ? new THREE.OctahedronGeometry(radius, 0)
+            : new THREE.IcosahedronGeometry(radius, 0);
+        const edgesGeo = new THREE.EdgesGeometry(baseGeo);
+        const lineMat = new THREE.LineBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.09
+        });
+        const wireObj = new THREE.LineSegments(edgesGeo, lineMat);
+
+        wireObj.position.set(
+            (Math.random() - 0.5) * 24,
+            (Math.random() - 0.5) * 14,
+            -2 - Math.random() * 10
+        );
+
+        floatingGroup.add(wireObj);
+        floatingShapes.push({
+            mesh: wireObj,
+            rotSpeedX: (Math.random() - 0.5) * 0.004,
+            rotSpeedY: (Math.random() - 0.5) * 0.005,
+            floatOffset: Math.random() * Math.PI * 2,
+            baseY: wireObj.position.y
+        });
+    }
+
+    // Estado de interacción (Cursor, Scroll y Vista activa)
+    const pointer = { x: 0, y: 0, targetX: 0, targetY: 0 };
+    let scrollY = window.scrollY || 0;
+
+    // Parámetros dinámicos según la vista SPA (Conóceme, Proyectos, Servicios)
+    const viewConfigs = {
+        conoceme: {
+            camZ: 11.0,
+            camY: 1.2,
+            camRotZ: 0.0,
+            waveAmp: 0.42,
+            waveOpacity: 0.048,
+            color: new THREE.Color(0xffffff)
+        },
+        proyectos: {
+            camZ: 9.3,
+            camY: 1.75,
+            camRotZ: -0.045,
+            waveAmp: 0.65,
+            waveOpacity: 0.068,
+            color: new THREE.Color(0xdbeafe) // Acento plata-hielo sutil
+        },
+        servicios: {
+            camZ: 10.1,
+            camY: 0.65,
+            camRotZ: 0.04,
+            waveAmp: 0.52,
+            waveOpacity: 0.056,
+            color: new THREE.Color(0xe4e4e7) // Acento platino editorial
+        }
     };
 
-    class Particle {
-        constructor() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.vx = (Math.random() - 0.5) * 0.45;
-            this.vy = (Math.random() - 0.5) * 0.45;
-            this.radius = Math.random() * 1.2 + 1.2;
-            this.baseAlpha = Math.random() * 0.2 + 0.25;
-            this.alpha = this.baseAlpha;
-        }
+    let currentViewTarget = viewConfigs.conoceme;
+    let activeWaveAmp = currentViewTarget.waveAmp;
+    let impulseSpin = 0;
 
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
+    window.addEventListener('portfolioViewChanged', (e) => {
+        const view = (e.detail && e.detail.view) || 'conoceme';
+        currentViewTarget = viewConfigs[view] || viewConfigs.conoceme;
+        impulseSpin = 0.045; // Impulso cinético suave al cambiar de sección
+    });
 
-            if (this.x < 0) this.x = width;
-            else if (this.x > width) this.x = 0;
-            if (this.y < 0) this.y = height;
-            else if (this.y > height) this.y = 0;
-
-            if (mouse.active && mouse.x !== null) {
-                const dx = mouse.x - this.x;
-                const dy = mouse.y - this.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-
-                if (dist < mouseRadius) {
-                    const force = (mouseRadius - dist) / mouseRadius;
-                    const angle = Math.atan2(dy, dx);
-                    this.x -= Math.cos(angle) * force * 1.8;
-                    this.y -= Math.sin(angle) * force * 1.8;
-                    this.alpha = Math.min(0.9, this.baseAlpha + force * 0.5);
-                } else {
-                    this.alpha = this.baseAlpha;
-                }
-            }
-        }
-
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
-            ctx.fill();
-        }
-    }
-
-    function createParticles() {
-        particles = [];
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-    }
-
-    createParticles();
-
-    // Seguimiento inmediato 1:1 con el cursor (sin lag ni cámara lenta)
     window.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-        mouse.active = true;
-    });
-
-    window.addEventListener('mouseleave', () => {
-        mouse.active = false;
-        mouse.x = null;
-        mouse.y = null;
-    });
+        pointer.targetX = (e.clientX / window.innerWidth) * 2 - 1;
+        pointer.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
+    }, { passive: true });
 
     window.addEventListener('touchmove', (e) => {
         if (e.touches.length > 0) {
-            mouse.x = e.touches[0].clientX;
-            mouse.y = e.touches[0].clientY;
-            mouse.active = true;
+            pointer.targetX = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+            pointer.targetY = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
         }
     }, { passive: true });
 
-    window.addEventListener('touchend', () => {
-        mouse.active = false;
-        mouse.x = null;
-        mouse.y = null;
-    });
+    window.addEventListener('scroll', () => {
+        scrollY = window.scrollY || 0;
+    }, { passive: true });
 
     window.addEventListener('resize', () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-        createParticles();
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
     });
 
+    const clock = new THREE.Clock();
+
     function animate() {
-        ctx.clearRect(0, 0, width, height);
-
-        // Halo justo debajo del cursor sin retardo
-        if (mouse.active && mouse.x !== null) {
-            const halo = ctx.createRadialGradient(
-                mouse.x, mouse.y, 0,
-                mouse.x, mouse.y, mouseRadius
-            );
-            halo.addColorStop(0, 'rgba(255, 255, 255, 0.05)');
-            halo.addColorStop(0.5, 'rgba(255, 255, 255, 0.015)');
-            halo.addColorStop(1, 'rgba(255, 255, 255, 0)');
-            ctx.fillStyle = halo;
-            ctx.beginPath();
-            ctx.arc(mouse.x, mouse.y, mouseRadius, 0, Math.PI * 2);
-            ctx.fill();
-        }
-
-        // Líneas sutiles entre partículas
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-
-                if (dist < maxDistance) {
-                    const lineAlpha = (1 - dist / maxDistance) * 0.12;
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${lineAlpha})`;
-                    ctx.lineWidth = 0.75;
-                    ctx.stroke();
-                }
-            }
-        }
-
-        // Conexión suave del cursor con partículas cercanas
-        if (mouse.active && mouse.x !== null) {
-            for (let i = 0; i < particles.length; i++) {
-                const dx = mouse.x - particles[i].x;
-                const dy = mouse.y - particles[i].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-
-                if (dist < mouseRadius) {
-                    const mouseLineAlpha = (1 - dist / mouseRadius) * 0.28;
-                    ctx.beginPath();
-                    ctx.moveTo(mouse.x, mouse.y);
-                    ctx.lineTo(particles[i].x, particles[i].y);
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${mouseLineAlpha})`;
-                    ctx.lineWidth = 0.9;
-                    ctx.stroke();
-
-                    // Partícula resaltada
-                    ctx.beginPath();
-                    ctx.arc(particles[i].x, particles[i].y, particles[i].radius * 1.3, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 255, 0.85)`;
-                    ctx.fill();
-                }
-            }
-        }
-
-        for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
-        }
-
         requestAnimationFrame(animate);
+
+        const elapsed = clock.getElapsedTime();
+
+        // Suavizado de cursor (lerp)
+        pointer.x += (pointer.targetX - pointer.x) * 0.06;
+        pointer.y += (pointer.targetY - pointer.y) * 0.06;
+
+        // Disipar impulso de cambio de vista
+        impulseSpin *= 0.94;
+
+        // Transición suave de parámetros de vista
+        activeWaveAmp += (currentViewTarget.waveAmp - activeWaveAmp) * 0.04;
+        waveMat.opacity += (currentViewTarget.waveOpacity - waveMat.opacity) * 0.04;
+        waveMat.color.lerp(currentViewTarget.color, 0.04);
+        particlesMat.color.lerp(currentViewTarget.color, 0.04);
+
+        // Desplazamiento por scroll y paralaje de cámara
+        const scrollFactor = Math.min(scrollY * 0.0018, 3.5);
+        const targetCamX = pointer.x * 1.15;
+        const targetCamY = currentViewTarget.camY + pointer.y * 0.65 - scrollFactor * 0.45;
+        const targetCamZ = currentViewTarget.camZ - scrollFactor * 0.55;
+
+        camera.position.x += (targetCamX - camera.position.x) * 0.05;
+        camera.position.y += (targetCamY - camera.position.y) * 0.05;
+        camera.position.z += (targetCamZ - camera.position.z) * 0.05;
+        camera.rotation.z += (currentViewTarget.camRotZ - pointer.x * 0.025 - camera.rotation.z) * 0.05;
+
+        // Actualizar ondas topográficas 3D con respuesta al cursor
+        const cursorWorldX = pointer.x * 11;
+        const cursorWorldY = pointer.y * 6;
+
+        for (let i = 0; i < wavePosAttr.count; i++) {
+            const bx = baseWaveXY[i * 2];
+            const by = baseWaveXY[i * 2 + 1];
+
+            const dx = bx - cursorWorldX;
+            const dy = by - cursorWorldY;
+            const distSq = dx * dx + dy * dy;
+            const cursorRipple = Math.exp(-distSq * 0.08) * 0.85 * Math.cos(Math.sqrt(distSq) * 1.4 - elapsed * 2.5);
+
+            const waveZ =
+                Math.sin(bx * 0.28 + elapsed * 0.55) * activeWaveAmp +
+                Math.cos(by * 0.32 + elapsed * 0.45) * (activeWaveAmp * 0.7) +
+                cursorRipple;
+
+            wavePosAttr.setZ(i, waveZ);
+        }
+        wavePosAttr.needsUpdate = true;
+
+        // Actualizar campo de partículas 3D
+        const posAttr = particlesGeo.attributes.position;
+        for (let i = 0; i < particleCount; i++) {
+            const ix = i * 3;
+            const iy = ix + 1;
+            const iz = ix + 2;
+
+            const sp = speeds[i];
+            let px = basePositions[ix] + Math.sin(elapsed * 0.35 * sp + i) * 0.45;
+            let py = basePositions[iy] + Math.cos(elapsed * 0.28 * sp + i * 0.5) * 0.45 + scrollFactor * 0.6;
+            let pz = basePositions[iz] + Math.sin(elapsed * 0.22 * sp + i * 0.3) * 0.35;
+
+            // Repulsión sutil en torno al rayo del cursor
+            const dx = px - pointer.x * 9;
+            const dy = py - pointer.y * 6;
+            const dSq = dx * dx + dy * dy;
+            if (dSq < 12) {
+                const f = (1 - dSq / 12) * 0.55;
+                px += dx * f * 0.25;
+                py += dy * f * 0.25;
+            }
+
+            posAttr.setXYZ(i, px, py, pz);
+        }
+        posAttr.needsUpdate = true;
+        particleSystem.rotation.y = elapsed * 0.018 + pointer.x * 0.08;
+
+        // Rotar poliedros wireframe flotantes
+        for (let i = 0; i < floatingShapes.length; i++) {
+            const item = floatingShapes[i];
+            item.mesh.rotation.x += item.rotSpeedX + impulseSpin;
+            item.mesh.rotation.y += item.rotSpeedY + impulseSpin;
+            item.mesh.position.y = item.baseY + Math.sin(elapsed * 0.6 + item.floatOffset) * 0.35;
+        }
+
+        renderer.render(scene, camera);
     }
 
     animate();
+}
+
+/**
+ * Escultura 3D Interactiva en el Hero (Three.js)
+ * Núcleo cristalino facetado en grafito/obsidiana con jaula wireframe de plata,
+ * núcleo lumínico interior y anillos giroscópicos orbitales.
+ * Permite arrastrar para rotar con inercia y cambiar entre 3 geometrías al hacer clic.
+ */
+function initHero3DObject() {
+    const canvas = document.getElementById('hero-3d-canvas');
+    const stage = document.getElementById('hero3dStage');
+    const shapeBtn = document.getElementById('hero3dShapeBtn');
+    const shapeLabel = document.getElementById('hero3dShapeLabel');
+
+    if (!canvas || !stage || typeof THREE === 'undefined') return;
+
+    let renderer;
+    try {
+        renderer = new THREE.WebGLRenderer({
+            canvas: canvas,
+            alpha: true,
+            antialias: true,
+            powerPreference: 'high-performance'
+        });
+    } catch (e) {
+        return;
+    }
+
+    const width = stage.clientWidth || 400;
+    const height = stage.clientHeight || 400;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(width, height);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+    camera.position.set(0, 0, 6.2);
+
+    // Iluminación de estudio monocromática (destellos especulares limpios)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.65);
+    scene.add(ambientLight);
+
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.9);
+    keyLight.position.set(4, 5, 5);
+    scene.add(keyLight);
+
+    const rimLight = new THREE.PointLight(0xa1a1aa, 2.1, 16);
+    rimLight.position.set(-4, -3, -3);
+    scene.add(rimLight);
+
+    const cursorLight = new THREE.PointLight(0xffffff, 2.4, 12);
+    cursorLight.position.set(0, 0, 4);
+    scene.add(cursorLight);
+
+    // Grupo maestro de la escultura
+    const sculptureGroup = new THREE.Group();
+    scene.add(sculptureGroup);
+
+    // Subgrupo del núcleo central intercambiable
+    const coreGroup = new THREE.Group();
+    sculptureGroup.add(coreGroup);
+
+    // Materiales editoriales
+    const darkFacetedMat = new THREE.MeshStandardMaterial({
+        color: 0x15161a,
+        metalness: 0.82,
+        roughness: 0.22,
+        flatShading: true
+    });
+
+    const wireCageMat = new THREE.LineBasicMaterial({
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.52
+    });
+
+    const innerCoreMat = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.32
+    });
+
+    // 3 Modos Geométricos para el Núcleo
+    const shapeModes = [
+        {
+            label: '01 / CORE',
+            createGeo: () => new THREE.IcosahedronGeometry(1.18, 1)
+        },
+        {
+            label: '02 / KNOT',
+            createGeo: () => new THREE.TorusKnotGeometry(0.76, 0.22, 88, 14)
+        },
+        {
+            label: '03 / MATRIX',
+            createGeo: () => new THREE.OctahedronGeometry(1.22, 2)
+        }
+    ];
+
+    let currentModeIndex = 0;
+    let coreMesh = null;
+    let wireCage = null;
+    let targetCoreScale = 1;
+    let currentCoreScale = 1;
+
+    function buildCoreGeometry(modeIndex) {
+        if (coreMesh) {
+            coreGroup.remove(coreMesh);
+            coreMesh.geometry.dispose();
+        }
+        if (wireCage) {
+            coreGroup.remove(wireCage);
+            wireCage.geometry.dispose();
+        }
+
+        const geo = shapeModes[modeIndex].createGeo();
+        coreMesh = new THREE.Mesh(geo, darkFacetedMat);
+        coreGroup.add(coreMesh);
+
+        const edges = new THREE.EdgesGeometry(geo);
+        wireCage = new THREE.LineSegments(edges, wireCageMat);
+        wireCage.scale.setScalar(1.02);
+        coreGroup.add(wireCage);
+
+        if (shapeLabel) {
+            shapeLabel.textContent = shapeModes[modeIndex].label;
+        }
+    }
+
+    buildCoreGeometry(0);
+
+    // Núcleo interior energético en contra-rotación
+    const innerCoreGeo = new THREE.OctahedronGeometry(0.52, 0);
+    const innerCore = new THREE.Mesh(innerCoreGeo, innerCoreMat);
+    coreGroup.add(innerCore);
+
+    // Anillos Giroscópicos Concéntricos
+    const ringsGroup = new THREE.Group();
+    sculptureGroup.add(ringsGroup);
+
+    // Anillo 1: Aro interior continuo
+    const ring1Geo = new THREE.TorusGeometry(1.78, 0.008, 16, 100);
+    const ring1Mat = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.28
+    });
+    const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
+    ring1.rotation.x = Math.PI * 0.32;
+    ring1.rotation.y = Math.PI * 0.12;
+    ringsGroup.add(ring1);
+
+    // Anillo 2: Corona orbital de puntos de precisión
+    const ring2Count = 72;
+    const ring2Positions = new Float32Array(ring2Count * 3);
+    const ring2Radius = 2.05;
+    for (let i = 0; i < ring2Count; i++) {
+        const angle = (i / ring2Count) * Math.PI * 2;
+        ring2Positions[i * 3] = Math.cos(angle) * ring2Radius;
+        ring2Positions[i * 3 + 1] = Math.sin(angle) * ring2Radius;
+        ring2Positions[i * 3 + 2] = 0;
+    }
+    const ring2Geo = new THREE.BufferGeometry();
+    ring2Geo.setAttribute('position', new THREE.BufferAttribute(ring2Positions, 3));
+    const ring2Mat = new THREE.PointsMaterial({
+        color: 0xd4d4d8,
+        size: 0.04,
+        transparent: true,
+        opacity: 0.65
+    });
+    const ring2 = new THREE.Points(ring2Geo, ring2Mat);
+    ring2.rotation.x = -Math.PI * 0.28;
+    ring2.rotation.y = -Math.PI * 0.22;
+    ringsGroup.add(ring2);
+
+    // Anillo 3: Aro exterior con nodos satélites
+    const ring3 = new THREE.Group();
+    const ring3TorusGeo = new THREE.TorusGeometry(2.28, 0.005, 12, 100);
+    const ring3TorusMat = new THREE.MeshBasicMaterial({
+        color: 0xa1a1aa,
+        transparent: true,
+        opacity: 0.16
+    });
+    ring3.add(new THREE.Mesh(ring3TorusGeo, ring3TorusMat));
+
+    const satGeo = new THREE.OctahedronGeometry(0.055, 0);
+    const satMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    for (let i = 0; i < 4; i++) {
+        const sat = new THREE.Mesh(satGeo, satMat);
+        const a = (i / 4) * Math.PI * 2;
+        sat.position.set(Math.cos(a) * 2.28, Math.sin(a) * 2.28, 0);
+        ring3.add(sat);
+    }
+    ring3.rotation.x = Math.PI * 0.44;
+    ringsGroup.add(ring3);
+
+    // Función para cambiar de geometría con rebote elástico
+    function cycleShapeMode() {
+        currentModeIndex = (currentModeIndex + 1) % shapeModes.length;
+        currentCoreScale = 0.72;
+        targetCoreScale = 1.0;
+        rotVelocity.y += 0.06;
+        buildCoreGeometry(currentModeIndex);
+    }
+
+    if (shapeBtn) {
+        shapeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            cycleShapeMode();
+        });
+    }
+
+    // Interacción: Arrastrar para rotar con inercia + Hover + Click
+    let isDragging = false;
+    let dragDistance = 0;
+    let prevPointer = { x: 0, y: 0 };
+    let rotVelocity = { x: 0.003, y: 0.006 };
+    let localHover = { x: 0, y: 0 };
+    let isHovered = false;
+
+    canvas.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        dragDistance = 0;
+        prevPointer.x = e.clientX;
+        prevPointer.y = e.clientY;
+        canvas.setPointerCapture(e.pointerId);
+    });
+
+    canvas.addEventListener('pointermove', (e) => {
+        const rect = stage.getBoundingClientRect();
+        localHover.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        localHover.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        isHovered = true;
+
+        if (!isDragging) return;
+
+        const dx = e.clientX - prevPointer.x;
+        const dy = e.clientY - prevPointer.y;
+        dragDistance += Math.abs(dx) + Math.abs(dy);
+
+        sculptureGroup.rotation.y += dx * 0.011;
+        sculptureGroup.rotation.x += dy * 0.011;
+
+        rotVelocity.y = dx * 0.008;
+        rotVelocity.x = dy * 0.008;
+
+        prevPointer.x = e.clientX;
+        prevPointer.y = e.clientY;
+    });
+
+    canvas.addEventListener('pointerup', (e) => {
+        if (isDragging && dragDistance < 6) {
+            cycleShapeMode();
+        }
+        isDragging = false;
+        try {
+            canvas.releasePointerCapture(e.pointerId);
+        } catch (_) {}
+    });
+
+    canvas.addEventListener('pointerleave', () => {
+        isHovered = false;
+    });
+
+    // Redimensionado reactivo del contenedor Hero
+    function handleStageResize() {
+        const w = stage.clientWidth;
+        const h = stage.clientHeight;
+        if (w > 0 && h > 0) {
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
+        }
+    }
+
+    window.addEventListener('resize', handleStageResize);
+    if (typeof ResizeObserver !== 'undefined') {
+        const ro = new ResizeObserver(handleStageResize);
+        ro.observe(stage);
+    }
+
+    const clock = new THREE.Clock();
+
+    function animateHero() {
+        requestAnimationFrame(animateHero);
+
+        const t = clock.getElapsedTime();
+
+        // Levitación suave
+        sculptureGroup.position.y = Math.sin(t * 1.4) * 0.08;
+
+        if (!isDragging) {
+            // Inercia rotacional amortiguada hacia velocidad base
+            rotVelocity.x += (0.002 - rotVelocity.x) * 0.04;
+            rotVelocity.y += (0.0055 - rotVelocity.y) * 0.04;
+
+            sculptureGroup.rotation.x += rotVelocity.x;
+            sculptureGroup.rotation.y += rotVelocity.y;
+
+            if (isHovered) {
+                sculptureGroup.rotation.y += localHover.x * 0.008;
+                sculptureGroup.rotation.x += -localHover.y * 0.008;
+            }
+        }
+
+        // Luz puntual siguiendo el cursor sobre las facetas del cristal
+        cursorLight.position.x += (localHover.x * 3.5 - cursorLight.position.x) * 0.1;
+        cursorLight.position.y += (localHover.y * 3.5 - cursorLight.position.y) * 0.1;
+
+        // Escala elástica al cambiar de modo
+        currentCoreScale += (targetCoreScale - currentCoreScale) * 0.12;
+        coreGroup.scale.setScalar(currentCoreScale);
+
+        // Brillo dinámico del wireframe al hacer hover
+        const targetWireOpacity = isHovered ? 0.78 : 0.48;
+        wireCageMat.opacity += (targetWireOpacity - wireCageMat.opacity) * 0.08;
+
+        // Contra-rotación del núcleo interior y los anillos giroscópicos
+        innerCore.rotation.x = -t * 0.7;
+        innerCore.rotation.y = -t * 0.9;
+
+        ring1.rotation.z = t * 0.35;
+        ring2.rotation.z = -t * 0.24;
+        ring3.rotation.z = t * 0.18;
+        ring3.rotation.y = Math.sin(t * 0.4) * 0.35;
+
+        renderer.render(scene, camera);
+    }
+
+    animateHero();
 }
