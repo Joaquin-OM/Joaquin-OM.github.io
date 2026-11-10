@@ -229,19 +229,19 @@ const translations = {
         "calc.totalNote": "Presupuesto sin compromiso • Sin costes ocultos",
         "calc.btnSend": "Pedir este presupuesto por WhatsApp",
         "footer.dossier": "Descargar Dossier de Servicios (PDF)",
-        "flyer.badge": "PROPUESTA WEB EXPRESS &bull; PRECIOS CERRADOS SIN CUOTAS MENSUALES",
+        "flyer.badge": "PROPUESTA DE DIGITALIZACIÓN &bull; SIN CUOTAS MENSUALES OBLIGATORIAS",
         "flyer.openPoster": "Abrir Flyer Completo / Descargar PNG →",
         "flyer.title": "¿Tu negocio necesita una web profesional que consiga clientes desde el primer día?",
         "flyer.desc": "Diseño rápido, limpio y 100% adaptado a móvil. Conectada directamente a tu WhatsApp para recibir reservas o presupuestos sin intermediarios ni comisiones.",
-        "flyer.p1Meta": "Lista en 3-5 días",
+        "flyer.p1Meta": "Lista en 3-5 días • WhatsApp directo",
         "flyer.p2Meta": "Hasta 5 págs + SEO Local",
         "flyer.p3Name": "Tienda / Odoo / n8n",
         "flyer.p3Meta": "E-Commerce & Automatización",
         "flyer.ctaWa": "Pedir presupuesto por WhatsApp",
-        "flyer.ctaCalc": "Calcular presupuesto al instante →",
+        "flyer.ctaCalc": "Solicitar valoración →",
         "flyer.ctaPoster": "Ver Flyer Descargable",
-        "flyer.qrTitle": "Presupuesto en 1 clic",
-        "flyer.qrSub": "Escanea o pulsa para abrir la calculadora interactiva y demos en vivo"
+        "flyer.qrTitle": "Presupuesto sin compromiso",
+        "flyer.qrSub": "Escanea el código QR o escríbeme directamente por WhatsApp"
     },
     en: {
         "nav.services": "Services",
@@ -467,19 +467,19 @@ const translations = {
         "calc.totalNote": "No-obligation quotation • Zero hidden fees",
         "calc.btnSend": "Request this quote via WhatsApp",
         "footer.dossier": "Download Services Dossier (PDF)",
-        "flyer.badge": "EXPRESS WEB PROPOSAL &bull; FIXED PRICES & ZERO MONTHLY FEES",
+        "flyer.badge": "DIGITALIZATION PROPOSAL &bull; ZERO MANDATORY MONTHLY FEES",
         "flyer.openPoster": "Open Full Flyer / Download PNG →",
         "flyer.title": "Does your business need a professional website that brings clients from day one?",
         "flyer.desc": "Fast, clean, 100% mobile-ready layout. Connected directly to your WhatsApp to receive bookings or quote requests with zero middlemen.",
-        "flyer.p1Meta": "Ready in 3-5 days",
+        "flyer.p1Meta": "Ready in 3-5 days • Direct WhatsApp",
         "flyer.p2Meta": "Up to 5 pages + Local SEO",
         "flyer.p3Name": "Online Store / Odoo / n8n",
         "flyer.p3Meta": "E-Commerce & Automation",
         "flyer.ctaWa": "Request a quote on WhatsApp",
-        "flyer.ctaCalc": "Calculate instant quote →",
+        "flyer.ctaCalc": "Request assessment →",
         "flyer.ctaPoster": "View Downloadable Flyer",
-        "flyer.qrTitle": "1-Click Quote",
-        "flyer.qrSub": "Scan or click to open the interactive budget calculator & live demos"
+        "flyer.qrTitle": "No-obligation quote",
+        "flyer.qrSub": "Scan the QR code or message me directly on WhatsApp"
     }
 };
 

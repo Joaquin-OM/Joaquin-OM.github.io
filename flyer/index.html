@@ -335,7 +335,15 @@
       justify-content: space-between;
       align-items: center;
       gap: 20px;
-      flex-wrap: wrap;
+    }
+
+    .flyer-pack-subtitle {
+      font-size: 0.82rem;
+      color: #A1A1AA;
+      line-height: 1.4;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
     }
 
     .flyer-cta-info h3 {
@@ -455,6 +463,9 @@
       .flyer-packs {
         grid-template-columns: 1fr;
       }
+      .flyer-cta-bar {
+        flex-wrap: wrap;
+      }
     }
 
     @media print {
@@ -543,7 +554,7 @@
 
         <!-- Gancho Principal -->
         <div class="flyer-hero">
-          <span class="flyer-eyebrow">Propuesta de Digitalización &bull; Precios Cerrados</span>
+          <span class="flyer-eyebrow">Diseño Web &bull; E-Commerce &bull; Automatización</span>
           <h2 class="flyer-headline">
             ¿Tu negocio necesita una web<br><span>que consiga clientes desde el día 1?</span>
           </h2>
@@ -552,22 +563,19 @@
           </p>
         </div>
 
-        <!-- 3 Propuestas Gancho -->
+        <!-- 3 Soluciones sin Precios -->
         <div class="flyer-packs">
           <!-- Pack 1 -->
           <div class="flyer-pack">
             <div>
               <div class="flyer-pack-tag">Impacto Rápido</div>
               <div class="flyer-pack-name">Landing Page</div>
-              <div class="flyer-pack-price">
-                <span class="amount">390 €</span>
-                <span class="note">pago único</span>
-              </div>
+              <div class="flyer-pack-subtitle">Ideal para promocionar un servicio o captar contactos directos.</div>
               <ul class="flyer-pack-list">
                 <li><span class="ck">✓</span> Diseño 100% adaptado a móvil</li>
                 <li><span class="ck">✓</span> Botón directo a tu WhatsApp</li>
                 <li><span class="ck">✓</span> Carga ultrarrápida (&lt; 1.5s)</li>
-                <li><span class="ck">✓</span> Ideal para captar clientes hoy</li>
+                <li><span class="ck">✓</span> Enfocada a máxima conversión</li>
               </ul>
             </div>
             <div class="flyer-pack-time">⚡ Lista en 3 a 5 días laborables</div>
@@ -579,10 +587,7 @@
             <div>
               <div class="flyer-pack-tag" style="color:#A1A1AA;">Negocio Completo</div>
               <div class="flyer-pack-name">Web Corporativa</div>
-              <div class="flyer-pack-price">
-                <span class="amount">790 €</span>
-                <span class="note">pago único</span>
-              </div>
+              <div class="flyer-pack-subtitle">Presencia profesional completa para destacar en Google.</div>
               <ul class="flyer-pack-list">
                 <li><span class="ck">✓</span> Hasta 5 páginas estructuradas</li>
                 <li><span class="ck">✓</span> SEO Local + Ficha Google Maps</li>
@@ -598,10 +603,7 @@
             <div>
               <div class="flyer-pack-tag">Escala & Automatización</div>
               <div class="flyer-pack-name">Tienda / Odoo / n8n</div>
-              <div class="flyer-pack-price">
-                <span class="note">Desde</span>
-                <span class="amount">1.350 €</span>
-              </div>
+              <div class="flyer-pack-subtitle">Venta online 24/7 y automatización de tareas repetitivas.</div>
               <ul class="flyer-pack-list">
                 <li><span class="ck">✓</span> Tienda Shopify o WooCommerce</li>
                 <li><span class="ck">✓</span> Portal integrado con Odoo ERP</li>
@@ -613,29 +615,16 @@
           </div>
         </div>
 
-        <!-- Demos por Sector -->
-        <div class="flyer-sectors">
-          <div class="flyer-sectors-title">Prueba mis demostraciones reales en vivo por sector:</div>
-          <div class="flyer-sector-chips">
-            <a href="../restaurante/" target="_blank" class="flyer-sector-chip">🍽️ Restaurantes & Carta Digital</a>
-            <a href="../moto-rent/" target="_blank" class="flyer-sector-chip">🛵 Rent-a-Car & Motos</a>
-            <a href="../hotel/" target="_blank" class="flyer-sector-chip">🏨 Hoteles & Agroturismos</a>
-            <a href="../inmobiliaria/" target="_blank" class="flyer-sector-chip">🏡 Inmobiliarias</a>
-            <a href="../crm/" target="_blank" class="flyer-sector-chip">📊 CRM & Asesorías</a>
-            <span class="flyer-sector-chip">⚡ WordPress &bull; Shopify &bull; Framer &bull; React &bull; n8n</span>
-          </div>
-        </div>
-
         <!-- Pie de Llamada a la Acción + QR -->
         <div class="flyer-cta-bar">
           <div class="flyer-cta-info">
             <h3>Solicita hoy tu presupuesto sin compromiso</h3>
-            <p>Respuesta en el mismo día. Escríbeme por WhatsApp o calcula tu presupuesto online:</p>
+            <p>Respuesta en el mismo día. Cuéntame qué necesita tu negocio por WhatsApp o email:</p>
             <div class="flyer-cta-links">
               <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20vi%20tu%20flyer%20de%20propuestas%20web%20y%20quiero%20consultar%20presupuesto" target="_blank" class="flyer-cta-pill primary">
                 📱 WhatsApp: +34 695 26 74 45
               </a>
-              <a href="https://joaquin-om.github.io/#servicios" class="flyer-cta-pill secondary">
+              <a href="https://joaquin-om.github.io" class="flyer-cta-pill secondary">
                 🌐 joaquin-om.github.io
               </a>
               <a href="mailto:osesjoa@gmail.com" class="flyer-cta-pill secondary">
@@ -645,10 +634,10 @@
           </div>
 
           <div class="flyer-qr-wrap">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=0&data=https%3A%2F%2Fjoaquin-om.github.io%2F%23servicios" alt="QR Calculadora de Presupuestos" crossorigin="anonymous">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=0&data=https%3A%2F%2Fjoaquin-om.github.io" alt="QR Portfolio Joaquín Oses" crossorigin="anonymous">
             <div class="flyer-qr-caption">
               <strong>Escanea el QR</strong>
-              Calcula tu presupuesto al instante y ve las demos
+              Descubre más en mi web y pide tu valoración
             </div>
           </div>
         </div>
@@ -672,16 +661,15 @@
               <span>Copiar Mensaje</span>
             </button>
           </div>
-          <div class="sales-copy-body" id="waSalesText">¡Hola! 👋 Te comparto mi propuesta de diseño y desarrollo web para negocios con precios cerrados y sin cuotas mensuales obligatorias:
+          <div class="sales-copy-body" id="waSalesText">¡Hola! 👋 Te comparto mi propuesta de diseño y desarrollo web para negocios, sin cuotas mensuales obligatorias y enfocada en captar clientes:
 
-🚀 *Landing Page Express (390 €)* — Lista en 3-5 días con botón directo a WhatsApp.
-⭐ *Web Corporativa Completa (790 €)* — Hasta 5 páginas, SEO Local en Google Maps y catálogo.
-🛒 *Tienda Online (Shopify/Woo), Odoo o Automatizaciones n8n* — A medida.
+🚀 *Landing Page Express* — Lista en 3-5 días con botón directo a WhatsApp.
+⭐ *Web Corporativa Completa* — Hasta 5 páginas, SEO Local en Google Maps y catálogo.
+🛒 *Tienda Online (Shopify/Woo), Odoo o Automatizaciones n8n* — A medida de tu negocio.
 
-Puedes ver demostraciones reales funcionando (restaurantes, alquiler de vehículos, hoteles, inmobiliaria, CRM) y calcular tu presupuesto al instante aquí:
-👉 https://joaquin-om.github.io/#servicios
-
-Si quieres que le demos una vuelta a la web de tu negocio, dime y lo vemos sin compromiso. ¡Un saludo!</div>
+Si estás pensando en lanzar o renovar la web de tu negocio, escríbeme sin compromiso y vemos qué opción se adapta mejor a lo que necesitas:
+👉 https://joaquin-om.github.io
+📱 WhatsApp directo: +34 695 26 74 45</div>
         </div>
       </div>
 
