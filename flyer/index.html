@@ -661,35 +661,6 @@
 
       </div>
 
-      <!-- Mensajes listos para enviar junto al Flyer por WhatsApp -->
-      <div class="sales-copy-section">
-        <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-white); margin-bottom: 6px;">
-          Mensaje listo para acompañar este Flyer por WhatsApp o Redes
-        </h3>
-        <p style="font-size: 0.86rem; color: var(--text-secondary);">
-          Descarga el flyer en PNG arriba y envíalo junto con este texto corto para conseguir respuestas rápidas:
-        </p>
-
-        <div class="sales-copy-card">
-          <div class="sales-copy-head">
-            <strong style="font-size: 0.88rem; color: var(--text-white);">Texto Gancho para WhatsApp / Clientes Potenciales</strong>
-            <button type="button" class="btn btn-sm btn-outline" onclick="copySalesText(this)">
-              <i data-lucide="copy" class="btn-icon"></i>
-              <span>Copiar Mensaje</span>
-            </button>
-          </div>
-          <div class="sales-copy-body" id="waSalesText">¡Hola! Te comparto mi propuesta de diseño y desarrollo web para negocios, sin cuotas mensuales obligatorias y enfocada en captar clientes:
-
-• *Landing Page Express* — Lista en 3-5 días con botón directo a WhatsApp.
-• *Web Corporativa Completa* — Hasta 5 páginas, SEO Local en Google Maps y catálogo.
-• *Tienda Online (Shopify/Woo), Odoo o Automatizaciones n8n* — A medida de tu negocio.
-
-Si estás pensando en lanzar o renovar la web de tu negocio, escríbeme sin compromiso y vemos qué opción se adapta mejor a lo que necesitas:
-Web: https://joaquin-om.github.io
-WhatsApp directo: +34 695 26 74 45</div>
-        </div>
-      </div>
-
     </div>
   </main>
 
@@ -702,19 +673,6 @@ WhatsApp directo: +34 695 26 74 45</div>
 
   <script>
     lucide.createIcons();
-
-    function copySalesText(btn) {
-      const text = document.getElementById('waSalesText').innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        const old = btn.innerHTML;
-        btn.innerHTML = '<i data-lucide="check" class="btn-icon"></i><span>¡Copiado!</span>';
-        lucide.createIcons();
-        setTimeout(() => {
-          btn.innerHTML = old;
-          lucide.createIcons();
-        }, 2000);
-      });
-    }
 
     const downloadBtn = document.getElementById('downloadFlyerBtn');
     if (downloadBtn) {
