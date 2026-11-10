@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flyer Comercial & Propuesta Web | Joaquín Oses Monti</title>
+  <meta name="description" content="Propuesta comercial de diseño y desarrollo web profesional desde 390 €. Descarga el flyer, calcula tu presupuesto al instante o contacta por WhatsApp.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    .flyer-page-wrap {
+      padding: 48px 0 90px;
+    }
+
+    .flyer-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+      background: rgba(18, 19, 22, 0.85);
+      border: 1px solid var(--border);
+      padding: 18px 24px;
+      border-radius: var(--radius-lg);
+    }
+
+    .toolbar-info h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-white);
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .toolbar-info p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Contenedor del Flyer Visual (Formato Póster 4:5 adaptable) */
+    .flyer-poster {
+      max-width: 880px;
+      margin: 0 auto;
+      background-color: #090A0C;
+      background-image:
+        radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.065) 0%, transparent 50%),
+        radial-gradient(circle at 15% 85%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 20px;
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75);
+    }
+
+    .flyer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 34px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .flyer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flyer-monogram {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #FFFFFF;
+      color: #090A0C;
+      font-weight: 800;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: -0.03em;
+    }
+
+    .flyer-brand-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      display: block;
+      letter-spacing: -0.01em;
+    }
+
+    .flyer-brand-role {
+      font-size: 0.78rem;
+      color: #A1A1AA;
+    }
+
+    .flyer-badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34D399;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 7px 14px;
+      border-radius: 999px;
+    }
+
+    .flyer-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 10px #10B981;
+    }
+
+    .flyer-hero {
+      margin-bottom: 34px;
+    }
+
+    .flyer-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #A1A1AA;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 5px 12px;
+      border-radius: 5px;
+      margin-bottom: 14px;
+    }
+
+    .flyer-headline {
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      color: #FFFFFF;
+      margin-bottom: 14px;
+    }
+
+    .flyer-headline span {
+      color: #D4D4D8;
+    }
+
+    .flyer-sub {
+      font-size: 1.05rem;
+      color: #A1A1AA;
+      line-height: 1.5;
+      max-width: 720px;
+    }
+
+    .flyer-sub strong {
+      color: #FFFFFF;
+    }
+
+    .flyer-packs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .flyer-pack {
+      background: rgba(18, 19, 22, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 14px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .flyer-pack.featured {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(18, 19, 22, 0.96) 100%);
+      border: 1.5px solid #FFFFFF;
+    }
+
+    .flyer-pack-star {
+      position: absolute;
+      top: -11px;
+      left: 18px;
+      background: #FFFFFF;
+      color: #090A0C;
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    .flyer-pack-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #71717A;
+      margin-bottom: 4px;
+    }
+
+    .flyer-pack-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+
+    .flyer-pack-price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .flyer-pack-price .amount {
+      font-size: 1.95rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .flyer-pack-price .note {
+      font-size: 0.74rem;
+      color: #71717A;
+    }
+
+    .flyer-pack-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-size: 0.82rem;
+      color: #D4D4D8;
+    }
+
+    .flyer-pack-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      line-height: 1.35;
+    }
+
+    .flyer-pack-list li span.ck {
+      color: #10B981;
+      font-weight: 800;
+    }
+
+    .flyer-pack-time {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: #D4D4D8;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 7px 10px;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .flyer-sectors {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+    }
+
+    .flyer-sectors-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #71717A;
+      margin-bottom: 8px;
+    }
+
+    .flyer-sector-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .flyer-sector-chip {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #E4E4E7;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .flyer-sector-chip:hover {
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+    }
+
+    .flyer-cta-bar {
+      background: linear-gradient(135deg, #141519 0%, #0D0E12 100%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .flyer-cta-info h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+
+    .flyer-cta-info p {
+      font-size: 0.84rem;
+      color: #A1A1AA;
+      margin-bottom: 12px;
+    }
+
+    .flyer-cta-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .flyer-cta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .flyer-cta-pill.primary {
+      background: #FFFFFF;
+      color: #090A0C;
+    }
+
+    .flyer-cta-pill.secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+    }
+
+    .flyer-qr-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 14px;
+      border-radius: 12px;
+    }
+
+    .flyer-qr-wrap img {
+      width: 78px;
+      height: 78px;
+      border-radius: 6px;
+      background: #FFFFFF;
+      padding: 5px;
+      display: block;
+    }
+
+    .flyer-qr-caption {
+      max-width: 115px;
+      font-size: 0.72rem;
+      line-height: 1.35;
+      color: #D4D4D8;
+    }
+
+    .flyer-qr-caption strong {
+      display: block;
+      color: #FFFFFF;
+      margin-bottom: 2px;
+    }
+
+    /* Bloques de Copy Comercial debajo */
+    .sales-copy-section {
+      max-width: 880px;
+      margin: 40px auto 0;
+    }
+
+    .sales-copy-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      margin-top: 14px;
+    }
+
+    .sales-copy-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    .sales-copy-body {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 780px) {
+      .flyer-poster {
+        padding: 24px 20px;
+      }
+      .flyer-headline {
+        font-size: 1.9rem;
+      }
+      .flyer-packs {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      .header, .flyer-toolbar, .sales-copy-section, footer {
+        display: none !important;
+      }
+      body {
+        background: #090A0C !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .flyer-page-wrap {
+        padding: 0;
+      }
+      .flyer-poster {
+        box-shadow: none;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container nav-container">
+      <a href="../" class="logo" style="display: flex; align-items: center; gap: 8px;">
+        <span class="logo-name">JOAQUÍN OSES MONTI</span>
+      </a>
+      <nav class="nav-menu">
+        <a href="../#conoceme" class="nav-link">Conóceme</a>
+        <a href="../#proyectos" class="nav-link">Proyectos</a>
+        <a href="../#servicios" class="nav-link">Servicios & Calculadora</a>
+        <a href="../banners/" class="nav-link">Kit de Banners</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20acabo%20de%20ver%20tu%20flyer%20de%20propuestas%20web%20y%20me%20gustar%C3%ADa%20pedir%20presupuesto" target="_blank" class="btn btn-sm btn-primary">
+          <i data-lucide="message-circle" class="btn-icon"></i>
+          <span>Pedir Presupuesto</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flyer-page-wrap">
+    <div class="container">
+
+      <!-- Barra de Herramientas para Descargar / Compartir -->
+      <div class="flyer-toolbar">
+        <div class="toolbar-info">
+          <h1>Flyer Comercial de Propuesta Web</h1>
+          <p>Listo para descargar en imagen (PNG) para enviar por WhatsApp/Redes, o guardar en PDF.</p>
+        </div>
+        <div class="toolbar-actions">
+          <button type="button" id="downloadFlyerBtn" class="btn btn-sm btn-primary">
+            <i data-lucide="download" class="btn-icon"></i>
+            <span>Descargar Flyer (PNG)</span>
+          </button>
+          <button type="button" onclick="window.print()" class="btn btn-sm btn-outline">
+            <i data-lucide="printer" class="btn-icon"></i>
+            <span>Imprimir / Guardar PDF</span>
+          </button>
+          <a href="../#servicios" class="btn btn-sm btn-outline">
+            <i data-lucide="calculator" class="btn-icon"></i>
+            <span>Abrir Calculadora Online</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- PÓSTER / FLYER COMERCIAL -->
+      <div class="flyer-poster" id="flyerCaptureTarget">
+
+        <!-- Cabecera del Flyer -->
+        <div class="flyer-top">
+          <div class="flyer-brand">
+            <div class="flyer-monogram">JO</div>
+            <div>
+              <span class="flyer-brand-name">JOAQUÍN OSES MONTI</span>
+              <span class="flyer-brand-role">Desarrollador Web & Automatizaciones &bull; Palma de Mallorca</span>
+            </div>
+          </div>
+          <div class="flyer-badge-live">
+            <span class="flyer-badge-dot"></span>
+            <span>Agenda Abierta &bull; Entrega Rápida</span>
+          </div>
+        </div>
+
+        <!-- Gancho Principal -->
+        <div class="flyer-hero">
+          <span class="flyer-eyebrow">Propuesta de Digitalización &bull; Precios Cerrados</span>
+          <h2 class="flyer-headline">
+            ¿Tu negocio necesita una web<br><span>que consiga clientes desde el día 1?</span>
+          </h2>
+          <p class="flyer-sub">
+            Diseño y desarrollo web profesional, <strong>sin cuotas mensuales obligatorias</strong> ni plantillas lentas. Conectada directamente a tu WhatsApp para que no pierdas ni una sola consulta o reserva.
+          </p>
+        </div>
+
+        <!-- 3 Propuestas Gancho -->
+        <div class="flyer-packs">
+          <!-- Pack 1 -->
+          <div class="flyer-pack">
+            <div>
+              <div class="flyer-pack-tag">Impacto Rápido</div>
+              <div class="flyer-pack-name">Landing Page</div>
+              <div class="flyer-pack-price">
+                <span class="amount">390 €</span>
+                <span class="note">pago único</span>
+              </div>
+              <ul class="flyer-pack-list">
+                <li><span class="ck">✓</span> Diseño 100% adaptado a móvil</li>
+                <li><span class="ck">✓</span> Botón directo a tu WhatsApp</li>
+                <li><span class="ck">✓</span> Carga ultrarrápida (&lt; 1.5s)</li>
+                <li><span class="ck">✓</span> Ideal para captar clientes hoy</li>
+              </ul>
+            </div>
+            <div class="flyer-pack-time">⚡ Lista en 3 a 5 días laborables</div>
+          </div>
+
+          <!-- Pack 2 -->
+          <div class="flyer-pack featured">
+            <div class="flyer-pack-star">★ Más Solicitado</div>
+            <div>
+              <div class="flyer-pack-tag" style="color:#A1A1AA;">Negocio Completo</div>
+              <div class="flyer-pack-name">Web Corporativa</div>
+              <div class="flyer-pack-price">
+                <span class="amount">790 €</span>
+                <span class="note">pago único</span>
+              </div>
+              <ul class="flyer-pack-list">
+                <li><span class="ck">✓</span> Hasta 5 páginas estructuradas</li>
+                <li><span class="ck">✓</span> SEO Local + Ficha Google Maps</li>
+                <li><span class="ck">✓</span> Catálogo de servicios o carta</li>
+                <li><span class="ck">✓</span> Dominio, hosting y SSL listos</li>
+              </ul>
+            </div>
+            <div class="flyer-pack-time" style="background: rgba(255,255,255,0.12); color: #FFF;">🚀 Lista en 7 a 10 días laborables</div>
+          </div>
+
+          <!-- Pack 3 -->
+          <div class="flyer-pack">
+            <div>
+              <div class="flyer-pack-tag">Escala & Automatización</div>
+              <div class="flyer-pack-name">Tienda / Odoo / n8n</div>
+              <div class="flyer-pack-price">
+                <span class="note">Desde</span>
+                <span class="amount">1.350 €</span>
+              </div>
+              <ul class="flyer-pack-list">
+                <li><span class="ck">✓</span> Tienda Shopify o WooCommerce</li>
+                <li><span class="ck">✓</span> Portal integrado con Odoo ERP</li>
+                <li><span class="ck">✓</span> Automatizaciones con n8n</li>
+                <li><span class="ck">✓</span> Apps y paneles a medida (React)</li>
+              </ul>
+            </div>
+            <div class="flyer-pack-time">🔧 Proyecto a medida llave en mano</div>
+          </div>
+        </div>
+
+        <!-- Demos por Sector -->
+        <div class="flyer-sectors">
+          <div class="flyer-sectors-title">Prueba mis demostraciones reales en vivo por sector:</div>
+          <div class="flyer-sector-chips">
+            <a href="../restaurante/" target="_blank" class="flyer-sector-chip">🍽️ Restaurantes & Carta Digital</a>
+            <a href="../moto-rent/" target="_blank" class="flyer-sector-chip">🛵 Rent-a-Car & Motos</a>
+            <a href="../hotel/" target="_blank" class="flyer-sector-chip">🏨 Hoteles & Agroturismos</a>
+            <a href="../inmobiliaria/" target="_blank" class="flyer-sector-chip">🏡 Inmobiliarias</a>
+            <a href="../crm/" target="_blank" class="flyer-sector-chip">📊 CRM & Asesorías</a>
+            <span class="flyer-sector-chip">⚡ WordPress &bull; Shopify &bull; Framer &bull; React &bull; n8n</span>
+          </div>
+        </div>
+
+        <!-- Pie de Llamada a la Acción + QR -->
+        <div class="flyer-cta-bar">
+          <div class="flyer-cta-info">
+            <h3>Solicita hoy tu presupuesto sin compromiso</h3>
+            <p>Respuesta en el mismo día. Escríbeme por WhatsApp o calcula tu presupuesto online:</p>
+            <div class="flyer-cta-links">
+              <a href="https://wa.me/34695267445?text=Hola%20Joaqu%C3%ADn%2C%20vi%20tu%20flyer%20de%20propuestas%20web%20y%20quiero%20consultar%20presupuesto" target="_blank" class="flyer-cta-pill primary">
+                📱 WhatsApp: +34 695 26 74 45
+              </a>
+              <a href="https://joaquin-om.github.io/#servicios" class="flyer-cta-pill secondary">
+                🌐 joaquin-om.github.io
+              </a>
+              <a href="mailto:osesjoa@gmail.com" class="flyer-cta-pill secondary">
+                ✉️ osesjoa@gmail.com
+              </a>
+            </div>
+          </div>
+
+          <div class="flyer-qr-wrap">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=0&data=https%3A%2F%2Fjoaquin-om.github.io%2F%23servicios" alt="QR Calculadora de Presupuestos" crossorigin="anonymous">
+            <div class="flyer-qr-caption">
+              <strong>Escanea el QR</strong>
+              Calcula tu presupuesto al instante y ve las demos
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Mensajes listos para enviar junto al Flyer por WhatsApp -->
+      <div class="sales-copy-section">
+        <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-white); margin-bottom: 6px;">
+          Mensaje listo para acompañar este Flyer por WhatsApp o Redes
+        </h3>
+        <p style="font-size: 0.86rem; color: var(--text-secondary);">
+          Descarga el flyer en PNG arriba y envíalo junto con este texto corto para conseguir respuestas rápidas:
+        </p>
+
+        <div class="sales-copy-card">
+          <div class="sales-copy-head">
+            <strong style="font-size: 0.88rem; color: var(--text-white);">Texto Gancho para WhatsApp / Clientes Potenciales</strong>
+            <button type="button" class="btn btn-sm btn-outline" onclick="copySalesText(this)">
+              <i data-lucide="copy" class="btn-icon"></i>
+              <span>Copiar Mensaje</span>
+            </button>
+          </div>
+          <div class="sales-copy-body" id="waSalesText">¡Hola! 👋 Te comparto mi propuesta de diseño y desarrollo web para negocios con precios cerrados y sin cuotas mensuales obligatorias:
+
+🚀 *Landing Page Express (390 €)* — Lista en 3-5 días con botón directo a WhatsApp.
+⭐ *Web Corporativa Completa (790 €)* — Hasta 5 páginas, SEO Local en Google Maps y catálogo.
+🛒 *Tienda Online (Shopify/Woo), Odoo o Automatizaciones n8n* — A medida.
+
+Puedes ver demostraciones reales funcionando (restaurantes, alquiler de vehículos, hoteles, inmobiliaria, CRM) y calcular tu presupuesto al instante aquí:
+👉 https://joaquin-om.github.io/#servicios
+
+Si quieres que le demos una vuelta a la web de tu negocio, dime y lo vemos sin compromiso. ¡Un saludo!</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <span>&copy; 2026 Joaquín Oses Monti &bull; Palma de Mallorca</span>
+      <a href="../" style="color: var(--text-white); text-decoration: none;">← Volver al Portfolio Principal</a>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    function copySalesText(btn) {
+      const text = document.getElementById('waSalesText').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const old = btn.innerHTML;
+        btn.innerHTML = '<i data-lucide="check" class="btn-icon"></i><span>¡Copiado!</span>';
+        lucide.createIcons();
+        setTimeout(() => {
+          btn.innerHTML = old;
+          lucide.createIcons();
+        }, 2000);
+      });
+    }
+
+    const downloadBtn = document.getElementById('downloadFlyerBtn');
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', async () => {
+        const target = document.getElementById('flyerCaptureTarget');
+        const origHtml = downloadBtn.innerHTML;
+        downloadBtn.innerHTML = '<span>Generando PNG...</span>';
+        try {
+          const canvas = await html2canvas(target, {
+            backgroundColor: '#090A0C',
+            scale: 2,
+            useCORS: true
+          });
+          const link = document.createElement('a');
+          link.download = 'Flyer_Propuesta_Web_Joaquin_Oses.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        } catch (err) {
+          window.print();
+        } finally {
+          downloadBtn.innerHTML = origHtml;
+          lucide.createIcons();
+        }
+      });
+    }
+  </script>
+</body>
+</html>

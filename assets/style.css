@@ -1309,3 +1309,233 @@ body {
     border-bottom: 1px solid var(--border);
     padding-bottom: 8px;
 }
+
+/* ==========================================================
+   FLYER / PROPUESTA WEB DESTACADA EN PORTADA
+   ========================================================== */
+.promo-flyer-banner {
+    margin-top: 48px;
+    background:
+        radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 10% 90%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+        rgba(18, 19, 22, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    position: relative;
+    overflow: hidden;
+    transition: border-color var(--transition);
+}
+
+.promo-flyer-banner:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.promo-flyer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.promo-flyer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    color: #34D399;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+}
+
+.promo-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10B981;
+    box-shadow: 0 0 8px #10B981;
+}
+
+.promo-flyer-open-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-white);
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    transition: all var(--transition);
+}
+
+.promo-flyer-open-link:hover {
+    background: var(--text-white);
+    color: #090A0C;
+    border-color: var(--text-white);
+}
+
+.promo-flyer-grid {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 28px;
+    align-items: center;
+}
+
+.promo-flyer-title {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--text-white);
+    line-height: 1.22;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+}
+
+.promo-flyer-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 20px;
+    max-width: 680px;
+}
+
+.promo-packs-mini {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.promo-pack-pill {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: all var(--transition);
+}
+
+.promo-pack-pill:hover {
+    border-color: var(--border-hover);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+}
+
+.promo-pack-pill.featured {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.promo-pack-star {
+    position: absolute;
+    top: -9px;
+    right: 12px;
+    background: var(--text-white);
+    color: #090A0C;
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 7px;
+    border-radius: 3px;
+}
+
+.promo-pack-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.promo-pack-price {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-white);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+}
+
+.promo-pack-meta {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.promo-flyer-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.promo-flyer-qr-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    gap: 10px;
+}
+
+.promo-qr-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    padding: 6px;
+    display: block;
+}
+
+.promo-qr-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    line-height: 1.35;
+}
+
+.promo-qr-caption strong {
+    color: var(--text-white);
+    font-size: 0.78rem;
+}
+
+@media (max-width: 860px) {
+    .promo-flyer-banner {
+        padding: 22px 18px;
+    }
+
+    .promo-flyer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .promo-packs-mini {
+        grid-template-columns: 1fr;
+    }
+
+    .promo-flyer-qr-card {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .promo-qr-img {
+        width: 84px;
+        height: 84px;
+    }
+}
