@@ -23,25 +23,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Estilos Monocromáticos -->
-    <link rel="stylesheet" href="assets/style.css?v=20261110b">
+    <link rel="stylesheet" href="assets/style.css?v=20261110c">
     <style>
+        .btn {
+            padding: 10px 20px;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+        .promo-flyer-actions .btn {
+            padding: 12px 24px;
+            font-size: 0.94rem;
+            font-weight: 600;
+            border-radius: 8px;
+            gap: 10px;
+        }
         .floating-wa-btn {
             position: fixed;
-            bottom: 26px;
-            right: 26px;
+            bottom: 28px;
+            right: 28px;
             z-index: 9999;
             display: inline-flex;
             align-items: center;
             gap: 10px;
             background: #FFFFFF;
             color: #090A0C !important;
-            padding: 12px 20px;
+            padding: 13px 22px;
             border-radius: 9999px;
-            font-size: 0.86rem;
+            font-size: 0.92rem;
             font-weight: 700;
             letter-spacing: -0.01em;
             text-decoration: none !important;
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.25);
             transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background-color 0.2s ease;
             animation: subtleWaFloat 3.4s ease-in-out infinite;
         }
@@ -304,8 +316,8 @@
                                 </div>
 
                                 <div class="promo-flyer-actions">
-                                    <a href="./flyer/" class="btn btn-primary">
-                                        <i data-lucide="download" class="btn-icon"></i>
+                                    <a href="./flyer/" class="btn btn-primary btn-lg" style="padding: 12px 24px; font-size: 0.94rem; font-weight: 600; border-radius: 8px; gap: 10px;">
+                                        <i data-lucide="download" class="btn-icon" style="width: 17px; height: 17px;"></i>
                                         <span data-i18n="flyer.ctaPoster">Descargar Flyer</span>
                                     </a>
                                 </div>
