@@ -62,7 +62,7 @@ const translations = {
         "edu.esoSchool": "Colegio Sant Josep Obrer &bull; Palma de Mallorca",
         "edu.esoDesc": "Graduado escolar con base formativa general superada con éxito y orientación científico-tecnológica.",
 
-        "projects.crmBadge": "★ DESTACADO",
+        "projects.crmBadge": "DESTACADO",
         "projects.crmCat": "Ventas & Pipeline",
         "projects.crmTech": "JavaScript ES6+ &bull; Modular State &bull; LocalStorage &bull; Pipeline Kanban",
         "projects.crmTitle": "CRM Ligero para Clientes y Oportunidades",
@@ -300,7 +300,7 @@ const translations = {
         "edu.esoSchool": "Sant Josep Obrer College &bull; Palma de Mallorca",
         "edu.esoDesc": "Secondary education completed with a strong foundational focus in science and technology.",
 
-        "projects.crmBadge": "★ FEATURED",
+        "projects.crmBadge": "FEATURED",
         "projects.crmCat": "Sales & Pipeline",
         "projects.crmTech": "JavaScript ES6+ &bull; Modular State &bull; LocalStorage &bull; Kanban Pipeline",
         "projects.crmTitle": "Lightweight CRM for Clients & Opportunities",
@@ -646,7 +646,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const submitBtn = document.getElementById('submitBtn');
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = currentLanguage === 'es' ? '✓ Abriendo WhatsApp...' : '✓ Opening WhatsApp...';
+            submitBtn.innerHTML = currentLanguage === 'es'
+                ? '<i data-lucide="check" class="btn-icon"></i><span>Abriendo WhatsApp...</span>'
+                : '<i data-lucide="check" class="btn-icon"></i><span>Opening WhatsApp...</span>';
+            if (window.lucide) window.lucide.createIcons();
             submitBtn.style.background = '#27272A';
             submitBtn.style.color = '#FFFFFF';
 
