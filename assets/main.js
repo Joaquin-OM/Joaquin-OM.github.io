@@ -239,7 +239,7 @@ const translations = {
         "flyer.p3Meta": "E-Commerce & Automatización",
         "flyer.ctaWa": "Pedir presupuesto por WhatsApp",
         "flyer.ctaCalc": "Solicitar valoración →",
-        "flyer.ctaPoster": "Ver Flyer Descargable",
+        "flyer.ctaPoster": "Descargar Flyer",
         "flyer.qrTitle": "Presupuesto sin compromiso",
         "flyer.qrSub": "Escanea el código QR o escríbeme directamente por WhatsApp"
     },
@@ -477,7 +477,7 @@ const translations = {
         "flyer.p3Meta": "E-Commerce & Automation",
         "flyer.ctaWa": "Request a quote on WhatsApp",
         "flyer.ctaCalc": "Request assessment →",
-        "flyer.ctaPoster": "View Downloadable Flyer",
+        "flyer.ctaPoster": "Download Flyer",
         "flyer.qrTitle": "No-obligation quote",
         "flyer.qrSub": "Scan the QR code or message me directly on WhatsApp"
     }
